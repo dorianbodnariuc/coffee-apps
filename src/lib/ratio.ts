@@ -18,7 +18,7 @@ function round1(value: number): number {
 
 /** True when the value is a finite number > 0. */
 function isPositive(value: number | null | undefined): value is number {
-  return typeof value === 'number' && Number.isFinite(value) && value > 0;
+  return typeof value === "number" && Number.isFinite(value) && value > 0;
 }
 
 /** ratio = water / dose. Never divides by zero: null when dose is missing or 0. */
@@ -28,13 +28,19 @@ export function calculateRatio(doseG: number, waterG: number): number | null {
 }
 
 /** water = dose × ratio. */
-export function waterFromDoseAndRatio(doseG: number, ratio: number): number | null {
+export function waterFromDoseAndRatio(
+  doseG: number,
+  ratio: number,
+): number | null {
   if (!isPositive(doseG) || !isPositive(ratio)) return null;
   return round1(doseG * ratio);
 }
 
 /** dose = water / ratio. */
-export function doseFromWaterAndRatio(waterG: number, ratio: number): number | null {
+export function doseFromWaterAndRatio(
+  waterG: number,
+  ratio: number,
+): number | null {
   if (!isPositive(waterG) || !isPositive(ratio)) return null;
   return round1(waterG / ratio);
 }
@@ -50,7 +56,7 @@ export type RatioSolution = {
   waterG: number;
   ratio: number;
   /** Which field was computed from the other two. */
-  computed: 'doseG' | 'waterG' | 'ratio';
+  computed: "doseG" | "waterG" | "ratio";
 };
 
 /**
@@ -70,17 +76,17 @@ export function solveRatio(inputs: RatioInputs): RatioSolution | null {
   if (isPositive(doseG) && isPositive(ratio)) {
     const water = waterFromDoseAndRatio(doseG, ratio);
     if (water === null) return null;
-    return { doseG, waterG: water, ratio, computed: 'waterG' };
+    return { doseG, waterG: water, ratio, computed: "waterG" };
   }
   if (isPositive(waterG) && isPositive(ratio)) {
     const dose = doseFromWaterAndRatio(waterG, ratio);
     if (dose === null) return null;
-    return { doseG: dose, waterG, ratio, computed: 'doseG' };
+    return { doseG: dose, waterG, ratio, computed: "doseG" };
   }
   if (isPositive(doseG) && isPositive(waterG)) {
     const computedRatio = calculateRatio(doseG, waterG);
     if (computedRatio === null) return null;
-    return { doseG, waterG, ratio: computedRatio, computed: 'ratio' };
+    return { doseG, waterG, ratio: computedRatio, computed: "ratio" };
   }
   return null;
 }
