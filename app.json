@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "coffee-scaffold",
-    "slug": "coffee-scaffold",
+    "name": "coffee-app",
+    "slug": "coffee-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "coffeescaffold",
+    "scheme": "coffeeapp",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
