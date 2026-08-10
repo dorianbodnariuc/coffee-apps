@@ -176,27 +176,31 @@ espresso-method log cluster).
 
 ---
 
-## Distribution (v1.2 — proposals, pick a starting set)
-1. **coffee-dictionary.com as the owned funnel (recommended start, free):** add a
+## Distribution (v1.2 — start set LOCKED 2026-08-09: proposals 1 + 2)
+1. **coffee-dictionary.com as the owned funnel (LOCKED — starting now, free):** add a
    brew-ratio calculator widget/page on the site, cross-link the app ("log your
    brews"); the glossary import doubles as distribution. Owned media compounds.
-2. **Community seeding (recommended start, cheap):** honest posts with real
+2. **Community seeding (LOCKED — starting now, cheap):** honest posts with real
    brew-log screenshots in r/pourover, r/coffee, r/espresso, Home-Barista.
 3. **Creator collabs:** 5–10 coffee micro-influencers once the app is polished;
-   early access + credit.
+   early access + credit. (later)
 4. **App Store ASO:** "coffee brew ratio calculator" keyword is searchable with
-   weak competition; optimize listing around the log loop.
+   weak competition; optimize listing around the log loop. (at launch)
 5. **Product Hunt / launch lists:** one-shot spike — pairs with the standalone
-   calculator funnel if/when it ships.
+   calculator funnel if/when it ships. (later)
 
 ## Open decisions (remaining)
-1. **Gate numbers** — confirm defaults (activation ≥25%, D7 retention ≥20%) or adjust
-2. **Distribution** — which proposals to start with (recommended: 1 + 2)
-3. **Glossary licensing** — are the 101 terms (and coffee-dictionary.com content)
-   fully reusable in the app, including the paid tier?
-4. **Glossary completeness** — is 101 terms the full set, or a larger live set later?
-5. **Import repo** — create `~/coffee-dictionary-import` for the ETL?
-6. **Photo limits** — count/size caps for attachments (default: 3 photos, 10 MB each)
+1. ~~Gate numbers~~ — **LOCKED**: activation ≥25% (≥3 logs/7 days), D7 ≥20%
+   (user confirmed 2026-08-09)
+2. ~~Distribution~~ — **LOCKED**: start with dictionary-site funnel + community
+   seeding (user confirmed 2026-08-09)
+3. **Glossary licensing** — terms confirmed owned by us (user 2026-08-09);
+   paid-tier reuse of dictionary content still to explicitly confirm
+4. **Glossary completeness** — full set ~377 terms; definitions for ~276 still
+   need export (WP side) — see coffee-dictionary-import README
+5. ~~Import repo~~ — **DONE**: `~/coffee-dictionary-import` created, offline
+   export committed
+6. **Photo limits** — recommendation pending user (default: 3 photos, 10 MB)
 
 ---
 

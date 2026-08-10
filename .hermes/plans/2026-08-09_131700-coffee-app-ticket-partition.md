@@ -332,13 +332,16 @@ Rule: **a brief should contain everything the subagent needs and nothing it does
 
 ## 7. Open decisions (carried from plan v1.2)
 
-1. Gate numbers — confirm defaults (≥25% activation, D7 ≥20%).
-2. Distribution — pick starting set (recommended: dictionary-site funnel +
-   community seeding).
-3. Glossary licensing — 101 terms reusable incl. paid tier?
-4. Glossary completeness — 101 full set, or larger live set later?
-5. Import repo — create `~/coffee-dictionary-import`?
-6. Photo caps — confirm 3 photos / 10 MB defaults.
+LOCKED (user, 2026-08-09): gate numbers (act ≥25%, D7 ≥20%) · distribution
+start set (dictionary funnel + community seeding) · licensing = owned ·
+import repo created (`~/coffee-dictionary-import`).
+
+Remaining:
+1. Paid-tier reuse of dictionary content — explicit confirm
+2. Definitions export for ~276 terms (WP side) — path TBD (REST pull vs
+   other-context export)
+3. Photo caps — pending user recommendation (proposed: 3 photos, client-side
+   compress, 5 MB hard cap)
 
 ## 8. Changelog v1.2
 
