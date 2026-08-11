@@ -57,6 +57,10 @@ try {
     process.exit(failures > 0 ? 1 : 0);
   }
 
+  // signUp for B overwrites the single client's in-memory session (autoconfirm
+  // returns a session per signup) — pin the client to A before A's checks.
+  await anon.auth.setSession(sessionA);
+
   // 1. Client write to `ratio` must be rejected (generated column).
   const badInsert = await anon
     .from('brew_logs')
@@ -84,8 +88,14 @@ try {
     const { data: asB, error: selErr } = await anon.from('brew_logs').select('id');
     check('B cannot read A rows', !selErr && (asB ?? []).length === 0, `saw ${asB?.length ?? 'error'} rows`);
 
-    const { error: updErr } = await anon.from('brew_logs').update({ tasting_notes: 'hacked' }).eq('id', rowIdA);
-    check('B cannot update A rows', !!updErr, updErr?.message ?? 'unexpectedly allowed');
+    const { data: updData, error: updErr } = await anon
+      .from('brew_logs')
+      .update({ tasting_notes: 'hacked' })
+      .eq('id', rowIdA)
+      .select();
+    // Postgres RLS semantics: B's update sees 0 rows (row invisible) — no
+    // error, but nothing is modified. Assert 0 rows were actually updated.
+    check('B cannot update A rows', !updErr && (updData ?? []).length === 0, `updated ${updData?.length ?? 'error'} rows`);
   }
 
   // 4. delete_account cascades (service role verification).
