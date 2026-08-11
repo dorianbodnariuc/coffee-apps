@@ -33,9 +33,7 @@ export async function syncLocalBrews(
     return { inserted: 0, error: null };
   }
 
-  const { error } = await supabase
-    .from("brew_logs")
-    .insert(brews.map(toRow));
+  const { error } = await supabase.from("brew_logs").insert(brews.map(toRow));
 
   if (error) {
     return { inserted: 0, error: error.message };

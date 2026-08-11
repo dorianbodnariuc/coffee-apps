@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { useTheme } from "@/hooks/use-theme";
@@ -50,10 +44,7 @@ export default function SettingsScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Pressable
-        style={({ pressed }) => [
-          styles.backButton,
-          pressed && styles.pressed,
-        ]}
+        style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
         onPress={() => router.back()}
       >
         <Text style={[styles.backText, { color: theme.text }]}>‹ Back</Text>
@@ -79,10 +70,7 @@ export default function SettingsScreen() {
             </Text>
           ) : (
             <Pressable
-              style={({ pressed }) => [
-                styles.row,
-                pressed && styles.pressed,
-              ]}
+              style={({ pressed }) => [styles.row, pressed && styles.pressed]}
               onPress={() => router.push("/auth")}
             >
               <Text style={[styles.rowText, { color: theme.text }]}>

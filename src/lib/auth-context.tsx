@@ -4,7 +4,6 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -47,18 +46,13 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(isSupabaseConfigured);
-  const initializedRef = useRef(false);
 
   useEffect(() => {
-    if (!isSupabaseConfigured || !supabase) {
-      setLoading(false);
-      return;
-    }
+    if (!isSupabaseConfigured || !supabase) return;
 
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
-      initializedRef.current = true;
     });
 
     const {

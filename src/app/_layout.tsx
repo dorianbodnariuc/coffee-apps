@@ -4,21 +4,21 @@ import {
   Tabs,
   ThemeProvider,
   useRouter,
-} from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Pressable, Text, useColorScheme } from 'react-native';
+} from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Pressable, Text, useColorScheme } from "react-native";
 
-import { AuthProvider } from '@/lib/auth-context';
+import { AuthProvider } from "@/lib/auth-context";
 
 /** Header-right gear on the History tab that pushes the settings route. */
 function SettingsButton() {
   const router = useRouter();
   const colorScheme = useColorScheme();
-  const color = colorScheme === 'dark' ? '#ffffff' : '#000000';
+  const color = colorScheme === "dark" ? "#ffffff" : "#000000";
 
   return (
     <Pressable
-      onPress={() => router.push('/settings')}
+      onPress={() => router.push("/settings")}
       hitSlop={8}
       accessibilityLabel="Settings"
     >
@@ -32,13 +32,13 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Tabs>
-          <Tabs.Screen name="index" options={{ title: 'Log' }} />
+          <Tabs.Screen name="index" options={{ title: "Log" }} />
           <Tabs.Screen
             name="history"
             options={{
-              title: 'History',
+              title: "History",
               headerRight: () => <SettingsButton />,
             }}
           />

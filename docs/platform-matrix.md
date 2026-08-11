@@ -11,11 +11,11 @@ Supabase project yet — the steps below describe how to turn them on.
 
 ## Methods
 
-| Method        | iOS | Android | Web | Notes |
-| ------------- | --- | ------- | --- | ----- |
-| Email/password| ✅  | ✅      | ✅  | Works everywhere, no setup |
-| Google OAuth  | ✅* | ✅      | ✅  | *See Expo Go caveat below |
-| Apple sign-in | ✅  | ❌      | ✅* | iOS only; *web works via OAuth, native needs a dev build |
+| Method         | iOS | Android | Web | Notes                                                    |
+| -------------- | --- | ------- | --- | -------------------------------------------------------- |
+| Email/password | ✅  | ✅      | ✅  | Works everywhere, no setup                               |
+| Google OAuth   | ✅* | ✅      | ✅  | *See Expo Go caveat below                                |
+| Apple sign-in  | ✅  | ❌      | ✅* | iOS only; *web works via OAuth, native needs a dev build |
 
 ## Key caveats
 
