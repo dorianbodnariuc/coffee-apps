@@ -5,10 +5,12 @@ import {
   ThemeProvider,
   useRouter,
 } from "expo-router";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import { Pressable, Text, useColorScheme } from "react-native";
 
 import { AuthProvider } from "@/lib/auth-context";
+import { queryClient } from "@/lib/query-client";
 
 /** Header-right gear on the History tab that pushes the settings route. */
 function SettingsButton() {
@@ -31,20 +33,24 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <AuthProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Tabs>
-          <Tabs.Screen name="index" options={{ title: "Log" }} />
-          <Tabs.Screen
-            name="history"
-            options={{
-              title: "History",
-              headerRight: () => <SettingsButton />,
-            }}
-          />
-        </Tabs>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Tabs>
+            <Tabs.Screen name="index" options={{ title: "Log" }} />
+            <Tabs.Screen
+              name="history"
+              options={{
+                title: "History",
+                headerRight: () => <SettingsButton />,
+              }}
+            />
+          </Tabs>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

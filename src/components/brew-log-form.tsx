@@ -27,6 +27,8 @@ export type BrewLogFormProps = {
   calculatorPrefill?: RatioValues | null;
   onSubmit: (input: BrewLogInput) => void;
   submitLabel?: string;
+  /** Disables the submit button and shows "Saving…" (T3b persistence). */
+  submitting?: boolean;
 };
 
 type FieldErrors = Partial<Record<keyof BrewLogInput, string>>;
@@ -86,6 +88,7 @@ export default function BrewLogForm({
   calculatorPrefill,
   onSubmit,
   submitLabel = "Save brew",
+  submitting = false,
 }: BrewLogFormProps) {
   const theme = useTheme();
 
@@ -344,11 +347,12 @@ export default function BrewLogForm({
 
       <Pressable
         accessibilityRole="button"
+        disabled={submitting}
         onPress={handleSubmit}
         style={[styles.submit, { backgroundColor: theme.backgroundSelected }]}
       >
         <Text style={[styles.submitText, { color: theme.text }]}>
-          {submitLabel}
+          {submitting ? "Saving…" : submitLabel}
         </Text>
       </Pressable>
     </ScrollView>
