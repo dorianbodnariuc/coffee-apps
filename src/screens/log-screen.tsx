@@ -54,7 +54,9 @@ export default function LogScreen() {
   const { user, isConfigured } = useAuth();
   const [localBrews, setLocalBrews] = useState<BrewLog[]>([]);
   const [syncing, setSyncing] = useState(false);
-  const syncedRef = useRef(false);
+  const [syncFailed, setSyncFailed] = useState(false);
+  const [syncRetry, setSyncRetry] = useState(0);
+  const syncingRef = useRef(false);
   const [submitCount, setSubmitCount] = useState(0);
   const queryClient = useQueryClient();
 
@@ -69,19 +71,25 @@ export default function LogScreen() {
   const lastBrew = brews[0] ?? null;
   const saving = createMutation.isPending;
 
-  // One-shot sync: session-local brews upload to the account on sign-in.
+  // Sync session-local brews to the account on sign-in. Retries until success:
+  // on failure local brews are kept and the footer offers Retry (bumps
+  // syncRetry); the in-flight ref prevents duplicate concurrent syncs.
   useEffect(() => {
-    if (!user || syncedRef.current || localBrews.length === 0) return;
-    syncedRef.current = true;
+    if (!user || localBrews.length === 0 || syncingRef.current) return;
+    syncingRef.current = true;
     setSyncing(true);
+    setSyncFailed(false);
     syncLocalBrews(localBrews).then((result) => {
+      syncingRef.current = false;
       setSyncing(false);
       if (!result.error) {
         setLocalBrews([]);
         queryClient.invalidateQueries({ queryKey: ["brew-logs", user.id] });
+      } else {
+        setSyncFailed(true);
       }
     });
-  }, [user, localBrews, queryClient]);
+  }, [user, localBrews, syncRetry, queryClient]);
 
   const handleSubmit = (input: BrewLogInput) => {
     if (signedIn && userId) {
@@ -243,14 +251,23 @@ export default function LogScreen() {
         style={[styles.footer, { borderTopColor: theme.backgroundSelected }]}
       >
         <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-          {syncing
-            ? "Syncing your brews…"
-            : signedIn
-              ? `${brews.length} brew${brews.length === 1 ? "" : "s"} saved`
-              : brews.length === 0
-                ? "No brews logged yet this session."
-                : `${brews.length} brew${brews.length === 1 ? "" : "s"} logged — last: ${describeBrew(lastBrew!)}`}
+          {syncFailed
+            ? "Could not sync your brews."
+            : syncing
+              ? "Syncing your brews…"
+              : signedIn
+                ? `${brews.length} brew${brews.length === 1 ? "" : "s"} saved`
+                : brews.length === 0
+                  ? "No brews logged yet this session."
+                  : `${brews.length} brew${brews.length === 1 ? "" : "s"} logged — last: ${describeBrew(lastBrew!)}`}
         </Text>
+        {syncFailed ? (
+          <Pressable onPress={() => setSyncRetry((n) => n + 1)}>
+            <Text style={[styles.retryText, { color: theme.text }]}>
+              Retry sync
+            </Text>
+          </Pressable>
+        ) : null}
         <Text style={[styles.footerCaption, { color: theme.textSecondary }]}>
           {signedIn
             ? "Saved to your account."
