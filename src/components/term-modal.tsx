@@ -11,15 +11,20 @@ import { useTheme } from "@/hooks/use-theme";
 import type { GlossaryTerm } from "@/lib/glossary-match";
 
 /**
- * Simple term modal (T7): full definition + category + related terms.
+ * Term modal (T7): full definition + category + related terms.
  * Rendered over the brew detail screen when a matched chip is tapped.
+ *
+ * T11: related terms render as links when `onSelectTerm` is provided —
+ * tapping one switches the modal to that term (the parent owns the lookup).
  */
 export default function TermModal({
   term,
   onClose,
+  onSelectTerm,
 }: {
   term: GlossaryTerm | null;
   onClose: () => void;
+  onSelectTerm?: (termName: string) => void;
 }) {
   const theme = useTheme();
 
@@ -63,9 +68,29 @@ export default function TermModal({
                     >
                       Related
                     </Text>
-                    <Text style={[styles.relatedTerms, { color: theme.text }]}>
-                      {term.related_terms.join(" · ")}
-                    </Text>
+                    <View style={styles.relatedRow}>
+                      {term.related_terms.map((name) => (
+                        <Pressable
+                          accessibilityRole="button"
+                          key={name}
+                          onPress={() => onSelectTerm?.(name)}
+                          style={({ pressed }) => [
+                            styles.relatedChip,
+                            { backgroundColor: theme.backgroundElement },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              styles.relatedChipText,
+                              { color: theme.text },
+                            ]}
+                          >
+                            {name}
+                          </Text>
+                        </Pressable>
+                      ))}
+                    </View>
                   </View>
                 ) : null}
               </ScrollView>
@@ -127,8 +152,19 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.5,
   },
-  relatedTerms: {
-    fontSize: 14,
+  relatedRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+  relatedChip: {
+    borderRadius: 14,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  relatedChipText: {
+    fontSize: 13,
+    fontWeight: "500",
   },
   closeButton: {
     alignItems: "center",

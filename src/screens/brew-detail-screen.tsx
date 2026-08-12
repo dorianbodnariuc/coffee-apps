@@ -234,7 +234,14 @@ export default function BrewDetailScreen() {
         </ScrollView>
       )}
 
-      <TermModal onClose={() => setActiveTerm(null)} term={activeTerm} />
+      <TermModal
+        onClose={() => setActiveTerm(null)}
+        onSelectTerm={(name) => {
+          const next = glossaryQuery.data?.find((t) => t.term === name);
+          if (next) setActiveTerm(next);
+        }}
+        term={activeTerm}
+      />
     </View>
   );
 }
