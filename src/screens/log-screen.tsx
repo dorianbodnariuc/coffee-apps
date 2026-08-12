@@ -1,14 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import {
-  ActivityIndicator,
-  Alert,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import BrewLogForm from "@/components/brew-log-form";
@@ -17,11 +9,7 @@ import { deriveBrewRatio } from "@/lib/ratio";
 import { syncLocalBrews } from "@/lib/sync-local-brews";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 import type { BrewLog } from "@/types/brew-log";
-import {
-  useBrewLogs,
-  useCreateBrewLog,
-  useDeleteBrewLog,
-} from "@/hooks/use-brew-logs";
+import { useBrewLogs, useCreateBrewLog } from "@/hooks/use-brew-logs";
 import { useTheme } from "@/hooks/use-theme";
 
 function describeBrew(log: BrewLog): string {
@@ -34,19 +22,12 @@ function describeBrew(log: BrewLog): string {
   return `${name} · ${log.method}${recipe}${stars}`;
 }
 
-function formatDate(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 /**
  * Log tab (T3b): signed-in users get full Supabase persistence via React Query
- * (optimistic create/delete, server-backed list with delete+confirmation).
- * Signed-out users keep the local-first path: brews live in session state,
- * the soft wall prompts an account at brew #2, and local brews sync on
- * sign-in.
+ * (optimistic create). Signed-out users keep the local-first path: brews live
+ * in session state, the soft wall prompts an account at brew #2, and local
+ * brews sync on sign-in (retrying until success). History lives on the
+ * History tab (T4).
  */
 export default function LogScreen() {
   const theme = useTheme();
@@ -65,7 +46,6 @@ export default function LogScreen() {
 
   const brewsQuery = useBrewLogs(userId);
   const createMutation = useCreateBrewLog(userId ?? "");
-  const deleteMutation = useDeleteBrewLog(userId ?? "");
 
   const brews = signedIn ? (brewsQuery.data ?? []) : localBrews;
   const lastBrew = brews[0] ?? null;
@@ -104,24 +84,6 @@ export default function LogScreen() {
       setLocalBrews((prev) => [log, ...prev]);
     }
     setSubmitCount((n) => n + 1);
-  };
-
-  const handleDelete = (log: BrewLog) => {
-    Alert.alert(
-      "Delete brew",
-      `Remove "${log.beanName || "this brew"}" from your history? This cannot be undone.`,
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Delete",
-          style: "destructive",
-          onPress: () => {
-            if (signedIn && userId) deleteMutation.mutate(log.id);
-            else setLocalBrews((prev) => prev.filter((l) => l.id !== log.id));
-          },
-        },
-      ],
-    );
   };
 
   const showSoftWall = !user && isConfigured && brews.length >= 2;
@@ -165,85 +127,6 @@ export default function LogScreen() {
               Sign up
             </Text>
           </Pressable>
-        </View>
-      ) : null}
-
-      {signedIn ? (
-        <View style={styles.savedSection}>
-          <Text style={[styles.savedTitle, { color: theme.textSecondary }]}>
-            Saved brews
-          </Text>
-          {brewsQuery.isLoading ? (
-            <ActivityIndicator
-              color={theme.textSecondary}
-              style={styles.savedState}
-            />
-          ) : brewsQuery.isError ? (
-            <View style={styles.savedState}>
-              <Text style={[styles.savedEmpty, { color: theme.textSecondary }]}>
-                Could not load your brews.
-              </Text>
-              <Pressable onPress={() => brewsQuery.refetch()}>
-                <Text style={[styles.retryText, { color: theme.text }]}>
-                  Retry
-                </Text>
-              </Pressable>
-            </View>
-          ) : brews.length === 0 ? (
-            <Text style={[styles.savedEmpty, { color: theme.textSecondary }]}>
-              No brews saved yet — log your first brew above.
-            </Text>
-          ) : (
-            <ScrollView style={styles.savedList}>
-              {brews.map((log) => (
-                <View
-                  key={log.id}
-                  style={[
-                    styles.brewRow,
-                    { backgroundColor: theme.backgroundElement },
-                  ]}
-                >
-                  <View style={styles.brewRowInfo}>
-                    <Text
-                      style={[styles.brewRowTitle, { color: theme.text }]}
-                      numberOfLines={1}
-                    >
-                      {log.beanName || log.origin || "Untitled brew"} ·{" "}
-                      {log.method}
-                    </Text>
-                    <Text
-                      style={[
-                        styles.brewRowSub,
-                        { color: theme.textSecondary },
-                      ]}
-                      numberOfLines={1}
-                    >
-                      {formatDate(log.brewedAt)}
-                      {log.doseG != null || log.waterG != null
-                        ? ` · ${log.doseG ?? "—"}g / ${log.waterG ?? "—"}ml`
-                        : ""}
-                      {log.ratio != null ? ` · 1:${log.ratio}` : ""}
-                      {log.rating != null ? ` · ★${log.rating.toFixed(1)}` : ""}
-                    </Text>
-                  </View>
-                  <Pressable
-                    accessibilityLabel={`Delete ${log.beanName || "brew"}`}
-                    hitSlop={8}
-                    onPress={() => handleDelete(log)}
-                  >
-                    <Text
-                      style={[
-                        styles.deleteIcon,
-                        { color: theme.textSecondary },
-                      ]}
-                    >
-                      🗑
-                    </Text>
-                  </Pressable>
-                </View>
-              ))}
-            </ScrollView>
-          )}
         </View>
       ) : null}
 
@@ -308,55 +191,9 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.7,
   },
-  savedSection: {
-    gap: 6,
-    paddingHorizontal: 16,
-    paddingTop: 8,
-  },
-  savedTitle: {
-    fontSize: 12,
-    fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  savedState: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: 8,
-    paddingVertical: 8,
-  },
-  savedEmpty: {
-    fontSize: 13,
-  },
   retryText: {
     fontSize: 13,
     fontWeight: "600",
-  },
-  savedList: {
-    maxHeight: 220,
-  },
-  brewRow: {
-    alignItems: "center",
-    borderRadius: 10,
-    flexDirection: "row",
-    gap: 12,
-    marginBottom: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-  },
-  brewRowInfo: {
-    flex: 1,
-    gap: 2,
-  },
-  brewRowTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  brewRowSub: {
-    fontSize: 12,
-  },
-  deleteIcon: {
-    fontSize: 15,
   },
   footer: {
     borderTopWidth: StyleSheet.hairlineWidth,
