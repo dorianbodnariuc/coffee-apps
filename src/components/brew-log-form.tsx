@@ -25,6 +25,8 @@ import { brewLogSchema, type BrewLogInput } from "@/lib/brew-log-schema";
 export type BrewLogFormProps = {
   /** Prefill for the ratio calculator section (from the last brew). */
   calculatorPrefill?: RatioValues | null;
+  /** Seed values for edit mode (T4 detail). Read once on mount — remount via key to change. */
+  initialValues?: Partial<BrewLogInput>;
   onSubmit: (input: BrewLogInput) => void;
   submitLabel?: string;
   /** Disables the submit button and shows "Saving…" (T3b persistence). */
@@ -86,22 +88,35 @@ function Field({ label, error, children }: FieldProps) {
  */
 export default function BrewLogForm({
   calculatorPrefill,
+  initialValues,
   onSubmit,
   submitLabel = "Save brew",
   submitting = false,
 }: BrewLogFormProps) {
   const theme = useTheme();
 
-  const [brewedAt, setBrewedAt] = useState(() => new Date());
+  const [brewedAt, setBrewedAt] = useState(() =>
+    initialValues?.brewedAt ? new Date(initialValues.brewedAt) : new Date(),
+  );
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [method, setMethod] = useState<BrewMethod | null>(null);
-  const [beanName, setBeanName] = useState("");
-  const [roaster, setRoaster] = useState("");
-  const [origin, setOrigin] = useState("");
-  const [grindSize, setGrindSize] = useState("");
-  const [brewTime, setBrewTime] = useState("");
-  const [tastingNotes, setTastingNotes] = useState("");
-  const [rating, setRating] = useState<Rating | null>(null);
+  const [method, setMethod] = useState<BrewMethod | null>(
+    initialValues?.method ?? null,
+  );
+  const [beanName, setBeanName] = useState(initialValues?.beanName ?? "");
+  const [roaster, setRoaster] = useState(initialValues?.roaster ?? "");
+  const [origin, setOrigin] = useState(initialValues?.origin ?? "");
+  const [grindSize, setGrindSize] = useState(initialValues?.grindSize ?? "");
+  const [brewTime, setBrewTime] = useState(
+    initialValues?.brewTimeSeconds != null
+      ? String(initialValues.brewTimeSeconds)
+      : "",
+  );
+  const [tastingNotes, setTastingNotes] = useState(
+    initialValues?.tastingNotes ?? "",
+  );
+  const [rating, setRating] = useState<Rating | null>(
+    (initialValues?.rating as Rating | null | undefined) ?? null,
+  );
   const [ratioValues, setRatioValues] = useState<RatioValues>({
     doseG: null,
     waterG: null,

@@ -47,6 +47,13 @@ export default function RootLayout() {
                 headerRight: () => <SettingsButton />,
               }}
             />
+            {/* Non-tab routes: reachable by URL, hidden from the tab bar. */}
+            <Tabs.Screen name="auth" options={{ href: null }} />
+            <Tabs.Screen name="settings" options={{ href: null }} />
+            <Tabs.Screen
+              name="brew/[id]"
+              options={{ href: null, headerShown: false }}
+            />
           </Tabs>
           <StatusBar style="auto" />
         </ThemeProvider>
