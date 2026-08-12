@@ -55,6 +55,7 @@ export default function RootLayout() {
                 headerRight: () => <SettingsButton />,
               }}
             />
+            <Tabs.Screen name="dictionary" options={{ title: "Dictionary" }} />
             {/* Non-tab routes: reachable by URL, hidden from the tab bar. */}
             <Tabs.Screen name="auth" options={{ href: null }} />
             <Tabs.Screen name="settings" options={{ href: null }} />
