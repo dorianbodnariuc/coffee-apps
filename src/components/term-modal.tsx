@@ -1,0 +1,146 @@
+import {
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+
+import { useTheme } from "@/hooks/use-theme";
+import type { GlossaryTerm } from "@/lib/glossary-match";
+
+/**
+ * Simple term modal (T7): full definition + category + related terms.
+ * Rendered over the brew detail screen when a matched chip is tapped.
+ */
+export default function TermModal({
+  term,
+  onClose,
+}: {
+  term: GlossaryTerm | null;
+  onClose: () => void;
+}) {
+  const theme = useTheme();
+
+  return (
+    <Modal
+      animationType="fade"
+      onRequestClose={onClose}
+      transparent
+      visible={term != null}
+    >
+      <Pressable
+        accessibilityRole="button"
+        style={styles.backdrop}
+        onPress={onClose}
+      >
+        <Pressable
+          style={[styles.card, { backgroundColor: theme.background }]}
+          onPress={() => {}}
+        >
+          {term ? (
+            <>
+              <Text style={[styles.title, { color: theme.text }]}>
+                {term.term}
+              </Text>
+              {term.category ? (
+                <Text style={[styles.category, { color: theme.textSecondary }]}>
+                  {term.category}
+                </Text>
+              ) : null}
+              <ScrollView style={styles.body}>
+                <Text style={[styles.definition, { color: theme.text }]}>
+                  {term.definition}
+                </Text>
+                {term.related_terms.length > 0 ? (
+                  <View style={styles.relatedBox}>
+                    <Text
+                      style={[
+                        styles.relatedLabel,
+                        { color: theme.textSecondary },
+                      ]}
+                    >
+                      Related
+                    </Text>
+                    <Text style={[styles.relatedTerms, { color: theme.text }]}>
+                      {term.related_terms.join(" · ")}
+                    </Text>
+                  </View>
+                ) : null}
+              </ScrollView>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.closeButton,
+                  { backgroundColor: theme.backgroundSelected },
+                  pressed && styles.pressed,
+                ]}
+                onPress={onClose}
+              >
+                <Text style={[styles.closeText, { color: theme.text }]}>
+                  Close
+                </Text>
+              </Pressable>
+            </>
+          ) : null}
+        </Pressable>
+      </Pressable>
+    </Modal>
+  );
+}
+
+const styles = StyleSheet.create({
+  backdrop: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    flex: 1,
+    justifyContent: "center",
+    padding: 24,
+  },
+  card: {
+    borderRadius: 14,
+    maxHeight: "70%",
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "700",
+  },
+  category: {
+    fontSize: 12,
+    marginTop: 2,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  body: {
+    marginTop: 12,
+  },
+  definition: {
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  relatedBox: {
+    gap: 4,
+    marginTop: 16,
+  },
+  relatedLabel: {
+    fontSize: 11,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  relatedTerms: {
+    fontSize: 14,
+  },
+  closeButton: {
+    alignItems: "center",
+    borderRadius: 10,
+    marginTop: 16,
+    paddingVertical: 12,
+  },
+  closeText: {
+    fontSize: 15,
+    fontWeight: "600",
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+});

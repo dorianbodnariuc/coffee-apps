@@ -1,0 +1,219 @@
+[
+  {
+    "term": "Acidity",
+    "category": "Flavor and Tasting",
+    "definition": "Acidity is one of the primary flavor attributes of coffee, referring to the bright, lively, tangy sensation perceived primarily on the sides of the tongue. Coffee acidity comes from organic acids naturally present in the bean, including citric acid (fruity, bright), malic acid (apple-like), tartaric acid (wine-like), and phosphoric acid (clean, bright). Acidity is distinct from sourness, which is a defect caused by under-extraction or poor processing. High-quality acidity is desirable in specialty coffee and is associated with light roasts, high-altitude growing conditions, and washed processing.",
+    "related_terms": [
+      "Body",
+      "Brightness",
+      "Sourness",
+      "Extraction",
+      "Light Roast"
+    ]
+  },
+  {
+    "term": "Aftertaste",
+    "category": "Flavor and Tasting",
+    "definition": "Aftertaste, also called finish, refers to the flavors and sensations that remain in the mouth after swallowing coffee. A high-quality coffee has a clean, pleasant, and lingering aftertaste with notes of chocolate, fruit, or caramel. A poor-quality or over-extracted coffee may have a harsh, bitter, or astringent aftertaste. The length and quality of the aftertaste is an important component of the SCA cupping protocol. Long, clean aftertastes are associated with high-quality specialty coffees, particularly those from Ethiopia and Panama.",
+    "related_terms": [
+      "Flavor Profile",
+      "Cupping",
+      "Bitterness",
+      "Astringency",
+      "Specialty Coffee"
+    ]
+  },
+  {
+    "term": "Arabica",
+    "category": "Bean Varieties",
+    "definition": "Coffea arabica accounts for approximately 60-70% of global coffee production and is considered the higher-quality species. Arabica plants grow best at high altitudes (600-2,000 meters) in tropical climates with consistent rainfall and mild temperatures. The beans are oval-shaped with a curved crease and contain less caffeine (1.2-1.5%) than Robusta. Arabica coffee is prized for its wide range of flavors from fruity and floral to chocolatey and nutty, and its pleasant acidity. It is more susceptible to disease and pests than Robusta, making it more expensive to cultivate.",
+    "related_terms": [
+      "Robusta",
+      "Liberica",
+      "Single Origin",
+      "Specialty Coffee",
+      "High Altitude"
+    ]
+  },
+  {
+    "term": "Body",
+    "category": "Flavor and Tasting",
+    "definition": "Body is a key sensory attribute of coffee that describes the physical sensation of weight and texture in the mouth. It is influenced by the concentration of dissolved solids, oils, and colloids in the brewed coffee. Body ranges from light (thin, tea-like, watery) to medium to full (thick, syrupy, coating). Brewing method significantly affects body: French press and espresso produce full-bodied coffee (oils pass through metal filters), while paper-filtered methods like Chemex produce lighter-bodied coffee (oils are absorbed by the filter). Roast level, coffee variety, and brew ratio also influence body.",
+    "related_terms": [
+      "Mouthfeel",
+      "Acidity",
+      "Extraction",
+      "French Press",
+      "Cupping"
+    ]
+  },
+  {
+    "term": "Brightness",
+    "category": "Flavor and Tasting",
+    "definition": "Brightness is a positive descriptor in coffee tasting that refers to the lively, vibrant quality of acidity in a cup. A bright coffee has a clean, sparkling quality that makes it feel energetic and complex on the palate, similar to the sensation of biting into a fresh apple or citrus fruit. Brightness is associated with high-quality light roasts, high-altitude growing conditions, and washed processing methods. It is distinct from sourness (a defect) and is considered a positive attribute in specialty coffee.",
+    "related_terms": [
+      "Acidity",
+      "Light Roast",
+      "Washed Process",
+      "Specialty Coffee",
+      "Flavor Profile"
+    ]
+  },
+  {
+    "term": "Cold Brew",
+    "category": "Brewing Methods",
+    "definition": "Cold brew is a brewing method that extracts coffee flavor using cold or room-temperature water over an extended steeping period, typically 12 to 24 hours. Unlike iced coffee (which is hot-brewed then chilled), cold brew never uses heat, resulting in a naturally sweeter, less acidic beverage. The slow extraction produces a smooth, mellow concentrate that can be diluted with water or milk. Cold brew is particularly popular in warm months and is a flagship product for specialty coffee shops. It can be stored refrigerated for up to two weeks.",
+    "related_terms": [
+      "Steep Time",
+      "Coarse Grind",
+      "Concentrate",
+      "Low Acid",
+      "Nitro Cold Brew"
+    ]
+  },
+  {
+    "term": "Crema",
+    "category": "Flavor and Tasting",
+    "definition": "Crema is the reddish-brown to golden foam layer that forms on the surface of a freshly pulled espresso shot. It is created when hot water under high pressure emulsifies coffee oils and forces dissolved CO2 out of solution, forming a stable foam of tiny bubbles. Crema indicates a fresh, properly extracted espresso and contributes to the aroma, flavor, and visual appeal of the shot. A good crema is thick, persistent, and has a tiger-stripe pattern. Crema dissipates within minutes. Robusta beans produce more crema than Arabica due to higher oil content.",
+    "related_terms": [
+      "Espresso",
+      "Extraction",
+      "CO2",
+      "Emulsification",
+      "Freshness"
+    ]
+  },
+  {
+    "term": "Espresso",
+    "category": "Brewing Methods",
+    "definition": "Espresso is the foundation of many coffee drinks and a brewing method in its own right. It is produced by forcing water heated to approximately 93 degrees C through a compacted puck of finely ground coffee at 9 bars of pressure for 25-30 seconds. The result is a 25-35 ml shot of intensely concentrated coffee topped with a golden-brown foam called crema. Espresso has a complex flavor profile with notes of caramel, chocolate, and fruit, and a syrupy body. It forms the base for lattes, cappuccinos, macchiatos, and Americanos.",
+    "related_terms": [
+      "Crema",
+      "Portafilter",
+      "Tamper",
+      "Extraction",
+      "Pressure Brewing",
+      "Shot"
+    ]
+  },
+  {
+    "term": "Extraction",
+    "category": "Flavor and Tasting",
+    "definition": "Extraction refers to the process by which water dissolves and carries away soluble compounds from coffee grounds. Coffee contains hundreds of compounds that extract at different rates: acids and fruity compounds extract first, followed by sugars and caramels, then bitter compounds. Optimal extraction (18-22% of the coffee dry weight) produces a balanced cup with sweetness, acidity, and appropriate bitterness. Under-extraction (below 18%) produces sour, weak, and underdeveloped flavors. Over-extraction (above 22%) produces bitter, harsh, and astringent flavors.",
+    "related_terms": [
+      "Under-Extraction",
+      "Over-Extraction",
+      "Brew Ratio",
+      "Grind Size",
+      "TDS"
+    ]
+  },
+  {
+    "term": "Fermentation",
+    "category": "Processing",
+    "definition": "Fermentation is a critical step in coffee processing where microorganisms (bacteria and yeasts) break down the mucilage (sticky fruit layer) surrounding the coffee bean. In washed processing, beans are fermented in water tanks for 12-72 hours to loosen the mucilage before washing. In natural and honey processing, fermentation occurs during the drying phase as the fruit sugars interact with microorganisms. Controlled fermentation can enhance sweetness, complexity, and unique flavor notes. Uncontrolled or excessive fermentation produces defective, vinegary, or rotten flavors.",
+    "related_terms": [
+      "Washed Process",
+      "Natural Process",
+      "Mucilage",
+      "Anaerobic Fermentation",
+      "Flavor Development"
+    ]
+  },
+  {
+    "term": "French Press",
+    "category": "Brewing Methods",
+    "definition": "The French press (also called a cafetiere or press pot) is a classic full-immersion brewing device consisting of a cylindrical glass or stainless steel carafe and a plunger fitted with a metal mesh filter. Coarsely ground coffee is added to the carafe, hot water is poured over it, and the mixture steeps for 3-5 minutes. The plunger is then pressed down, trapping the grounds at the bottom while the brewed coffee remains above. Because no paper filter is used, natural coffee oils pass into the cup, producing a rich, full-bodied brew with more texture than filtered methods.",
+    "related_terms": [
+      "Full Immersion",
+      "Coarse Grind",
+      "Plunger",
+      "Metal Filter",
+      "Body"
+    ]
+  },
+  {
+    "term": "Honey Process",
+    "category": "Processing",
+    "definition": "Honey processing is a hybrid method between washed and natural processing. The outer cherry skin is removed (like washed), but varying amounts of the sticky mucilage layer are left on the bean during drying (unlike washed). The amount of mucilage left determines the honey type: white honey (very little mucilage, closest to washed), yellow honey, red honey, and black honey (most mucilage, closest to natural). The mucilage ferments during drying, imparting sweetness, body, and complexity.",
+    "related_terms": [
+      "Washed Process",
+      "Natural Process",
+      "Mucilage",
+      "Fermentation",
+      "Sweetness"
+    ]
+  },
+  {
+    "term": "Medium Roast",
+    "category": "Roast Levels",
+    "definition": "Medium roast coffee is roasted to an internal temperature of approximately 210-220 degrees C, between the first and second crack. This roast level strikes a balance between preserving origin characteristics and developing roast flavors. Medium roasts typically have moderate acidity, medium body, and a flavor profile that combines origin notes (fruit, floral) with roast-derived flavors (caramel, nuts, chocolate). The beans have a dry to slightly oily surface. Medium roast is the most popular roast level in North America and is often labeled as American roast or breakfast roast.",
+    "related_terms": [
+      "Light Roast",
+      "Dark Roast",
+      "First Crack",
+      "Second Crack",
+      "Caramelization"
+    ]
+  },
+  {
+    "term": "Moka Pot",
+    "category": "Brewing Methods",
+    "definition": "The moka pot, invented by Alfonso Bialetti in 1933, is a stovetop brewer consisting of three chambers: a bottom water reservoir, a middle filter basket for coffee grounds, and an upper collection chamber. As water heats on the stove, steam pressure forces hot water upward through the coffee grounds and into the upper chamber. The resulting brew is bold, concentrated, and similar in strength to espresso, though technically brewed at lower pressure. The moka pot remains a staple in Italian households and is beloved worldwide for its simplicity and rich output.",
+    "related_terms": [
+      "Stovetop Espresso",
+      "Steam Pressure",
+      "Bialetti",
+      "Fine Grind",
+      "Concentrated Coffee"
+    ]
+  },
+  {
+    "term": "Mouthfeel",
+    "category": "Flavor and Tasting",
+    "definition": "Mouthfeel refers to the physical sensations experienced when drinking coffee, beyond just taste. It encompasses body (weight and thickness), texture (smooth, silky, gritty, or watery), astringency (drying sensation caused by tannins), and coating (how the coffee coats the mouth). Full-bodied coffees like French press or espresso have a rich, coating mouthfeel, while paper-filtered coffees have a cleaner, lighter mouthfeel. Nitro cold brew is celebrated for its exceptionally creamy mouthfeel due to nitrogen infusion.",
+    "related_terms": [
+      "Body",
+      "Texture",
+      "Astringency",
+      "Cupping",
+      "Nitro Cold Brew"
+    ]
+  },
+  {
+    "term": "Natural Process",
+    "category": "Processing",
+    "definition": "Natural processing (also called dry processing) is the oldest coffee processing method, where whole coffee cherries are dried with the fruit intact, typically on raised beds or patios in the sun for 3-6 weeks. As the cherries dry, sugars and flavors from the fruit ferment and absorb into the bean, imparting distinctive fruity, wine-like, and complex flavors. Natural coffees often exhibit notes of blueberry, strawberry, tropical fruit, and chocolate. Ethiopia and Brazil are major producers of natural coffees.",
+    "related_terms": [
+      "Washed Process",
+      "Honey Process",
+      "Fermentation",
+      "Drying",
+      "Ethiopia Coffee"
+    ]
+  },
+  {
+    "term": "Pour-Over",
+    "category": "Brewing Methods",
+    "definition": "Pour-over coffee is a manual brewing technique that involves pouring hot water over coffee grounds placed in a filter-lined dripper. As water passes through the grounds by gravity, it extracts flavors and oils before dripping into a carafe or mug below. The method gives the brewer precise control over water temperature, pour rate, and bloom time, resulting in a clean, bright cup that highlights the coffee origin characteristics. Popular pour-over devices include the Hario V60, Chemex, and Kalita Wave.",
+    "related_terms": [
+      "Bloom",
+      "Dripper",
+      "Gooseneck Kettle",
+      "Filter",
+      "Extraction"
+    ]
+  },
+  {
+    "term": "Washed Process",
+    "category": "Processing",
+    "definition": "Washed processing (also called wet processing) is a coffee processing method where the fruit (cherry) is removed from the coffee seed (bean) before drying. After harvesting, cherries are pulped to remove the outer skin, then fermented in water tanks for 12-72 hours to break down the remaining mucilage (sticky fruit layer). The beans are then washed with clean water and dried on raised beds or patios. Washed coffees are characterized by clean, bright, transparent flavors that clearly express the bean origin and variety characteristics.",
+    "related_terms": [
+      "Natural Process",
+      "Honey Process",
+      "Fermentation",
+      "Mucilage",
+      "Pulping"
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -11,13 +11,16 @@ import {
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 import BrewLogForm from "@/components/brew-log-form";
+import TermModal from "@/components/term-modal";
 import {
   useBrewLogs,
   useDeleteBrewLog,
   useUpdateBrewLog,
 } from "@/hooks/use-brew-logs";
+import { useGlossaryTerms } from "@/hooks/use-glossary";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
+import { matchGlossaryTerms, type GlossaryTerm } from "@/lib/glossary-match";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 
 function formatDateTime(iso: string): string {
@@ -46,9 +49,20 @@ export default function BrewDetailScreen() {
   const { data, isLoading, isError, refetch } = useBrewLogs(user?.id ?? null);
   const updateMutation = useUpdateBrewLog(user?.id ?? "");
   const deleteMutation = useDeleteBrewLog(user?.id ?? "");
+  const glossaryQuery = useGlossaryTerms();
   const [editing, setEditing] = useState(false);
+  const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
 
   const brew = data?.find((entry) => entry.id === id);
+
+  // T7: chips for glossary terms found in this log's tasting notes.
+  const matchedTerms = useMemo(
+    () =>
+      brew
+        ? matchGlossaryTerms(brew.tastingNotes, glossaryQuery.data ?? [])
+        : [],
+    [brew, glossaryQuery.data],
+  );
 
   const handleDelete = () => {
     if (!brew) return;
@@ -167,6 +181,32 @@ export default function BrewDetailScreen() {
             />
           </View>
 
+          {matchedTerms.length > 0 ? (
+            <View style={styles.glossaryBox}>
+              <Text style={[styles.fieldLabel, { color: theme.textSecondary }]}>
+                Glossary
+              </Text>
+              <View style={styles.chipRow}>
+                {matchedTerms.map((term) => (
+                  <Pressable
+                    accessibilityRole="button"
+                    key={term.term}
+                    onPress={() => setActiveTerm(term)}
+                    style={({ pressed }) => [
+                      styles.chip,
+                      { backgroundColor: theme.backgroundElement },
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Text style={[styles.chipText, { color: theme.text }]}>
+                      {term.term}
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
+            </View>
+          ) : null}
+
           <Pressable
             style={({ pressed }) => [
               styles.button,
@@ -193,6 +233,8 @@ export default function BrewDetailScreen() {
           </Pressable>
         </ScrollView>
       )}
+
+      <TermModal onClose={() => setActiveTerm(null)} term={activeTerm} />
     </View>
   );
 }
@@ -271,6 +313,23 @@ const styles = StyleSheet.create({
   },
   fieldValue: {
     fontSize: 15,
+  },
+  glossaryBox: {
+    gap: 6,
+  },
+  chipRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+  chip: {
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+  },
+  chipText: {
+    fontSize: 13,
+    fontWeight: "500",
   },
   button: {
     alignItems: "center",
