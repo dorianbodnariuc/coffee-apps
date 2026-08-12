@@ -76,6 +76,18 @@ describe.skipIf(!enabled)("brew-log-api against live Supabase", () => {
     expect(created.ratio).toBe(15); // canonical: 20g / 300ml = 15.0
     expect(created.beanName).toBe("Integration Bean");
 
+    // T6 acceptance: creating a log inserts exactly one log_created event.
+    const { data: events, error: eventsErr } = await supabase!
+      .from("events")
+      .select("name, properties");
+    expect(eventsErr).toBeNull();
+    const logCreated = (events ?? []).filter(
+      (event) =>
+        event.name === "log_created" &&
+        event.properties?.brew_id === created.id,
+    );
+    expect(logCreated).toHaveLength(1);
+
     const listed = await listBrewLogs();
     expect(listed.some((log) => log.id === created.id)).toBe(true);
 

@@ -11,6 +11,13 @@ import { Pressable, Text, useColorScheme } from "react-native";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { queryClient } from "@/lib/query-client";
+import { useSessionTracking } from "@/hooks/use-session-tracking";
+
+/** Fires session_start on foreground (T6); rendered inside AuthProvider. */
+function SessionTracking() {
+  useSessionTracking();
+  return null;
+}
 
 /** Header-right gear on the History tab that pushes the settings route. */
 function SettingsButton() {
@@ -35,6 +42,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <SessionTracking />
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >

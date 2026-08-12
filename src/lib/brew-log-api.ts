@@ -1,5 +1,6 @@
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 import { supabase } from "@/lib/supabase";
+import { track } from "@/lib/track";
 import type { BrewLog } from "@/types/brew-log";
 
 /**
@@ -93,6 +94,7 @@ export async function createBrewLog(input: BrewLogInput): Promise<BrewLog> {
     .select()
     .single();
   if (error) throw new Error(error.message);
+  track("log_created", { brew_id: data.id, method: data.method });
   return rowToBrewLog(data);
 }
 
