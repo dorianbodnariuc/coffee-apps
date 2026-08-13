@@ -237,6 +237,44 @@ repo path, licensing status note, acceptance criteria.
 - Related terms render as links; back preserves search state.
 **Brief contents:** glossary_terms fields, search requirements, criteria.
 
+### T11b — Alias-aware search
+**Objective:** Dictionary search that behaves like the original WordPress
+coffee-dictionary.com search — slug aliases, compact spelling, related-term
+cross-references.
+**Tasks:**
+1. Migrate `glossary_terms.slug` column from seed data.
+2. Extend `searchGlossaryTerms()` to match across: compact term, slug (literal +
+   compact), category, related terms.
+**Acceptance criteria:**
+- "pourover" finds "Pour Over" (compact match).
+- "water temperature" finds "Coffee Brewing Temperature" (slug alias
+  "water-temperature").
+- "steamed milk" finds "Cappuccino" (related-term cross-reference).
+- Existing term/definition substring match still works.
+**Brief contents:** normalize.py slug column, glossary-api slug select,
+glossary-search.ts multi-strategy filter, migration 20260816.
+
+### T11c — Word-level matching + relevance scoring
+**Objective:** Fix gaps where multi-word queries fail (e.g., "brew temperature"
+does NOT match "Coffee Brewing Temperature" because the space in the query
+breaks substring matching) and relevance is arbitrary.
+**Tasks:**
+1. Split multi-word queries into individual words; term passes when every word
+   appears somewhere in term + definition (AND logic).
+2. Prefix/stem match: a query word that starts a term word counts (so "brew"
+   matches "brewing", "ferment" matches "fermentation").
+3. Score each match by the kind of evidence (exact term > all-words >
+   word-prefix > definition > compact > slug > category > related) and sort
+   results by score descending. Tied scores preserve alphabetical order.
+**Acceptance criteria:**
+- "brew temperature" → "Coffee Brewing Temperature" (all-words AND match).
+- "espresso golden" → "Crema" (words span term + definition).
+- "brew" → "Coffee Brewing Temperature" (prefix match: brew ← brewing).
+- Exact term hits rank above definition-only hits of the same query.
+- Tiny words (≤1 char) are filtered out; "AA" (2-chars) still works.
+**Brief contents:** glossary-search.ts scoring + word-prefix + AND logic,
+MIN_WORD_LEN, test updates.
+
 ### T12 — Origin cards + matching refinement
 **Objective:** Logs surface origin context automatically.
 **Tasks:**
