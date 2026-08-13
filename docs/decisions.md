@@ -296,3 +296,20 @@ reversing it costs.
   such. If AI quality/cost becomes a problem, the loop degrades gracefully to
   "expert answers when available" — only the promise wording changes, not the
   schema.
+
+### D-022 — AI and expert answers are member-gated
+- **Status:** Accepted · **Decided:** 2026-08-13 (user)
+- **Context:** Refining the expert-Q&A gating: who gets to read the AI draft and
+  the human-reviewed expert answer.
+- **Decision:** The instant AI draft and the final expert answer are member-only
+  — visible only to signed-in members (a free app account, per D-013), never to
+  anonymous readers, even when the question itself is public. Community (UGC)
+  answers follow the question's visibility: public questions → public community
+  answers.
+- **Rationale:** The expert answer is the valuable artifact. Gating it behind a
+  free account makes membership the path to expert knowledge (consistent with
+  D-012 and D-018), while the question + community answers remain a public hook.
+- **Consequences:** Refines D-020/D-021. Open sub-question: is the member-gated
+  answer asker-only, or visible to all signed-in members (turning expert answers
+  into a member knowledge base)? Settle before T20 dispatch (see T20 open
+  questions).
