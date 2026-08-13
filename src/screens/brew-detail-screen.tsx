@@ -98,6 +98,14 @@ export default function BrewDetailScreen() {
         <Text style={[styles.backText, { color: theme.text }]}>‹ Back</Text>
       </Pressable>
 
+      {updateMutation.isError || deleteMutation.isError ? (
+        <View style={styles.mutationErrorBox}>
+          <Text style={styles.mutationErrorText}>
+            Something went wrong — your changes weren’t saved. Please try again.
+          </Text>
+        </View>
+      ) : null}
+
       {!isConfigured || !user ? (
         <View style={styles.stateBox}>
           <Text style={[styles.stateText, { color: theme.textSecondary }]}>
@@ -291,6 +299,17 @@ const styles = StyleSheet.create({
   actionText: {
     fontSize: 14,
     fontWeight: "600",
+  },
+  mutationErrorBox: {
+    backgroundColor: "#3D1A1A",
+    borderRadius: 8,
+    marginHorizontal: 16,
+    marginBottom: 8,
+    padding: 12,
+  },
+  mutationErrorText: {
+    color: "#E57373",
+    fontSize: 13,
   },
   pressed: {
     opacity: 0.7,

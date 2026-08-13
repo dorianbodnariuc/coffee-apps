@@ -163,17 +163,10 @@ export default function BrewLogForm({
 
     setErrors({});
     onSubmit(result.data);
-
-    // Fresh form; the parent remounts us (key) with the new last-brew prefill.
-    setBrewedAt(new Date());
-    setMethod(null);
-    setBeanName("");
-    setRoaster("");
-    setOrigin("");
-    setGrindSize("");
-    setBrewTime("");
-    setTastingNotes("");
-    setRating(null);
+    // We deliberately do NOT clear the form here: the parent resets us on
+    // success (LogScreen remounts via key; BrewDetailScreen unmounts on
+    // setEditing(false)). Keeping state means a failed save leaves the user's
+    // input intact so they can retry without retyping.
   };
 
   const hasErrors = Object.keys(errors).length > 0;

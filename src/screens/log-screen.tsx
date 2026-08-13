@@ -50,6 +50,7 @@ export default function LogScreen() {
   const brews = signedIn ? (brewsQuery.data ?? []) : localBrews;
   const lastBrew = brews[0] ?? null;
   const saving = createMutation.isPending;
+  const saveFailed = createMutation.isError;
 
   // Sync session-local brews to the account on sign-in. Retries until success:
   // on failure local brews are kept and the footer offers Retry (bumps
@@ -73,7 +74,11 @@ export default function LogScreen() {
 
   const handleSubmit = (input: BrewLogInput) => {
     if (signedIn && userId) {
-      createMutation.mutate(input);
+      // Remount (clears the form) only on success: a failed save keeps the
+      // user's input intact for retry and surfaces the error in the footer.
+      createMutation.mutate(input, {
+        onSuccess: () => setSubmitCount((n) => n + 1),
+      });
     } else {
       const log: BrewLog = {
         ...input,
@@ -82,8 +87,8 @@ export default function LogScreen() {
         createdAt: new Date().toISOString(),
       };
       setLocalBrews((prev) => [log, ...prev]);
+      setSubmitCount((n) => n + 1);
     }
-    setSubmitCount((n) => n + 1);
   };
 
   const showSoftWall = !user && isConfigured && brews.length >= 2;
@@ -134,15 +139,17 @@ export default function LogScreen() {
         style={[styles.footer, { borderTopColor: theme.backgroundSelected }]}
       >
         <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-          {syncFailed
-            ? "Could not sync your brews."
-            : syncing
-              ? "Syncing your brews…"
-              : signedIn
-                ? `${brews.length} brew${brews.length === 1 ? "" : "s"} saved`
-                : brews.length === 0
-                  ? "No brews logged yet this session."
-                  : `${brews.length} brew${brews.length === 1 ? "" : "s"} logged — last: ${describeBrew(lastBrew!)}`}
+          {saveFailed
+            ? "Couldn't save your brew — check your connection and try again."
+            : syncFailed
+              ? "Could not sync your brews."
+              : syncing
+                ? "Syncing your brews…"
+                : signedIn
+                  ? `${brews.length} brew${brews.length === 1 ? "" : "s"} saved`
+                  : brews.length === 0
+                    ? "No brews logged yet this session."
+                    : `${brews.length} brew${brews.length === 1 ? "" : "s"} logged — last: ${describeBrew(lastBrew!)}`}
         </Text>
         {syncFailed ? (
           <Pressable onPress={() => setSyncRetry((n) => n + 1)}>
