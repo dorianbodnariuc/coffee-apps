@@ -46,6 +46,59 @@ const wordPrefixMatch = (queryWords: string[], term: string): boolean =>
 const MIN_WORD_LEN = 2;
 
 /**
+ * Grammatical function words that should never drive a glossary match on
+ * their own — and that otherwise cause substring false-positives (e.g. "of"
+ * matching the "o-f" inside "coffee", or "the" matching "then"/"there").
+ */
+const STOPWORDS = new Set([
+  "a",
+  "an",
+  "the",
+  "and",
+  "or",
+  "but",
+  "of",
+  "in",
+  "on",
+  "for",
+  "with",
+  "to",
+  "at",
+  "by",
+  "from",
+  "as",
+  "is",
+  "are",
+  "was",
+  "were",
+  "be",
+  "been",
+  "it",
+  "its",
+  "this",
+  "that",
+  "these",
+  "those",
+  "how",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
+  "why",
+  "than",
+  "then",
+  "do",
+  "does",
+  "did",
+  "will",
+  "would",
+  "can",
+  "could",
+  "should",
+]);
+
+/**
  * Alias-aware glossary search (T11 / T11b / T11c). Matches against term,
  * definition, slug, category, and related terms using multiple strategies,
  * then scores the results so the most relevant match surfaces first.
@@ -54,6 +107,7 @@ const MIN_WORD_LEN = 2;
  *  - Multi-word AND match — "brew temperature" → "Brewing Temperature"
  *  - Word-prefix match — "brew" matches "brewing" as a prefix
  *  - Score-based relevance sorting — exact term > all-words > prefix > definition etc.
+ *  - Stopword filtering — "of the" yields nothing (no substring false-positives)
  */
 export function searchGlossaryTerms(
   terms: GlossaryTerm[],
@@ -65,9 +119,11 @@ export function searchGlossaryTerms(
   const qCompact = compact(q);
   if (qCompact === "") return terms;
 
-  const queryWords = q.split(/\s+/).filter((w) => w.length >= MIN_WORD_LEN);
+  const queryWords = q
+    .split(/\s+/)
+    .filter((w) => w.length >= MIN_WORD_LEN && !STOPWORDS.has(w));
 
-  // For empty-word queries (only tiny words / symbols), show nothing.
+  // For queries that are only stopwords / tiny words / symbols, show nothing.
   if (queryWords.length === 0) return [];
 
   const scored: { term: GlossaryTerm; score: number }[] = [];
