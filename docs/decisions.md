@@ -1,0 +1,220 @@
+# Decisions Log — Coffee App
+
+The single record of product and technical decisions for this app, with the
+reasoning behind each. This is the justification artifact: before we change,
+add, or remove a feature, read its decision entry to see why it exists and what
+reversing it costs.
+
+## How to use this log
+
+- Each decision gets a stable ID (`D-###`) that tickets and code comments
+  reference. Never renumber.
+- **Do not rewrite history.** To change a decision, add a new entry that says
+  "Supersedes D-###" and records the new reasoning. The old entry stays.
+- Statuses: **Accepted** (in force) · **Superseded** (replaced by a newer
+  entry) · **Proposed** (documented, not yet built).
+- Every entry has a *Consequences* line: what we give up, and roughly what
+  rolling it back would cost. That line is the whole point of the log.
+
+---
+
+## Content & data layer
+
+### D-001 — Definition source = first paragraph only
+- **Status:** Accepted · **Decided:** 2026-08 (glossary import, T10)
+- **Context:** The full coffee-dictionary.com articles are long-form SEO
+  content, not dictionary definitions.
+- **Decision:** The app's `definition` field is the article's lead (first
+  paragraph). Full articles are never imported into the app.
+- **Rationale:** The lead is the actual definition by the site's own
+  convention; full text is overkill for a mobile reference and duplicates paid
+  content.
+- **Consequences:** Definitions are short (~370 chars avg). If we ever want
+  full text in-app, that's a new decision — it directly conflicts with D-002.
+
+### D-002 — Teaser + "Read the full article" link out
+- **Status:** Accepted · **Decided:** 2026-08 (T11)
+- **Context:** Users asked whether the app should carry full articles.
+- **Decision:** The term modal shows the lead definition plus a "Read the full
+  article ↗" button that opens the canonical coffee-dictionary.com URL in the
+  system browser (`expo-web-browser`). No in-app full text.
+- **Rationale:** SEO authority and the site's paid tier stay on the canonical
+  domain. Native app text is not crawled, so duplicating it earns nothing and
+  cannibalizes the site. The link sends engaged clicks back to our own funnel.
+- **Consequences:** Requires network for the full read. Requires keeping
+  `source_url` populated on every term (verified: 0 missing).
+
+### D-003 — Data bridge = offline ETL, never live-site reads
+- **Status:** Accepted · **Decided:** 2026-08 (T10)
+- **Context:** The app needs glossary data; the source is a WordPress site.
+- **Decision:** All glossary content flows through the `coffee-dictionary-import`
+  ETL repo (JSON export → normalize → seed migration → `supabase db push`).
+  The app never calls coffee-dictionary.com's API at runtime.
+- **Rationale:** Performance and stability — no dependency on the site being up
+  or fast; the site's REST list endpoint is known to misbehave (pagination/
+  cache). One clean offline bridge.
+- **Consequences:** Content updates are manual (re-run ETL + push). If we want
+  near-live updates, that's a new decision (a cron-synced edge function).
+
+### D-004 — Category authority = site WordPress taxonomy
+- **Status:** Accepted · **Decided:** 2026-08 (T11)
+- **Context:** Two candidate sources for glossary categories: a keyword
+  classifier or the site's own WordPress taxonomy.
+- **Decision:** Use the site's WP taxonomy as the authoritative category list.
+- **Rationale:** It's already curated, consistent with the canonical site, and
+  avoids building/maintaining a classifier. Users see the same categories in
+  the app and on the site.
+- **Consequences:** Category quality is bounded by the site's taxonomy. If the
+  site re-taxonomizes, the ETL must be re-run (D-003 path).
+
+### D-005 — Category consolidation (sub-10 terms → "General Terms")
+- **Status:** Accepted · **Decided:** 2026-08 (T11)
+- **Context:** The WP taxonomy had many tiny categories (several under 10
+  terms), which makes browsing noisy.
+- **Decision:** Merge every category with fewer than 10 terms into a single
+  "General Terms" bucket. Result: 13 → 11 categories.
+- **Rationale:** Eleven browseable categories beat two dozen mostly-empty ones.
+  Fewer, denser chips = better browse UX and less decision fatigue.
+- **Consequences:** Some niche terms lose a specific label. Reversing is cheap
+  (re-run ETL with a different threshold) — no schema change.
+
+### D-006 — Multi-category membership (`categories[]`)
+- **Status:** Accepted · **Decided:** 2026-08 (T11)
+- **Context:** A term like "Cappuccino" is both a drink and relates to milk
+  texturing; forcing one category loses information.
+- **Decision:** `glossary_terms.categories` is a `text[]` holding every
+  applicable category; `category` remains the single primary label for compact
+  display. A term appears under every category that fits (127 of 377 are
+  multi-category).
+- **Rationale:** Browsing by any relevant category should surface the term.
+- **Consequences:** Slightly more complex search/filter logic (must test any
+  array element). Reversing is a schema change + ETL re-run.
+
+---
+
+## Search
+
+### D-007 — Stopword filtering
+- **Status:** Accepted · **Decided:** 2026-08 (T11c)
+- **Context:** Queries like "of the" or "a" matched `"of"` as a substring of
+  `"coffee"` and returned garbage.
+- **Decision:** Filter stopwords (`of`, `the`, `a`, `an`, `for`, `with`, …)
+  from queries before matching; a query that reduces to zero content words
+  returns no results.
+- **Rationale:** Noise queries must not surface false positives.
+- **Consequences:** Legitimate single stopword searches are impossible (they
+  should be — no term is named "of"). Adding a stopword is a one-line change.
+
+### D-008 — Relevance scoring tiers
+- **Status:** Accepted · **Decided:** 2026-08 (T11c)
+- **Context:** "pourover" initially ranked "Camp Coffee" (which mentions
+  "pourover" in its article) above "Pour Over".
+- **Decision:** Score each match by evidence strength — exact term > all-words
+  > word-prefix > definition > compact > slug > category > related — and sort
+  by score desc (ties alphabetical). Term-name compact match weighted 9.
+- **Rationale:** A term-name match must outrank a mere mention in another
+  term's definition.
+- **Consequences:** Scoring is hand-tuned; new evidence types need the ranking
+  revisited (see D-008 tests in `glossary-search.test.ts`).
+
+---
+
+## UX & safety
+
+### D-009 — Touch targets (chips ≥44px, modal ≥40px)
+- **Status:** Accepted · **Decided:** 2026-08 (T11)
+- **Context:** Category chips were too small for reliable one-handed tapping.
+- **Decision:** Filter chips have a minimum height of 44px; term-modal category
+  chips a minimum of 40px.
+- **Rationale:** Mobile touch targets should be ≥44px for comfortable use.
+- **Consequences:** Slightly more vertical space per chip. Reversing is trivial.
+
+### D-010 — Preserve input on failed save; surface all mutation errors
+- **Status:** Accepted · **Decided:** 2026-08 (T8)
+- **Context:** A failed create/update/delete could silently clear the form or
+  show nothing.
+- **Decision:** On a failed save the form keeps the user's input; create,
+  update, and delete failures each render an explicit error message (footer on
+  the Log form, banner on brew detail). No silent data loss.
+- **Rationale:** Losing typed input or failing silently erodes trust in the
+  core loop (logging a brew).
+- **Consequences:** Slightly more UI code per mutation. Non-negotiable baseline.
+
+### D-011 — "Sign in" entry points on Log + Dictionary tabs
+- **Status:** Accepted · **Decided:** 2026-08-13 (T8)
+- **Context:** Sign-in was only reachable from the History tab's prompt or the
+  soft wall (after 2 brews). New users on the default Log screen were stranded.
+- **Decision:** Show a "Sign in" header button on the Log and Dictionary tabs
+  whenever the user is signed out; it hides once signed in. Routes to the same
+  `/auth` screen.
+- **Rationale:** Auth must be one tap from any tab; a passive, always-visible
+  entry beats burying it behind History.
+- **Consequences:** Header right slot on two tabs is used by this button while
+  signed out (returns nothing when signed in, so no conflict).
+
+---
+
+## Account gating & social
+
+### D-012 — Account gates personal state, never the core content
+- **Status:** Accepted · **Decided:** 2026-08-13
+- **Context:** "What should we hide behind the account for the dictionary?"
+- **Decision:** The account gates **personal state only** — saved terms
+  (bookmarks), a brew-derived "your terms" view, and personal notes on terms.
+  Core definitions, search, and category browsing stay free for everyone.
+- **Rationale:** Personal state is the honest reason to ask for an account
+  (it needs to persist and sync); hiding reference content behind login would
+  choke the acquisition hook before users see the value.
+- **Consequences:** Nothing free is removed. Personal features are inert until
+  a user signs in, which is itself a conversion trigger (D-011 pattern).
+
+### D-013 — App account ≠ site paid tier
+- **Status:** Accepted · **Decided:** 2026-08-13
+- **Context:** The user owns coffee-dictionary.com and its (potential) paid
+  tier; the app also has a free Supabase account.
+- **Decision:** The app account is a free Supabase auth account. The paid tier
+  lives on coffee-dictionary.com and is reached via the D-002 link-out. The app
+  does not gate content behind payment.
+- **Rationale:** Keeps the two surfaces cleanly separated: app = free logging +
+  teaser reference; site = authority + monetization. No cannibalization.
+- **Consequences:** If we later want in-app paid content, that supersedes both
+  D-002 and D-013 and needs a RevenueCat/monetization decision (T16 exists but
+  is gated).
+
+### D-014 — Build order: bookmarks → your-terms → notes
+- **Status:** Accepted · **Decided:** 2026-08-13
+- **Context:** Three account-gated dictionary features were proposed.
+- **Decision:** Ship **saved terms (bookmarks)** first, then the brew-derived
+  **"your terms"** view, then **personal notes** (optional/last).
+- **Rationale:** Bookmarks are the cheapest, most universal "save for later"
+  affordance and the strongest sign-in driver. "Your terms" is differentiated
+  but needs a term↔brew mapping (more work). Notes are nice-to-have.
+- **Consequences:** Order encoded in tickets T17→T18→T19. Reordering is a
+  planning change, not a code change.
+
+### D-015 — Social component = "Ask a coffee question" Q&A
+- **Status:** Proposed · **Decided:** 2026-08-13
+- **Context:** The user wants a social component, gated like the dictionary
+  personal features.
+- **Decision:** Build a community Q&A — signed-in users post coffee questions
+  (optionally tagged to a glossary term) and answer others'. **Asking and
+  answering are account-gated; reading is public** (same rationale as D-012:
+  the feed is a discoverable hook, contribution is the gated action).
+- **Rationale:** UGC is the strongest reason for an account and the clearest
+  "social" fit for a coffee reference app; tying questions to glossary terms
+  reuses the content layer instead of building a new graph.
+- **Consequences:** UGC brings moderation and cold-start risk — see open
+  questions in T20. Phase 3, gated on the §6 metrics. Reading-public vs
+  reading-gated and moderation policy are still open and should be settled
+  before T20 is dispatched.
+
+### D-016 — Social Q&A is Phase 3, gated
+- **Status:** Accepted · **Decided:** 2026-08-13
+- **Context:** Where the social component sits relative to the existing gate.
+- **Decision:** The Q&A (T20) is Phase 3 and gated on the same activation/
+  retention numbers as the rest of Phase 3 (§6 of the plan). It is documented
+  and ticketed now, not built now.
+- **Rationale:** Social features burn retention runway if shipped before the
+  core loop (log → history → glossary) is proven. Document-now, build-later.
+- **Consequences:** T20 is a spec, not a build. If the gate passes, it's
+  unblocked; if the gate fails, D-015/D-016 are revisited with advisors.

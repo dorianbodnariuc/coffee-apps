@@ -1,7 +1,9 @@
-# Coffee App — Ticket Partition & Subagent Delegation Plan v1.2
+# Coffee App — Ticket Partition & Subagent Delegation Plan v1.3
 
-> Source of truth: `coffee-app-agent-plan.md` (v1.2). Execution layer: tickets →
+> Source of truth: `coffee-app-agent-plan.md` (v1.3). Execution layer: tickets →
 > tasks → subagent briefs, context optimization, standing advisors.
+> v1.3 changes: decision log added (`docs/decisions.md`, D-001…D-016); new
+> account-gated dictionary tickets T17–T19; social Q&A ticket T20 (Phase 3).
 > v1.2 changes: calculator merged into Log form (no tab), photo attachments
 > ticket added (P2), account deletion in T2, glossary import via
 > `coffee-dictionary-import` repo + discovered 101-term dataset, nav = 2 tabs in P1.
@@ -62,6 +64,10 @@
 | T14 | Phase 2 QA/polish                         | 2     | T9–T13            | 1               | —             |
 | T15 | Public profiles & follow                  | 3     | T3 + GATE         | 2–3             | gated         |
 | T16 | Freemium gating + RevenueCat              | 3     | T15               | 3               | gated         |
+| T17 | Saved terms (bookmarks)                   | 2     | T2, T10, T11      | 1–2             | —             |
+| T18 | "Your terms" (brew-derived glossary)      | 2     | T17, T3           | 2               | —             |
+| T19 | Personal notes on terms                   | 2     | T17 (pattern)     | 1               | yes (w/ T17)  |
+| T20 | Social Q&A — "Ask a coffee question"      | 3     | T15 + GATE        | 2–3             | gated         |
 
 Phase 3 (T15–T16) is **gated** on §6 numbers. P1 parallel wave after T2:
 T5 ∥ T6 ∥ T7 (T3 integrates the T5 module).
@@ -323,6 +329,96 @@ cap, pro-only charts/full glossary).
 pro features without reinstall.
 **Brief contents:** gating rules, RevenueCat notes, acceptance criteria.
 
+### T17 — Saved terms (bookmarks)
+**Objective:** Let signed-in users save glossary terms to a persistent "Saved"
+list, and turn the save action into a sign-in trigger. (D-012, D-014)
+**Tasks:**
+1. Migration `saved_terms`:
+   `user_id uuid refs auth.users on delete cascade` +
+   `term_id uuid refs glossary_terms on delete cascade` +
+   `created_at`, PK `(user_id, term_id)`. RLS owner-only (select/insert/delete).
+2. `glossary-api.ts` additions: save/unsave/toggle + "is this term saved" +
+   `saved_count`. React Query mutations invalidating a `saved_terms` key.
+3. Term modal: save/unsave toggle (bookmark icon + label). Signed out → tapping
+   it routes to `/auth` (reuse D-011 pattern, no modal spam).
+4. Dictionary: "Saved" filter chip (shown when signed in) filtering to saved
+   terms; empty state ("No saved terms yet").
+**Acceptance criteria:**
+- Signed-in user can save/unsave; list persists across app restart.
+- Signed-out user tapping save lands on `/auth`; after sign-in the term is NOT
+  auto-saved (avoids surprise) — they re-tap once.
+- User A cannot see or modify user B's saved terms (RLS SQL test).
+- Unsaving removes the row; deleting a term cascades cleanly.
+**Brief contents:** saved_terms schema (inline), RLS rules, modal + filter
+integration points, sign-in-routing requirement, D-012/D-014 rationale, criteria.
+
+### T18 — "Your terms" (brew-derived glossary)
+**Objective:** A personal glossary derived from what the user actually brews:
+surface the glossary terms relevant to their brew logs. (D-012, D-014)
+**Tasks:**
+1. Term↔brew mapping in `src/constants/` (or a `term_mappings` table if it must
+   be admin-editable): map brew method / grind / bean-origin keywords → term
+   ids (e.g. V60 → Pour Over, Extraction, Bloom).
+2. Derive the set: union of mappings over the user's brew_logs, ranked by how
+   often the matching field appears.
+3. Dictionary: a "Your terms" section/chip (signed in only) listing derived
+   terms; empty state when the user has no logs.
+4. Tap a derived term → term modal (reuse T11/T17 modal).
+**Acceptance criteria:**
+- A user who logged a V60 sees Pour Over / Extraction etc. in "Your terms".
+- A user with zero logs sees the empty state (not an error).
+- Rankings reflect log frequency; ties alphabetical.
+- Signed-out users never see the section (not even gated view).
+**Brief contents:** mapping source decision (constants vs table), glossary_terms
+brew_logs fields to match on, ranking spec, D-012 rationale, criteria.
+**Open question:** mapping location — constants (cheap, code-deploy to change)
+vs `term_mappings` table (admin-editable without release). Recommend constants
+for v1.
+
+### T19 — Personal notes on a term
+**Objective:** One private note per term per user ("what over-extraction tasted
+like for me"). (D-012, D-014 — optional/last)
+**Tasks:**
+1. Migration `term_notes`: `user_id`, `term_id`, `note text`, `created_at`,
+   `updated_at`, PK `(user_id, term_id)`. RLS owner-only.
+2. Term modal: "Add a note" (signed in) → inline editor; shows existing note
+   with edit affordance. Signed out → route to `/auth`.
+3. React Query mutation + optimistic update; length cap (e.g. 500 chars).
+**Acceptance criteria:**
+- Note persists across restart; edit updates `updated_at`.
+- User A cannot read user B's notes (RLS SQL test).
+- Signed-out tap routes to `/auth`.
+**Brief contents:** term_notes schema (inline), RLS rules, modal editor spec,
+criteria. (Defer — build only after T17 ships and is validated.)
+
+### T20 — Social Q&A ("Ask a coffee question")
+**Objective:** A community Q&A where signed-in users ask coffee questions
+(optionally tied to a glossary term) and answer others'. Ask/answer are
+account-gated; reading is public. (D-015, D-016 — Phase 3, gated)
+**Tasks:**
+1. Migrations: `questions` (`id`, `user_id`, `title`, `body`, `term_id null`,
+   `created_at`) + `answers` (`id`, `question_id`, `user_id`, `body`,
+   `created_at`). RLS: public read; insert/update/delete owner-only.
+   (Votes/deleted-flag as a follow-up, not v1.)
+2. Entry points: "Ask a coffee question" on the Dictionary tab + "Ask about
+   this term" on the term modal; both route to `/auth` when signed out.
+3. Question feed (recent) + question detail (answers thread) + composer.
+4. Tagged questions surface on the term modal ("Questions about this term").
+5. Moderation MVP: account required + rate limit (e.g. max N questions/day);
+   admin delete via Supabase dashboard.
+**Acceptance criteria:**
+- Signed-in user can post a question and answer another; both persist.
+- Signed-out users can read the feed/detail but cannot post (routed to `/auth`).
+- User cannot edit/delete another user's question/answer (RLS SQL test).
+- Tagged questions appear on the matching term modal.
+**Brief contents:** questions/answers schema (inline), RLS rules, entry-point
+spec, feed/detail/composer spec, moderation MVP, D-015/D-016 rationale, criteria.
+**Open questions (settle before dispatch):**
+1. Read-gated vs read-public — D-015 recommends public read; confirm.
+2. Who is expected to answer first (community seeding vs owner-answered)? Cold
+   start: seed a handful of questions from the site's FAQ.
+3. Moderation: is admin-delete-via-dashboard enough for launch?
+
 ---
 
 ## 4. Context-optimization strategy (v1.2)
@@ -368,18 +464,24 @@ Rule: **a brief should contain everything the subagent needs and nothing it does
   does not start; revisit with advisors. Espresso secondary segment uses the same
   gate (espresso-method log cluster in analytics).
 
-## 7. Open decisions (carried from plan v1.2)
+## 7. Open decisions
 
-LOCKED (user, 2026-08-09): gate numbers (act ≥25%, D7 ≥20%) · distribution
-start set (dictionary funnel + community seeding) · licensing = owned ·
-import repo created (`~/coffee-dictionary-import`).
+Decisions are now tracked with rationale in `docs/decisions.md` (D-### IDs).
+Tickets reference them; changing one requires a new superseding entry.
+
+Resolved since v1.2:
+1. ~~Paid-tier reuse~~ — RESOLVED: app shows teaser + link-out only; the paid
+   tier stays on coffee-dictionary.com (D-002, D-013).
+2. ~~Definitions export (~276 terms)~~ — DONE: full ETL import, 377 terms live
+   via `~/coffee-dictionary-import` (D-003).
 
 Remaining:
-1. Paid-tier reuse of dictionary content — explicit confirm
-2. Definitions export for ~276 terms (WP side) — path TBD (REST pull vs
-   other-context export)
-3. Photo caps — pending user recommendation (proposed: 3 photos, client-side
-   compress, 5 MB hard cap)
+1. Photo caps — pending user recommendation (proposed: 3 photos, client-side
+   compress, 5 MB hard cap).
+2. T20 open questions (settle before dispatch): read-gated vs read-public for
+   the Q&A; who seeds the first answers; moderation depth (D-015).
+3. T18 mapping location: `src/constants/` vs `term_mappings` table (recommend
+   constants for v1).
 
 ## 8. Changelog v1.2
 
@@ -392,3 +494,14 @@ Remaining:
 - T13 (new): photo attachments (Storage bucket, RLS, cascade delete)
 - T15/T16: renumbered (was T14/T15); P2 QA now T14
 - §6: gate numbers defaulted; espresso segment gate noted
+
+## 9. Changelog v1.3
+
+- Added `docs/decisions.md` decision log (D-001…D-016) — the justification
+  artifact for future add/change/remove calls.
+- T17 (new): Saved terms / bookmarks — account-gated, Phase 2 (D-012, D-014).
+- T18 (new): "Your terms" — brew-derived personal glossary, Phase 2.
+- T19 (new): Personal notes on a term — Phase 2, optional/last.
+- T20 (new): Social Q&A — "Ask a coffee question" — Phase 3, gated (D-015, D-016).
+- §7 rewritten: paid-tier reuse and definitions export marked resolved; T20/T18
+  open questions listed.

@@ -1,5 +1,8 @@
-# Coffee Brew & Tasting Log App — Build Plan v1.2
+# Coffee Brew & Tasting Log App — Build Plan v1.3
 
+> v1.3 (2026-08-13): decision log added (`docs/decisions.md`, D-001…D-016);
+> account-gated dictionary personalization (T17–T19) added to Phase 2; social
+> Q&A (T20) added to Phase 3.
 > v1.2 (2026-08-09): persona + calculator placement resolved (Product Advisor),
 > photo attachments + account deletion locked, distribution section added,
 > glossary import path discovered (101-term dataset found in user's SEO archive).
@@ -144,6 +147,10 @@ photos — without turning the app into a dictionary.
 6. **Photo attachments:** 1–3 photos per brew log, Supabase Storage bucket
    `brew-photos` (owner-only RLS), camera-roll picker, thumbnails, photos
    cascade-deleted with the log
+7. **Account-gated glossary personalization *(new in v1.3)*:** saved terms
+   (bookmarks), a brew-derived "your terms" view, and personal notes on terms —
+   all account-gated *personal state*. Core definitions, search, and category
+   browsing stay free (D-012, D-014). Tickets T17–T19.
 
 ### Agent tasks
 1. Beans table + cellar CRUD + freshness (new Cellar tab)
@@ -168,6 +175,9 @@ espresso-method log cluster).
    trend charts, full glossary/origin database (dictionary content licensed for
    paid tier — see Open decisions)
 3. RevenueCat for subscription billing
+4. **Social Q&A *(new in v1.3)*:** community "ask a coffee question" — asking
+   and answering are account-gated, reading is public; questions optionally
+   tagged to a glossary term (D-015, D-016). Ticket T20.
 
 ### Agent tasks
 1. `is_public` flag + RLS update; public profile view; follow/feed (schema ready)
@@ -190,17 +200,25 @@ espresso-method log cluster).
    calculator funnel if/when it ships. (later)
 
 ## Open decisions (remaining)
+
+Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
+
 1. ~~Gate numbers~~ — **LOCKED**: activation ≥25% (≥3 logs/7 days), D7 ≥20%
    (user confirmed 2026-08-09)
 2. ~~Distribution~~ — **LOCKED**: start with dictionary-site funnel + community
    seeding (user confirmed 2026-08-09)
-3. **Glossary licensing** — terms confirmed owned by us (user 2026-08-09);
-   paid-tier reuse of dictionary content still to explicitly confirm
-4. **Glossary completeness** — full set ~377 terms; definitions for ~276 still
-   need export (WP side) — see coffee-dictionary-import README
+3. ~~Glossary licensing / paid-tier reuse~~ — **RESOLVED**: teaser + link-out
+   only; the paid tier stays on coffee-dictionary.com (D-002, D-013)
+4. ~~Glossary completeness~~ — **DONE**: 377 terms imported via ETL (D-003)
 5. ~~Import repo~~ — **DONE**: `~/coffee-dictionary-import` created, offline
    export committed
 6. **Photo limits** — recommendation pending user (default: 3 photos, 10 MB)
+7. **T16 freemium vs D-013** — T16's "pro-only full glossary" conflicts with
+   D-013 (app does not gate content behind payment). Reconcile before T16
+   dispatch: pro = app features (unlimited logs, charts, unlimited saved
+   terms); full glossary stays a link-out to the site's paid tier.
+8. **T20 open questions** — read-gated vs read-public; who seeds the first
+   answers; moderation depth (D-015).
 
 ---
 
@@ -216,3 +234,12 @@ espresso-method log cluster).
   fields) in user's SEO archive; T7 stubs from a subset, T10 imports the full set
 - Distribution section added (5 proposals; owned-site funnel recommended)
 - Gate numbers defaulted: activation ≥25%, D7 retention ≥20% (adjustable)
+
+## Changelog v1.3
+- Decision log added: `docs/decisions.md` (D-001…D-016) — justification artifact
+  for future add/change/remove.
+- Phase 2: account-gated glossary personalization (T17 saved terms, T18 "your
+  terms", T19 notes) — personal state gated, core content stays free.
+- Phase 3: social Q&A (T20) — ask/answer gated, read public, glossary-tagged.
+- Open decisions: paid-tier reuse + glossary completeness marked resolved;
+  flagged T16-freemium-vs-D-013 conflict and T20 open questions.
