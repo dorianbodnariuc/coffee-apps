@@ -52,37 +52,38 @@ export default function TermModal({
               <Text style={[styles.title, { color: theme.text }]}>
                 {term.term}
               </Text>
-              {term.category ? (
-                onSelectCategory ? (
-                  <Pressable
-                    accessibilityRole="button"
-                    onPress={() => onSelectCategory(term.category!)}
-                    style={({ pressed }) => [
-                      styles.categoryRow,
-                      pressed && styles.pressed,
-                    ]}
-                  >
-                    <Text
-                      style={[styles.category, { color: theme.textSecondary }]}
-                    >
-                      {term.category}
-                    </Text>
-                    <Text
-                      style={[
-                        styles.categoryChevron,
-                        { color: theme.textSecondary },
+              {term.categories.length > 0 ? (
+                <View style={styles.categoryWrap}>
+                  {term.categories.map((cat) => (
+                    <Pressable
+                      accessibilityRole="button"
+                      key={cat}
+                      onPress={() => onSelectCategory?.(cat)}
+                      style={({ pressed }) => [
+                        styles.categoryChip,
+                        { backgroundColor: theme.backgroundElement },
+                        pressed && styles.pressed,
                       ]}
                     >
-                      ›
-                    </Text>
-                  </Pressable>
-                ) : (
-                  <Text
-                    style={[styles.category, { color: theme.textSecondary }]}
-                  >
-                    {term.category}
-                  </Text>
-                )
+                      <Text
+                        style={[
+                          styles.categoryText,
+                          { color: theme.textSecondary },
+                        ]}
+                      >
+                        {cat}
+                      </Text>
+                      <Text
+                        style={[
+                          styles.categoryChevron,
+                          { color: theme.textSecondary },
+                        ]}
+                      >
+                        ›
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
               ) : null}
               <ScrollView style={styles.body}>
                 <Text style={[styles.definition, { color: theme.text }]}>
@@ -176,20 +177,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
   },
-  category: {
-    fontSize: 12,
-    marginTop: 2,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  categoryRow: {
-    alignItems: "center",
-    alignSelf: "flex-start",
+  categoryWrap: {
     flexDirection: "row",
-    gap: 4,
+    flexWrap: "wrap",
+    gap: 8,
+    marginTop: 8,
+  },
+  categoryChip: {
+    alignItems: "center",
+    borderRadius: 18,
+    flexDirection: "row",
+    gap: 6,
+    minHeight: 40,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  categoryText: {
+    fontSize: 13,
+    fontWeight: "600",
   },
   categoryChevron: {
-    fontSize: 14,
+    fontSize: 15,
   },
   body: {
     flexShrink: 1,

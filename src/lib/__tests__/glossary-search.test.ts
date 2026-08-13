@@ -7,15 +7,20 @@ const term = (
   name: string,
   definition: string,
   extra: Partial<GlossaryTerm> = {},
-): GlossaryTerm => ({
-  term: name,
-  slug: name.toLowerCase().replace(/\s+/g, "-"),
-  category: "Test",
-  definition,
-  related_terms: [],
-  source_url: "",
-  ...extra,
-});
+): GlossaryTerm => {
+  const category = extra.category ?? "Test";
+  const categories = extra.categories ?? [category];
+  return {
+    term: name,
+    slug: name.toLowerCase().replace(/\s+/g, "-"),
+    category,
+    categories,
+    definition,
+    related_terms: [],
+    source_url: "",
+    ...extra,
+  };
+};
 
 const TERMS: GlossaryTerm[] = [
   term(

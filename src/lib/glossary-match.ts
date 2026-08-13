@@ -3,6 +3,7 @@ export type GlossaryTerm = {
   term: string;
   slug: string;
   category: string | null;
+  categories: string[];
   definition: string;
   related_terms: string[];
   source_url: string;

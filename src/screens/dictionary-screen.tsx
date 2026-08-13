@@ -47,7 +47,7 @@ export default function DictionaryScreen() {
   const categories = useMemo(() => {
     const set = new Set<string>();
     (data ?? []).forEach((t) => {
-      if (t.category) set.add(t.category);
+      (t.categories ?? []).forEach((c) => set.add(c));
     });
     return Array.from(set).sort();
   }, [data]);
@@ -55,7 +55,9 @@ export default function DictionaryScreen() {
   const inCategory = useMemo(
     () =>
       categoryFilter
-        ? (data ?? []).filter((t) => t.category === categoryFilter)
+        ? (data ?? []).filter((t) =>
+            (t.categories ?? []).includes(categoryFilter),
+          )
         : (data ?? []),
     [data, categoryFilter],
   );
@@ -269,12 +271,13 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   catChip: {
-    borderRadius: 16,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    borderRadius: 20,
+    justifyContent: "center",
+    minHeight: 44,
+    paddingHorizontal: 18,
   },
   catChipText: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "500",
   },
   listScroll: {

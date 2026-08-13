@@ -170,8 +170,8 @@ export function searchGlossaryTerms(
       }
     }
 
-    // Category.
-    if (entry.category && entry.category.toLowerCase().includes(q)) {
+    // Category (any of the term's categories).
+    if (entry.categories.some((c) => c.toLowerCase().includes(q))) {
       score = Math.max(score, Score.CATEGORY);
     }
 

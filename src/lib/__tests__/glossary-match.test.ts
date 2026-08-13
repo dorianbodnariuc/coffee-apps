@@ -9,6 +9,7 @@ const term = (
   term: name,
   slug: name.toLowerCase(),
   category: "Test",
+  categories: ["Test"],
   definition: `Definition of ${name}.`,
   related_terms: [],
   source_url: "",
