@@ -9,7 +9,7 @@ export async function listGlossaryTerms(): Promise<GlossaryTerm[]> {
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("glossary_terms")
-    .select("term, slug, definition, category, related_terms")
+    .select("term, slug, definition, category, related_terms, source_url")
     .order("term");
   if (error) throw new Error(error.message);
   return (data ?? []).map((row) => ({
@@ -18,5 +18,6 @@ export async function listGlossaryTerms(): Promise<GlossaryTerm[]> {
     definition: row.definition,
     category: row.category,
     related_terms: row.related_terms ?? [],
+    source_url: row.source_url ?? "",
   }));
 }

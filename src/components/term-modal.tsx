@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 
 import { useTheme } from "@/hooks/use-theme";
 import type { GlossaryTerm } from "@/lib/glossary-match";
@@ -58,6 +59,22 @@ export default function TermModal({
                 <Text style={[styles.definition, { color: theme.text }]}>
                   {term.definition}
                 </Text>
+                {term.source_url ? (
+                  <Pressable
+                    accessibilityRole="link"
+                    onPress={() => WebBrowser.openBrowserAsync(term.source_url)}
+                    style={({ pressed }) => [
+                      styles.sourceLink,
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Text
+                      style={[styles.sourceLinkText, { color: theme.text }]}
+                    >
+                      Read the full article ↗
+                    </Text>
+                  </Pressable>
+                ) : null}
                 {term.related_terms.length > 0 ? (
                   <View style={styles.relatedBox}>
                     <Text
@@ -143,6 +160,15 @@ const styles = StyleSheet.create({
   definition: {
     fontSize: 15,
     lineHeight: 22,
+  },
+  sourceLink: {
+    alignSelf: "flex-start",
+    marginTop: 12,
+  },
+  sourceLinkText: {
+    fontSize: 14,
+    fontWeight: "600",
+    textDecorationLine: "underline",
   },
   relatedBox: {
     gap: 4,

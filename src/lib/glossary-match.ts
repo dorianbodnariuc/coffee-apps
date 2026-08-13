@@ -5,6 +5,7 @@ export type GlossaryTerm = {
   category: string | null;
   definition: string;
   related_terms: string[];
+  source_url: string;
 };
 
 function escapeRegex(value: string): string {

@@ -13,6 +13,7 @@ const term = (
   category: "Test",
   definition,
   related_terms: [],
+  source_url: "",
   ...extra,
 });
 

@@ -11,6 +11,7 @@ const term = (
   category: "Test",
   definition: `Definition of ${name}.`,
   related_terms: [],
+  source_url: "",
   ...extra,
 });
 
