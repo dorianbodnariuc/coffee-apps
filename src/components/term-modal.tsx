@@ -22,10 +22,12 @@ export default function TermModal({
   term,
   onClose,
   onSelectTerm,
+  onSelectCategory,
 }: {
   term: GlossaryTerm | null;
   onClose: () => void;
   onSelectTerm?: (termName: string) => void;
+  onSelectCategory?: (category: string) => void;
 }) {
   const theme = useTheme();
 
@@ -51,9 +53,36 @@ export default function TermModal({
                 {term.term}
               </Text>
               {term.category ? (
-                <Text style={[styles.category, { color: theme.textSecondary }]}>
-                  {term.category}
-                </Text>
+                onSelectCategory ? (
+                  <Pressable
+                    accessibilityRole="button"
+                    onPress={() => onSelectCategory(term.category!)}
+                    style={({ pressed }) => [
+                      styles.categoryRow,
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Text
+                      style={[styles.category, { color: theme.textSecondary }]}
+                    >
+                      {term.category}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.categoryChevron,
+                        { color: theme.textSecondary },
+                      ]}
+                    >
+                      ›
+                    </Text>
+                  </Pressable>
+                ) : (
+                  <Text
+                    style={[styles.category, { color: theme.textSecondary }]}
+                  >
+                    {term.category}
+                  </Text>
+                )
               ) : null}
               <ScrollView style={styles.body}>
                 <Text style={[styles.definition, { color: theme.text }]}>
@@ -152,6 +181,15 @@ const styles = StyleSheet.create({
     marginTop: 2,
     textTransform: "uppercase",
     letterSpacing: 0.5,
+  },
+  categoryRow: {
+    alignItems: "center",
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    gap: 4,
+  },
+  categoryChevron: {
+    fontSize: 14,
   },
   body: {
     flexShrink: 1,

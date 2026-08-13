@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { useLocalSearchParams } from "expo-router";
 
 import TermModal from "@/components/term-modal";
 import { useGlossaryTerms } from "@/hooks/use-glossary";
@@ -21,16 +22,47 @@ import { searchGlossaryTerms } from "@/lib/glossary-search";
  * row opens the term modal, and related terms inside it link to their own
  * entries. Search state survives because the list stays mounted under the
  * modal (no navigation).
+ *
+ * T8: category chips filter the list by the site's WP taxonomy, and the
+ * category label in the term modal is tappable (sets the same filter).
  */
 export default function DictionaryScreen() {
   const theme = useTheme();
   const { data, isLoading, isError, refetch } = useGlossaryTerms();
+  const params = useLocalSearchParams<{ category?: string }>();
   const [query, setQuery] = useState("");
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(
+    () => params.category ?? null,
+  );
+  // Arriving from another screen (e.g. a brew detail's glossary chip) with a
+  // category param pre-selects that category. Render-phase adjustment (not an
+  // effect) so it's lint-clean and immediate.
+  const [lastParam, setLastParam] = useState(params.category);
+  if (params.category !== lastParam) {
+    setLastParam(params.category);
+    if (params.category) setCategoryFilter(params.category);
+  }
+
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    (data ?? []).forEach((t) => {
+      if (t.category) set.add(t.category);
+    });
+    return Array.from(set).sort();
+  }, [data]);
+
+  const inCategory = useMemo(
+    () =>
+      categoryFilter
+        ? (data ?? []).filter((t) => t.category === categoryFilter)
+        : (data ?? []),
+    [data, categoryFilter],
+  );
 
   const filtered = useMemo(
-    () => searchGlossaryTerms(data ?? [], query),
-    [data, query],
+    () => searchGlossaryTerms(inCategory, query),
+    [inCategory, query],
   );
 
   const openTerm = (name: string) => {
@@ -73,11 +105,55 @@ export default function DictionaryScreen() {
               value={query}
             />
             <Text style={[styles.count, { color: theme.textSecondary }]}>
-              {query.trim() === ""
-                ? `${filtered.length} terms`
-                : `${filtered.length} of ${data?.length ?? 0}`}
+              {filtered.length}
             </Text>
           </View>
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.catScroll}
+            contentContainerStyle={styles.catRow}
+          >
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => setCategoryFilter(null)}
+              style={[
+                styles.catChip,
+                {
+                  backgroundColor: !categoryFilter
+                    ? theme.backgroundSelected
+                    : theme.backgroundElement,
+                },
+              ]}
+            >
+              <Text style={[styles.catChipText, { color: theme.text }]}>
+                All
+              </Text>
+            </Pressable>
+            {categories.map((cat) => {
+              const active = categoryFilter === cat;
+              return (
+                <Pressable
+                  accessibilityRole="button"
+                  key={cat}
+                  onPress={() => setCategoryFilter(active ? null : cat)}
+                  style={[
+                    styles.catChip,
+                    {
+                      backgroundColor: active
+                        ? theme.backgroundSelected
+                        : theme.backgroundElement,
+                    },
+                  ]}
+                >
+                  <Text style={[styles.catChipText, { color: theme.text }]}>
+                    {cat}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
 
           <ScrollView
             contentContainerStyle={styles.list}
@@ -89,7 +165,9 @@ export default function DictionaryScreen() {
                 <Text
                   style={[styles.emptyText, { color: theme.textSecondary }]}
                 >
-                  No terms match “{query.trim()}”.
+                  {categoryFilter
+                    ? `No terms match “${query.trim()}” in ${categoryFilter}.`
+                    : `No terms match “${query.trim()}”.`}
                 </Text>
               </View>
             ) : (
@@ -132,6 +210,10 @@ export default function DictionaryScreen() {
 
           <TermModal
             onClose={() => setActiveTerm(null)}
+            onSelectCategory={(cat) => {
+              setCategoryFilter(cat);
+              setActiveTerm(null);
+            }}
             onSelectTerm={openTerm}
             term={activeTerm}
           />
@@ -162,19 +244,38 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   searchRow: {
-    gap: 6,
+    flexDirection: "row",
+    gap: 8,
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
   searchInput: {
     borderRadius: 10,
+    flex: 1,
     fontSize: 15,
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
   count: {
+    alignSelf: "center",
     fontSize: 12,
-    paddingHorizontal: 2,
+  },
+  catScroll: {
+    flexGrow: 0,
+  },
+  catRow: {
+    gap: 8,
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+  },
+  catChip: {
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+  },
+  catChipText: {
+    fontSize: 13,
+    fontWeight: "500",
   },
   listScroll: {
     flex: 1,

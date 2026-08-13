@@ -244,6 +244,9 @@ export default function BrewDetailScreen() {
 
       <TermModal
         onClose={() => setActiveTerm(null)}
+        onSelectCategory={(category) =>
+          router.push({ pathname: "/dictionary", params: { category } })
+        }
         onSelectTerm={(name) => {
           const next = glossaryQuery.data?.find((t) => t.term === name);
           if (next) setActiveTerm(next);
