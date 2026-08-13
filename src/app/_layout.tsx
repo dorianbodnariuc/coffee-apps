@@ -9,7 +9,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import { Pressable, Text, useColorScheme } from "react-native";
 
-import { AuthProvider } from "@/lib/auth-context";
+import { AuthProvider, useAuth } from "@/lib/auth-context";
 import { queryClient } from "@/lib/query-client";
 import { useSessionTracking } from "@/hooks/use-session-tracking";
 
@@ -36,6 +36,30 @@ function SettingsButton() {
   );
 }
 
+/** Header-right "Sign in" link shown on tabs when signed out (T8). */
+function SignInButton() {
+  const router = useRouter();
+  const colorScheme = useColorScheme();
+  const color = colorScheme === "dark" ? "#ffffff" : "#000000";
+  const { user, loading, isConfigured } = useAuth();
+
+  if (loading || user || !isConfigured) return null;
+
+  return (
+    <Pressable
+      onPress={() => router.push("/auth")}
+      hitSlop={8}
+      accessibilityLabel="Sign in"
+    >
+      <Text
+        style={{ color, fontSize: 15, fontWeight: "600", paddingRight: 16 }}
+      >
+        Sign in
+      </Text>
+    </Pressable>
+  );
+}
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
@@ -47,7 +71,10 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <Tabs>
-            <Tabs.Screen name="index" options={{ title: "Log" }} />
+            <Tabs.Screen
+              name="index"
+              options={{ title: "Log", headerRight: () => <SignInButton /> }}
+            />
             <Tabs.Screen
               name="history"
               options={{
@@ -55,7 +82,13 @@ export default function RootLayout() {
                 headerRight: () => <SettingsButton />,
               }}
             />
-            <Tabs.Screen name="dictionary" options={{ title: "Dictionary" }} />
+            <Tabs.Screen
+              name="dictionary"
+              options={{
+                title: "Dictionary",
+                headerRight: () => <SignInButton />,
+              }}
+            />
             {/* Non-tab routes: reachable by URL, hidden from the tab bar. */}
             <Tabs.Screen name="auth" options={{ href: null }} />
             <Tabs.Screen name="settings" options={{ href: null }} />
