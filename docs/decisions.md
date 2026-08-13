@@ -193,7 +193,7 @@ reversing it costs.
   planning change, not a code change.
 
 ### D-015 — Social component = "Ask a coffee question" Q&A
-- **Status:** Proposed · **Decided:** 2026-08-13
+- **Status:** Superseded by D-020 · **Decided:** 2026-08-13
 - **Context:** The user wants a social component, gated like the dictionary
   personal features.
 - **Decision:** Build a community Q&A — signed-in users post coffee questions
@@ -258,3 +258,41 @@ reversing it costs.
   needs zero mapping maintenance.
 - **Consequences:** Precision is bounded by the search scorer — a term surfaces
   only if its text relates to what the user actually typed into their logs.
+
+### D-020 — Social component = "Ask the coffee expert" (supersedes D-015)
+- **Status:** Accepted · **Decided:** 2026-08-13 (advisor review + user)
+- **Context:** The Product Advisor argued community UGC Q&A has a fatal cold
+  start (r/coffee and Home-Barista already own that space) and heavy moderation.
+  The user owns coffee-dictionary.com, a real authority.
+- **Decision:** Reframe the Q&A as expert-first, not community-first. A signed-in
+  user asks a coffee question; the answer comes from the expert (the site
+  owner), delivered as an instant AI draft (D-021) plus a promised
+  human-reviewed comprehensive answer. Community UGC is opt-in per question: the
+  asker can "make public" so others can also answer. Visibility is
+  `expert_only` (default — asker + expert see it) or `public` (everyone reads,
+  community can answer); a public question can still carry the expert answer —
+  that is the "both" case.
+- **Rationale:** Uses the owner's existing authority as the answer source, which
+  removes the cold-start problem (no community needed to bootstrap) and shrinks
+  moderation (expert-curated answers; UGC only where the asker opts in). Ties
+  into the owned-site funnel: good questions become site FAQ/glossary content.
+- **Consequences:** Requires a runtime AI integration (D-021) and an owner
+  review workflow. "Make public" reintroduces a bounded UGC/moderation surface.
+  Asking remains account-gated; public questions are readable by anyone,
+  `expert_only` questions are private to asker + expert.
+
+### D-021 — Instant AI answer + human review loop
+- **Status:** Accepted · **Decided:** 2026-08-13 (user)
+- **Context:** The expert can't answer every question instantly, but instant
+  value is what makes "ask" worth doing.
+- **Decision:** On ask, an LLM generates an instant draft answer, clearly flagged
+  as AI. The app promises a more comprehensive, human-reviewed answer ASAP. The
+  owner then reviews/reframes the draft (and the question) into the final
+  comprehensive answer. No answer is presented as final until the human pass.
+- **Rationale:** Instant gratification plus an explicit quality promise; the
+  human review keeps the owner's authority and accuracy bar intact.
+- **Consequences:** Adds a runtime LLM dependency (cost, rate limits, prompt
+  hygiene) and a review workflow for the owner. AI answers must be labeled as
+  such. If AI quality/cost becomes a problem, the loop degrades gracefully to
+  "expert answers when available" — only the promise wording changes, not the
+  schema.

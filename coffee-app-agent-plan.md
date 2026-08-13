@@ -1,5 +1,8 @@
-# Coffee Brew & Tasting Log App — Build Plan v1.3
+# Coffee Brew & Tasting Log App — Build Plan v1.4
 
+> v1.4 (2026-08-13): advisor review folded in (D-017…D-021); social Q&A
+> reframed as "Ask the coffee expert" (instant AI draft + human review, opt-in
+> UGC).
 > v1.3 (2026-08-13): decision log added (`docs/decisions.md`, D-001…D-016);
 > account-gated dictionary personalization (T17–T19) added to Phase 2; social
 > Q&A (T20) added to Phase 3.
@@ -176,9 +179,10 @@ espresso-method log cluster).
    is paywalled in-app; the full glossary stays a link-out to the site's paid
    tier (D-013, D-017).
 3. RevenueCat for subscription billing
-4. **Social Q&A *(new in v1.3)*:** community "ask a coffee question" — asking
-   and answering are account-gated, reading is public; questions optionally
-   tagged to a glossary term (D-015, D-016). Ticket T20.
+4. **"Ask the coffee expert" *(reframed in v1.4)*:** expert-first Q&A — asking
+   is account-gated; the owner answers with an instant AI draft (flagged) plus a
+   promised human-reviewed comprehensive answer; community UGC is opt-in per
+   question ("make public") (D-020, D-021). Ticket T20.
 
 ### Agent tasks
 1. `is_public` flag + RLS update; public profile view; follow/feed (schema ready)
@@ -216,8 +220,9 @@ Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
 6. **Photo limits** — recommendation pending user (default: 3 photos, 10 MB)
 7. ~~T16 freemium vs D-013~~ — **RESOLVED**: T16 gates app features only; no
    content paywall in-app (D-017).
-8. **T20 open questions** — read-gated vs read-public; who seeds the first
-   answers; moderation depth (D-015).
+8. **T20 open questions** — LLM service/cost for the instant draft; owner review
+   surface (dashboard vs in-app); account-deletion handling (cascade vs
+   anonymize) (D-020, D-021).
 
 ---
 
@@ -242,3 +247,9 @@ Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
 - Phase 3: social Q&A (T20) — ask/answer gated, read public, glossary-tagged.
 - Open decisions: paid-tier reuse + glossary completeness marked resolved;
   flagged T16-freemium-vs-D-013 conflict and T20 open questions.
+
+## Changelog v1.4
+- Advisor review folded in: T16 paid = app features only (D-017); contextual
+  account prompts (D-018); "your terms" derived by matching (D-019).
+- Social Q&A reframed as "Ask the coffee expert": instant AI draft + human
+  review (D-021), opt-in community UGC (D-020, supersedes D-015).

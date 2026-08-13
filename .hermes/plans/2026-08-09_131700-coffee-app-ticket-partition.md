@@ -1,7 +1,9 @@
-# Coffee App — Ticket Partition & Subagent Delegation Plan v1.3
+# Coffee App — Ticket Partition & Subagent Delegation Plan v1.4
 
-> Source of truth: `coffee-app-agent-plan.md` (v1.3). Execution layer: tickets →
+> Source of truth: `coffee-app-agent-plan.md` (v1.4). Execution layer: tickets →
 > tasks → subagent briefs, context optimization, standing advisors.
+> v1.4 changes: advisor review folded in (D-017…D-021); T20 reframed as
+> "Ask the coffee expert" (instant AI draft + human review, opt-in UGC).
 > v1.3 changes: decision log added (`docs/decisions.md`, D-001…D-016); new
 > account-gated dictionary tickets T17–T19; social Q&A ticket T20 (Phase 3).
 > v1.2 changes: calculator merged into Log form (no tab), photo attachments
@@ -403,33 +405,57 @@ like for me"). (D-012, D-014 — optional/last)
 **Brief contents:** term_notes schema (inline), RLS rules, modal editor spec,
 criteria. (Defer — build only after T17 ships and is validated.)
 
-### T20 — Social Q&A ("Ask a coffee question")
-**Objective:** A community Q&A where signed-in users ask coffee questions
-(optionally tied to a glossary term) and answer others'. Ask/answer are
-account-gated; reading is public. (D-015, D-016 — Phase 3, gated)
+### T20 — "Ask the coffee expert" (social Q&A, reframed)
+**Objective:** Expert-first Q&A. A signed-in user asks a coffee question and gets
+an instant AI draft answer (flagged as AI) plus a promised human-reviewed
+comprehensive answer from the owner/expert. Community UGC is opt-in per question
+("make public"). (D-020, D-021, D-016 — Phase 3, gated)
 **Tasks:**
-1. Migrations: `questions` (`id`, `user_id`, `title`, `body`, `term_id null`,
-   `created_at`) + `answers` (`id`, `question_id`, `user_id`, `body`,
-   `created_at`). RLS: public read; insert/update/delete owner-only.
-   (Votes/deleted-flag as a follow-up, not v1.)
-2. Entry points: "Ask a coffee question" on the Dictionary tab + "Ask about
-   this term" on the term modal; both route to `/auth` when signed out.
-3. Question feed (recent) + question detail (answers thread) + composer.
-4. Tagged questions surface on the term modal ("Questions about this term").
-5. Moderation MVP: account required + rate limit (e.g. max N questions/day);
-   admin delete via Supabase dashboard.
+1. Migrations:
+   - `questions` (`id`, `user_id`, `title`, `body`, `term_id null` — FK
+     `ON DELETE SET NULL`, `visibility text default 'expert_only'` in
+     `('expert_only','public')`, `status text default 'open'`, `created_at`).
+   - `answers` (`id`, `question_id`, `user_id null`, `kind text` in
+     `('ai_draft','expert','community')`, `body`, `created_at`).
+     `user_id null` = owner-authored expert answer. RLS: questions public-read
+     where `visibility='public'`, else asker + owner; answers follow question
+     visibility. Write owner-only.
+2. Entry points: "Ask the coffee expert" on the Dictionary tab + "Ask about this
+   term" on the term modal; both route to `/auth` when signed out.
+3. Ask flow: composer → on submit, an Edge Function calls an LLM to produce an
+   instant `ai_draft` answer (flagged "AI draft — a comprehensive answer is on
+   the way"); the app surfaces that promise.
+4. Visibility toggle: asker chooses expert-only (default) or "make public";
+   public questions show a feed + community answers.
+5. Author display: denormalize `display_name` into questions/answers at write
+   time (profiles RLS is owner-only), or add a public profiles read path.
+6. Moderation: in-app report/flag on public answers; rate limits in
+   `src/constants/` (questions/day, answers/day); owner review/deletion via a
+   small admin surface (dashboard acceptable for v1).
+7. Owner review loop: a minimal review surface for the owner to reframe the AI
+   draft into the final `expert` answer (start as Supabase dashboard + manual
+   publish; in-app admin panel is a follow-up).
 **Acceptance criteria:**
-- Signed-in user can post a question and answer another; both persist.
-- Signed-out users can read the feed/detail but cannot post (routed to `/auth`).
+- Signed-in user asks a question; an `ai_draft` answer is generated and labeled
+  AI; the "comprehensive answer ASAP" promise is shown.
+- A `public` question is readable by signed-out users and accepts community
+  answers; an `expert_only` question is visible only to asker + owner.
 - User cannot edit/delete another user's question/answer (RLS SQL test).
-- Tagged questions appear on the matching term modal.
-**Brief contents:** questions/answers schema (inline), RLS rules, entry-point
-spec, feed/detail/composer spec, moderation MVP, D-015/D-016 rationale, criteria.
+- Deleting a glossary term sets `questions.term_id` to NULL (question survives).
+- Report/flag works and rate limits are enforced.
+**Brief contents:** questions/answers schema (inline), RLS + visibility rules,
+LLM Edge Function contract, review-loop spec, moderation + rate-limit constants,
+D-020/D-021 rationale, criteria.
 **Open questions (settle before dispatch):**
-1. Read-gated vs read-public — D-015 recommends public read; confirm.
-2. Who is expected to answer first (community seeding vs owner-answered)? Cold
-   start: seed a handful of questions from the site's FAQ.
-3. Moderation: is admin-delete-via-dashboard enough for launch?
+1. LLM service + cost controls for the instant draft (provider, model, budget/
+   rate cap). The prompt must be grounded in the glossary teaser (D-002), not
+   full articles.
+2. Owner review surface: Supabase dashboard for v1 vs a minimal in-app admin
+   panel?
+3. Account deletion vs questions/answers: cascade-delete or anonymize to a
+   `deleted_user` marker? (Deletion policy requires real removal; cascade is
+   simplest and already used elsewhere.)
+4. Exact AI-draft labeling wording (freshness/accuracy disclaimer).
 
 ---
 
@@ -517,3 +543,14 @@ Remaining:
 - T20 (new): Social Q&A — "Ask a coffee question" — Phase 3, gated (D-015, D-016).
 - §7 rewritten: paid-tier reuse and definitions export marked resolved; T20/T18
   open questions listed.
+
+## 10. Changelog v1.4
+
+- Advisor review (Plan Critic + Product Advisor) folded in: T16 content-paywall
+  removed (D-017), contextual account prompts (D-018), T18 derive-by-matching
+  (D-019), T17 returnTo + per-user saved state, T19 cascades + rollback.
+- D-015 superseded by D-020: Q&A reframed as "Ask the coffee expert" — expert
+  answers with an instant AI draft (D-021) + promised human review; community
+  UGC is opt-in per question ("make public").
+- T20 rewritten to the expert model (visibility, answer kinds, report/flag,
+  denormalized display_name).
