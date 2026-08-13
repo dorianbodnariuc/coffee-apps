@@ -297,19 +297,24 @@ reversing it costs.
   "expert answers when available" — only the promise wording changes, not the
   schema.
 
-### D-022 — AI and expert answers are member-gated
-- **Status:** Accepted · **Decided:** 2026-08-13 (user)
+### D-022 — AI and expert answers are private to the asker
+- **Status:** Accepted · **Decided:** 2026-08-13 (user); scoped after advisor
+  review 2026-08-13
 - **Context:** Refining the expert-Q&A gating: who gets to read the AI draft and
-  the human-reviewed expert answer.
-- **Decision:** The instant AI draft and the final expert answer are member-only
-  — visible only to signed-in members (a free app account, per D-013), never to
-  anonymous readers, even when the question itself is public. Community (UGC)
-  answers follow the question's visibility: public questions → public community
-  answers.
-- **Rationale:** The expert answer is the valuable artifact. Gating it behind a
-  free account makes membership the path to expert knowledge (consistent with
-  D-012 and D-018), while the question + community answers remain a public hook.
-- **Consequences:** Refines D-020/D-021. Open sub-question: is the member-gated
-  answer asker-only, or visible to all signed-in members (turning expert answers
-  into a member knowledge base)? Settle before T20 dispatch (see T20 open
-  questions).
+  the human-reviewed expert answer. The Product Advisor challenged the
+  "all signed-in members" reading as cannibalizing coffee-dictionary.com.
+- **Decision:** The instant AI draft and the final expert answer are asker-only
+  — visible to the member who asked (plus the owner), never to other members or
+  anonymous readers, even when the question itself is public. This is a private
+  consultation, not a public read gate. Community (UGC) answers follow the
+  question's visibility: public questions → public community answers.
+- **Rationale:** "Member only" means private to the member who asked. Making the
+  expert answer visible to all members would turn the app into a competing
+  knowledge repository (cannibalizing the site, per D-002/D-013); making it
+  fully public (the advisor's alternative) would likewise duplicate the site's
+  authority and contradicts the asker-only intent. Private-to-asker keeps the
+  site as the public authority while the app adds a private consultation layer.
+- **Consequences:** Refines D-020/D-021. A public question shows community
+  answers only — the expert answer is the asker's private perk and does not
+  appear on the public view (no "locked answer next to public content"
+  confusion). Considered and rejected: all-members, fully public.

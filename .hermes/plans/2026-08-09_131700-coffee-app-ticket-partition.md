@@ -409,8 +409,8 @@ criteria. (Defer — build only after T17 ships and is validated.)
 **Objective:** Expert-first Q&A. A signed-in user asks a coffee question and gets
 an instant AI draft answer (flagged as AI) plus a promised human-reviewed
 comprehensive answer from the owner/expert. The AI and expert answers are
-member-only (D-022); community UGC is opt-in per question ("make public").
-(D-020, D-021, D-022, D-016 — Phase 3, gated)
+private to the asker (D-022); community UGC is opt-in per question ("make
+public"). (D-020, D-021, D-022, D-016 — Phase 3, gated)
 **Tasks:**
 1. Migrations:
    - `questions` (`id`, `user_id`, `title`, `body`, `term_id null` — FK
@@ -420,8 +420,8 @@ member-only (D-022); community UGC is opt-in per question ("make public").
      `('ai_draft','expert','community')`, `body`, `created_at`).
      `user_id null` = owner-authored expert answer. RLS: questions public-read
      where `visibility='public'`, else asker + owner; community answers follow
-     question visibility; `ai_draft`/`expert` answers are member-only (D-022).
-     Write owner-only.
+     question visibility; `ai_draft`/`expert` answers are asker + owner only
+     (D-022). Write owner-only.
 2. Entry points: "Ask the coffee expert" on the Dictionary tab + "Ask about this
    term" on the term modal; both route to `/auth` when signed out.
 3. Ask flow: composer → on submit, an Edge Function calls an LLM to produce an
@@ -442,8 +442,9 @@ member-only (D-022); community UGC is opt-in per question ("make public").
   AI; the "comprehensive answer ASAP" promise is shown.
 - A `public` question is readable by signed-out users and accepts community
   answers; an `expert_only` question is visible only to asker + owner.
-- The AI draft and expert answer are member-only: never rendered to signed-out
-  readers, even on a public question (D-022).
+- The AI draft and expert answer are asker-only: rendered only to the asker +
+  owner, never to other members or signed-out readers, even on a public question
+  (D-022).
 - User cannot edit/delete another user's question/answer (RLS SQL test).
 - Deleting a glossary term sets `questions.term_id` to NULL (question survives).
 - Report/flag works and rate limits are enforced.
@@ -460,8 +461,8 @@ D-020/D-021 rationale, criteria.
    `deleted_user` marker? (Deletion policy requires real removal; cascade is
    simplest and already used elsewhere.)
 4. Exact AI-draft labeling wording (freshness/accuracy disclaimer).
-5. Member-gated answer scope: asker-only, or visible to all signed-in members
-   (turning expert answers into a member knowledge base)? (D-022)
+5. ~~Member-gated answer scope~~ — RESOLVED: asker-only (private to the member
+   who asked), not all-members and not fully public (D-022).
 
 ---
 
