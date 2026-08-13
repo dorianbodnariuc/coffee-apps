@@ -1,6 +1,7 @@
-/** A glossary term as stored in glossary_terms (T7). */
+/** A glossary term as stored in glossary_terms (T7/T11). */
 export type GlossaryTerm = {
   term: string;
+  slug: string;
   category: string | null;
   definition: string;
   related_terms: string[];

@@ -7,6 +7,7 @@ const term = (
   extra: Partial<GlossaryTerm> = {},
 ): GlossaryTerm => ({
   term: name,
+  slug: name.toLowerCase(),
   category: "Test",
   definition: `Definition of ${name}.`,
   related_terms: [],
