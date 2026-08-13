@@ -218,3 +218,43 @@ reversing it costs.
   core loop (log → history → glossary) is proven. Document-now, build-later.
 - **Consequences:** T20 is a spec, not a build. If the gate passes, it's
   unblocked; if the gate fails, D-015/D-016 are revisited with advisors.
+
+### D-017 — T16 freemium gates app features only, never content
+- **Status:** Accepted · **Decided:** 2026-08-13 (advisor review)
+- **Context:** Both advisors flagged that T16's "pro-only full glossary / origin
+  database" violates D-013 (the app never paywalls content).
+- **Decision:** T16's paid tier gates app features only — unlimited logs,
+  flavor-trend charts, unlimited saved terms/notes. No glossary/origin content
+  is ever paywalled in-app; the full article stays a link-out to the site's
+  paid tier.
+- **Rationale:** D-013 is the governing principle; monetization rides on app
+  capability, not on content the site already monetizes.
+- **Consequences:** Simpler freemium scope. If we ever want in-app paid content,
+  that supersedes D-013/D-017 and needs a fresh decision.
+
+### D-018 — Account prompts are contextual, not only at log #2
+- **Status:** Accepted · **Decided:** 2026-08-13 (advisor review)
+- **Context:** Product Advisor: a generic "sign in" prompt at log #2 is easy to
+  reject; the moment of gated-feature intent converts far better.
+- **Decision:** The soft wall (first brew pre-signup) stays, but the primary
+  conversion moments become contextual: tapping save/bookmark or "Your terms"
+  while signed out routes to `/auth` and returns the user to where they were.
+  The D-011 header buttons remain as a passive affordance.
+- **Rationale:** Prompting at intent ("save this term") outperforms a generic
+  account prompt.
+- **Consequences:** More sign-in trigger points to maintain; the log-#2 prompt
+  becomes a secondary path, not the main one.
+
+### D-019 — "Your terms" is derived by matching, not a mapping table
+- **Status:** Accepted · **Decided:** 2026-08-13 (advisor review)
+- **Context:** Advisors: a hardcoded method→term constants mapping "rots" as the
+  377-term glossary evolves and forces app releases for fixes.
+- **Decision:** T18 derives a user's terms by running their brew-log text fields
+  (method, grind, bean name/origin/roaster, tasting notes) through the existing
+  word-boundary + scoring matcher (D-007/D-008). No `term_mappings` table or
+  constants. Rank by number of matching logs (desc), ties alphabetical, capped
+  list. Deterministic and unit-testable with synthetic logs.
+- **Rationale:** Reuses proven code, stays correct as the glossary grows, and
+  needs zero mapping maintenance.
+- **Consequences:** Precision is bounded by the search scorer — a term surfaces
+  only if its text relates to what the user actually typed into their logs.

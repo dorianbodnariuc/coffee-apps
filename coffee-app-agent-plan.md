@@ -171,9 +171,10 @@ espresso-method log cluster).
 
 ### Features
 1. Public/private profile toggle, follow users, public feed
-2. Freemium: free = 20 logs max + basic glossary; paid = unlimited logs, flavor
-   trend charts, full glossary/origin database (dictionary content licensed for
-   paid tier — see Open decisions)
+2. Freemium: app features only — free = 20 logs max + basic charts; paid =
+   unlimited logs, flavor-trend charts, unlimited saved terms/notes. No content
+   is paywalled in-app; the full glossary stays a link-out to the site's paid
+   tier (D-013, D-017).
 3. RevenueCat for subscription billing
 4. **Social Q&A *(new in v1.3)*:** community "ask a coffee question" — asking
    and answering are account-gated, reading is public; questions optionally
@@ -213,10 +214,8 @@ Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
 5. ~~Import repo~~ — **DONE**: `~/coffee-dictionary-import` created, offline
    export committed
 6. **Photo limits** — recommendation pending user (default: 3 photos, 10 MB)
-7. **T16 freemium vs D-013** — T16's "pro-only full glossary" conflicts with
-   D-013 (app does not gate content behind payment). Reconcile before T16
-   dispatch: pro = app features (unlimited logs, charts, unlimited saved
-   terms); full glossary stays a link-out to the site's paid tier.
+7. ~~T16 freemium vs D-013~~ — **RESOLVED**: T16 gates app features only; no
+   content paywall in-app (D-017).
 8. **T20 open questions** — read-gated vs read-public; who seeds the first
    answers; moderation depth (D-015).
 

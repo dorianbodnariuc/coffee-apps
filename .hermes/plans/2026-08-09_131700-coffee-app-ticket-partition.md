@@ -322,12 +322,15 @@ idempotent; feed shows only followed public logs.
 **Brief contents:** follow_relationships schema (inline), RLS rules, criteria.
 
 ### T16 — Freemium + RevenueCat *(gated)*
-**Objective:** Subscription gating.
-**Tasks:** RevenueCat SDK + entitlements; paywall screens; feature gating (20-log
-cap, pro-only charts/full glossary).
-**Acceptance criteria:** free tier hard-stops at 20 logs; entitlement flip unlocks
-pro features without reinstall.
-**Brief contents:** gating rules, RevenueCat notes, acceptance criteria.
+**Objective:** Subscription gating on app features only — no content paywall
+(D-013, D-017).
+**Tasks:** RevenueCat SDK + entitlements; paywall screens; feature gating (free =
+20-log cap + basic charts; pro = unlimited logs, flavor-trend charts, unlimited
+saved terms/notes).
+**Acceptance criteria:** free tier hard-stops at 20 logs; entitlement flip
+unlocks pro features without reinstall; no glossary/origin content is ever
+paywalled (link-out only).
+**Brief contents:** gating rules, RevenueCat notes, D-013/D-017 pointer, criteria.
 
 ### T17 — Saved terms (bookmarks)
 **Objective:** Let signed-in users save glossary terms to a persistent "Saved"
@@ -337,57 +340,66 @@ list, and turn the save action into a sign-in trigger. (D-012, D-014)
    `user_id uuid refs auth.users on delete cascade` +
    `term_id uuid refs glossary_terms on delete cascade` +
    `created_at`, PK `(user_id, term_id)`. RLS owner-only (select/insert/delete).
-2. `glossary-api.ts` additions: save/unsave/toggle + "is this term saved" +
-   `saved_count`. React Query mutations invalidating a `saved_terms` key.
+2. `glossary-api.ts` additions: save/unsave/toggle + "is this term saved"
+   (per-user only — no global saved_count, which would leak engagement data).
+   React Query mutations invalidating a `saved_terms` key.
 3. Term modal: save/unsave toggle (bookmark icon + label). Signed out → tapping
-   it routes to `/auth` (reuse D-011 pattern, no modal spam).
+   it routes to `/auth` with a `returnTo` payload that restores the exact term
+   modal after sign-in (no "re-tap" reliance; see acceptance criteria).
 4. Dictionary: "Saved" filter chip (shown when signed in) filtering to saved
    terms; empty state ("No saved terms yet").
 **Acceptance criteria:**
 - Signed-in user can save/unsave; list persists across app restart.
-- Signed-out user tapping save lands on `/auth`; after sign-in the term is NOT
-  auto-saved (avoids surprise) — they re-tap once.
+- Signed-out user tapping save lands on `/auth`; after successful sign-in the
+  user is returned to that term's modal (route + modal state restored via the
+  `returnTo` contract) and the term is NOT auto-saved — they confirm with one
+  tap. The return path is a defined navigation contract, not an assumption.
 - User A cannot see or modify user B's saved terms (RLS SQL test).
-- Unsaving removes the row; deleting a term cascades cleanly.
+- Unsaving removes the row; deleting a term or account cascades cleanly.
 **Brief contents:** saved_terms schema (inline), RLS rules, modal + filter
 integration points, sign-in-routing requirement, D-012/D-014 rationale, criteria.
 
 ### T18 — "Your terms" (brew-derived glossary)
-**Objective:** A personal glossary derived from what the user actually brews:
-surface the glossary terms relevant to their brew logs. (D-012, D-014)
+**Objective:** A personal glossary derived from what the user actually brews, by
+matching their brew-log text against the glossary — no hardcoded mappings
+(D-019).
 **Tasks:**
-1. Term↔brew mapping in `src/constants/` (or a `term_mappings` table if it must
-   be admin-editable): map brew method / grind / bean-origin keywords → term
-   ids (e.g. V60 → Pour Over, Extraction, Bloom).
-2. Derive the set: union of mappings over the user's brew_logs, ranked by how
-   often the matching field appears.
+1. Derive candidate terms by running each brew log's text fields (method, grind,
+   bean name/origin/roaster, tasting notes) through the existing word-boundary +
+   scoring matcher (D-007/D-008). No `term_mappings` table or constants.
+2. Aggregate: a term is included if it matches ≥1 log; rank by number of
+   matching logs desc, ties alphabetical; cap the list (e.g. top 20).
 3. Dictionary: a "Your terms" section/chip (signed in only) listing derived
-   terms; empty state when the user has no logs.
+   terms; empty state when the user has no logs or no matches.
 4. Tap a derived term → term modal (reuse T11/T17 modal).
 **Acceptance criteria:**
 - A user who logged a V60 sees Pour Over / Extraction etc. in "Your terms".
+  Deterministic: a unit test with synthetic logs asserts the exact output set.
 - A user with zero logs sees the empty state (not an error).
-- Rankings reflect log frequency; ties alphabetical.
-- Signed-out users never see the section (not even gated view).
-**Brief contents:** mapping source decision (constants vs table), glossary_terms
-brew_logs fields to match on, ranking spec, D-012 rationale, criteria.
-**Open question:** mapping location — constants (cheap, code-deploy to change)
-vs `term_mappings` table (admin-editable without release). Recommend constants
-for v1.
+- Ranking is deterministic (match count desc, ties alphabetical) and the list is
+  capped.
+- Signed-out users never see the section (not even a gated view).
+**Brief contents:** glossary-search matcher interface (D-007/D-008), brew_logs
+fields to match on, ranking + cap spec, deterministic test-fixture requirement,
+D-019 rationale, criteria.
 
 ### T19 — Personal notes on a term
 **Objective:** One private note per term per user ("what over-extraction tasted
 like for me"). (D-012, D-014 — optional/last)
 **Tasks:**
 1. Migration `term_notes`: `user_id`, `term_id`, `note text`, `created_at`,
-   `updated_at`, PK `(user_id, term_id)`. RLS owner-only.
+   `updated_at`, PK `(user_id, term_id)`; explicit `ON DELETE CASCADE` FKs on
+   `user_id` → auth.users and `term_id` → glossary_terms. RLS owner-only.
 2. Term modal: "Add a note" (signed in) → inline editor; shows existing note
-   with edit affordance. Signed out → route to `/auth`.
-3. React Query mutation + optimistic update; length cap (e.g. 500 chars).
+   with edit affordance. Signed out → route to `/auth` (returnTo per T17).
+3. React Query mutation + optimistic update with rollback on failure (D-010);
+   length cap 500 chars with a visible error on overrun.
 **Acceptance criteria:**
 - Note persists across restart; edit updates `updated_at`.
 - User A cannot read user B's notes (RLS SQL test).
-- Signed-out tap routes to `/auth`.
+- Deleting the user (T2) or a glossary term removes the note (no orphans).
+- Signed-out tap routes to `/auth`; failed save rolls back the optimistic update
+  and shows an error.
 **Brief contents:** term_notes schema (inline), RLS rules, modal editor spec,
 criteria. (Defer — build only after T17 ships and is validated.)
 
