@@ -23,6 +23,15 @@ const TERMS: GlossaryTerm[] = [
     { slug: "aa-coffee-grading", category: "Quality & Grading" },
   ),
   term("Washed Process", "A fermentation method that removes mucilage."),
+  term(
+    "Camp Coffee",
+    "A concentrated coffee essence; many pourover method guides reference it as an alternative.",
+    {
+      slug: "camp-coffee",
+      category: "Coffee Culture",
+      related_terms: ["Pour Over"],
+    },
+  ),
   term("Pour Over", "A manual drip brewing technique.", {
     slug: "pour-over",
     related_terms: ["Chemex", "Hario V60"],
@@ -147,6 +156,15 @@ describe("searchGlossaryTerms (T11c — word-level + relevance)", () => {
     expect(r.length).toBe(2);
     expect(r[0].term).toBe("Coffee Brewing Temperature");
     expect(r[1].term).toBe("Pour Over");
+  });
+
+  it("ranks a compact term-name match above a definition mention (pourover → Pour Over, not Camp Coffee)", () => {
+    // "Camp Coffee"'s definition literally contains "pourover" (as the real
+    // dataset's reference lists do), but "Pour Over" IS the term — its compact
+    // name match must outrank a mere definition mention.
+    const r = searchGlossaryTerms(TERMS, "pourover");
+    expect(r[0].term).toBe("Pour Over");
+    expect(r.map((t) => t.term)).toContain("Camp Coffee");
   });
 
   // ── regression / edge ──

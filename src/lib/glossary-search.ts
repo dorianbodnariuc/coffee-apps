@@ -15,7 +15,7 @@ const Score = {
   ALL_WORDS: 9, // every word in the query appears in term+definition
   WORD_PREFIX: 8, // at least one query word is a prefix of a term word
   DEFINITION: 5, // query is a substring of the definition
-  COMPACT: 5, // compact form matched the term
+  COMPACT: 9, // compact form matched the term NAME (spacing/punct-insensitive ≈ exact)
   SLUG: 4, // slug matched (literal or compact)
   CATEGORY: 3, // category label matched
   RELATED: 2, // a related-term name matched
