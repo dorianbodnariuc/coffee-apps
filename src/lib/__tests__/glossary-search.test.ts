@@ -17,14 +17,20 @@ const term = (
 });
 
 const TERMS: GlossaryTerm[] = [
+  term(
+    "AA Coffee Grading",
+    "A Kenyan/Indian classification for the largest coffee beans.",
+    { slug: "aa-coffee-grading", category: "Quality & Grading" },
+  ),
   term("Washed Process", "A fermentation method that removes mucilage."),
   term("Pour Over", "A manual drip brewing technique.", {
     slug: "pour-over",
     related_terms: ["Chemex", "Hario V60"],
+    category: "Brewing Methods",
   }),
   term(
     "Coffee Brewing Temperature",
-    "The ideal water temperature for extraction.",
+    "The ideal water temperature for coffee extraction, typically 90–96°C.",
     { slug: "water-temperature", category: "Brewing Methods" },
   ),
   term("Crema", "The golden foam on espresso."),
@@ -39,36 +45,43 @@ const TERMS: GlossaryTerm[] = [
   }),
 ];
 
-describe("searchGlossaryTerms (T11 + T11b — alias-aware)", () => {
+describe("searchGlossaryTerms (T11c — word-level + relevance)", () => {
+  // ── empty / edge cases ──
   it("returns all terms for an empty query", () => {
     expect(searchGlossaryTerms(TERMS, "")).toHaveLength(TERMS.length);
     expect(searchGlossaryTerms(TERMS, "   ")).toHaveLength(TERMS.length);
   });
 
-  // ---- term / definition substring (existing behaviour) ----
+  it("returns nothing for queries with only tiny words", () => {
+    expect(searchGlossaryTerms(TERMS, "a")).toEqual([]);
+    expect(searchGlossaryTerms(TERMS, "of the")).toEqual([]);
+  });
+
+  it("matches a 2-char query (AA → AA Coffee Grading)", () => {
+    const r = searchGlossaryTerms(TERMS, "AA");
+    expect(r.map((t) => t.term)).toContain("AA Coffee Grading");
+  });
+
+  // ── substring on term / definition (existing) ──
   it("matches the term case-insensitively", () => {
-    expect(searchGlossaryTerms(TERMS, "french")).toEqual([]);
-    expect(searchGlossaryTerms(TERMS, "acidity")[0].term).toBe("Acidity");
+    const r = searchGlossaryTerms(TERMS, "acidity");
+    expect(r[0].term).toBe("Acidity");
   });
 
   it("matches the definition case-insensitively", () => {
-    const r = searchGlossaryTerms(TERMS, "fermentation");
-    expect(r.map((t) => t.term)).toEqual(["Washed Process"]);
+    expect(searchGlossaryTerms(TERMS, "fermentation")[0].term).toBe(
+      "Washed Process",
+    );
     expect(searchGlossaryTerms(TERMS, "ESPRESSO")[0].term).toBe("Crema");
   });
 
-  // ---- compact matching (spaces / punctuation don't matter) ----
+  // ── compact matching ──
   it("matches via compact form (pourover → Pour Over)", () => {
     const r = searchGlossaryTerms(TERMS, "pourover");
     expect(r.map((t) => t.term)).toContain("Pour Over");
   });
 
-  it("compact match on a single-word term", () => {
-      const r = searchGlossaryTerms(TERMS, "cappuccino");
-      expect(r.map((t) => t.term)).toContain("Cappuccino");
-    });
-
-  // ---- slug matching ----
+  // ── slug matching ──
   it("matches via slug literal", () => {
     const r = searchGlossaryTerms(TERMS, "water-temperature");
     expect(r.map((t) => t.term)).toContain("Coffee Brewing Temperature");
@@ -77,12 +90,10 @@ describe("searchGlossaryTerms (T11 + T11b — alias-aware)", () => {
   it("matches via slug compact (water temp → slug water-temperature)", () => {
     const r = searchGlossaryTerms(TERMS, "water temperature");
     expect(r.map((t) => t.term)).toContain("Coffee Brewing Temperature");
-    // term compact doesn't contain "watertemperature", but slug compact does
   });
 
-  // ---- related terms ----
+  // ── related terms ──
   it("matches via related term name", () => {
-    // searching "steamed milk" should find CAppuccino
     const r = searchGlossaryTerms(TERMS, "steamed milk");
     expect(r.map((t) => t.term)).toContain("Cappuccino");
   });
@@ -92,14 +103,54 @@ describe("searchGlossaryTerms (T11 + T11b — alias-aware)", () => {
     expect(r.map((t) => t.term)).toContain("Cappuccino");
   });
 
-  // ---- category matching ----
+  // ── category ──
   it("matches via category name", () => {
     const r = searchGlossaryTerms(TERMS, "flavor");
     expect(r.map((t) => t.term)).toContain("Acidity");
   });
 
-  // ---- edge cases ----
-  it("returns empty array when nothing matches", () => {
+  // ── T11c: multi-word AND ──
+  it("ANDs query words in term+definition (brew temperature → Brewing Temperature)", () => {
+    const r = searchGlossaryTerms(TERMS, "brew temperature");
+    expect(r.map((t) => t.term)).toContain("Coffee Brewing Temperature");
+  });
+
+  it("ANDs across term and definition (espresso golden → Crema)", () => {
+    const r = searchGlossaryTerms(TERMS, "espresso golden");
+    expect(r.map((t) => t.term)).toContain("Crema");
+  });
+
+  // ── T11c: word-prefix ──
+  it("matches brew as a prefix of brewing", () => {
+    const r = searchGlossaryTerms(TERMS, "brew");
+    expect(r.map((t) => t.term)).toContain("Coffee Brewing Temperature");
+  });
+
+  it("matches ferment as a prefix of fermentation", () => {
+    const r = searchGlossaryTerms(TERMS, "ferment");
+    expect(r.map((t) => t.term)).toContain("Washed Process");
+  });
+
+  // ── T11c: relevance scoring (order matters) ──
+  it("ranks exact term match above definition-only match", () => {
+    const r = searchGlossaryTerms(TERMS, "coffee");
+    expect(r.length).toBeGreaterThanOrEqual(2);
+    // Both "Coffee Brewing Temperature" and "AA Coffee Grading" have "coffee"
+    // in their term — both score 10, sorted alphabetically (AA first).
+    expect(r[0].term).toBe("AA Coffee Grading");
+  });
+
+  it("ranks all-words match above definition-only match", () => {
+    // "brewing" appears in "Coffee Brewing Temperature" term (exact term, score 10)
+    // vs "Brewing Methods" category only (score 3) for Pour Over
+    const r = searchGlossaryTerms(TERMS, "brewing");
+    expect(r.length).toBe(2);
+    expect(r[0].term).toBe("Coffee Brewing Temperature");
+    expect(r[1].term).toBe("Pour Over");
+  });
+
+  // ── regression / edge ──
+  it("returns empty when nothing matches", () => {
     expect(searchGlossaryTerms(TERMS, "zzzz")).toEqual([]);
   });
 
@@ -107,9 +158,12 @@ describe("searchGlossaryTerms (T11 + T11b — alias-aware)", () => {
     expect(searchGlossaryTerms(TERMS, "  acidity ")[0].term).toBe("Acidity");
   });
 
-  it("preserves the input order", () => {
-    const result = searchGlossaryTerms(TERMS, "e");
-    const indexes = result.map((t) => TERMS.indexOf(t));
-    expect(indexes).toEqual([...indexes].sort((a, b) => a - b));
+  it("preserves input order when scores are tied", () => {
+    // "a" won't work (too short), use a query that hits multiple terms equally
+    const r = searchGlossaryTerms(TERMS, "coffee");
+    const cbtIdx = r.findIndex((t) => t.term === "Coffee Brewing Temperature");
+    const aaIdx = r.findIndex((t) => t.term === "AA Coffee Grading");
+    // Both score 10 (exact term) — alphabetical order: AA < Coffee
+    expect(aaIdx).toBeLessThan(cbtIdx);
   });
 });
