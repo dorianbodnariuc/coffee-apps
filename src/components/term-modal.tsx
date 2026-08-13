@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   body: {
+    flexShrink: 1,
     marginTop: 12,
   },
   definition: {
