@@ -579,33 +579,50 @@ method-specific parameters so a shared log is fully replicable (D-028).
 1. `src/constants/method-specs.ts`: typed `METHOD_SPECS` registry — per method a
    label, `measures` (water_in | yield_out), and `params[]` of
    {key, label, type(number|text|enum), unit, step/min/max, options, optional}.
-   Seed: espresso (basket_size_g, machine, pressure_bar, pre_infusion_s),
-   pour-over (dripper, filter, bloom_g, bloom_s, pours), aeropress (orientation,
-   filter, immersion_s, press_s), french-press (immersion_s, filter), cold-brew
-   (immersion_h, filter), moka-pot, drip-machine (machine, filter), other (none).
-   Extend `BREW_METHODS` with moka-pot + drip-machine.
-2. Migration: add `grinder text`, `yield_g numeric`, `water_temp_c numeric`,
-   `method_params jsonb not null default '{}'`; rework the `ratio` generated
-   column to be method-aware (yield/dose for espresso+moka-pot, else water/dose).
+   Extend `BREW_METHODS` with moka-pot + drip-machine. Seed (first-class vs
+   collapsed per D-028):
+   - espresso (yield_out): dose, yield, time, grinder/setting first-class;
+     basket_size_g, machine, pressure_bar, pre_infusion_s, temp collapsed.
+   - pour-over (water_in): dose, water, time, grinder/setting; dripper
+     (V60/Kalita/Chemex/Melitta/Clever/Other), filter (paper/metal/cloth),
+     bloom_g, bloom_s, pours, temp collapsed.
+   - aeropress (water_in): dose, water, time, grinder/setting; orientation
+     (standard/inverted), filter (paper/metal), press_s collapsed.
+   - french-press (water_in): dose, water, time, grinder/setting.
+   - cold-brew (water_in): dose, water, grinder/setting; immersion_h, filter.
+   - moka-pot (water_in): dose, water, grinder/setting.
+   - drip-machine (water_in): dose, water, grinder/setting; machine, filter.
+   - other (water_in): dose, water, grinder/setting; method_name (free text).
+2. Migration: add `grinder text`, `yield_g numeric`, `water_temp_c numeric(4,1)`
+   with CHECK (0–100), `method_params jsonb not null default '{}'`; rework the
+   `ratio` generated column to `yield_g/dose_g` for espresso, else
+   `water_g/dose_g`; BACKFILL `yield_g = water_g` for existing espresso rows
+   (single transaction, tested against a row-bearing copy).
 3. `brew-log-schema.ts`: add grinder/yieldG/waterTempC/methodParams; validate
    methodParams against `METHOD_SPECS[method]` (unknown keys rejected, numbers in
-   range, enums in options) via superRefine.
-4. `brew-log-form.tsx`: method-first; render method params dynamically from
-   `METHOD_SPECS` (enum→ChipSelect, number→numeric input with unit, text→input);
-   grinder + grind_size paired; espresso shows yield not water.
-5. `ratio-calculator.tsx`: method-aware (yield for espresso/moka).
-6. History/detail render structured params; share serializes a replicable recipe
-   string ("18g in · 36g out · 12 on Eureka Mignon · 9 bar · 28s").
+   range, enums in options) via superRefine. `other` uses a strict fallback spec.
+4. `brew-log-form.tsx`: method-first ordering, but bean + rating + notes stay
+   first-class; signature fields (dose + water/yield + grinder/setting) soft-
+   shown; everything else collapsed under "Recipe details". Required = method
+   only. Espresso shows yield; other methods show water.
+5. `ratio-calculator.tsx`: method-aware (yield for espresso, water otherwise).
+6. History/detail render structured params; share emits the 3-line recipe card
+   (D-028 item 6) to clipboard with a Reddit prefill.
 **Acceptance criteria:**
-- Selecting a method renders exactly that method's params; switching methods
+- Selecting a method renders exactly that method's fields; switching methods
   keeps common fields and drops the previous method's params.
-- Espresso dose 18 / yield 36 → ratio 2.0; pour-over dose 20 / water 300 → 15.0.
+- Espresso dose 18 / yield 36 → ratio 2.0; pour-over dose 20 / water 300 → 15.0;
+  moka dose 20 / water 150 → 7.5 (water-in, not yield).
 - "Eureka Mignon" + "12" round-trips and renders "12 on Eureka Mignon".
 - Invalid method_params (unknown key / out-of-range) rejected by zod.
-- Existing logs render with NULL new columns and '{}' params — no data loss.
-**Brief contents:** METHOD_SPECS type + full seed (inline), migration SQL, zod
-superRefine contract, form dynamic-field spec, share serialization format,
-D-028 rationale, criteria.
+- Existing espresso logs keep a non-NULL ratio after backfill; other existing
+  logs render with NULL new columns + '{}' params — no data loss.
+- Save is never blocked by an unfilled optional field (method-only required).
+**Brief contents:** METHOD_SPECS type + full seed (inline), migration SQL (incl.
+espresso backfill + temp CHECK), zod superRefine contract, form dynamic-field +
+collapsed-block spec, 3-line share format, D-028 rationale, criteria.
+**Follow-ups:** equipment memory (remember last grinder/method/dripper per
+method — T23b), grinder catalog (soft ref) — deferred.
 
 ---
 
