@@ -21,6 +21,7 @@
                     ┌─────────────────────────────┐
                     │  Plan Critic (technical)    │  .hermes/agents/plan-critic.md
                     │  Product Advisor (product)  │  .hermes/agents/product-advisor.md
+                    │  Design Reviewer (visual)   │  .hermes/agents/design-reviewer.md
                     └──────────────┬──────────────┘
                                    │ review at phase gates / plan revisions
                     ┌──────────────▼──────────────┐
@@ -42,9 +43,11 @@
   criteria), a second leaf subagent reviews code quality. Only then is the ticket
   merged/committed.
 - **Advisors:** standing roles, independent of the plan content. Invoked at plan
-  revisions and phase gates. Definitions in `.hermes/agents/`, versioned with repo.
-- **Phase gates:** run both advisors before dispatching Phase 2; Phase 3 requires
-  the retention gate (§6) AND an advisor check.
+  revisions and phase gates; the Design Reviewer additionally gates UI tickets
+  (T8, T11, T12, T14, T16b, T22). Definitions in `.hermes/agents/`, versioned
+  with repo.
+- **Phase gates:** run the advisors (Critic, Product, Design) before dispatching
+  Phase 2; Phase 3 requires the retention gate (§6) AND an advisor check.
 
 ## 2. Ticket index (v1.2)
 
@@ -73,6 +76,7 @@
 | T19 | Personal notes on terms                   | 2     | T17 (pattern)     | 1               | yes (w/ T17)  |
 | T20 | Ask the coffee expert (social Q&A)        | 3     | T2 + GATE         | 2–3             | gated         |
 | T21 | Site funnel wiring + link-out attribution | 2     | T6                | 2               | —             |
+| T22 | Design system + visual polish            | 2     | T8                | 2–3             | —             |
 
 Phase 3 (T15–T16, T20) is **gated** on §6 numbers. P1 parallel wave after T2:
 T5 ∥ T6 ∥ T7 (T3 integrates the T5 module).
@@ -533,6 +537,39 @@ channel (D-024, docs/monetization.md §6).
 **Brief contents:** site CTA spec, attribution event spec, nudge rule, funnel
 metric, D-024 rationale.
 
+### T22 — Design system completion + visual polish
+**Objective:** Make the app beautiful and pleasant, not just functional. The
+theme layer is a partial Expo template (`src/constants/theme.ts`): 5 semantic
+colors, no accent/danger/border, a 48px template title, a hardcoded `#3c87f7`
+link color, and screens that mix `ThemedText`/`ThemedView` with raw `useTheme()`
+styles (`history-screen.tsx`). Complete it and run a full polish pass.
+**Tasks:**
+1. Complete the token layer in `src/constants/theme.ts`: add `primary` (a warm
+   coffee brand color — amber/brown), `danger`, `border`, `success` to BOTH
+   light and dark. Replace the hardcoded `#3c87f7` in `themed-text.tsx` with a
+   token.
+2. Fix the type scale in `themed-text.tsx`: the template `title` (48px) and
+   `subtitle` (32px) are too large for a logging app — establish a real scale
+   (screen title ~28px, section ~20px, body 16px, caption 14px, small 12px).
+3. Unify component usage: every screen uses `ThemedText`/`ThemedView` (or the
+   same `useTheme()` + `StyleSheet` pattern). Reconcile `history-screen.tsx`.
+   No raw hex outside `theme.ts` (grep `#` to verify).
+4. Spacing discipline: consume `Spacing` tokens everywhere; no ad-hoc numeric
+   padding/margin literals (grep to verify).
+5. State polish: design every screen's empty/loading/error/signed-out state
+   (several are plain text today). Touch targets stay ≥44px (D-009).
+6. Android-first on-device QA (user runs Expo Go); Design Reviewer sign-off
+   before merge.
+**Acceptance criteria:**
+- `theme.ts` is the single source of color/type/spacing; grep finds no raw hex
+  outside the token definitions.
+- Type scale is used consistently; no 48px titles remain.
+- Every screen has a designed empty + loading + error state.
+- Interactive targets ≥44px (≥40px in modals).
+- Design Reviewer verdict = ships-as-is (all blocker/major resolved).
+**Brief contents:** current theme state (inline), target palette + type scale,
+screen list, state matrix, D-009 pointer, design-reviewer sign-off requirement.
+
 ---
 
 ## 4. Context-optimization strategy (v1.2)
@@ -638,3 +675,12 @@ Remaining:
   expert asks), D-027 (pricing $4.99/mo / $39/yr) — see docs/monetization.md.
 - T16 rewritten (insight + expert, no log cap); T16b (charts), T6b (D7 +
   stitching), T21 (site funnel + attribution) added; T16/T20 decoupled from T15.
+
+## 12. Changelog v1.6
+
+- T22 (new): design system completion + visual polish — complete the partial
+  theme token layer, fix the template type scale, unify ThemedText/ThemedView
+  usage, and polish every state (D-009).
+- Design Reviewer advisor added (`.hermes/agents/design-reviewer.md`, runs on
+  kimi-k2.6) — reviews graphics/layout/UX at UI tickets and phase gates.
+- T21 spec'd into a buildable brief (`docs/briefs/T21-site-funnel.md`).
