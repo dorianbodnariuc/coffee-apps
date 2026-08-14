@@ -71,9 +71,10 @@
 | T17 | Saved terms (bookmarks)                   | 2     | T2, T10, T11      | 1–2             | —             |
 | T18 | "Your terms" (brew-derived glossary)      | 2     | T17, T3           | 2               | —             |
 | T19 | Personal notes on terms                   | 2     | T17 (pattern)     | 1               | yes (w/ T17)  |
-| T20 | Social Q&A — "Ask a coffee question"      | 3     | T15 + GATE        | 2–3             | gated         |
+| T20 | Ask the coffee expert (social Q&A)        | 3     | T2 + GATE         | 2–3             | gated         |
+| T21 | Site funnel wiring + link-out attribution | 2     | T6                | 2               | —             |
 
-Phase 3 (T15–T16) is **gated** on §6 numbers. P1 parallel wave after T2:
+Phase 3 (T15–T16, T20) is **gated** on §6 numbers. P1 parallel wave after T2:
 T5 ∥ T6 ∥ T7 (T3 integrates the T5 module).
 
 ## 3. Ticket breakdown (tasks + acceptance criteria + brief contents)
@@ -335,7 +336,7 @@ unlimited logging. No content paywall, no log cap (D-024, D-017).
    column; server-side enforcement (DB trigger/policy) — never client-only.
 3. Paid features: (a) brew-over-time insight (T16b); (b) N expert asks/month
    (T20, D-025). Free = unlimited logs + teaser glossary + search + saved terms.
-4. Free-tier cap = expert asks only (e.g. 2/month free, 20 paid) — never logs.
+4. Free-tier cap = expert asks only (D-027: 1 free, 10 paid/mo) — never logs.
 5. Prerequisite: move QA off Expo Go to an EAS dev client (react-native-purchases
    needs native code).
 **Acceptance criteria:**
@@ -513,6 +514,25 @@ moderation + rate-limit constants, D-020/D-021/D-023 rationale, criteria.
 5. ~~Member-gated answer scope~~ — RESOLVED: asker-only (private to the member
    who asked), not all-members and not fully public (D-022).
 
+### T21 — Site funnel wiring + link-out attribution
+**Objective:** Turn the owned sites (coffee-dictionary.com + the brew*coffee.com
+network) into the app's acquisition funnel — the primary free distribution
+channel (D-024, docs/monetization.md §6).
+**Tasks:**
+1. App-install CTA on article pages (per-site banner/card; static link, no
+   live-site API reads — D-003).
+2. Link-out attribution: tag `source_url` taps so the funnel (site → install →
+   sign-up → activation) is measurable via `events` (T6).
+3. In-app nudge: after 3 logs matching a term, prompt "Read the full article on
+   [term]" (advisor rec #7) — compounds D-002, drives the free magnet.
+**Acceptance criteria:**
+- CTA live on at least coffee-dictionary.com; taps carry a `source` tag.
+- "% of activated users who open ≥1 source_url in 7 days" is measurable from
+  `events`.
+- The post-3-logs nudge fires once per term and dismisses cleanly.
+**Brief contents:** site CTA spec, attribution event spec, nudge rule, funnel
+metric, D-024 rationale.
+
 ---
 
 ## 4. Context-optimization strategy (v1.2)
@@ -554,8 +574,8 @@ Rule: **a brief should contain everything the subagent needs and nothing it does
 
 - Activation: ≥25% of new users log ≥3 brews in first 7 days.
 - Retention: D7 ≥ 20%.
-- Measured from `events` (T6); gate check before T15 dispatch. Gate fails → P3
-  does not start; revisit with advisors. Espresso secondary segment uses the same
+- Measured from `events` (T6); gate check before any Phase 3 dispatch
+  (T15/T16/T20). Gate fails → P3 does not start; revisit with advisors. Espresso secondary segment uses the same
   gate (espresso-method log cluster in analytics).
 
 ## 7. Open decisions
@@ -610,3 +630,11 @@ Remaining:
   UGC is opt-in per question ("make public").
 - T20 rewritten to the expert model (visibility, answer kinds, report/flag,
   denormalized display_name).
+
+## 11. Changelog v1.5
+
+- Monetization details settled: D-024 (site free = magnet, app monetizes
+  features), D-025 (expert = app admin, 3-day SLA), D-026 (lead paid object =
+  expert asks), D-027 (pricing $4.99/mo / $39/yr) — see docs/monetization.md.
+- T16 rewritten (insight + expert, no log cap); T16b (charts), T6b (D7 +
+  stitching), T21 (site funnel + attribution) added; T16/T20 decoupled from T15.

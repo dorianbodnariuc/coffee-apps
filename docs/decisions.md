@@ -337,6 +337,8 @@ reversing it costs.
   app glossary stays a mirror of the canonical site. No app schema change — a
   workflow + content-pipeline change.
 
+## Monetization
+
 ### D-024 — The site is free (magnet); the app monetizes features only
 - **Status:** Accepted · **Decided:** 2026-08-14 (user)
 - **Context:** User clarified coffee-dictionary.com is FREE and serves as a
@@ -366,3 +368,31 @@ reversing it costs.
 - **Consequences:** T20's review loop is the admin's job; the app must surface
   the 3-day expectation to the asker. T20's remaining open items (LLM cost
   ceiling, deletion handling) still stand.
+
+### D-026 — Lead paid object = "ask the expert" (charts are the upsell)
+- **Status:** Proposed (recommended) · **Decided:** 2026-08-14
+- **Context:** After T18 + T9, we pick ONE paid object (advisor consensus). The
+  two candidates: "see why this cup improved" (insight charts) vs "ask the
+  expert" (T20).
+- **Decision:** Expert asks lead; insight charts are the supporting upsell.
+- **Rationale:** Expert asks monetize from day one (a new user can ask
+  immediately, no history needed); the 3-day-SLA named expert (D-025) is a
+  concrete job-to-be-done; charts only become compelling after weeks of logs, so
+  they retain and upsell but don't acquire. Every paid ask also feeds the D-023
+  content loop (answers → glossary terms → free site), compounding the magnet.
+- **Consequences:** The admin's 3-day-SLA time is the binding constraint (not
+  LLM cost) — watch it and cap asks if it saturates. Charts stay in T16b as a
+  paid feature but are not the headline.
+
+### D-027 — Pricing: $4.99/mo or $39/yr, cap asks not logs
+- **Status:** Proposed (recommended) · **Decided:** 2026-08-14
+- **Context:** The paid tier needs a starting price and a free/pro split.
+- **Decision:** $4.99/mo or $39/yr (~35% discount). Free = unlimited logs +
+  teaser glossary + search + saved terms + 1 free expert ask + last-30-day
+  charts. Paid = 10 expert asks/month + full-history charts + cellar view.
+- **Rationale:** Impulse-cheap but high enough to filter non-serious users and
+  fund the 3-day-SLA answers. The scarce asset is the admin's time, not compute
+  (LLM draft ≈ $0.005/ask), so the cap is on asks, never on logs (D-024).
+- **Consequences:** Revisit price at the first churn/price-sensitivity signal.
+  Numbers are a starting point, not a commitment. Supersedes T16's earlier
+  "2/month free, 20 paid" with "1 free, 10 paid" as the launch split.
