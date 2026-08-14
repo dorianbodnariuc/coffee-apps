@@ -56,6 +56,7 @@
 | T4  | History list, detail, filters, summary    | 1     | T3                | 2               | —             |
 | T5  | Ratio calculator module                   | 1     | T1                | 1               | yes (w/ T6, T7)|
 | T6  | Instrumentation + activation metric       | 1     | T1, T2            | 1               | yes (w/ T5, T7)|
+| T6b | D7-retention + anon identity stitch       | 2     | T6                | 1               | —             |
 | T7  | Glossary stub (schema, seed, chips)       | 1     | T2                | 1–2             | yes (w/ T5, T6)|
 | T8  | Polish: states, QA pass, fixes            | 1     | T3–T7             | 2–3             | —             |
 | T9  | Bean cellar CRUD + freshness              | 2     | T3 (patterns)     | 2               | —             |
@@ -65,7 +66,8 @@
 | T13 | Photo attachments (Storage + RLS + UI)    | 2     | T3                | 2               | yes (w/ T9)    |
 | T14 | Phase 2 QA/polish                         | 2     | T9–T13            | 1               | —             |
 | T15 | Public profiles & follow                  | 3     | T3 + GATE         | 2–3             | gated         |
-| T16 | Freemium gating + RevenueCat              | 3     | T15               | 3               | gated         |
+| T16 | Freemium: insight + expert (no log cap)   | 3     | GATE              | 3               | gated         |
+| T16b| Flavor-trend charts (paid insight)        | 3     | T16               | 2               | gated         |
 | T17 | Saved terms (bookmarks)                   | 2     | T2, T10, T11      | 1–2             | —             |
 | T18 | "Your terms" (brew-derived glossary)      | 2     | T17, T3           | 2               | —             |
 | T19 | Personal notes on terms                   | 2     | T17 (pattern)     | 1               | yes (w/ T17)  |
@@ -323,16 +325,60 @@ view; feed query.
 idempotent; feed shows only followed public logs.
 **Brief contents:** follow_relationships schema (inline), RLS rules, criteria.
 
-### T16 — Freemium + RevenueCat *(gated)*
-**Objective:** Subscription gating on app features only — no content paywall
-(D-013, D-017).
-**Tasks:** RevenueCat SDK + entitlements; paywall screens; feature gating (free =
-20-log cap + basic charts; pro = unlimited logs, flavor-trend charts, unlimited
-saved terms/notes).
-**Acceptance criteria:** free tier hard-stops at 20 logs; entitlement flip
-unlocks pro features without reinstall; no glossary/origin content is ever
-paywalled (link-out only).
-**Brief contents:** gating rules, RevenueCat notes, D-013/D-017 pointer, criteria.
+### T16 — Freemium: insight + expert asks *(gated — depends on the Phase 3 gate, not T15)*
+**Objective:** Capability freemium. Paid = insight + expert access; free =
+unlimited logging. No content paywall, no log cap (D-024, D-017).
+**Tasks:**
+1. RevenueCat SDK + entitlements; `appUserID` = Supabase user id; restore-
+   purchases (Apple 3.1.1); CustomerInfo caching + offline grace.
+2. Entitlement sync: RevenueCat webhook → Edge Function → `profiles.entitlement`
+   column; server-side enforcement (DB trigger/policy) — never client-only.
+3. Paid features: (a) brew-over-time insight (T16b); (b) N expert asks/month
+   (T20, D-025). Free = unlimited logs + teaser glossary + search + saved terms.
+4. Free-tier cap = expert asks only (e.g. 2/month free, 20 paid) — never logs.
+5. Prerequisite: move QA off Expo Go to an EAS dev client (react-native-purchases
+   needs native code).
+**Acceptance criteria:**
+- Entitlements survive reinstall (restore works); no glossary/origin content is
+  ever paywalled.
+- Logging has no cap on any tier.
+- Paid features are enforced server-side (client-only bypass rejected).
+- Ask quota resets monthly and is enforced server-side.
+**Brief contents:** entitlement sync (RC webhook + Edge Function + profiles
+column), restore/offline grace, feature list, ask-cap not log-cap, EAS dev-client
+note, D-024/D-017 rationale, criteria.
+
+### T16b — Flavor-trend charts (the paid "insight" feature)
+**Objective:** The charts the paid tier actually sells: brew-over-time trends
+(rating, method, bean) + cellar roast-age. You cannot gate what was never
+designed (D-024).
+**Tasks:**
+1. Pick a chart library (e.g. victory-native) via `npx expo install`.
+2. Data spec: aggregates over brew_logs — rating over time, method distribution,
+   bean/origin frequency; cellar roast-age. Define exact queries.
+3. UI: a "Trends"/"Insights" surface (reuse the history summary pattern).
+4. Free vs pro split (e.g. free = last 30 days + rating avg; pro = full history
+   + method/bean breakdowns).
+**Acceptance criteria:**
+- Charts render from seeded data; empty state for <N logs.
+- The free/pro split is explicit and implemented.
+- Offline: charts degrade to a "log more brews" prompt, never a crash.
+**Brief contents:** chart lib choice, data spec, free/pro split, D-024 rationale.
+
+### T6b — D7-retention query + anonymous identity stitching
+**Objective:** The Phase 3 gate needs D7 retention ≥20%, but only the activation
+query is ticketed; anonymous (pre-account) events must be attributed to the
+account at soft-wall conversion or both metrics are corrupted.
+**Tasks:**
+1. D7-retention SQL: % of users active again 7 days after first session
+   (events table), matching the activation-query pattern.
+2. Identity stitching: on soft-wall conversion (first sign-in), attribute the
+   user's earlier null-user events to their new account (set user_id).
+**Acceptance criteria:**
+- D7 query returns correct counts against seeded fake data.
+- Stitching reassigns pre-signup events; post-stitch activation/D7 recompute
+  correctly.
+**Brief contents:** D7 SQL, stitching approach, seeded-data verification.
 
 ### T17 — Saved terms (bookmarks)
 **Objective:** Let signed-in users save glossary terms to a persistent "Saved"
@@ -407,10 +453,10 @@ criteria. (Defer — build only after T17 ships and is validated.)
 
 ### T20 — "Ask the coffee expert" (social Q&A, reframed)
 **Objective:** Expert-first Q&A. A signed-in user asks a coffee question and gets
-an instant AI draft answer (flagged as AI) plus a promised human-reviewed
-comprehensive answer from the owner/expert. The AI and expert answers are
-private to the asker (D-022); community UGC is opt-in per question ("make
-public"). (D-020, D-021, D-022, D-016 — Phase 3, gated)
+an instant AI draft answer (flagged as AI) plus a human-reviewed comprehensive
+answer from the app admin (the expert) within a 3-day SLA (D-025). The AI and
+expert answers are private to the asker (D-022); community UGC is opt-in per
+question ("make public"). (D-020, D-021, D-022, D-025, D-016 — Phase 3, gated)
 **Tasks:**
 1. Migrations:
    - `questions` (`id`, `user_id`, `title`, `body`, `term_id null` — FK
@@ -434,12 +480,12 @@ public"). (D-020, D-021, D-022, D-016 — Phase 3, gated)
 6. Moderation: in-app report/flag on public answers; rate limits in
    `src/constants/` (questions/day, answers/day); owner review/deletion via a
    small admin surface (dashboard acceptable for v1).
-7. Owner review loop: a minimal review surface for the owner to reframe the AI
-   draft into the final `expert` answer, plus a "propose as glossary term"
-   action for answers that stand alone as definitions — accepted proposals are
-   written up on coffee-dictionary.com and imported via the ETL (D-003/D-023).
-   (Start as Supabase dashboard + manual publish; in-app admin panel is a
-   follow-up.)
+7. Admin review loop: a minimal review surface for the app admin (the expert)
+   to reframe the AI draft into the final `expert` answer within the 3-day SLA,
+   plus a "propose as glossary term" action for answers that stand alone as
+   definitions — accepted proposals are written up on coffee-dictionary.com and
+   imported via the ETL (D-003/D-023). (Start as Supabase dashboard + manual
+   publish; in-app admin panel is a follow-up.)
 **Acceptance criteria:**
 - Signed-in user asks a question; an `ai_draft` answer is generated and labeled
   AI; the "comprehensive answer ASAP" promise is shown.

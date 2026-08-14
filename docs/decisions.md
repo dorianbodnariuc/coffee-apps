@@ -169,7 +169,7 @@ reversing it costs.
   a user signs in, which is itself a conversion trigger (D-011 pattern).
 
 ### D-013 — App account ≠ site paid tier
-- **Status:** Accepted · **Decided:** 2026-08-13
+- **Status:** Superseded by D-024 · **Decided:** 2026-08-13
 - **Context:** The user owns coffee-dictionary.com and its (potential) paid
   tier; the app also has a free Supabase account.
 - **Decision:** The app account is a free Supabase auth account. The paid tier
@@ -336,3 +336,33 @@ reversing it costs.
   (T20 task 7). Candidate terms live on the site until imported (D-003), so the
   app glossary stays a mirror of the canonical site. No app schema change — a
   workflow + content-pipeline change.
+
+### D-024 — The site is free (magnet); the app monetizes features only
+- **Status:** Accepted · **Decided:** 2026-08-14 (user)
+- **Context:** User clarified coffee-dictionary.com is FREE and serves as a
+  magnet/funnel (top-of-funnel SEO authority), not a paid product. Both advisors
+  (2026-08-14) concluded the app as-is does not justify a paid tier.
+- **Decision:** The site stays free — it is the funnel, not the money engine.
+  The app is the monetization surface, via app features only (D-017): paid =
+  brew-over-time insight (charts) + expert asks (T20); free = unlimited logging
+  + teaser glossary + search + saved terms. Glossary content is never paywalled
+  in-app (D-002, D-013). No 20-log cap.
+- **Rationale:** The scarce, monetizable value is not "more logs" but insight
+  ("see why this cup improved") and access to the expert. Logging is the
+  retention driver — taxing it before the habit exists is a fake product.
+- **Consequences:** Supersedes D-013's "paid tier lives on the site" framing.
+  App monetization is gated on the Phase 3 numbers (D-016) AND requires T18 +
+  T9 to close the loop first. Expert asks need an LLM cost ceiling + the 3-day
+  admin SLA (D-025). Measure the site funnel (link-out attribution) regardless.
+
+### D-025 — T20 expert = app admin, 3-day SLA
+- **Status:** Accepted · **Decided:** 2026-08-14 (user)
+- **Context:** Who answers "ask the expert", and how fast?
+- **Decision:** The app admin (or a designated admin) is the expert. The
+  human-reviewed "comprehensive answer" is promised within a 3-day SLA (the
+  instant AI draft is immediate).
+- **Rationale:** Concrete ownership + a realistic SLA make T20's promise
+  credible and priceable.
+- **Consequences:** T20's review loop is the admin's job; the app must surface
+  the 3-day expectation to the asker. T20's remaining open items (LLM cost
+  ceiling, deletion handling) still stand.

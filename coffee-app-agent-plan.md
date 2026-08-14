@@ -174,10 +174,10 @@ espresso-method log cluster).
 
 ### Features
 1. Public/private profile toggle, follow users, public feed
-2. Freemium: app features only — free = 20 logs max + basic charts; paid =
-   unlimited logs, flavor-trend charts, unlimited saved terms/notes. No content
-   is paywalled in-app; the full glossary stays a link-out to the site's paid
-   tier (D-013, D-017).
+2. Freemium: capability only — free = unlimited logging + teaser glossary +
+   search + saved terms; paid = brew-over-time insight (charts) + N expert
+   asks/month. No log cap, no content paywall (D-024, D-017). The site stays
+   free as the funnel/magnet.
 3. RevenueCat for subscription billing
 4. **"Ask the coffee expert" *(reframed in v1.4)*:** expert-first Q&A — asking
    is account-gated; the owner answers with an instant AI draft (flagged) plus a
@@ -220,11 +220,11 @@ Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
 5. ~~Import repo~~ — **DONE**: `~/coffee-dictionary-import` created, offline
    export committed
 6. **Photo limits** — recommendation pending user (default: 3 photos, 10 MB)
-7. ~~T16 freemium vs D-013~~ — **RESOLVED**: T16 gates app features only; no
-   content paywall in-app (D-017).
-8. **T20 open questions** — LLM service/cost for the instant draft; owner review
-   surface (dashboard vs in-app); account-deletion handling (cascade vs
-   anonymize) (D-020, D-021).
+7. ~~T16 freemium vs D-013~~ — **RESOLVED**: the site is free (magnet); the app
+   monetizes features only — insight charts + expert asks, never logs (D-024).
+8. **T20 open questions** — expert = app admin with a 3-day SLA (D-025,
+   resolved); remaining: LLM service/cost ceiling; account-deletion handling
+   (cascade vs anonymize) (D-020, D-021).
 
 ---
 
