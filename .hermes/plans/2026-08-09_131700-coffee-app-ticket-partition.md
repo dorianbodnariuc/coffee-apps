@@ -77,6 +77,7 @@
 | T20 | Ask the coffee expert (social Q&A)        | 3     | T2 + GATE         | 2–3             | gated         |
 | T21 | Site funnel wiring + link-out attribution | 2     | T6                | 2               | —             |
 | T22 | Design system + visual polish            | 2     | T8                | 2–3             | —             |
+| T23 | Method-centric brew log (D-028)          | 2     | T3, T5            | 2–3             | —             |
 
 Phase 3 (T15–T16, T20) is **gated** on §6 numbers. P1 parallel wave after T2:
 T5 ∥ T6 ∥ T7 (T3 integrates the T5 module).
@@ -571,6 +572,41 @@ styles (`history-screen.tsx`). Complete it and run a full polish pass.
 screen list, state matrix, D-009 pointer, design-reviewer sign-off requirement.
 Fix list: `docs/reviews/design-review-2026-08-14.md`.
 
+### T23 — Method-centric brew log (structured method-specific parameters)
+**Objective:** Make the log revolve around the brew method with precise,
+method-specific parameters so a shared log is fully replicable (D-028).
+**Tasks:**
+1. `src/constants/method-specs.ts`: typed `METHOD_SPECS` registry — per method a
+   label, `measures` (water_in | yield_out), and `params[]` of
+   {key, label, type(number|text|enum), unit, step/min/max, options, optional}.
+   Seed: espresso (basket_size_g, machine, pressure_bar, pre_infusion_s),
+   pour-over (dripper, filter, bloom_g, bloom_s, pours), aeropress (orientation,
+   filter, immersion_s, press_s), french-press (immersion_s, filter), cold-brew
+   (immersion_h, filter), moka-pot, drip-machine (machine, filter), other (none).
+   Extend `BREW_METHODS` with moka-pot + drip-machine.
+2. Migration: add `grinder text`, `yield_g numeric`, `water_temp_c numeric`,
+   `method_params jsonb not null default '{}'`; rework the `ratio` generated
+   column to be method-aware (yield/dose for espresso+moka-pot, else water/dose).
+3. `brew-log-schema.ts`: add grinder/yieldG/waterTempC/methodParams; validate
+   methodParams against `METHOD_SPECS[method]` (unknown keys rejected, numbers in
+   range, enums in options) via superRefine.
+4. `brew-log-form.tsx`: method-first; render method params dynamically from
+   `METHOD_SPECS` (enum→ChipSelect, number→numeric input with unit, text→input);
+   grinder + grind_size paired; espresso shows yield not water.
+5. `ratio-calculator.tsx`: method-aware (yield for espresso/moka).
+6. History/detail render structured params; share serializes a replicable recipe
+   string ("18g in · 36g out · 12 on Eureka Mignon · 9 bar · 28s").
+**Acceptance criteria:**
+- Selecting a method renders exactly that method's params; switching methods
+  keeps common fields and drops the previous method's params.
+- Espresso dose 18 / yield 36 → ratio 2.0; pour-over dose 20 / water 300 → 15.0.
+- "Eureka Mignon" + "12" round-trips and renders "12 on Eureka Mignon".
+- Invalid method_params (unknown key / out-of-range) rejected by zod.
+- Existing logs render with NULL new columns and '{}' params — no data loss.
+**Brief contents:** METHOD_SPECS type + full seed (inline), migration SQL, zod
+superRefine contract, form dynamic-field spec, share serialization format,
+D-028 rationale, criteria.
+
 ---
 
 ## 4. Context-optimization strategy (v1.2)
@@ -685,3 +721,10 @@ Remaining:
 - Design Reviewer advisor added (`.hermes/agents/design-reviewer.md`, runs on
   kimi-k2.6) — reviews graphics/layout/UX at UI tickets and phase gates.
 - T21 spec'd into a buildable brief (`docs/briefs/T21-site-funnel.md`).
+
+## 13. Changelog v1.7
+
+- D-028 (new): method-centric brew log — structured method-specific parameters
+  (grinder + grind_size split, yield_g, water_temp_c, method_params JSONB +
+  METHOD_SPECS registry, method-aware ratio).
+- T23 (new): method-centric brew log implementation (D-028).

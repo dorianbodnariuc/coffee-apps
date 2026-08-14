@@ -396,3 +396,31 @@ reversing it costs.
 - **Consequences:** Revisit price at the first churn/price-sensitivity signal.
   Numbers are a starting point, not a commitment. Supersedes T16's earlier
   "2/month free, 20 paid" with "1 free, 10 paid" as the launch split.
+
+### D-028 — Method-centric brew log (structured method-specific parameters)
+- **Status:** Proposed (for advisor review) · **Decided:** 2026-08-14
+- **Context:** The current log is generic — `grind_size` is free text, the ratio
+  is pourover-only (water/dose), and there is nowhere to record the grinder,
+  espresso yield/basket/machine, or any method-specific parameter. A shared log
+  therefore can't be replicated ("grind 12" is meaningless without the grinder).
+- **Decision:**
+  1. Add columns to `brew_logs`: `grinder` (make/model), `yield_g` (beverage out,
+     espresso/moka), `water_temp_c`, and `method_params jsonb default '{}'`.
+  2. Grind = `grinder` + `grind_size` (setting) — recorded as a pair, because
+     the setting is only meaningful relative to the grinder.
+  3. A typed `METHOD_SPECS` registry (constants) defines, per method: a label,
+     `measures` (water_in | yield_out), and a `params[]` of
+     {key, label, type(number|text|enum), unit, step/min/max, options, optional}.
+     The form renders method params from the registry; zod validates
+     `method_params` against the selected method's spec (unknown keys rejected).
+  4. `ratio` becomes method-aware: `yield_g/dose_g` for espresso + moka-pot, else
+     `water_g/dose_g`.
+- **Rationale:** JSONB + a typed registry gives precision (structured, validated)
+  AND flexibility (a new method is a registry entry, not a migration) AND keeps
+  the analytics-relevant fields (dose, yield, water, temp, grinder) as queryable
+  columns. Grinder+setting is what makes a recipe replicable.
+- **Consequences:** Reworks T3 (form), T4 (history display), T5 (ratio calc),
+  T16b (charts), T18 (your-terms matcher), and the share bridge. Existing logs
+  migrate cleanly (new columns NULL, `method_params '{}'`). Supersedes the
+  "espresso = method only" note in plan v1.2. Method list expands (moka-pot,
+  drip-machine) via T23.
