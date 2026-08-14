@@ -1,5 +1,6 @@
 /** A glossary term as stored in glossary_terms (T7/T11). */
 export type GlossaryTerm = {
+  id: string;
   term: string;
   slug: string;
   category: string | null;

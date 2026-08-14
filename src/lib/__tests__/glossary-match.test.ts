@@ -6,6 +6,7 @@ const term = (
   name: string,
   extra: Partial<GlossaryTerm> = {},
 ): GlossaryTerm => ({
+  id: extra.id ?? name.toLowerCase(),
   term: name,
   slug: name.toLowerCase(),
   category: "Test",

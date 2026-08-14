@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
@@ -29,6 +29,7 @@ export default function AuthScreen() {
   const theme = useTheme();
   const router = useRouter();
   const { isConfigured, signIn, signUp } = useAuth();
+  const { term } = useLocalSearchParams<{ term?: string }>();
 
   const [mode, setMode] = useState<"signIn" | "signUp">("signIn");
   const [email, setEmail] = useState("");
@@ -37,8 +38,16 @@ export default function AuthScreen() {
   const [submitting, setSubmitting] = useState(false);
 
   const finish = () => {
-    if (router.canGoBack()) router.back();
-    else router.replace("/");
+    // T17 return-to-term contract: the auth screen was reached from a term's
+    // save button (signed out). Send the user back to the dictionary with the
+    // term selected so its modal reopens. The term is NOT auto-saved.
+    if (term) {
+      router.replace({ pathname: "/dictionary", params: { term } });
+    } else if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace("/");
+    }
   };
 
   const handleSubmit = async () => {
@@ -99,7 +108,9 @@ export default function AuthScreen() {
         </Text>
         <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
           {isSignIn
-            ? "Sign in to keep your brews in sync."
+            ? term
+              ? "Sign in to save this term."
+              : "Sign in to keep your brews in sync."
             : "Free — your brews sync to your account."}
         </Text>
 

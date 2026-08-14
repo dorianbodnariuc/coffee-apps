@@ -7,16 +7,20 @@ import {
   View,
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
+import { useRouter } from "expo-router";
 
 import { useTheme } from "@/hooks/use-theme";
+import { useSavedTermIds, useToggleSaveTerm } from "@/hooks/use-saved-terms";
+import { useAuth } from "@/lib/auth-context";
 import type { GlossaryTerm } from "@/lib/glossary-match";
 
 /**
- * Term modal (T7): full definition + category + related terms.
- * Rendered over the brew detail screen when a matched chip is tapped.
+ * Term modal (T7/T11): full definition + category + related terms, with a
+ * save/unsave bookmark (T17). Rendered over the dictionary or a brew detail.
  *
- * T11: related terms render as links when `onSelectTerm` is provided —
- * tapping one switches the modal to that term (the parent owns the lookup).
+ * T17: tapping save while signed out routes to /auth carrying the term slug;
+ * after sign-in the dictionary reopens this term (return-to-term contract).
+ * The term is NOT auto-saved — the user confirms with one tap.
  */
 export default function TermModal({
   term,
@@ -30,6 +34,25 @@ export default function TermModal({
   onSelectCategory?: (category: string) => void;
 }) {
   const theme = useTheme();
+  const router = useRouter();
+  const { user, loading } = useAuth();
+  const savedIds = useSavedTermIds();
+  const toggleSave = useToggleSaveTerm();
+
+  const saved = term ? !!user && !!savedIds.data?.has(term.id) : false;
+  const busy = loading || toggleSave.isPending;
+
+  const handleSave = () => {
+    if (!term || busy) return;
+    if (!user) {
+      // Signed out: close the modal (a native Modal would cover /auth), then
+      // route to auth carrying the slug so we can return to this term.
+      onClose();
+      router.push({ pathname: "/auth", params: { term: term.slug } });
+      return;
+    }
+    toggleSave.mutate({ termId: term.id, saved });
+  };
 
   return (
     <Modal
@@ -49,9 +72,37 @@ export default function TermModal({
         >
           {term ? (
             <>
-              <Text style={[styles.title, { color: theme.text }]}>
-                {term.term}
-              </Text>
+              <View style={styles.headerRow}>
+                <Text
+                  style={[styles.title, { color: theme.text }]}
+                  numberOfLines={2}
+                >
+                  {term.term}
+                </Text>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={saved ? "Remove from saved" : "Save term"}
+                  disabled={busy}
+                  onPress={handleSave}
+                  style={({ pressed }) => [
+                    styles.saveChip,
+                    {
+                      backgroundColor: saved
+                        ? theme.backgroundSelected
+                        : theme.backgroundElement,
+                    },
+                    pressed && styles.pressed,
+                    busy && styles.busy,
+                  ]}
+                >
+                  <Text
+                    style={[styles.saveText, { color: theme.text }]}
+                    numberOfLines={1}
+                  >
+                    {saved ? "★ Saved" : "☆ Save"}
+                  </Text>
+                </Pressable>
+              </View>
               {term.categories.length > 0 ? (
                 <View style={styles.categoryWrap}>
                   {term.categories.map((cat) => (
@@ -173,9 +224,26 @@ const styles = StyleSheet.create({
     maxHeight: "70%",
     padding: 20,
   },
+  headerRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 12,
+  },
   title: {
+    flex: 1,
     fontSize: 20,
     fontWeight: "700",
+  },
+  saveChip: {
+    alignItems: "center",
+    borderRadius: 18,
+    justifyContent: "center",
+    minHeight: 40,
+    paddingHorizontal: 14,
+  },
+  saveText: {
+    fontSize: 13,
+    fontWeight: "600",
   },
   categoryWrap: {
     flexDirection: "row",
@@ -251,5 +319,8 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.7,
+  },
+  busy: {
+    opacity: 0.5,
   },
 });

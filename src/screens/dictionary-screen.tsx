@@ -12,7 +12,9 @@ import { useLocalSearchParams } from "expo-router";
 
 import TermModal from "@/components/term-modal";
 import { useGlossaryTerms } from "@/hooks/use-glossary";
+import { useSavedTermIds } from "@/hooks/use-saved-terms";
 import { useTheme } from "@/hooks/use-theme";
+import { useAuth } from "@/lib/auth-context";
 import type { GlossaryTerm } from "@/lib/glossary-match";
 import { searchGlossaryTerms } from "@/lib/glossary-search";
 
@@ -29,11 +31,17 @@ import { searchGlossaryTerms } from "@/lib/glossary-search";
 export default function DictionaryScreen() {
   const theme = useTheme();
   const { data, isLoading, isError, refetch } = useGlossaryTerms();
-  const params = useLocalSearchParams<{ category?: string }>();
+  const { user } = useAuth();
+  const savedIds = useSavedTermIds();
+  const params = useLocalSearchParams<{ category?: string; term?: string }>();
   const [query, setQuery] = useState("");
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(
     () => params.category ?? null,
+  );
+  const [savedOnly, setSavedOnly] = useState(false);
+  const [pendingTermSlug, setPendingTermSlug] = useState<string | null>(
+    () => params.term ?? null,
   );
   // Arriving from another screen (e.g. a brew detail's glossary chip) with a
   // category param pre-selects that category. Render-phase adjustment (not an
@@ -42,6 +50,19 @@ export default function DictionaryScreen() {
   if (params.category !== lastParam) {
     setLastParam(params.category);
     if (params.category) setCategoryFilter(params.category);
+  }
+  // T17 return-to-term: after signing in from a term's save button, /auth sends
+  // us here with a term slug. Reopen that term's modal once its data is
+  // available (render-phase adjustment, no effect, no lint warning).
+  const [lastTermParam, setLastTermParam] = useState(params.term);
+  if (params.term !== lastTermParam) {
+    setLastTermParam(params.term);
+    if (params.term) setPendingTermSlug(params.term);
+  }
+  if (pendingTermSlug && data) {
+    const target = data.find((t) => t.slug === pendingTermSlug);
+    setPendingTermSlug(null);
+    if (target) setActiveTerm(target);
   }
 
   const categories = useMemo(() => {
@@ -62,9 +83,18 @@ export default function DictionaryScreen() {
     [data, categoryFilter],
   );
 
+  const savedOnlyActive = savedOnly && !!user;
+  const inScope = useMemo(
+    () =>
+      savedOnlyActive
+        ? inCategory.filter((t) => savedIds.data?.has(t.id) ?? false)
+        : inCategory,
+    [inCategory, savedOnlyActive, savedIds.data],
+  );
+
   const filtered = useMemo(
-    () => searchGlossaryTerms(inCategory, query),
-    [inCategory, query],
+    () => searchGlossaryTerms(inScope, query),
+    [inScope, query],
   );
 
   const openTerm = (name: string) => {
@@ -117,6 +147,24 @@ export default function DictionaryScreen() {
             style={styles.catScroll}
             contentContainerStyle={styles.catRow}
           >
+            {user ? (
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => setSavedOnly((value) => !value)}
+                style={[
+                  styles.catChip,
+                  {
+                    backgroundColor: savedOnly
+                      ? theme.backgroundSelected
+                      : theme.backgroundElement,
+                  },
+                ]}
+              >
+                <Text style={[styles.catChipText, { color: theme.text }]}>
+                  ★ Saved
+                </Text>
+              </Pressable>
+            ) : null}
             <Pressable
               accessibilityRole="button"
               onPress={() => setCategoryFilter(null)}
@@ -167,9 +215,13 @@ export default function DictionaryScreen() {
                 <Text
                   style={[styles.emptyText, { color: theme.textSecondary }]}
                 >
-                  {categoryFilter
-                    ? `No terms match “${query.trim()}” in ${categoryFilter}.`
-                    : `No terms match “${query.trim()}”.`}
+                  {savedOnly && user
+                    ? query.trim()
+                      ? `No saved terms match “${query.trim()}”.`
+                      : "No saved terms yet — tap ☆ Save on a term to keep it here."
+                    : categoryFilter
+                      ? `No terms match “${query.trim()}” in ${categoryFilter}.`
+                      : `No terms match “${query.trim()}”.`}
                 </Text>
               </View>
             ) : (

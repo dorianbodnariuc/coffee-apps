@@ -11,6 +11,7 @@ const term = (
   const category = extra.category ?? "Test";
   const categories = extra.categories ?? [category];
   return {
+    id: extra.id ?? name.toLowerCase().replace(/\s+/g, "-"),
     term: name,
     slug: name.toLowerCase().replace(/\s+/g, "-"),
     category,
