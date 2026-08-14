@@ -569,6 +569,7 @@ styles (`history-screen.tsx`). Complete it and run a full polish pass.
 - Design Reviewer verdict = ships-as-is (all blocker/major resolved).
 **Brief contents:** current theme state (inline), target palette + type scale,
 screen list, state matrix, D-009 pointer, design-reviewer sign-off requirement.
+Fix list: `docs/reviews/design-review-2026-08-14.md`.
 
 ---
 
