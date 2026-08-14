@@ -181,8 +181,10 @@ espresso-method log cluster).
 3. RevenueCat for subscription billing
 4. **"Ask the coffee expert" *(reframed in v1.4)*:** expert-first Q&A — asking
    is account-gated; the owner answers with an instant AI draft (flagged) plus a
-   promised human-reviewed comprehensive answer; community UGC is opt-in per
-   question ("make public") (D-020, D-021). Ticket T20.
+   promised human-reviewed comprehensive answer (private to the asker, D-022);
+   community UGC is opt-in per question ("make public"); answers that stand
+   alone become proposed glossary terms (D-023) (D-020, D-021, D-022, D-023).
+   Ticket T20.
 
 ### Agent tasks
 1. `is_public` flag + RLS update; public profile view; follow/feed (schema ready)

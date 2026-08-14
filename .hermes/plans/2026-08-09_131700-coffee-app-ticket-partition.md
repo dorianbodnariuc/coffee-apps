@@ -435,8 +435,11 @@ public"). (D-020, D-021, D-022, D-016 — Phase 3, gated)
    `src/constants/` (questions/day, answers/day); owner review/deletion via a
    small admin surface (dashboard acceptable for v1).
 7. Owner review loop: a minimal review surface for the owner to reframe the AI
-   draft into the final `expert` answer (start as Supabase dashboard + manual
-   publish; in-app admin panel is a follow-up).
+   draft into the final `expert` answer, plus a "propose as glossary term"
+   action for answers that stand alone as definitions — accepted proposals are
+   written up on coffee-dictionary.com and imported via the ETL (D-003/D-023).
+   (Start as Supabase dashboard + manual publish; in-app admin panel is a
+   follow-up.)
 **Acceptance criteria:**
 - Signed-in user asks a question; an `ai_draft` answer is generated and labeled
   AI; the "comprehensive answer ASAP" promise is shown.
@@ -449,8 +452,8 @@ public"). (D-020, D-021, D-022, D-016 — Phase 3, gated)
 - Deleting a glossary term sets `questions.term_id` to NULL (question survives).
 - Report/flag works and rate limits are enforced.
 **Brief contents:** questions/answers schema (inline), RLS + visibility rules,
-LLM Edge Function contract, review-loop spec, moderation + rate-limit constants,
-D-020/D-021 rationale, criteria.
+LLM Edge Function contract, review-loop spec (incl. propose-as-term, D-023),
+moderation + rate-limit constants, D-020/D-021/D-023 rationale, criteria.
 **Open questions (settle before dispatch):**
 1. LLM service + cost controls for the instant draft (provider, model, budget/
    rate cap). The prompt must be grounded in the glossary teaser (D-002), not

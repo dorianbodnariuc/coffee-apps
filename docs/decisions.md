@@ -318,3 +318,21 @@ reversing it costs.
   answers only — the expert answer is the asker's private perk and does not
   appear on the public view (no "locked answer next to public content"
   confusion). Considered and rejected: all-members, fully public.
+
+### D-023 — Q&A answers can become glossary terms (content loop)
+- **Status:** Accepted · **Decided:** 2026-08-13 (user)
+- **Context:** The expert Q&A produces answers; some are comprehensive enough to
+  stand alone as dictionary entries.
+- **Decision:** During the owner's review step (D-021), an answer that could be a
+  dictionary entry on its own is proposed as a new glossary term. The owner
+  decides; accepted proposals are written up on coffee-dictionary.com (the
+  canonical authority) and flow back into the app via the ETL (D-003). The app
+  never authors glossary terms directly.
+- **Rationale:** Closes the loop D-020 already intended ("good questions become
+  site content"): Q&A feeds the glossary, the glossary feeds the site's SEO
+  authority, and the site feeds the app. Keeps the human/expert as the authoring
+  authority — no auto-generated terms.
+- **Consequences:** Adds a "propose as term" action to the owner review surface
+  (T20 task 7). Candidate terms live on the site until imported (D-003), so the
+  app glossary stays a mirror of the canonical site. No app schema change — a
+  workflow + content-pipeline change.
