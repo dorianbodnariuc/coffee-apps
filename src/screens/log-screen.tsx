@@ -197,6 +197,8 @@ const styles = StyleSheet.create({
   footer: {
     borderTopWidth: StyleSheet.hairlineWidth,
     gap: 2,
+    justifyContent: "center",
+    minHeight: 48,
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
