@@ -8,12 +8,16 @@ const validLog: BrewLogInput = {
   roaster: "Local Roasters",
   origin: "Ethiopia",
   method: "pour-over",
-  grindSize: "medium-fine",
+  grinder: "Eureka Mignon",
+  grindSize: "12",
   doseG: 20,
   waterG: 300,
+  yieldG: null,
+  waterTempC: 93,
   brewTimeSeconds: 150,
   tastingNotes: "Floral, tea-like.",
   rating: 4.5,
+  methodParams: { dripper: "V60", pours: 2 },
 };
 
 describe("brewLogSchema — valid input", () => {
@@ -54,6 +58,11 @@ describe("brewLogSchema — validation blocks (T3 acceptance)", () => {
 
   it("blocks negative water", () => {
     const result = brewLogSchema.safeParse({ ...validLog, waterG: -300 });
+    expect(result.success).toBe(false);
+  });
+
+  it("blocks negative yield", () => {
+    const result = brewLogSchema.safeParse({ ...validLog, yieldG: -1 });
     expect(result.success).toBe(false);
   });
 
@@ -121,5 +130,57 @@ describe("brewLogSchema — validation blocks (T3 acceptance)", () => {
         ),
       ).toBe(true);
     }
+  });
+});
+
+describe("brewLogSchema — method-specific params (T23)", () => {
+  it("accepts valid method params for the method", () => {
+    const result = brewLogSchema.safeParse({
+      ...validLog,
+      methodParams: { dripper: "V60", bloom_g: 60 },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an unknown param key for the method", () => {
+    // basket_size_g is an espresso param, not pour-over
+    const result = brewLogSchema.safeParse({
+      ...validLog,
+      methodParams: { basket_size_g: 18 },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects an out-of-range number param", () => {
+    // pours has max 10
+    const result = brewLogSchema.safeParse({
+      ...validLog,
+      methodParams: { pours: 20 },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects an invalid enum param", () => {
+    const result = brewLogSchema.safeParse({
+      ...validLog,
+      methodParams: { dripper: "Origami" },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts espresso with yield and no water", () => {
+    const result = brewLogSchema.safeParse({
+      ...validLog,
+      method: "espresso",
+      waterG: null,
+      yieldG: 36,
+      methodParams: { pressure_bar: 9 },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects water temp above 100", () => {
+    const result = brewLogSchema.safeParse({ ...validLog, waterTempC: 101 });
+    expect(result.success).toBe(false);
   });
 });

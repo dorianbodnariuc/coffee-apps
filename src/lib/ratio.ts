@@ -92,15 +92,16 @@ export function solveRatio(inputs: RatioInputs): RatioSolution | null {
 }
 
 /**
- * Ratio for a brew log: dose + water -> ratio (1 decimal), else null.
- * Mirrors the DB's STORED generated column (water/dose, NULL when dose <= 0),
- * so optimistic UI and server rows agree.
+ * Ratio for a brew log: espresso = yield/dose, everything else = water/dose
+ * (D-028), 1 decimal, else null. Mirrors the DB's STORED generated column so
+ * optimistic UI and server rows agree.
  */
 export function deriveBrewRatio(input: {
+  method: string;
   doseG: number | null;
   waterG: number | null;
+  yieldG: number | null;
 }): number | null {
-  return (
-    solveRatio({ doseG: input.doseG, waterG: input.waterG })?.ratio ?? null
-  );
+  const liquidG = input.method === "espresso" ? input.yieldG : input.waterG;
+  return solveRatio({ doseG: input.doseG, waterG: liquidG })?.ratio ?? null;
 }

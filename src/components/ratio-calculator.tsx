@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { RATIO_PRESETS } from "@/constants";
+import type { BrewMethod } from "@/constants";
 import { useTheme } from "@/hooks/use-theme";
 import { solveRatio } from "@/lib/ratio";
 
@@ -18,6 +19,8 @@ type RatioCalculatorProps = {
   initialValues?: Partial<RatioValues>;
   /** Fired whenever the effective values change: user-typed fields plus the auto-computed third. */
   onChange?: (values: RatioValues) => void;
+  /** Brew method — only changes the "water vs yield" label; the math is identical. */
+  method?: BrewMethod | null;
 };
 
 function toNum(text: string): number | null {
@@ -37,6 +40,7 @@ function toNum(text: string): number | null {
 export default function RatioCalculator({
   initialValues,
   onChange,
+  method,
 }: RatioCalculatorProps) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -129,10 +133,14 @@ export default function RatioCalculator({
             </View>
             <View style={styles.field}>
               <Text style={[styles.label, { color: theme.textSecondary }]}>
-                Water (g/ml)
+                {method === "espresso" ? "Yield (g)" : "Water (g/ml)"}
               </Text>
               <TextInput
-                accessibilityLabel="Water in grams or milliliters"
+                accessibilityLabel={
+                  method === "espresso"
+                    ? "Yield in grams"
+                    : "Water in grams or milliliters"
+                }
                 keyboardType="decimal-pad"
                 onChangeText={setField("waterG")}
                 placeholder="0"

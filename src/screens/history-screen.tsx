@@ -19,6 +19,7 @@ import {
   computeStreak,
   filterBrews,
 } from "@/lib/history-stats";
+import { describeRecipe } from "@/lib/share-recipe";
 import { useTheme } from "@/hooks/use-theme";
 import type { BrewLog } from "@/types/brew-log";
 
@@ -241,10 +242,7 @@ export default function HistoryScreen() {
                   numberOfLines={1}
                 >
                   {formatDate(log.brewedAt)}
-                  {log.doseG != null || log.waterG != null
-                    ? ` · ${log.doseG ?? "—"}g / ${log.waterG ?? "—"}ml`
-                    : ""}
-                  {log.ratio != null ? ` · 1:${log.ratio}` : ""}
+                  {describeRecipe(log) ? ` · ${describeRecipe(log)}` : ""}
                   {log.rating != null ? ` · ★${log.rating.toFixed(1)}` : ""}
                 </Text>
               </View>

@@ -3,13 +3,15 @@
  * Screens/components must import from here; no magic strings (plan v1.2, ticket T1).
  */
 
-/** Brew methods shown in the log form dropdown (plan v1.2: espresso = method only). */
+/** Brew methods shown in the log form (T23: moka-pot + drip-machine added). */
 export const BREW_METHODS = [
   'pour-over',
   'espresso',
   'french-press',
   'aeropress',
   'cold-brew',
+  'moka-pot',
+  'drip-machine',
   'other',
 ] as const;
 export type BrewMethod = (typeof BREW_METHODS)[number];

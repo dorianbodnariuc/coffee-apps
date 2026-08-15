@@ -30,9 +30,13 @@ const sampleInput = {
   roaster: "",
   origin: "Ethiopia",
   method: "pour-over" as const,
+  grinder: "",
   grindSize: "medium",
   doseG: 20,
   waterG: 300,
+  yieldG: null,
+  waterTempC: null,
+  methodParams: {},
   brewTimeSeconds: 150,
   tastingNotes: "created by the integration test",
   rating: 4.5,
@@ -97,6 +101,21 @@ describe.skipIf(!enabled)("brew-log-api against live Supabase", () => {
       waterG: 400,
     });
     expect(updated.ratio).toBe(16); // 400 / 25
+
+    // T23 acceptance: espresso ratio = yield/dose (not water/dose).
+    const espresso = await createBrewLog({
+      ...sampleInput,
+      beanName: "Integration Espresso",
+      method: "espresso",
+      doseG: 18,
+      waterG: null,
+      yieldG: 36,
+      methodParams: { pressure_bar: 9 },
+    });
+    expect(espresso.ratio).toBe(2); // 36 / 18
+    expect(espresso.yieldG).toBe(36);
+    expect(espresso.methodParams).toEqual({ pressure_bar: 9 });
+    await deleteBrewLog(espresso.id);
 
     await deleteBrewLog(created.id);
     const after = await listBrewLogs();

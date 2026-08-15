@@ -18,9 +18,13 @@ type BrewLogRow = {
   roaster: string | null;
   origin: string | null;
   method: string;
+  grinder: string | null;
   grind_size: string | null;
   dose_g: number | string | null;
   water_g: number | string | null;
+  yield_g: number | string | null;
+  water_temp_c: number | string | null;
+  method_params: Record<string, unknown> | null;
   ratio: number | string | null;
   brew_time_seconds: number | null;
   tasting_notes: string | null;
@@ -36,9 +40,13 @@ export function toBrewLogRow(input: BrewLogInput): Record<string, unknown> {
     roaster: input.roaster || null,
     origin: input.origin || null,
     method: input.method,
+    grinder: input.grinder || null,
     grind_size: input.grindSize || null,
     dose_g: input.doseG,
     water_g: input.waterG,
+    yield_g: input.yieldG,
+    water_temp_c: input.waterTempC,
+    method_params: input.methodParams ?? {},
     brew_time_seconds: input.brewTimeSeconds,
     tasting_notes: input.tastingNotes || null,
     rating: input.rating,
@@ -60,9 +68,13 @@ export function rowToBrewLog(row: BrewLogRow): BrewLog {
     roaster: row.roaster ?? "",
     origin: row.origin ?? "",
     method: row.method as BrewLog["method"],
+    grinder: row.grinder ?? "",
     grindSize: row.grind_size ?? "",
     doseG: toNum(row.dose_g),
     waterG: toNum(row.water_g),
+    yieldG: toNum(row.yield_g),
+    waterTempC: toNum(row.water_temp_c),
+    methodParams: row.method_params ?? {},
     ratio: toNum(row.ratio),
     brewTimeSeconds: row.brew_time_seconds,
     tastingNotes: row.tasting_notes ?? "",

@@ -4,6 +4,7 @@ import {
   Alert,
   Pressable,
   ScrollView,
+  Share,
   StyleSheet,
   Text,
   View,
@@ -22,6 +23,9 @@ import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
 import { matchGlossaryTerms, type GlossaryTerm } from "@/lib/glossary-match";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
+import { METHOD_SPECS } from "@/constants/method-specs";
+import { buildRecipeCard, describeRecipe, formatGrind } from "@/lib/share-recipe";
+import type { BrewLog } from "@/types/brew-log";
 
 function formatDateTime(iso: string): string {
   const d = new Date(iso);
@@ -35,6 +39,22 @@ function formatBrewTime(seconds: number | null): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+/** Method-specific param fields (basket, machine, dripper, …) for the detail view. */
+function methodParamFields(
+  brew: BrewLog,
+  theme: { text: string; textSecondary: string },
+) {
+  return METHOD_SPECS[brew.method].params.map((p) => {
+    const v = brew.methodParams?.[p.key];
+    if (v == null || v === "") return null;
+    const unit =
+      p.spec.kind === "number" && p.spec.unit ? ` ${p.spec.unit}` : "";
+    return (
+      <Field key={p.key} label={p.label} value={`${v}${unit}`} theme={theme} />
+    );
+  });
 }
 
 /**
@@ -88,6 +108,11 @@ export default function BrewDetailScreen() {
     );
   };
 
+  const handleShare = () => {
+    if (!brew) return;
+    Share.share({ message: buildRecipeCard(brew), title: "Brew recipe" });
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Pressable
@@ -136,11 +161,6 @@ export default function BrewDetailScreen() {
         </View>
       ) : editing ? (
         <BrewLogForm
-          calculatorPrefill={{
-            doseG: brew.doseG,
-            waterG: brew.waterG,
-            ratio: brew.ratio,
-          }}
           initialValues={brew}
           onSubmit={handleUpdate}
           submitLabel="Save changes"
@@ -158,20 +178,20 @@ export default function BrewDetailScreen() {
           <View style={styles.fields}>
             <Field label="Roaster" value={brew.roaster || "—"} theme={theme} />
             <Field label="Origin" value={brew.origin || "—"} theme={theme} />
-            <Field
-              label="Grind size"
-              value={brew.grindSize || "—"}
-              theme={theme}
-            />
+            <Field label="Grind" value={formatGrind(brew) || "—"} theme={theme} />
             <Field
               label="Recipe"
-              value={
-                brew.doseG != null || brew.waterG != null
-                  ? `${brew.doseG ?? "—"}g / ${brew.waterG ?? "—"}ml${brew.ratio != null ? ` · 1:${brew.ratio}` : ""}`
-                  : "—"
-              }
+              value={describeRecipe(brew) || "—"}
               theme={theme}
             />
+            {brew.waterTempC != null ? (
+              <Field
+                label="Water temp"
+                value={`${brew.waterTempC} °C`}
+                theme={theme}
+              />
+            ) : null}
+            {methodParamFields(brew, theme)}
             <Field
               label="Brew time"
               value={formatBrewTime(brew.brewTimeSeconds)}
@@ -215,6 +235,18 @@ export default function BrewDetailScreen() {
             </View>
           ) : null}
 
+          <Pressable
+            style={({ pressed }) => [
+              styles.button,
+              { backgroundColor: theme.backgroundSelected },
+              pressed && styles.pressed,
+            ]}
+            onPress={handleShare}
+          >
+            <Text style={[styles.buttonText, { color: theme.text }]}>
+              Share recipe
+            </Text>
+          </Pressable>
           <Pressable
             style={({ pressed }) => [
               styles.button,

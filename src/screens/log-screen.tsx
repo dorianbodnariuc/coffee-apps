@@ -6,6 +6,7 @@ import { useRouter } from "expo-router";
 import BrewLogForm from "@/components/brew-log-form";
 import { useAuth } from "@/lib/auth-context";
 import { deriveBrewRatio } from "@/lib/ratio";
+import { describeRecipe } from "@/lib/share-recipe";
 import { syncLocalBrews } from "@/lib/sync-local-brews";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 import type { BrewLog } from "@/types/brew-log";
@@ -14,12 +15,9 @@ import { useTheme } from "@/hooks/use-theme";
 
 function describeBrew(log: BrewLog): string {
   const name = log.beanName || log.origin || "Untitled brew";
-  const recipe =
-    log.doseG != null || log.waterG != null
-      ? ` · ${log.doseG ?? "—"}g / ${log.waterG ?? "—"}ml`
-      : "";
+  const recipe = describeRecipe(log);
   const stars = log.rating != null ? ` · ★${log.rating.toFixed(1)}` : "";
-  return `${name} · ${log.method}${recipe}${stars}`;
+  return `${name} · ${log.method}${recipe ? ` · ${recipe}` : ""}${stars}`;
 }
 
 /**
@@ -97,13 +95,7 @@ export default function LogScreen() {
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <BrewLogForm
         calculatorPrefill={
-          lastBrew
-            ? {
-                doseG: lastBrew.doseG,
-                waterG: lastBrew.waterG,
-                ratio: lastBrew.ratio,
-              }
-            : null
+          lastBrew ? { doseG: lastBrew.doseG, waterG: null, ratio: null } : null
         }
         key={submitCount}
         onSubmit={handleSubmit}

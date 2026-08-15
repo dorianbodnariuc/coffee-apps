@@ -19,11 +19,12 @@ import RatioCalculator, {
 } from "@/components/ratio-calculator";
 import { BREW_METHODS, RATING_SCALE } from "@/constants";
 import type { BrewMethod, Rating } from "@/constants";
+import { METHOD_SPECS, methodLabel, type MethodParam } from "@/constants/method-specs";
 import { useTheme } from "@/hooks/use-theme";
 import { brewLogSchema, type BrewLogInput } from "@/lib/brew-log-schema";
 
 export type BrewLogFormProps = {
-  /** Prefill for the ratio calculator section (from the last brew). */
+  /** Prefill for the ratio calculator section (dose from the last brew). */
   calculatorPrefill?: RatioValues | null;
   /** Seed values for edit mode (T4 detail). Read once on mount — remount via key to change. */
   initialValues?: Partial<BrewLogInput>;
@@ -51,12 +52,40 @@ function parseSeconds(text: string): number | null {
   return Math.round(n);
 }
 
+/** Empty -> null; garbage -> null; valid -> the number (no rounding). */
+function parseOptionalNumber(text: string): number | null {
+  const trimmed = text.trim();
+  if (trimmed === "") return null;
+  const n = Number(trimmed);
+  return Number.isFinite(n) ? n : null;
+}
+
 function extractFieldErrors(error: ZodError): FieldErrors {
   const out: FieldErrors = {};
   for (const issue of error.issues) {
     const key = issue.path[0];
     if (typeof key === "string" && !out[key as keyof BrewLogInput]) {
       out[key as keyof BrewLogInput] = issue.message;
+    }
+  }
+  return out;
+}
+
+/** Convert raw string params into typed `method_params` per the method spec. */
+function buildMethodParams(
+  method: BrewMethod | null,
+  params: Record<string, string>,
+): Record<string, unknown> {
+  if (!method) return {};
+  const out: Record<string, unknown> = {};
+  for (const p of METHOD_SPECS[method].params) {
+    const raw = params[p.key];
+    if (raw == null || raw.trim() === "") continue;
+    if (p.spec.kind === "number") {
+      const n = Number(raw);
+      if (Number.isFinite(n)) out[p.key] = n;
+    } else {
+      out[p.key] = raw.trim();
     }
   }
   return out;
@@ -82,9 +111,10 @@ function Field({ label, error, children }: FieldProps) {
 }
 
 /**
- * Brew log create form (ticket T3, tasks 1–4): all fields, zod validation,
- * integrated collapsible ratio calculator (T5 module) prefilled from the last
- * brew, editable auto-filled date. Persistence (task 5) lands with T2.
+ * Brew log create/edit form (ticket T3, revised T23): method-first with
+ * method-specific parameters from METHOD_SPECS, grinder + grind setting as a
+ * pair, and a method-aware ratio (yield for espresso). Only `method` is
+ * required; every other field is optional. Persistence is the parent's job.
  */
 export default function BrewLogForm({
   calculatorPrefill,
@@ -105,7 +135,21 @@ export default function BrewLogForm({
   const [beanName, setBeanName] = useState(initialValues?.beanName ?? "");
   const [roaster, setRoaster] = useState(initialValues?.roaster ?? "");
   const [origin, setOrigin] = useState(initialValues?.origin ?? "");
+  const [grinder, setGrinder] = useState(initialValues?.grinder ?? "");
   const [grindSize, setGrindSize] = useState(initialValues?.grindSize ?? "");
+  const [waterTempC, setWaterTempC] = useState(
+    initialValues?.waterTempC != null ? String(initialValues.waterTempC) : "",
+  );
+  const [params, setParams] = useState<Record<string, string>>(() => {
+    const mp = initialValues?.methodParams ?? {};
+    const out: Record<string, string> = {};
+    for (const [k, v] of Object.entries(mp)) {
+      if (v == null) continue;
+      out[k] = String(v);
+    }
+    return out;
+  });
+  const [recipeOpen, setRecipeOpen] = useState(false);
   const [brewTime, setBrewTime] = useState(
     initialValues?.brewTimeSeconds != null
       ? String(initialValues.brewTimeSeconds)
@@ -117,6 +161,29 @@ export default function BrewLogForm({
   const [rating, setRating] = useState<Rating | null>(
     (initialValues?.rating as Rating | null | undefined) ?? null,
   );
+
+  // Initial ratio-calculator seed: edit mode uses the brew's own values
+  // (yield mapped to the liquid field for espresso); new logs prefill only
+  // dose (method-independent) from the last brew.
+  const initialCalc: RatioValues = (() => {
+    if (initialValues) {
+      const m = initialValues.method;
+      return {
+        doseG: initialValues.doseG ?? null,
+        waterG:
+          m === "espresso"
+            ? initialValues.yieldG ?? null
+            : initialValues.waterG ?? null,
+        ratio: null,
+      };
+    }
+    return {
+      doseG: calculatorPrefill?.doseG ?? null,
+      waterG: calculatorPrefill?.waterG ?? null,
+      ratio: calculatorPrefill?.ratio ?? null,
+    };
+  })();
+  const [calcSeed, setCalcSeed] = useState<RatioValues>(initialCalc);
   const [ratioValues, setRatioValues] = useState<RatioValues>({
     doseG: null,
     waterG: null,
@@ -141,19 +208,38 @@ export default function BrewLogForm({
     clearErrors();
   };
 
+  const handleMethodChange = (v: BrewMethod) => {
+    setMethod(v);
+    setParams({});
+    // Reset the ratio liquid (water/yield semantics change with method);
+    // keep dose, which is method-independent.
+    setCalcSeed({ doseG: ratioValues.doseG, waterG: null, ratio: null });
+    clearErrors();
+  };
+
+  const setParam = (key: string, value: string) => {
+    setParams((prev) => ({ ...prev, [key]: value }));
+    clearErrors();
+  };
+
   const handleSubmit = () => {
+    const isEspresso = method === "espresso";
     const draft = {
       brewedAt: brewedAt.toISOString(),
       beanName: beanName.trim(),
       roaster: roaster.trim(),
       origin: origin.trim(),
       method: method ?? "",
+      grinder: grinder.trim(),
       grindSize: grindSize.trim(),
       doseG: ratioValues.doseG,
-      waterG: ratioValues.waterG,
+      waterG: isEspresso ? null : ratioValues.waterG,
+      yieldG: isEspresso ? ratioValues.waterG : null,
+      waterTempC: parseOptionalNumber(waterTempC),
       brewTimeSeconds: parseSeconds(brewTime),
       tastingNotes: tastingNotes.trim(),
       rating,
+      methodParams: buildMethodParams(method, params),
     };
     const result = brewLogSchema.safeParse(draft);
     if (!result.success) {
@@ -169,7 +255,39 @@ export default function BrewLogForm({
     // input intact so they can retry without retyping.
   };
 
+  const methodParams = method ? METHOD_SPECS[method].params : [];
   const hasErrors = Object.keys(errors).length > 0;
+
+  const renderParam = (p: MethodParam) => {
+    const value = params[p.key] ?? "";
+    if (p.spec.kind === "enum") {
+      return (
+        <Field key={p.key} label={p.label}>
+          <ChipSelect<string>
+            accessibilityLabel={p.label}
+            onChange={(v) => setParam(p.key, v)}
+            options={p.spec.options as readonly string[]}
+            value={value === "" ? null : value}
+          />
+        </Field>
+      );
+    }
+    const isNumber = p.spec.kind === "number";
+    const unit = p.spec.kind === "number" ? p.spec.unit ?? "" : "";
+    return (
+      <Field key={p.key} label={p.label}>
+        <TextInput
+          accessibilityLabel={p.label}
+          keyboardType={isNumber ? "decimal-pad" : "default"}
+          onChangeText={(v) => setParam(p.key, v)}
+          placeholder={unit ? `0 ${unit}` : "0"}
+          placeholderTextColor={placeholderColor}
+          style={inputStyle}
+          value={value}
+        />
+      </Field>
+    );
+  };
 
   return (
     <ScrollView
@@ -266,12 +384,23 @@ export default function BrewLogForm({
         <Field label="Brew method" error={errors.method}>
           <ChipSelect
             accessibilityLabel="Brew method"
-            onChange={(v) => {
-              setMethod(v);
-              clearErrors();
-            }}
+            labelFor={methodLabel}
+            onChange={handleMethodChange}
             options={BREW_METHODS}
             value={method}
+          />
+        </Field>
+        <Field label="Grinder" error={errors.grinder}>
+          <TextInput
+            accessibilityLabel="Grinder"
+            onChangeText={(v) => {
+              setGrinder(v);
+              clearErrors();
+            }}
+            placeholder="e.g. Eureka Mignon"
+            placeholderTextColor={placeholderColor}
+            style={inputStyle}
+            value={grinder}
           />
         </Field>
         <Field label="Grind size" error={errors.grindSize}>
@@ -281,7 +410,7 @@ export default function BrewLogForm({
               setGrindSize(v);
               clearErrors();
             }}
-            placeholder="e.g. medium-fine"
+            placeholder="e.g. 12"
             placeholderTextColor={placeholderColor}
             style={inputStyle}
             value={grindSize}
@@ -308,16 +437,56 @@ export default function BrewLogForm({
           Ratio
         </Text>
         <RatioCalculator
-          initialValues={calculatorPrefill ?? undefined}
+          initialValues={calcSeed}
+          key={method ?? "none"}
+          method={method}
           onChange={(values) => {
             setRatioValues(values);
             clearErrors();
           }}
         />
         <Text style={[styles.hint, { color: theme.textSecondary }]}>
-          Fill any two — dose, water, ratio — the third computes itself. Ratio
-          is read-only in the log: it derives from dose and water.
+          {method === "espresso"
+            ? "Espresso ratio is yield ÷ dose. Fill dose and yield — the ratio computes itself."
+            : "Fill any two — dose, water, ratio — the third computes itself."}
         </Text>
+      </View>
+
+      <View style={styles.section}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setRecipeOpen((o) => !o)}
+          style={[styles.detailHeader, { backgroundColor: theme.backgroundElement }]}
+        >
+          <Text style={[styles.detailHeaderText, { color: theme.text }]}>
+            Recipe details
+          </Text>
+          <Text style={[styles.detailChevron, { color: theme.textSecondary }]}>
+            {recipeOpen ? "▾" : "▸"}
+          </Text>
+        </Pressable>
+        {recipeOpen ? (
+          <View style={styles.detailBody}>
+            <Field label="Water temperature (°C)" error={errors.waterTempC}>
+              <TextInput
+                accessibilityLabel="Water temperature in Celsius"
+                keyboardType="decimal-pad"
+                onChangeText={(v) => {
+                  setWaterTempC(v);
+                  clearErrors();
+                }}
+                placeholder="e.g. 93"
+                placeholderTextColor={placeholderColor}
+                style={inputStyle}
+                value={waterTempC}
+              />
+            </Field>
+            {methodParams.map(renderParam)}
+            {errors.methodParams ? (
+              <Text style={styles.error}>{errors.methodParams}</Text>
+            ) : null}
+          </View>
+        ) : null}
       </View>
 
       <View style={styles.section}>
@@ -427,6 +596,25 @@ const styles = StyleSheet.create({
   },
   hint: {
     fontSize: 12,
+  },
+  detailHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  detailHeaderText: {
+    fontSize: 15,
+    fontWeight: "600",
+  },
+  detailChevron: {
+    fontSize: 14,
+  },
+  detailBody: {
+    gap: 12,
+    paddingTop: 4,
   },
   submit: {
     alignItems: "center",
