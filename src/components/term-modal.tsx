@@ -61,11 +61,13 @@ export default function TermModal({
       transparent
       visible={term != null}
     >
-      <Pressable
-        accessibilityRole="button"
-        style={styles.backdrop}
-        onPress={onClose}
-      >
+      <View style={styles.backdrop}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Close"
+          style={StyleSheet.absoluteFill}
+          onPress={onClose}
+        />
         <Pressable
           style={[styles.card, { backgroundColor: theme.background }]}
           onPress={() => {}}
@@ -207,7 +209,7 @@ export default function TermModal({
             </>
           ) : null}
         </Pressable>
-      </Pressable>
+      </View>
     </Modal>
   );
 }
