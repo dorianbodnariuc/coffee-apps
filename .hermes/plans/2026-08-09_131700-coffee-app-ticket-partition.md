@@ -78,6 +78,7 @@
 | T21 | Site funnel wiring + link-out attribution | 2     | T6                | 2               | —             |
 | T22 | Design system + visual polish            | 2     | T8                | 2–3             | —             |
 | T23 | Method-centric brew log (D-028)          | 2     | T3, T5            | 2–3             | —             |
+| T23b| Equipment memory (last-used prefill)      | 2     | T23               | 1               | —             |
 
 Phase 3 (T15–T16, T20) is **gated** on §6 numbers. P1 parallel wave after T2:
 T5 ∥ T6 ∥ T7 (T3 integrates the T5 module).
@@ -624,6 +625,21 @@ collapsed-block spec, 3-line share format, D-028 rationale, criteria.
 **Follow-ups:** equipment memory (remember last grinder/method/dripper per
 method — T23b), grinder catalog (soft ref) — deferred.
 
+### T23b — Equipment memory (last-used prefill)
+**Objective:** Remember the user's last grinder/dripper/machine/temp per method
+so the next log is "dose + setting" only — removes two fields every morning and
+protects the share card (advisor must/should).
+**Tasks:**
+1. Persist last-used per method (grinder, grind_size, dripper, filter, machine,
+   orientation, water_temp_c) in AsyncStorage under a `brew_prefs` key.
+2. Prefill the log form from saved prefs on method selection; overwrite on save.
+**Acceptance criteria:**
+- Selecting a method prefills grinder + dripper + machine + temp from the last
+  log of that method; switching method swaps the prefill.
+- Saved prefs survive app restart and are per-method, not global.
+**Brief contents:** AsyncStorage schema, prefill rules, per-method scoping.
+Brief: `docs/briefs/T23b-equipment-memory.md`.
+
 ---
 
 ## 4. Context-optimization strategy (v1.2)
@@ -745,3 +761,29 @@ Remaining:
   (grinder + grind_size split, yield_g, water_temp_c, method_params JSONB +
   METHOD_SPECS registry, method-aware ratio).
 - T23 (new): method-centric brew log implementation (D-028).
+
+## 14. Changelog v1.8
+
+- T23b (new): equipment memory (last-used prefill per method).
+- Full buildable briefs written for all unbuilt tickets under `docs/briefs/`
+  (T6b, T9, T13, T18, T19, T22, T23, T23b + Phase 3 T15/T16/T16b/T20).
+
+## 15. Buildable briefs index (`docs/briefs/`)
+
+Phase 2 (buildable now):
+- T6b — D7-retention + identity stitching — `T6b-retention.md`
+- T9  — Bean cellar — `T9-bean-cellar.md`
+- T13 — Photo attachments — `T13-photos.md`
+- T14 — Phase 2 QA — `T14-qa.md`
+- T18 — Your terms — `T18-your-terms.md`
+- T19 — Personal notes — `T19-notes.md`
+- T21 — Site funnel + attribution — `T21-site-funnel.md`
+- T22 — Design system — `T22-design-system.md`
+- T23 — Method-centric log — `T23-method-centric-log.md`
+- T23b — Equipment memory — `T23b-equipment-memory.md`
+
+Phase 3 (gated; spec now, build after the §6 gate):
+- T15 — Profiles & follow — `T15-profiles-follow.md`
+- T16 — Freemium — `T16-freemium.md`
+- T16b — Flavor-trend charts — `T16b-charts.md`
+- T20 — Ask the expert — `T20-ask-expert.md`
