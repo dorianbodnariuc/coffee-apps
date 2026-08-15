@@ -1,7 +1,9 @@
 # T22 — Design system completion + visual polish
 
 Goal: make the app beautiful and pleasant, not just functional. The theme layer
-is a partial Expo template. Fix list: `docs/reviews/design-review-2026-08-14.md`.
+is a partial Expo template. Fix list: `docs/reviews/design-review-2026-08-14.md`
+(code-level) + `docs/reviews/visual-review-2026-08-14.md` (pixel-level, grok-4.6
+vision — incl. web-only bugs).
 
 ## Context (read first)
 - `src/constants/theme.ts` — only 5 semantic colors, no accent/danger/border, no
@@ -45,10 +47,27 @@ dictionary, auth, settings. Give each a designed empty state (icon + copy), not
 bare text. `_layout.tsx`: replace the emoji ⚙ with a real settings icon +
 `hitSlop={12}`.
 
-## Task 6 — Sign-off
-Run the Design Reviewer (`coffee-app-advisors` skill) on the diff; verdict must be
-ships-as-is (all blocker/major resolved). Android-first on-device check by the
-user (see the "On-device visual check" list in the review file).
+## Task 6 — Web + blocker fixes (from visual-review-2026-08-14.md)
+- **Invalid DOM nesting** (blocker): un-nest Pressable/`<button>` in the term
+  row + Save, and any tab button wrapping an icon button. This throws a red
+  `<button> cannot contain a nested <button>` overlay on web.
+- **Sticky session strip** (blocker): give "No brews logged yet this session"
+  its own 48px slot above the tab bar; add 56px scroll padding-bottom so it
+  doesn't overlay Brew time/Pressure.
+- **Web width**: cap content `max-width: 430px; margin: 0 auto` (phone frame);
+  modal/sheet `max-width: 480px`.
+- **Icon fallback**: load `@expo/vector-icons` web font (or SVG fallbacks) — all
+  tab icons currently render as ⏷ triangles on web.
+- **Selected chip contrast**: selected = fill `#1C1C1E` / label `#FFF` (not
+  `#E0E1E6` vs `#F0F0F3`).
+- **Empty numeric fields**: placeholder, not `0` (Basket/Machine/Pressure show
+  "0 g"/"0 bar" as if filled).
+- Sign-out hidden when signed out; sign-in = 48px primary button.
+
+## Task 7 — Sign-off
+Run the Design Reviewer (`coffee-app-advisors` skill) on the diff AND the Visual
+Reviewer (grok-4.6) on the served web build; verdict must be ships-as-is (all
+blocker/major resolved). Android-first on-device check by the user.
 
 ## Acceptance criteria
 - grep finds no raw hex outside `theme.ts` (except token definitions).
