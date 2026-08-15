@@ -61,7 +61,7 @@ export default function TermModal({
       transparent
       visible={term != null}
     >
-      <View style={styles.backdrop}>
+      <View style={[styles.backdrop, { backgroundColor: theme.overlay }]}>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Close"
@@ -216,7 +216,6 @@ export default function TermModal({
 
 const styles = StyleSheet.create({
   backdrop: {
-    backgroundColor: "rgba(0,0,0,0.5)",
     flex: 1,
     justifyContent: "center",
     padding: 24,
@@ -317,7 +316,9 @@ const styles = StyleSheet.create({
   closeButton: {
     alignItems: "center",
     borderRadius: 10,
+    justifyContent: "center",
     marginTop: 16,
+    minHeight: 40,
     paddingVertical: 12,
   },
   closeText: {

@@ -102,14 +102,12 @@ export default function HistoryScreen() {
   if (isError) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <View style={styles.messageBox}>
-          <Text style={[styles.title, { color: theme.text }]}>
-            Could not load your history
-          </Text>
-          <Pressable onPress={() => refetch()}>
-            <Text style={[styles.retryText, { color: theme.text }]}>Retry</Text>
-          </Pressable>
-        </View>
+        <EmptyState
+          icon="refresh-outline"
+          title="Could not load your history"
+          actionLabel="Retry"
+          onAction={() => refetch()}
+        />
       </View>
     );
   }
@@ -180,32 +178,27 @@ export default function HistoryScreen() {
 
       <ScrollView contentContainerStyle={styles.list} style={styles.listScroll}>
         {filtered.length === 0 ? (
-          <View style={styles.emptyBox}>
-            <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
-              {brews && brews.length > 0
-                ? "No brews match these filters."
-                : "No brews yet — log your first brew."}
-            </Text>
-            {hasFilters ? (
-              <Pressable
-                onPress={() => {
-                  setMethodFilter("all");
-                  setRatingFilter("all");
-                  setRangeDays(0);
-                }}
-              >
-                <Text style={[styles.retryText, { color: theme.text }]}>
-                  Clear filters
-                </Text>
-              </Pressable>
-            ) : (
-              <Pressable onPress={() => router.push("/")}>
-                <Text style={[styles.retryText, { color: theme.text }]}>
-                  Go to Log
-                </Text>
-              </Pressable>
-            )}
-          </View>
+          <EmptyState
+            icon="cafe-outline"
+            title={
+              brews && brews.length > 0 ? "No brews match these filters" : "No brews yet"
+            }
+            body={
+              brews && brews.length > 0
+                ? undefined
+                : "Log your first brew to see it here."
+            }
+            actionLabel={hasFilters ? "Clear filters" : "Go to Log"}
+            onAction={
+              hasFilters
+                ? () => {
+                    setMethodFilter("all");
+                    setRatingFilter("all");
+                    setRangeDays(0);
+                  }
+                : () => router.push("/")
+            }
+          />
         ) : (
           filtered.map((log) => (
             <Pressable

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
+import EmptyState from "@/components/empty-state";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
 
@@ -82,15 +83,11 @@ export default function AuthScreen() {
   if (!isConfigured) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <View style={styles.messageBox}>
-          <Text style={[styles.messageTitle, { color: theme.text }]}>
-            Backend not configured
-          </Text>
-          <Text style={[styles.messageBody, { color: theme.textSecondary }]}>
-            Set EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY to
-            enable accounts.
-          </Text>
-        </View>
+        <EmptyState
+          icon="cloud-offline-outline"
+          title="Backend not configured"
+          body="Set EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY to enable accounts."
+        />
       </View>
     );
   }

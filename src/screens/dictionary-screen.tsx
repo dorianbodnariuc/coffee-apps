@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 
+import EmptyState from "@/components/empty-state";
 import TermModal from "@/components/term-modal";
 import { useGlossaryTerms } from "@/hooks/use-glossary";
 import { useSavedTermIds } from "@/hooks/use-saved-terms";
@@ -110,14 +111,12 @@ export default function DictionaryScreen() {
           style={styles.stateSpinner}
         />
       ) : isError ? (
-        <View style={styles.messageBox}>
-          <Text style={[styles.title, { color: theme.text }]}>
-            Could not load the dictionary
-          </Text>
-          <Pressable onPress={() => refetch()}>
-            <Text style={[styles.retryText, { color: theme.text }]}>Retry</Text>
-          </Pressable>
-        </View>
+        <EmptyState
+          icon="refresh-outline"
+          title="Could not load the dictionary"
+          actionLabel="Retry"
+          onAction={() => refetch()}
+        />
       ) : (
         <>
           <View style={styles.searchRow}>
@@ -226,19 +225,19 @@ export default function DictionaryScreen() {
             style={styles.listScroll}
           >
             {filtered.length === 0 ? (
-              <View style={styles.emptyBox}>
-                <Text
-                  style={[styles.emptyText, { color: theme.textSecondary }]}
-                >
-                  {savedOnly && user
+              <EmptyState
+                icon="search-outline"
+                title="No terms found"
+                body={
+                  savedOnly && user
                     ? query.trim()
-                      ? `No saved terms match “${query.trim()}”.`
+                      ? `No saved terms match "${query.trim()}".`
                       : "No saved terms yet — tap ☆ Save on a term to keep it here."
                     : categoryFilter
-                      ? `No terms match “${query.trim()}” in ${categoryFilter}.`
-                      : `No terms match “${query.trim()}”.`}
-                </Text>
-              </View>
+                      ? `No terms match "${query.trim()}" in ${categoryFilter}.`
+                      : `No terms match "${query.trim()}".`
+                }
+              />
             ) : (
               filtered.map((entry) => (
                 <Pressable

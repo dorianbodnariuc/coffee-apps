@@ -180,8 +180,10 @@ const styles = StyleSheet.create({
   },
   softWallButton: {
     borderRadius: 8,
+    justifyContent: "center",
+    minHeight: 48,
     paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingVertical: 12,
   },
   softWallButtonText: {
     fontSize: 14,

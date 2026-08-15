@@ -12,6 +12,7 @@ import {
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 import BrewLogForm from "@/components/brew-log-form";
+import EmptyState from "@/components/empty-state";
 import TermModal from "@/components/term-modal";
 import {
   useBrewLogs,
@@ -132,11 +133,11 @@ export default function BrewDetailScreen() {
       ) : null}
 
       {!isConfigured || !user ? (
-        <View style={styles.stateBox}>
-          <Text style={[styles.stateText, { color: theme.textSecondary }]}>
-            Sign in to view brew details.
-          </Text>
-        </View>
+        <EmptyState
+          icon="person-circle-outline"
+          title="Sign in to view brew details"
+          body="Your brew details are saved to your account."
+        />
       ) : isLoading ? (
         <ActivityIndicator
           color={theme.textSecondary}
@@ -314,8 +315,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     alignSelf: "flex-start",
+    justifyContent: "center",
+    minHeight: 44,
     paddingHorizontal: 16,
-    paddingVertical: 12,
   },
   backText: {
     fontSize: 16,
