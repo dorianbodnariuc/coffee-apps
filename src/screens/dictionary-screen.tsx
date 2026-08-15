@@ -335,6 +335,7 @@ const styles = StyleSheet.create({
   catRow: {
     gap: 8,
     paddingHorizontal: 16,
+    paddingRight: 32,
     paddingBottom: 12,
   },
   catChip: {
@@ -353,7 +354,7 @@ const styles = StyleSheet.create({
   list: {
     gap: 8,
     paddingHorizontal: 16,
-    paddingBottom: 80,
+    paddingBottom: 96,
   },
   row: {
     alignItems: "center",

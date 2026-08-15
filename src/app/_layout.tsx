@@ -54,7 +54,7 @@ function SignInButton() {
       accessibilityLabel="Sign in"
       style={styles.headerButton}
     >
-      <Text style={[styles.headerLink, { color: theme.text }]}>Sign in</Text>
+      <Text style={[styles.headerLink, { color: theme.primary }]}>Sign in</Text>
     </Pressable>
   );
 }
@@ -74,7 +74,13 @@ export default function RootLayout() {
         <SessionTracking />
         <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
           <View style={styles.appFrame}>
-            <Tabs>
+            <Tabs
+              screenOptions={{
+                // lineHeight gives the ~10px web tab label room for its
+                // descenders (g/y) so labels don't clip to "Loa"/"Dictionarv".
+                tabBarLabelStyle: { fontSize: 11, lineHeight: 14 },
+              }}
+            >
               <Tabs.Screen
                 name="index"
                 options={{
