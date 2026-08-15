@@ -22,6 +22,7 @@
                     │  Plan Critic (technical)    │  .hermes/agents/plan-critic.md
                     │  Product Advisor (product)  │  .hermes/agents/product-advisor.md
                     │  Design Reviewer (visual)   │  .hermes/agents/design-reviewer.md
+                    │  Visual Reviewer (sees app) │  .hermes/agents/visual-reviewer.md
                     └──────────────┬──────────────┘
                                    │ review at phase gates / plan revisions
                     ┌──────────────▼──────────────┐
@@ -44,8 +45,9 @@
   merged/committed.
 - **Advisors:** standing roles, independent of the plan content. Invoked at plan
   revisions and phase gates; the Design Reviewer additionally gates UI tickets
-  (T8, T11, T12, T14, T16b, T22). Definitions in `.hermes/agents/`, versioned
-  with repo.
+  (T8, T11, T12, T14, T16b, T22), and the Visual Reviewer sees the rendered app
+  at `http://localhost:8081` (Expo web build) for pixel-level review.
+  Definitions in `.hermes/agents/`, versioned with repo.
 - **Phase gates:** run the advisors (Critic, Product, Design) before dispatching
   Phase 2; Phase 3 requires the retention gate (§6) AND an advisor check.
 
