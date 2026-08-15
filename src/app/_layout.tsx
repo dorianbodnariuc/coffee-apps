@@ -14,7 +14,7 @@ import { AuthProvider, useAuth } from "@/lib/auth-context";
 import { queryClient } from "@/lib/query-client";
 import { useSessionTracking } from "@/hooks/use-session-tracking";
 import { useTheme } from "@/hooks/use-theme";
-import { MaxContentWidth } from "@/constants/theme";
+import { Colors, MaxContentWidth } from "@/constants/theme";
 
 /** Fires session_start on foreground (T6); rendered inside AuthProvider. */
 function SessionTracking() {
@@ -67,6 +67,7 @@ const TAB_ICONS = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -76,9 +77,14 @@ export default function RootLayout() {
           <View style={styles.appFrame}>
             <Tabs
               screenOptions={{
-                // lineHeight gives the ~10px web tab label room for its
-                // descenders (g/y) so labels don't clip to "Loa"/"Dictionarv".
-                tabBarLabelStyle: { fontSize: 11, lineHeight: 14 },
+                // react-navigation-web gives the label a fixed 10px height +
+                // overflow:hidden AND flex-shrinks it against the 28px icon in
+                // the 48px item, shearing g/y descenders ("Loa"). Give the bar
+                // enough height (icon 28 + label 14 + padding) and pin the label.
+                tabBarLabelStyle: { fontSize: 11, lineHeight: 14, height: 14 },
+                tabBarStyle: { height: 56 },
+                tabBarActiveTintColor: theme.primary,
+                tabBarInactiveTintColor: theme.textSecondary,
               }}
             >
               <Tabs.Screen
