@@ -155,12 +155,17 @@ export default function DictionaryScreen() {
                   styles.catChip,
                   {
                     backgroundColor: savedOnly
-                      ? theme.backgroundSelected
+                      ? theme.text
                       : theme.backgroundElement,
                   },
                 ]}
               >
-                <Text style={[styles.catChipText, { color: theme.text }]}>
+                <Text
+                  style={[
+                    styles.catChipText,
+                    { color: savedOnly ? theme.background : theme.text },
+                  ]}
+                >
                   ★ Saved
                 </Text>
               </Pressable>
@@ -172,12 +177,17 @@ export default function DictionaryScreen() {
                 styles.catChip,
                 {
                   backgroundColor: !categoryFilter
-                    ? theme.backgroundSelected
+                    ? theme.text
                     : theme.backgroundElement,
                 },
               ]}
             >
-              <Text style={[styles.catChipText, { color: theme.text }]}>
+              <Text
+                style={[
+                  styles.catChipText,
+                  { color: !categoryFilter ? theme.background : theme.text },
+                ]}
+              >
                 All
               </Text>
             </Pressable>
@@ -192,12 +202,17 @@ export default function DictionaryScreen() {
                     styles.catChip,
                     {
                       backgroundColor: active
-                        ? theme.backgroundSelected
+                        ? theme.text
                         : theme.backgroundElement,
                     },
                   ]}
                 >
-                  <Text style={[styles.catChipText, { color: theme.text }]}>
+                  <Text
+                    style={[
+                      styles.catChipText,
+                      { color: active ? theme.background : theme.text },
+                    ]}
+                  >
                     {cat}
                   </Text>
                 </Pressable>
@@ -307,12 +322,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     fontSize: 15,
+    minHeight: 44,
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 12,
   },
   count: {
     alignSelf: "center",
-    fontSize: 12,
+    fontSize: 13,
   },
   catScroll: {
     flexGrow: 0,
@@ -338,13 +354,14 @@ const styles = StyleSheet.create({
   list: {
     gap: 8,
     paddingHorizontal: 16,
-    paddingBottom: 24,
+    paddingBottom: 80,
   },
   row: {
     alignItems: "center",
     borderRadius: 10,
     flexDirection: "row",
     gap: 12,
+    minHeight: 48,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },

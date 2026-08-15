@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     borderRadius: 10,
+    minHeight: 44,
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
@@ -225,6 +226,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 8,
     fontSize: 15,
+    minHeight: 44,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },
@@ -233,9 +235,11 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    borderRadius: 16,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    borderRadius: 20,
+    justifyContent: "center",
+    minHeight: 44,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   chipText: {
     fontSize: 13,

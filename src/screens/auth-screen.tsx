@@ -144,20 +144,20 @@ export default function AuthScreen() {
         />
 
         {error ? (
-          <Text style={[styles.error, { color: "#C0392B" }]}>{error}</Text>
+          <Text style={[styles.error, { color: theme.danger }]}>{error}</Text>
         ) : null}
 
         <Pressable
           style={({ pressed }) => [
             styles.button,
-            { backgroundColor: theme.backgroundSelected },
+            { backgroundColor: theme.primary },
             pressed && styles.buttonPressed,
             submitting && styles.buttonDisabled,
           ]}
           onPress={handleSubmit}
           disabled={submitting}
         >
-          <Text style={[styles.buttonText, { color: theme.text }]}>
+          <Text style={[styles.buttonText, { color: theme.onPrimary }]}>
             {submitting
               ? "Please wait…"
               : isSignIn
@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 10,
     fontSize: 16,
+    minHeight: 44,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
@@ -214,7 +215,9 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     borderRadius: 10,
+    justifyContent: "center",
     marginTop: 4,
+    minHeight: 48,
     paddingVertical: 14,
   },
   buttonPressed: {

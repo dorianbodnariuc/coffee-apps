@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
+import EmptyState from "@/components/empty-state";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
+import { Radius } from "@/constants/theme";
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -51,36 +53,17 @@ export default function SettingsScreen() {
       </Pressable>
 
       {!isConfigured ? (
-        <View style={styles.messageBox}>
-          <Text style={[styles.title, { color: theme.text }]}>
-            Backend not configured
-          </Text>
-          <Text style={[styles.body, { color: theme.textSecondary }]}>
-            Set EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY to
-            enable accounts.
-          </Text>
-        </View>
-      ) : (
+        <EmptyState
+          icon="cloud-offline-outline"
+          title="Backend not configured"
+          body="Set EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY to enable accounts."
+        />
+      ) : user ? (
         <View style={styles.content}>
           <Text style={[styles.title, { color: theme.text }]}>Settings</Text>
-
-          {user ? (
-            <Text style={[styles.email, { color: theme.textSecondary }]}>
-              Signed in as {user.email}
-            </Text>
-          ) : (
-            <Pressable
-              style={({ pressed }) => [styles.row, pressed && styles.pressed]}
-              onPress={() => router.push("/auth")}
-            >
-              <Text style={[styles.rowText, { color: theme.text }]}>
-                Signed out
-              </Text>
-              <Text style={[styles.rowHint, { color: theme.textSecondary }]}>
-                Sign in or create an account
-              </Text>
-            </Pressable>
-          )}
+          <Text style={[styles.email, { color: theme.textSecondary }]}>
+            Signed in as {user.email}
+          </Text>
 
           <Pressable
             style={({ pressed }) => [
@@ -97,23 +80,29 @@ export default function SettingsScreen() {
             </Text>
           </Pressable>
 
-          {user ? (
-            <Pressable
-              style={({ pressed }) => [
-                styles.button,
-                styles.dangerButton,
-                pressed && styles.pressed,
-                busy && styles.disabled,
-              ]}
-              onPress={handleDeleteAccount}
-              disabled={busy}
-            >
-              <Text style={[styles.buttonText, styles.dangerText]}>
-                Delete account
-              </Text>
-            </Pressable>
-          ) : null}
+          <Pressable
+            style={({ pressed }) => [
+              styles.button,
+              { backgroundColor: theme.dangerBackground },
+              pressed && styles.pressed,
+              busy && styles.disabled,
+            ]}
+            onPress={handleDeleteAccount}
+            disabled={busy}
+          >
+            <Text style={[styles.buttonText, { color: theme.dangerText }]}>
+              Delete account
+            </Text>
+          </Pressable>
         </View>
+      ) : (
+        <EmptyState
+          icon="person-circle-outline"
+          title="You're signed out"
+          body="Sign in to sync your brews and keep your saved terms."
+          actionLabel="Sign in or create an account"
+          onAction={() => router.push("/auth")}
+        />
       )}
     </View>
   );
@@ -125,8 +114,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     alignSelf: "flex-start",
+    justifyContent: "center",
+    minHeight: 44,
     paddingHorizontal: 16,
-    paddingVertical: 12,
   },
   backText: {
     fontSize: 16,
@@ -142,45 +132,22 @@ const styles = StyleSheet.create({
   email: {
     fontSize: 14,
   },
-  row: {
-    borderRadius: 10,
-    gap: 2,
-    paddingVertical: 8,
-  },
-  rowText: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  rowHint: {
-    fontSize: 13,
-  },
   button: {
     alignItems: "center",
-    borderRadius: 10,
-    paddingVertical: 14,
+    borderRadius: Radius.md,
+    justifyContent: "center",
+    minHeight: 48,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: "600",
-  },
-  dangerButton: {
-    backgroundColor: "#3D1A1A",
-  },
-  dangerText: {
-    color: "#E57373",
   },
   pressed: {
     opacity: 0.7,
   },
   disabled: {
     opacity: 0.5,
-  },
-  messageBox: {
-    gap: 8,
-    paddingHorizontal: 24,
-  },
-  body: {
-    fontSize: 14,
-    lineHeight: 20,
   },
 });

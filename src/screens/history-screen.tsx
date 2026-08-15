@@ -10,6 +10,7 @@ import {
 import { useRouter } from "expo-router";
 
 import ChipSelect from "@/components/chip-select";
+import EmptyState from "@/components/empty-state";
 import { BREW_METHODS, RATING_SCALE } from "@/constants";
 import type { BrewMethod, Rating } from "@/constants";
 import { useBrewLogs } from "@/hooks/use-brew-logs";
@@ -76,26 +77,13 @@ export default function HistoryScreen() {
   if (!isConfigured || !user) {
     return (
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <View style={styles.messageBox}>
-          <Text style={[styles.title, { color: theme.text }]}>
-            Your history
-          </Text>
-          <Text style={[styles.body, { color: theme.textSecondary }]}>
-            Sign in to see your brew history.
-          </Text>
-          <Pressable
-            style={({ pressed }) => [
-              styles.primaryButton,
-              { backgroundColor: theme.backgroundSelected },
-              pressed && styles.pressed,
-            ]}
-            onPress={() => router.push("/auth")}
-          >
-            <Text style={[styles.primaryButtonText, { color: theme.text }]}>
-              Sign in
-            </Text>
-          </Pressable>
-        </View>
+        <EmptyState
+          icon="time-outline"
+          title="Sign in to see your history"
+          body="Your brew history is saved to your account."
+          actionLabel="Sign in"
+          onAction={() => router.push("/auth")}
+        />
       </View>
     );
   }
@@ -332,6 +320,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: "row",
     gap: 12,
+    minHeight: 48,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },

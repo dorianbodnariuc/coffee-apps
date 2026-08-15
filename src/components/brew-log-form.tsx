@@ -105,7 +105,7 @@ function Field({ label, error, children }: FieldProps) {
         {label}
       </Text>
       {children}
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+      {error ? <Text style={[styles.error, { color: theme.danger }]}>{error}</Text> : null}
     </View>
   );
 }
@@ -273,14 +273,13 @@ export default function BrewLogForm({
       );
     }
     const isNumber = p.spec.kind === "number";
-    const unit = p.spec.kind === "number" ? p.spec.unit ?? "" : "";
     return (
       <Field key={p.key} label={p.label}>
         <TextInput
           accessibilityLabel={p.label}
           keyboardType={isNumber ? "decimal-pad" : "default"}
           onChangeText={(v) => setParam(p.key, v)}
-          placeholder={unit ? `0 ${unit}` : "0"}
+          placeholder="—"
           placeholderTextColor={placeholderColor}
           style={inputStyle}
           value={value}
@@ -483,7 +482,7 @@ export default function BrewLogForm({
             </Field>
             {methodParams.map(renderParam)}
             {errors.methodParams ? (
-              <Text style={styles.error}>{errors.methodParams}</Text>
+              <Text style={[styles.error, { color: theme.danger }]}>{errors.methodParams}</Text>
             ) : null}
           </View>
         ) : null}
@@ -526,9 +525,9 @@ export default function BrewLogForm({
         accessibilityRole="button"
         disabled={submitting}
         onPress={handleSubmit}
-        style={[styles.submit, { backgroundColor: theme.backgroundSelected }]}
+        style={[styles.submit, { backgroundColor: theme.primary }]}
       >
-        <Text style={[styles.submitText, { color: theme.text }]}>
+        <Text style={[styles.submitText, { color: theme.onPrimary }]}>
           {submitting ? "Saving…" : submitLabel}
         </Text>
       </Pressable>
@@ -584,6 +583,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 8,
     fontSize: 15,
+    minHeight: 44,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },
@@ -591,7 +591,6 @@ const styles = StyleSheet.create({
     minHeight: 88,
   },
   error: {
-    color: "#d64545",
     fontSize: 12,
   },
   hint: {
@@ -619,7 +618,9 @@ const styles = StyleSheet.create({
   submit: {
     alignItems: "center",
     borderRadius: 10,
+    justifyContent: "center",
     marginTop: 4,
+    minHeight: 48,
     paddingVertical: 14,
   },
   submitText: {

@@ -12,8 +12,9 @@ export type ChipSelectProps<T extends string | number> = {
 };
 
 /**
- * Single-select chip row, used for brew method and rating in the log form
- * (and later for filters). Values come from src/constants — no magic strings.
+ * Single-select chip row, used for brew method, rating, and filters.
+ * Values come from src/constants — no magic strings. T22: 44px targets and a
+ * high-contrast selected state (solid text-color fill, inverted label).
  */
 export default function ChipSelect<T extends string | number>({
   options,
@@ -34,20 +35,21 @@ export default function ChipSelect<T extends string | number>({
             accessibilityState={{ selected }}
             key={String(option)}
             onPress={() => onChange(option)}
-            style={[
+            style={({ pressed }) => [
               styles.chip,
               {
                 backgroundColor: selected
-                  ? theme.backgroundSelected
+                  ? theme.text
                   : theme.backgroundElement,
               },
+              pressed && styles.pressed,
             ]}
           >
             <Text
               style={[
                 styles.chipText,
                 {
-                  color: selected ? theme.text : theme.textSecondary,
+                  color: selected ? theme.background : theme.textSecondary,
                   fontWeight: selected ? "600" : "400",
                 },
               ]}
@@ -68,11 +70,16 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    borderRadius: 16,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    borderRadius: 20,
+    justifyContent: "center",
+    minHeight: 44,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   chipText: {
-    fontSize: 13,
+    fontSize: 14,
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });

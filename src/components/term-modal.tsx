@@ -222,9 +222,12 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   card: {
+    alignSelf: "center",
     borderRadius: 14,
     maxHeight: "70%",
+    maxWidth: 480,
     padding: 20,
+    width: "100%",
   },
   headerRow: {
     alignItems: "center",
@@ -302,8 +305,10 @@ const styles = StyleSheet.create({
   },
   relatedChip: {
     borderRadius: 14,
+    justifyContent: "center",
+    minHeight: 40,
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 8,
   },
   relatedChipText: {
     fontSize: 13,

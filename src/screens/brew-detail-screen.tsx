@@ -124,8 +124,8 @@ export default function BrewDetailScreen() {
       </Pressable>
 
       {updateMutation.isError || deleteMutation.isError ? (
-        <View style={styles.mutationErrorBox}>
-          <Text style={styles.mutationErrorText}>
+        <View style={[styles.mutationErrorBox, { backgroundColor: theme.dangerBackground }]}>
+          <Text style={[styles.mutationErrorText, { color: theme.dangerText }]}>
             Something went wrong — your changes weren’t saved. Please try again.
           </Text>
         </View>
@@ -262,12 +262,12 @@ export default function BrewDetailScreen() {
           <Pressable
             style={({ pressed }) => [
               styles.button,
-              styles.dangerButton,
+              { backgroundColor: theme.dangerBackground },
               pressed && styles.pressed,
             ]}
             onPress={handleDelete}
           >
-            <Text style={[styles.buttonText, styles.dangerText]}>
+            <Text style={[styles.buttonText, { color: theme.dangerText }]}>
               Delete brew
             </Text>
           </Pressable>
@@ -336,14 +336,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   mutationErrorBox: {
-    backgroundColor: "#3D1A1A",
     borderRadius: 8,
     marginHorizontal: 16,
     marginBottom: 8,
     padding: 12,
   },
   mutationErrorText: {
-    color: "#E57373",
     fontSize: 13,
   },
   pressed: {
@@ -384,9 +382,11 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    borderRadius: 16,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    borderRadius: 20,
+    justifyContent: "center",
+    minHeight: 44,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   chipText: {
     fontSize: 13,
@@ -395,16 +395,12 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     borderRadius: 10,
+    justifyContent: "center",
+    minHeight: 48,
     paddingVertical: 14,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: "600",
-  },
-  dangerButton: {
-    backgroundColor: "#3D1A1A",
-  },
-  dangerText: {
-    color: "#E57373",
   },
 });
