@@ -435,3 +435,96 @@ reversing it costs.
   keys are append-only (never rename/remove). Charts must filter by method
   (measures) — cross-method "average ratio/water/yield" is meaningless.
   Supersedes the "espresso = method only" note in plan v1.2.
+
+---
+
+## Roaster directory & catalog
+
+### D-029 — Roaster & origin are global catalog entities (not per-user)
+- **Status:** Accepted · **Decided:** 2026-08-16 (advisor review + user)
+- **Context:** The bean cellar stores `roaster`/`origin` as free-text on each
+  user's bean. Autocomplete and a future roaster directory need roasters and
+  origins to be shared, deduplicated entities.
+- **Decision:** `roasters` and `origins` are GLOBAL tables — one row per
+  real-world entity, readable by everyone. A user's `beans` row keeps its
+  free-text `roaster`/`origin` snapshot AND gains nullable `roaster_id`/
+  `origin_id` soft links (same snapshot + link pattern as `brew_logs.bean_id`,
+  D-001). Free text that doesn't match a catalog row stays on the bean and can
+  be promoted into the global table later. Dedup by normalized name + country,
+  with an admin (service-role) merge.
+- **Rationale:** A roaster is one real-world business with one subscription
+  state; per-user rows would fragment autocomplete, make "N users logged your
+  beans" impossible, and make paid fields meaningless.
+- **Consequences:** Two new global tables + two FKs on `beans`. Global inserts
+  need a dedup path (unique constraint + `getOrCreate`, admin merge for
+  collisions). Reversing to per-user is a migration.
+
+### D-030 — Roaster directory is a deferred B2B vector; free = name + country + city
+- **Status:** Accepted · **Decided:** 2026-08-16 (advisor review + user)
+- **Context:** The founder proposed exposing a roaster's address/phone/website/
+  bean-link only to paying roasters ("name only" free) as "another monetization
+  idea."
+- **Decision:** Do NOT build the paid directory now — build the passive catalog
+  + autocomplete. Free listings show **name + country + city** (geo is search/
+  sort plumbing for the brewer, not a roaster perk). A paying roaster ("claimed
+  profile") unlocks street address, phone, website, bean/shop link, and a
+  verified badge. One tier, annual-first. "Pay to be rich, not pay to be
+  visible."
+- **Rationale:** A directory has no value until names exist, and roasters won't
+  pay until we can say "N people logged your beans this month" — a chicken-and-
+  egg that only resolves with real usage. Shipping billing now would steal time
+  from the activation gate (D-016) and the lead paid object (D-026, expert
+  asks). Hiding geography behind a paywall would hollow out the typeahead and
+  punish the user.
+- **Consequences:** The paid columns exist in the schema but stay unused in the
+  UI until the B2C paywall is live (D-031). Accelerating the directory is a new
+  decision with its own gate.
+
+### D-031 — Roaster subscription: admin flag now, Stripe Checkout later (never Connect)
+- **Status:** Accepted · **Decided:** 2026-08-16 (advisor review)
+- **Context:** How to model "paid roaster" without a billing integration at
+  this stage.
+- **Decision:** `roasters` carries `subscribed boolean` + `subscribed_until
+  timestamptz`, toggled by hand (admin/service role). All paid columns (address,
+  phone, website, bean_link) live in the schema now but render only when
+  subscribed. When (a) B2C RevenueCat is live, (b) we can show a roaster their
+  log count, and (c) some have asked to pay, switch to plain Stripe Checkout /
+  Customer Portal on the same flag. Never Stripe Connect (that pays sellers out).
+- **Rationale:** A flag is enough to build the UI gate, seed demo paid profiles,
+  and talk to a real roaster without billing code.
+- **Consequences:** "Subscribed" is trust-based (manual) until Stripe. Paid
+  columns are dead UI until the directory ships (D-030).
+
+### D-032 — Catalog seed: origins + famous roasters; no bean SKU catalog
+- **Status:** Accepted · **Decided:** 2026-08-16 (advisor review)
+- **Context:** "Comprehensive set of beans" — what should the autocomplete
+  catalog actually contain?
+- **Decision:** Seed a curated ORIGINS taxonomy (~100–150 countries + well-known
+  regions: Yirgacheffe, Huila, Nyeri, …) and ~50–100 globally recognizable
+  specialty ROASTERS (name + country + city). NO bean SKU catalog — beans are
+  seasonal and a static list goes stale. Bean-name autocomplete draws from the
+  user's own cellar first (later, other users' names as anonymous strings). The
+  catalog does NOT live on coffee-dictionary.com (that is the term glossary /
+  SEO magnet, D-024).
+- **Rationale:** Origins are a near-closed taxonomy (stable); famous roasters
+  make typeahead feel alive on day one; bean SKUs are the wrong object to
+  curate and would pollute the site funnel.
+- **Consequences:** Coverage is bounded by the seed; new origins/roasters accrue
+  from user free-text via the D-029 promote path.
+
+### D-033 — Autocomplete with free-type create ("add new")
+- **Status:** Accepted · **Decided:** 2026-08-16 (advisor review + user)
+- **Context:** The founder wants autocomplete for bean/origin/roaster AND the
+  ability to type a brand-new value.
+- **Decision:** A reusable type-ahead input: as the user types it shows matching
+  catalog rows (origin → `origins`, roaster → `roasters`, bean name → the
+  user's own beans + origins); selecting a row fills the field and sets the FK.
+  If nothing matches (or the user ignores suggestions), free text is accepted
+  as-is, and for roaster/origin an explicit "Add 'X'" action creates a name-only
+  global row and links it (D-029 `getOrCreate`). Unknown free-text on a bean is
+  preserved as the snapshot.
+- **Rationale:** Autocomplete speeds the common case while free-type keeps the
+  long tail open — the catalog grows organically from real usage.
+- **Consequences:** Free-type can create near-duplicate roasters/origins,
+  mitigated by dedup + admin merge (D-029). Bean-name matching needs the user's
+  bean names queryable.

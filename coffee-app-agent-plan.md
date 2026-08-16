@@ -1,5 +1,8 @@
-# Coffee Brew & Tasting Log App — Build Plan v1.4
+# Coffee Brew & Tasting Log App — Build Plan v1.5
 
+> v1.5 (2026-08-16): roaster & origin catalog + autocomplete (D-029…D-033,
+> tickets T24/T25); the roaster directory is documented but deferred as a B2B
+> monetization vector.
 > v1.4 (2026-08-13): advisor review folded in (D-017…D-021); social Q&A
 > reframed as "Ask the coffee expert" (instant AI draft + human review, opt-in
 > UGC).
@@ -255,3 +258,11 @@ Decisions are recorded with rationale in `docs/decisions.md` (D-### IDs).
   account prompts (D-018); "your terms" derived by matching (D-019).
 - Social Q&A reframed as "Ask the coffee expert": instant AI draft + human
   review (D-021), opt-in community UGC (D-020, supersedes D-015).
+
+## Changelog v1.5
+- Roaster & origin catalog + autocomplete (D-029…D-033, tickets T24/T25):
+  roasters/origins become global entities (D-029); the roaster directory is a
+  deferred B2B vector — free = name + country + city, paid = contact/commerce/
+  verified badge (D-030); subscription is an admin flag now, Stripe Checkout
+  later (D-031); seed = curated origins + famous roasters, no bean SKU catalog
+  (D-032); type-ahead with free-type "add new" (D-033).
