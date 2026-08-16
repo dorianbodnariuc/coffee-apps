@@ -82,15 +82,22 @@ describe.skipIf(!enabled)("brew-log-api against live Supabase", () => {
     expect(created.beanName).toBe("Integration Bean");
 
     // T6 acceptance: creating a log inserts exactly one log_created event.
-    const { data: events, error: eventsErr } = await supabase!
-      .from("events")
-      .select("name, properties");
-    expect(eventsErr).toBeNull();
-    const logCreated = (events ?? []).filter(
-      (event) =>
-        event.name === "log_created" &&
-        event.properties?.brew_id === created.id,
-    );
+    // track() is fire-and-forget (never blocks the caller), so poll briefly
+    // for the async insert to land instead of asserting immediately.
+    let logCreated: Array<{ name: string; properties: unknown }> = [];
+    for (let attempt = 0; attempt < 10 && logCreated.length === 0; attempt++) {
+      const { data: events, error: eventsErr } = await supabase!
+        .from("events")
+        .select("name, properties");
+      expect(eventsErr).toBeNull();
+      logCreated = (events ?? []).filter(
+        (event) =>
+          event.name === "log_created" &&
+          event.properties?.brew_id === created.id,
+      );
+      if (logCreated.length === 0)
+        await new Promise((resolve) => setTimeout(resolve, 200));
+    }
     expect(logCreated).toHaveLength(1);
 
     const listed = await listBrewLogs();
