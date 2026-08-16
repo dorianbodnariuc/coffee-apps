@@ -31,7 +31,12 @@ export default function BeanPickerModal({
   const theme = useTheme();
 
   return (
-    <Modal transparent visible animationType="fade" onRequestClose={onClose}>
+    <Modal
+      transparent
+      visible={visible}
+      animationType="fade"
+      onRequestClose={onClose}
+    >
       <View style={[styles.backdrop, { backgroundColor: theme.overlay }]}>
         <Pressable
           accessibilityRole="button"
