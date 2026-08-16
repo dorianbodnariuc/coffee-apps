@@ -27,6 +27,8 @@ export const Colors = {
     border: "#E0E1E6",
     /** Positive state (success messages). */
     success: "#1E7B34",
+    /** Warning / amber (freshness "aging" badge, cautions). */
+    warning: "#C77D0A",
     /** Disabled control fill/text. */
     disabled: "#C7C7CC",
     /** Modal / scrim overlay. */
@@ -45,6 +47,7 @@ export const Colors = {
     dangerBackground: "#3D1A1A",
     border: "#2E3135",
     success: "#4CD964",
+    warning: "#E5A50A",
     disabled: "#48484A",
     overlay: "rgba(0,0,0,0.6)",
   },

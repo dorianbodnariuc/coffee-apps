@@ -11,6 +11,7 @@ import { syncLocalBrews } from "@/lib/sync-local-brews";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 import type { BrewLog } from "@/types/brew-log";
 import { useBrewLogs, useCreateBrewLog } from "@/hooks/use-brew-logs";
+import { useBeans } from "@/hooks/use-beans";
 import { useTheme } from "@/hooks/use-theme";
 
 function describeBrew(log: BrewLog): string {
@@ -44,6 +45,7 @@ export default function LogScreen() {
 
   const brewsQuery = useBrewLogs(userId);
   const createMutation = useCreateBrewLog(userId ?? "");
+  const { data: beans } = useBeans(userId);
 
   const brews = signedIn ? (brewsQuery.data ?? []) : localBrews;
   const lastBrew = brews[0] ?? null;
@@ -100,6 +102,7 @@ export default function LogScreen() {
         key={submitCount}
         onSubmit={handleSubmit}
         submitting={saving}
+        beans={beans ?? []}
       />
 
       {showSoftWall ? (

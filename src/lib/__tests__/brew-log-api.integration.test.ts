@@ -40,6 +40,7 @@ const sampleInput = {
   brewTimeSeconds: 150,
   tastingNotes: "created by the integration test",
   rating: 4.5,
+  beanId: null,
 };
 
 describe.skipIf(!enabled)("brew-log-api against live Supabase", () => {

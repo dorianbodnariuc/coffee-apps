@@ -13,6 +13,9 @@ import {
 } from "react-native";
 import type { ZodError } from "zod";
 
+import { Ionicons } from "@expo/vector-icons";
+
+import BeanPickerModal from "@/components/bean-picker-modal";
 import ChipSelect from "@/components/chip-select";
 import RatioCalculator, {
   type RatioValues,
@@ -22,6 +25,7 @@ import type { BrewMethod, Rating } from "@/constants";
 import { METHOD_SPECS, methodLabel, type MethodParam } from "@/constants/method-specs";
 import { useTheme } from "@/hooks/use-theme";
 import { brewLogSchema, type BrewLogInput } from "@/lib/brew-log-schema";
+import type { Bean } from "@/types/bean";
 
 export type BrewLogFormProps = {
   /** Prefill for the ratio calculator section (dose from the last brew). */
@@ -29,6 +33,8 @@ export type BrewLogFormProps = {
   /** Seed values for edit mode (T4 detail). Read once on mount — remount via key to change. */
   initialValues?: Partial<BrewLogInput>;
   onSubmit: (input: BrewLogInput) => void;
+  /** User's cellar beans (T9) — enables the "from cellar" picker. */
+  beans?: Bean[];
   submitLabel?: string;
   /** Disables the submit button and shows "Saving…" (T3b persistence). */
   submitting?: boolean;
@@ -120,6 +126,7 @@ export default function BrewLogForm({
   calculatorPrefill,
   initialValues,
   onSubmit,
+  beans = [],
   submitLabel = "Save brew",
   submitting = false,
 }: BrewLogFormProps) {
@@ -161,6 +168,10 @@ export default function BrewLogForm({
   const [rating, setRating] = useState<Rating | null>(
     (initialValues?.rating as Rating | null | undefined) ?? null,
   );
+  const [beanId, setBeanId] = useState<string | null>(
+    initialValues?.beanId ?? null,
+  );
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   // Initial ratio-calculator seed: edit mode uses the brew's own values
   // (yield mapped to the liquid field for espresso); new logs prefill only
@@ -222,10 +233,20 @@ export default function BrewLogForm({
     clearErrors();
   };
 
+  const handleSelectBean = (bean: Bean) => {
+    setBeanId(bean.id);
+    setBeanName(bean.name);
+    setRoaster(bean.roaster);
+    setOrigin(bean.origin);
+    setPickerOpen(false);
+    clearErrors();
+  };
+
   const handleSubmit = () => {
     const isEspresso = method === "espresso";
     const draft = {
       brewedAt: brewedAt.toISOString(),
+      beanId,
       beanName: beanName.trim(),
       roaster: roaster.trim(),
       origin: origin.trim(),
@@ -335,6 +356,50 @@ export default function BrewLogForm({
         <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>
           Bean (snapshot)
         </Text>
+        {beans.length > 0 ? (
+          <Field label="From your cellar">
+            {beanId ? (
+              <View style={styles.beanLinkRow}>
+                <Ionicons name="basket" size={16} color={theme.primary} />
+                <Text
+                  style={[styles.beanLinkText, { color: theme.text }]}
+                  numberOfLines={1}
+                >
+                  {beanName || "Linked bean"}
+                </Text>
+                <Pressable
+                  accessibilityLabel="Unlink bean"
+                  hitSlop={12}
+                  onPress={() => setBeanId(null)}
+                >
+                  <Ionicons
+                    name="close-circle"
+                    size={18}
+                    color={theme.textSecondary}
+                  />
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => setPickerOpen(true)}
+                style={[
+                  styles.beanPickButton,
+                  { backgroundColor: theme.backgroundElement },
+                ]}
+              >
+                <Ionicons
+                  name="basket-outline"
+                  size={18}
+                  color={theme.text}
+                />
+                <Text style={[styles.beanPickText, { color: theme.text }]}>
+                  Choose from cellar
+                </Text>
+              </Pressable>
+            )}
+          </Field>
+        ) : null}
         <Field label="Bean name" error={errors.beanName}>
           <TextInput
             accessibilityLabel="Bean name"
@@ -531,6 +596,13 @@ export default function BrewLogForm({
           {submitting ? "Saving…" : submitLabel}
         </Text>
       </Pressable>
+
+      <BeanPickerModal
+        beans={beans}
+        onClose={() => setPickerOpen(false)}
+        onSelect={handleSelectBean}
+        visible={pickerOpen}
+      />
     </ScrollView>
   );
 }
@@ -587,6 +659,33 @@ const styles = StyleSheet.create({
     minHeight: 44,
     paddingHorizontal: 12,
     paddingVertical: 10,
+  },
+  beanLinkRow: {
+    alignItems: "center",
+    borderRadius: 8,
+    flexDirection: "row",
+    gap: 8,
+    minHeight: 44,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  beanLinkText: {
+    flex: 1,
+    fontSize: 15,
+  },
+  beanPickButton: {
+    alignItems: "center",
+    borderRadius: 8,
+    flexDirection: "row",
+    gap: 8,
+    justifyContent: "center",
+    minHeight: 44,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  beanPickText: {
+    fontSize: 15,
+    fontWeight: "600",
   },
   notesInput: {
     minHeight: 88,

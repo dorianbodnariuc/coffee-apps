@@ -24,6 +24,7 @@ function brew(overrides: Partial<BrewLog> & { brewedAt: string }): BrewLog {
     waterTempC: null,
     methodParams: {},
     ratio: null,
+    beanId: null,
     brewTimeSeconds: null,
     tastingNotes: "",
     rating: null,

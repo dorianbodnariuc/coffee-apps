@@ -52,6 +52,8 @@ export const brewLogSchema = z
       })
       .nullable(),
     methodParams: z.record(z.string(), z.unknown()),
+    /** Soft link to a cellar bean (T9); snapshot fields stay free-text. */
+    beanId: z.string().nullable(),
   })
   .superRefine((value, ctx) => {
     validateMethodParams(value.method, value.methodParams, ctx);

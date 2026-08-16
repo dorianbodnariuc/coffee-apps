@@ -14,6 +14,7 @@ import type { BrewLog } from "@/types/brew-log";
 type BrewLogRow = {
   id: string;
   brewed_at: string;
+  bean_id: string | null;
   bean_name: string | null;
   roaster: string | null;
   origin: string | null;
@@ -36,6 +37,7 @@ type BrewLogRow = {
 export function toBrewLogRow(input: BrewLogInput): Record<string, unknown> {
   return {
     brewed_at: input.brewedAt,
+    bean_id: input.beanId || null,
     bean_name: input.beanName || null,
     roaster: input.roaster || null,
     origin: input.origin || null,
@@ -64,6 +66,7 @@ export function rowToBrewLog(row: BrewLogRow): BrewLog {
   return {
     id: row.id,
     brewedAt: row.brewed_at,
+    beanId: row.bean_id ?? null,
     beanName: row.bean_name ?? "",
     roaster: row.roaster ?? "",
     origin: row.origin ?? "",

@@ -18,6 +18,7 @@ const validLog: BrewLogInput = {
   tastingNotes: "Floral, tea-like.",
   rating: 4.5,
   methodParams: { dripper: "V60", pours: 2 },
+  beanId: null,
 };
 
 describe("brewLogSchema — valid input", () => {

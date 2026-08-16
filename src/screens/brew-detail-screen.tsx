@@ -19,6 +19,7 @@ import {
   useDeleteBrewLog,
   useUpdateBrewLog,
 } from "@/hooks/use-brew-logs";
+import { useBeans } from "@/hooks/use-beans";
 import { useGlossaryTerms } from "@/hooks/use-glossary";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
@@ -70,6 +71,7 @@ export default function BrewDetailScreen() {
   const { data, isLoading, isError, refetch } = useBrewLogs(user?.id ?? null);
   const updateMutation = useUpdateBrewLog(user?.id ?? "");
   const deleteMutation = useDeleteBrewLog(user?.id ?? "");
+  const { data: beans } = useBeans(user?.id ?? null);
   const glossaryQuery = useGlossaryTerms();
   const [editing, setEditing] = useState(false);
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
@@ -166,6 +168,7 @@ export default function BrewDetailScreen() {
           onSubmit={handleUpdate}
           submitLabel="Save changes"
           submitting={updateMutation.isPending}
+          beans={beans ?? []}
         />
       ) : (
         <ScrollView contentContainerStyle={styles.content}>

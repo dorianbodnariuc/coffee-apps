@@ -61,6 +61,7 @@ function SignInButton() {
 
 const TAB_ICONS = {
   index: { focused: "cafe", idle: "cafe-outline" },
+  cellar: { focused: "basket", idle: "basket-outline" },
   history: { focused: "time", idle: "time-outline" },
   dictionary: { focused: "book", idle: "book-outline" },
 } as const;
@@ -98,6 +99,24 @@ export default function RootLayout() {
                         focused
                           ? TAB_ICONS.index.focused
                           : TAB_ICONS.index.idle
+                      }
+                      size={24}
+                      color={color}
+                    />
+                  ),
+                }}
+              />
+              <Tabs.Screen
+                name="cellar"
+                options={{
+                  title: "Cellar",
+                  headerRight: () => <SignInButton />,
+                  tabBarIcon: ({ color, focused }) => (
+                    <Ionicons
+                      name={
+                        focused
+                          ? TAB_ICONS.cellar.focused
+                          : TAB_ICONS.cellar.idle
                       }
                       size={24}
                       color={color}
