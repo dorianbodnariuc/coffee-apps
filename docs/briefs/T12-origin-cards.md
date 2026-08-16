@@ -50,5 +50,10 @@ brew detail screen — the best-matching glossary term's definition teaser plus 
 headless Chrome (a brew with an origin shows the card).
 
 ## Out of scope
-- Curating per-origin flavor/altitude descriptions (content decision, D-023/D-003).
+- Richer per-origin content (missing country terms, flavor/altitude
+  descriptions) → tracked in the dictionary repo:
+  `~/coffee-dictionary-import/tasks/DICTIONARY_MISSING_ORIGIN_TERMS.md`
+  (32 of 35 coffee-producing countries are absent from the glossary, which
+  caps T12's coverage at ~8% of origins). Content flows site → app via the
+  D-003 ETL / D-023 content loop.
 - Origin cards in the log form or bean form (follow-up).
