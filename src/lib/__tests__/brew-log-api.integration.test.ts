@@ -84,7 +84,7 @@ describe.skipIf(!enabled)("brew-log-api against live Supabase", () => {
     // T6 acceptance: creating a log inserts exactly one log_created event.
     // track() is fire-and-forget (never blocks the caller), so poll briefly
     // for the async insert to land instead of asserting immediately.
-    let logCreated: Array<{ name: string; properties: unknown }> = [];
+    let logCreated: { name: string; properties: unknown }[] = [];
     for (let attempt = 0; attempt < 10 && logCreated.length === 0; attempt++) {
       const { data: events, error: eventsErr } = await supabase!
         .from("events")
