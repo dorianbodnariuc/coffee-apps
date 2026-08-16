@@ -21,9 +21,12 @@ import {
 } from "@/hooks/use-brew-logs";
 import { useBeans } from "@/hooks/use-beans";
 import { useGlossaryTerms } from "@/hooks/use-glossary";
+import { useOrigins } from "@/hooks/use-catalog";
 import { useTheme } from "@/hooks/use-theme";
 import { useAuth } from "@/lib/auth-context";
 import { matchGlossaryTerms, type GlossaryTerm } from "@/lib/glossary-match";
+import { matchOriginTerm } from "@/lib/origin-match";
+import type { Origin } from "@/types/catalog";
 import type { BrewLogInput } from "@/lib/brew-log-schema";
 import { METHOD_SPECS } from "@/constants/method-specs";
 import { buildRecipeCard, describeRecipe, formatGrind } from "@/lib/share-recipe";
@@ -73,6 +76,7 @@ export default function BrewDetailScreen() {
   const deleteMutation = useDeleteBrewLog(user?.id ?? "");
   const { data: beans } = useBeans(user?.id ?? null);
   const glossaryQuery = useGlossaryTerms();
+  const { data: origins = [] } = useOrigins();
   const [editing, setEditing] = useState(false);
   const [activeTerm, setActiveTerm] = useState<GlossaryTerm | null>(null);
 
@@ -85,6 +89,16 @@ export default function BrewDetailScreen() {
         ? matchGlossaryTerms(brew.tastingNotes, glossaryQuery.data ?? [])
         : [],
     [brew, glossaryQuery.data],
+  );
+
+  // T12: origin reference card — best glossary term for the brew's origin,
+  // resolved through the origins catalog (region "Yirgacheffe" → "Ethiopia").
+  const originMatch = useMemo(
+    () =>
+      brew && brew.origin
+        ? matchOriginTerm(brew.origin, glossaryQuery.data ?? [], origins)
+        : null,
+    [brew, glossaryQuery.data, origins],
   );
 
   const handleDelete = () => {
@@ -182,6 +196,13 @@ export default function BrewDetailScreen() {
           <View style={styles.fields}>
             <Field label="Roaster" value={brew.roaster || "—"} theme={theme} />
             <Field label="Origin" value={brew.origin || "—"} theme={theme} />
+            {originMatch ? (
+              <OriginCard
+                match={originMatch}
+                onPress={() => setActiveTerm(originMatch.term)}
+                theme={theme}
+              />
+            ) : null}
             <Field label="Grind" value={formatGrind(brew) || "—"} theme={theme} />
             <Field
               label="Recipe"
@@ -293,6 +314,55 @@ export default function BrewDetailScreen() {
   );
 }
 
+/** Origin reference card (T12): glossary teaser for a brew's origin. */
+function OriginCard({
+  match,
+  onPress,
+  theme,
+}: {
+  match: { term: GlossaryTerm; origin: Origin | null };
+  onPress: () => void;
+  theme: ReturnType<typeof useTheme>;
+}) {
+  const { term, origin } = match;
+  const identity = origin
+    ? [origin.country, origin.region].filter(Boolean).join(" · ")
+    : null;
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={`Origin reference: ${term.term}`}
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.originCard,
+        { backgroundColor: theme.backgroundElement },
+        pressed && styles.pressed,
+      ]}
+    >
+      <View style={styles.originCardHeader}>
+        <Text style={[styles.fieldLabel, { color: theme.textSecondary }]}>
+          Origin
+        </Text>
+        <Text style={[styles.readMore, { color: theme.primary }]}>
+          Read more ↗
+        </Text>
+      </View>
+      <Text style={[styles.originTerm, { color: theme.text }]}>{term.term}</Text>
+      {identity ? (
+        <Text style={[styles.originIdentity, { color: theme.textSecondary }]}>
+          {identity}
+        </Text>
+      ) : null}
+      <Text
+        style={[styles.originTeaser, { color: theme.textSecondary }]}
+        numberOfLines={2}
+      >
+        {term.definition}
+      </Text>
+    </Pressable>
+  );
+}
+
 function Field({
   label,
   value,
@@ -396,6 +466,32 @@ const styles = StyleSheet.create({
   chipText: {
     fontSize: 13,
     fontWeight: "500",
+  },
+  originCard: {
+    borderRadius: 12,
+    gap: 4,
+    padding: 14,
+  },
+  originCardHeader: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  originTerm: {
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  originIdentity: {
+    fontSize: 13,
+  },
+  originTeaser: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: 2,
+  },
+  readMore: {
+    fontSize: 13,
+    fontWeight: "600",
   },
   button: {
     alignItems: "center",
