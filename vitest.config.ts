@@ -3,6 +3,12 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  test: {
+    // Integration tests share the module-level Supabase client (its session is
+    // set per-test). Run files serially so two integration tests never clobber
+    // each other's auth session mid-run.
+    fileParallelism: false,
+  },
   resolve: {
     alias: {
       // Mirrors tsconfig paths so lib tests can import '@/constants' etc.
