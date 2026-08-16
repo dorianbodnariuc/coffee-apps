@@ -65,6 +65,10 @@ export default function CellarScreen() {
   };
   const closeForm = () => setFormOpen(false);
 
+  const suggestedBeanNames = Array.from(
+    new Set((beans ?? []).map((bean) => bean.name)),
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       {isLoading ? (
@@ -118,6 +122,7 @@ export default function CellarScreen() {
           initial={editing}
           busy={createMutation.isPending || updateMutation.isPending || deleteMutation.isPending}
           onClose={closeForm}
+          suggestedBeanNames={suggestedBeanNames}
           onSubmit={(input) => {
             if (editing) {
               updateMutation.mutate(

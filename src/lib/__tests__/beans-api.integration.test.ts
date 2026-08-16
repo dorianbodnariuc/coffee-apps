@@ -23,6 +23,8 @@ const sampleBean: BeanInput = {
   name: "Integration Bean",
   roaster: "Test Roaster",
   origin: "Ethiopia",
+  roasterId: null,
+  originId: null,
   roastDate: null,
 };
 

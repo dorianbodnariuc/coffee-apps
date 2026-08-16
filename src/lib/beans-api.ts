@@ -8,6 +8,8 @@ type BeanRow = {
   name: string;
   roaster: string | null;
   origin: string | null;
+  roaster_id: string | null;
+  origin_id: string | null;
   roast_date: string | null;
   created_at: string;
 };
@@ -18,6 +20,8 @@ function toBeanRow(input: BeanInput): Record<string, unknown> {
     name: input.name,
     roaster: input.roaster || null,
     origin: input.origin || null,
+    roaster_id: input.roasterId ?? null,
+    origin_id: input.originId ?? null,
     roast_date: input.roastDate || null,
   };
 }
@@ -29,6 +33,8 @@ function rowToBean(row: BeanRow): Bean {
     name: row.name,
     roaster: row.roaster ?? "",
     origin: row.origin ?? "",
+    roasterId: row.roaster_id ?? null,
+    originId: row.origin_id ?? null,
     roastDate: row.roast_date ?? null,
     createdAt: row.created_at,
   };

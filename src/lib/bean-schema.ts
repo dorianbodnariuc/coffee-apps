@@ -12,6 +12,9 @@ export const beanSchema = z.object({
     .max(120, "Bean name is too long (max 120 chars)"),
   roaster: z.string().max(120, "Roaster is too long (max 120 chars)"),
   origin: z.string().max(120, "Origin is too long (max 120 chars)"),
+  /** Soft links to the global catalog (D-029); null when free-text only. */
+  roasterId: z.string().nullable(),
+  originId: z.string().nullable(),
   roastDate: z
     .string()
     .nullable()
