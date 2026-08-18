@@ -15,6 +15,9 @@ import type { ZodError } from "zod";
 
 import { Ionicons } from "@expo/vector-icons";
 
+import AutocompleteInput, {
+  type AutocompleteOption,
+} from "@/components/autocomplete-input";
 import BeanPickerModal from "@/components/bean-picker-modal";
 import ChipSelect from "@/components/chip-select";
 import RatioCalculator, {
@@ -23,6 +26,12 @@ import RatioCalculator, {
 import { BREW_METHODS, RATING_SCALE } from "@/constants";
 import type { BrewMethod, Rating } from "@/constants";
 import { METHOD_SPECS, methodLabel, type MethodParam } from "@/constants/method-specs";
+import {
+  useGetOrCreateOrigin,
+  useGetOrCreateRoaster,
+  useOrigins,
+  useRoasters,
+} from "@/hooks/use-catalog";
 import { useTheme } from "@/hooks/use-theme";
 import { brewLogSchema, type BrewLogInput } from "@/lib/brew-log-schema";
 import type { Bean } from "@/types/bean";
@@ -201,6 +210,47 @@ export default function BrewLogForm({
     ratio: null,
   });
   const [errors, setErrors] = useState<FieldErrors>({});
+
+  // Type-ahead suggestion pools (T25): origins/roasters are global catalogs;
+  // bean names suggest the user's cellar beans plus origins.
+  const { data: origins = [] } = useOrigins();
+  const { data: roasters = [] } = useRoasters();
+  const createOrigin = useGetOrCreateOrigin();
+  const createRoaster = useGetOrCreateRoaster();
+
+  const originOptions: AutocompleteOption[] = origins.map((o) => ({
+    id: o.id,
+    label: o.name,
+    sublabel: o.country ?? undefined,
+  }));
+
+  const roasterOptions: AutocompleteOption[] = roasters.map((r) => ({
+    id: r.id,
+    label: r.name,
+    sublabel: r.city ?? r.country ?? undefined,
+  }));
+
+  const beanNameOptions: AutocompleteOption[] = (() => {
+    const seen = new Set<string>();
+    const out: AutocompleteOption[] = [];
+    for (const label of [
+      ...beans.map((b) => b.name),
+      ...origins.map((o) => o.name),
+    ]) {
+      const key = label.trim().toLowerCase();
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push({ id: label, label });
+    }
+    return out;
+  })();
+
+  const handleCreateOrigin = (text: string) => {
+    createOrigin.mutate(text, { onSuccess: (o) => setOrigin(o.name) });
+  };
+  const handleCreateRoaster = (text: string) => {
+    createRoaster.mutate(text, { onSuccess: (r) => setRoaster(r.name) });
+  };
 
   const inputStyle = [
     styles.input,
@@ -401,41 +451,45 @@ export default function BrewLogForm({
           </Field>
         ) : null}
         <Field label="Bean name" error={errors.beanName}>
-          <TextInput
+          <AutocompleteInput
             accessibilityLabel="Bean name"
             onChangeText={(v) => {
               setBeanName(v);
               clearErrors();
             }}
+            onSelect={(option) => setBeanName(option.label)}
+            options={beanNameOptions}
             placeholder="e.g. Yirgacheffe"
-            placeholderTextColor={placeholderColor}
-            style={inputStyle}
             value={beanName}
           />
         </Field>
         <Field label="Roaster" error={errors.roaster}>
-          <TextInput
+          <AutocompleteInput
             accessibilityLabel="Roaster"
+            allowCreate
             onChangeText={(v) => {
               setRoaster(v);
               clearErrors();
             }}
+            onCreate={handleCreateRoaster}
+            onSelect={(option) => setRoaster(option.label)}
+            options={roasterOptions}
             placeholder="e.g. Local Roasters"
-            placeholderTextColor={placeholderColor}
-            style={inputStyle}
             value={roaster}
           />
         </Field>
         <Field label="Origin" error={errors.origin}>
-          <TextInput
+          <AutocompleteInput
             accessibilityLabel="Origin"
+            allowCreate
             onChangeText={(v) => {
               setOrigin(v);
               clearErrors();
             }}
+            onCreate={handleCreateOrigin}
+            onSelect={(option) => setOrigin(option.label)}
+            options={originOptions}
             placeholder="e.g. Ethiopia"
-            placeholderTextColor={placeholderColor}
-            style={inputStyle}
             value={origin}
           />
         </Field>
