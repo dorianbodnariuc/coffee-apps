@@ -16,3 +16,9 @@ npm run lint       # ESLint (expo lint)
 npm run typecheck  # tsc --noEmit
 npm run format     # Prettier
 ```
+
+## data/ — dictionary PWA export
+
+Imported from the coffee-apps repo (73d046f): dictionary term/relationship JSON exports
+for the web PWA plus the codebase-index tooling. Regenerate via
+coffee-dictionary-import/scripts/export_dictionary.py.

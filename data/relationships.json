@@ -1,0 +1,710 @@
+[
+  {
+    "source": "arabic coffee",
+    "target": "dallah (coffee pot)",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with pot"
+  },
+  {
+    "source": "automatic espresso machines",
+    "target": "espresso machine",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: machine type (lowercase dup entry; see TICKET_072)"
+  },
+  {
+    "source": "bar (unit)",
+    "target": "pressure",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: unit of measurement"
+  },
+  {
+    "source": "bar (unit)",
+    "target": "pressure gauge",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: measured by instrument"
+  },
+  {
+    "source": "bialetti moka express",
+    "target": "moka pot",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: moka pot model"
+  },
+  {
+    "source": "bicerin",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "bicerin",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "breve",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "breve",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "brew group",
+    "target": "espresso machine",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: component requires machine"
+  },
+  {
+    "source": "brikka pot",
+    "target": "moka pot",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: moka pot variant"
+  },
+  {
+    "source": "burr grinder",
+    "target": "coffee grinder",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: grinder type"
+  },
+  {
+    "source": "caffè latte",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "caffè latte",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "cappuccino",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "cappuccino",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "coffea",
+    "target": "coffea arabica",
+    "type": "parent_of",
+    "evidence": "TICKET_047 P1 seed: genus -> species"
+  },
+  {
+    "source": "coffea",
+    "target": "coffea liberica",
+    "type": "parent_of",
+    "evidence": "TICKET_047 P1 seed: genus -> species"
+  },
+  {
+    "source": "coffea",
+    "target": "coffea charrieriana",
+    "type": "parent_of",
+    "evidence": "TICKET_047 P1 seed: genus -> species"
+  },
+  {
+    "source": "coffea arabica",
+    "target": "robusta coffee",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: sibling species comparison"
+  },
+  {
+    "source": "coffee beans",
+    "target": "espresso beans",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: bean category"
+  },
+  {
+    "source": "coffee beans",
+    "target": "espresso blend",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: bean category"
+  },
+  {
+    "source": "coffee beans",
+    "target": "single origin",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: bean category"
+  },
+  {
+    "source": "coffee beans",
+    "target": "peaberry coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: bean category"
+  },
+  {
+    "source": "coffee bloom",
+    "target": "degassing",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: bloom is visible degassing"
+  },
+  {
+    "source": "coffee brewing",
+    "target": "coffee brewing methods",
+    "type": "parent_of",
+    "evidence": "TICKET_047 P1 seed: general concept -> methods list"
+  },
+  {
+    "source": "coffee brewing",
+    "target": "coffee brewing equipment",
+    "type": "parent_of",
+    "evidence": "TICKET_047 P1 seed: general concept -> equipment list; target pending dictionary stub (stub_queue id 30)"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "french press",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "pour over coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "drip coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "aeropress",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "espresso",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "cold brew coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "moka pot",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "turkish coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "siphon brewer",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "coffee percolator",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "cowboy coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "indian filter coffee",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "kopi tubruk",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method item"
+  },
+  {
+    "source": "coffee brewing methods",
+    "target": "immersion brewing",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: brewing method family"
+  },
+  {
+    "source": "coffee extraction",
+    "target": "extraction time",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: extraction variable"
+  },
+  {
+    "source": "coffee extraction",
+    "target": "extraction yield",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: extraction variable"
+  },
+  {
+    "source": "coffee extraction",
+    "target": "total dissolved solids",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: extraction variable"
+  },
+  {
+    "source": "coffee extraction",
+    "target": "coffee-to-water ratio",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: extraction variable"
+  },
+  {
+    "source": "coffee extraction",
+    "target": "coffee brewing temperature",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: extraction variable"
+  },
+  {
+    "source": "coffee grinder",
+    "target": "coffee grinding",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: tool used with process"
+  },
+  {
+    "source": "coffee grinding",
+    "target": "coffee grind size",
+    "type": "produces",
+    "evidence": "TICKET_047 P1 seed: process produces outcome"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "light roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "medium roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "medium-dark roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "dark roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "american roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "coffee roasting",
+    "target": "after dinner roast",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: roast level"
+  },
+  {
+    "source": "cold brew coffee",
+    "target": "nitro cold brew",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: cold brew variant"
+  },
+  {
+    "source": "cold brew coffee",
+    "target": "immersion cold brew",
+    "type": "has_item",
+    "evidence": "TICKET_047 P1 seed: cold brew variant"
+  },
+  {
+    "source": "cold brew coffee maker",
+    "target": "cold brew coffee",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: device used with method"
+  },
+  {
+    "source": "cortadito",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "cortadito",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "cortado",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "cortado",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "degassing",
+    "target": "coffee roasting",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: post-roast process"
+  },
+  {
+    "source": "dolce gusto",
+    "target": "single serve coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: single-serve system"
+  },
+  {
+    "source": "double espresso shot",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "drip coffee",
+    "target": "coffeemaker",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with appliance"
+  },
+  {
+    "source": "drip coffee",
+    "target": "coffee filter",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with filter"
+  },
+  {
+    "source": "ese pods",
+    "target": "pod coffee machine",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: pod format used with machine"
+  },
+  {
+    "source": "espressino",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "espressino",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "espresso",
+    "target": "barista",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: related concept"
+  },
+  {
+    "source": "espresso",
+    "target": "caffeine",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: related concept"
+  },
+  {
+    "source": "espresso",
+    "target": "coffee grind size",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: related concept"
+  },
+  {
+    "source": "espresso",
+    "target": "dialing in",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: related concept"
+  },
+  {
+    "source": "espresso macchiato",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "espresso macchiato",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "espresso machine",
+    "target": "espresso",
+    "type": "produces",
+    "evidence": "TICKET_047 P1 seed: machine produces beverage"
+  },
+  {
+    "source": "filter basket",
+    "target": "espresso machine",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: component requires machine"
+  },
+  {
+    "source": "filtron",
+    "target": "cold brew coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: cold brew device"
+  },
+  {
+    "source": "flat white",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "flat white",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "galão",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "galão",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "keurig",
+    "target": "single serve coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: single-serve system"
+  },
+  {
+    "source": "latte",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "latte",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "latte macchiato",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "latte macchiato",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "lungo",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "macchiato",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "macchiato",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "manual espresso machine",
+    "target": "espresso machine",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: machine type"
+  },
+  {
+    "source": "marocchino",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "marocchino",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "melya",
+    "target": "espresso",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: milk+espresso drink (list parent pending stub id 31)"
+  },
+  {
+    "source": "melya",
+    "target": "steamed milk",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: drink requires steamed milk"
+  },
+  {
+    "source": "microfoam",
+    "target": "latte art",
+    "type": "related_to",
+    "evidence": "TICKET_047 P1 seed: related concept"
+  },
+  {
+    "source": "milk frother",
+    "target": "microfoam",
+    "type": "produces",
+    "evidence": "TICKET_047 P1 seed: tool produces output"
+  },
+  {
+    "source": "moka express",
+    "target": "moka pot",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: moka pot model"
+  },
+  {
+    "source": "nespresso",
+    "target": "single serve coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: single-serve system"
+  },
+  {
+    "source": "normale",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "panarello steam wand",
+    "target": "steam wand",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: wand type"
+  },
+  {
+    "source": "portafilter",
+    "target": "espresso machine",
+    "type": "requires",
+    "evidence": "TICKET_047 P1 seed: component requires machine"
+  },
+  {
+    "source": "pour over coffee",
+    "target": "hario v60",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with dripper"
+  },
+  {
+    "source": "pour over coffee",
+    "target": "chemex coffeemaker",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with brewer"
+  },
+  {
+    "source": "pour over coffee",
+    "target": "kalita",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with dripper"
+  },
+  {
+    "source": "pour over coffee",
+    "target": "paper filters",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with filters"
+  },
+  {
+    "source": "puckpuck",
+    "target": "cold brew coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: cold brew device"
+  },
+  {
+    "source": "ristretto",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "semi automatic espresso machine",
+    "target": "espresso machine",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: machine type"
+  },
+  {
+    "source": "senseo",
+    "target": "single serve coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: single-serve system"
+  },
+  {
+    "source": "single espresso shot",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "steam wand",
+    "target": "steamed milk",
+    "type": "produces",
+    "evidence": "TICKET_047 P1 seed: tool produces output"
+  },
+  {
+    "source": "super automatic espresso machine",
+    "target": "espresso machine",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: machine type"
+  },
+  {
+    "source": "takeya",
+    "target": "cold brew coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: cold brew device"
+  },
+  {
+    "source": "tassimo",
+    "target": "single serve coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: single-serve system"
+  },
+  {
+    "source": "toddy",
+    "target": "cold brew coffee maker",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: cold brew device"
+  },
+  {
+    "source": "triple espresso shot",
+    "target": "espresso",
+    "type": "instance_of",
+    "evidence": "TICKET_047 P1 seed: espresso shot variant"
+  },
+  {
+    "source": "turkish coffee",
+    "target": "cezve",
+    "type": "used_with",
+    "evidence": "TICKET_047 P1 seed: method used with pot"
+  }
+]

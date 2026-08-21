@@ -42,3 +42,9 @@ example
 # generated native folders
 /ios
 /android
+
+# from coffee-apps import
+node_modules/
+.vercel/
+*.env
+.DS_Store
