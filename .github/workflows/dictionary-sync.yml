@@ -27,6 +27,8 @@ jobs:
           python-version: "3.12"
 
       - name: Fetch dictionary export and generate migration
+        env:
+          SEO_APP_READ_TOKEN: ${{ secrets.SEO_APP_READ_TOKEN }}
         run: python3 scripts/dictionary/fetch_and_generate.py
 
       - name: Detect change
