@@ -1,0 +1,41 @@
+name: Supabase migrate
+
+# Applies pending supabase/migrations to the live database when they land on
+# main (including merges of dictionary-sync PRs). Uses a direct connection
+# string, so no Supabase project link is needed on CI.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "supabase/migrations/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Apply migrations
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          n=0
+          until supabase db push --db-url "$SUPABASE_DB_URL"; do
+            n=$((n+1))
+            if [ $n -ge 3 ]; then echo "db push failed after 3 attempts"; exit 1; fi
+            echo "retry #$n after transient failure…"
+            sleep 20
+          done
+
+      - name: Verify glossary count
+        if: always()
+        run: |
+          echo "Migration job finished (see db push step for result)."

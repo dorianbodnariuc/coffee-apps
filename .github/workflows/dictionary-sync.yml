@@ -1,0 +1,54 @@
+name: Dictionary sync
+
+# Pulls the dictionary export from seo-app-v2 (GitHub raw), generates an
+# idempotent upsert migration, and opens a PR when the dictionary changed.
+# Merging the PR triggers supabase-migrate.yml which applies migrations.
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily 06:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dictionary-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch dictionary export and generate migration
+        run: python3 scripts/dictionary/fetch_and_generate.py
+
+      - name: Detect change
+        id: change
+        run: |
+          git status --porcelain | grep -q . && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        if: steps.change.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          BRANCH="dictionary-sync/${DATE}"
+          git config user.name "dictionary-sync-bot"
+          git config user.email "actions@github.com"
+          git checkout -b "$BRANCH"
+          git add data/dictionary supabase/migrations
+          git commit -m "chore(dictionary): sync ${DATE} — new export from seo-app-v2"
+          git push origin "$BRANCH"
+          PR_URL=$(gh pr create \
+            --title "Dictionary sync ${DATE}" \
+            --body "Automated sync from seo-app-v2. Review the migration diff, then merge to deploy to Supabase (merge triggers supabase-migrate.yml). Source: dictionary-import/data/glossary_normalized.json @ seo-app-v2." \
+            --base main --head "$BRANCH")
+          echo "PR opened: ${PR_URL}"
