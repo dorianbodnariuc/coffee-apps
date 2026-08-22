@@ -43,7 +43,7 @@ def main() -> int:
 
     rows = http_json(
         f"{sb_url}/rest/v1/{PROPOSALS_VIEW}?select=term,context,note,created_at"
-        "&status=eq.pending&order=created_at.asc&limit=200",
+        "&order=created_at.asc&limit=200",
         headers=sb_headers,
     )
     if not isinstance(rows, list):
