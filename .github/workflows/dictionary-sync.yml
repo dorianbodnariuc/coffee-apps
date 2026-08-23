@@ -1,10 +1,10 @@
 name: Dictionary sync
 
 # Syncs the app glossary DIRECTLY from coffee-dictionary.com (the site is the
-# storage; public HTML is the API). No seo-app dependency.
-#  1. scrape sitemap + term pages → glossary snapshot
-#  2. generate an idempotent upsert migration when the term set changed
-#  3. open a PR; merging applies it to Supabase (supabase-migrate.yml)
+# storage; sitemap + per-ID WP REST is the API). No seo-app dependency.
+#  1. sitemap + cached lastmod → refetch only changed term pages (REST JSON)
+#  2. quality gate → idempotent upsert migration when the term set changed
+#  3. open/update ONE rolling PR; merging applies it (supabase-migrate.yml)
 on:
   schedule:
     - cron: "17 6 * * *" # daily 06:17 UTC
@@ -37,24 +37,34 @@ jobs:
 
       - name: Detect change
         id: change
+        # Only a new migration is a real change — .sync_state.json bookkeeping
+        # (lastmod cache) can churn without any term changing.
         run: |
-          git status --porcelain | grep -q . && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
+          git status --porcelain -- supabase/migrations | grep -q . && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
 
-      - name: Create pull request
+      - name: Create or update pull request
         if: steps.change.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # One rolling branch/PR: reuse it if it exists (idempotent — a daily
+          # job must survive its own previous run).
+          BRANCH="dictionary-sync/site"
           DATE=$(date -u +%Y-%m-%d)
-          BRANCH="dictionary-sync/${DATE}"
           git config user.name "dictionary-sync-bot"
           git config user.email "actions@github.com"
-          git checkout -b "$BRANCH"
+          git checkout -B "$BRANCH"
           git add data/dictionary supabase/migrations
           git commit -m "chore(dictionary): site sync ${DATE} — from coffee-dictionary.com"
-          git push origin "$BRANCH"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH"
+            git push --force-with-lease origin "$BRANCH"
+          else
+            git push origin "$BRANCH"
+          fi
           PR_URL=$(gh pr create \
             --title "Dictionary sync ${DATE} (site)" \
-            --body "Automated sync scraped from coffee-dictionary.com (sitemap + term pages). Review the migration diff, then merge to deploy to Supabase (merge triggers supabase-migrate.yml)." \
-            --base main --head "$BRANCH")
-          echo "PR opened: ${PR_URL}"
+            --body "Automated sync from coffee-dictionary.com (sitemap + per-ID REST). Review the migration diff, then merge to deploy to Supabase (merge triggers supabase-migrate.yml)." \
+            --base main --head "$BRANCH" 2>/dev/null) \
+            || PR_URL=$(gh pr view "$BRANCH" --json url -q .url)
+          echo "PR: ${PR_URL}"

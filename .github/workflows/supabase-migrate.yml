@@ -27,8 +27,19 @@ jobs:
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: |
+          # Retry only transient (connection) failures. A SQLSTATE error is
+          # deterministic — retrying just burns minutes and fails identically.
           n=0
-          until supabase db push --db-url "$SUPABASE_DB_URL"; do
+          while true; do
+            if out=$(supabase db push --db-url "$SUPABASE_DB_URL" 2>&1); then
+              echo "$out"
+              break
+            fi
+            echo "$out"
+            if echo "$out" | grep -q "SQLSTATE"; then
+              echo "Deterministic SQL error — not retrying."
+              exit 1
+            fi
             n=$((n+1))
             if [ $n -ge 3 ]; then echo "db push failed after 3 attempts"; exit 1; fi
             echo "retry #$n after transient failure…"

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Export pending glossary term proposals to a coffee-apps GitHub issue.
 
-Reads pending proposals from Supabase (aggregated, no user identifiers), marks
-them exported, and files a weekly issue in THIS repo — proposals now stay
-inside coffee-apps; the dictionary reviewer watches this repo's
-dictionary-proposal issues.
+Connects DIRECTLY to Supabase Postgres (SUPABASE_DB_URL) — no anon-key surface:
+the export view / mark / expire RPCs were dropped (20260906 lockdown) because
+anon grants let any user read and flush the pending queue.
 
-Env: SUPABASE_URL, SUPABASE_ANON_KEY, GH_ISSUE_TOKEN (repo issues write).
+Flow: expire stale (>90d) → file ONE issue for fresh pending proposals → mark
+them exported. Idempotent per day: if an open issue with today's title already
+exists, proposals are marked without double-filing.
+
+Env: SUPABASE_DB_URL (postgres connection string), GH_ISSUE_TOKEN (issues: write).
 """
 from __future__ import annotations
 
@@ -16,7 +19,6 @@ import os
 import sys
 import urllib.request
 
-PROPOSALS_VIEW = "glossary_proposals_export"
 REPO = os.environ.get("PROPOSALS_REPO", "dorianbodnariuc/coffee-apps")
 
 
@@ -33,63 +35,89 @@ def http_json(url: str, method: str = "GET", body=None, headers=None):
 
 
 def main() -> int:
-    sb_url = os.environ["SUPABASE_URL"].rstrip("/")
-    sb_key = os.environ["SUPABASE_ANON_KEY"]
+    import psycopg
+
+    db_url = os.environ["SUPABASE_DB_URL"]
     gh_token = os.environ["GH_ISSUE_TOKEN"]
-    sb_headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}"}
+    gh_headers = {"Authorization": f"Bearer {gh_token}",
+                  "Accept": "application/vnd.github+json"}
 
-    rows = http_json(
-        f"{sb_url}/rest/v1/{PROPOSALS_VIEW}?select=term,context,note,created_at"
-        "&order=created_at.asc&limit=200",
-        headers=sb_headers,
-    )
-    if not isinstance(rows, list):
-        raise SystemExit(f"unexpected proposals response: {rows}")
+    with psycopg.connect(db_url) as conn:
+        with conn.cursor() as cur:
+            # Expire stale proposals (>90 days pending/exported)
+            cur.execute(
+                """update public.glossary_proposals
+                   set status = 'expired'
+                   where status in ('pending', 'exported')
+                     and created_at < now() - interval '90 days'"""
+            )
+            expired = cur.rowcount
+            cur.execute(
+                """select term, context, note, created_at
+                   from public.glossary_proposals
+                   where status = 'pending'
+                   order by created_at asc
+                   limit 200"""
+            )
+            rows = cur.fetchall()
 
-    cutoff = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=90)).isoformat()
-    stale = [r for r in rows if r["created_at"] < cutoff]
-    fresh = [r for r in rows if r["created_at"] >= cutoff]
-    for r in stale:
-        http_json(f"{sb_url}/rest/v1/rpc/expire_proposal", method="POST",
-                  body={"p_term": r["term"]}, headers=sb_headers)
-
-    if not fresh:
-        print("no pending proposals; nothing to export")
+    if not rows:
+        print(f"no pending proposals; expired {expired}")
         return 0
 
     today = dt.date.today().isoformat()
-    lines = [
-        f"Dictionary proposals from the coffee app — {today}",
-        "",
-        "Submitted by app users via the glossary proposals feature.",
-        "Review each: if accepted, publish on coffee-dictionary.com using the",
-        "standard term workflow — the daily site sync picks it up automatically",
-        "and the term reaches app users. Then close this issue.",
-        "",
-    ]
-    for i, r in enumerate(fresh, 1):
-        lines.append(f"## {i}. {r['term']}")
-        if r.get("context"):
-            lines.append(f"- Encountered in: {r['context']}")
-        if r.get("note"):
-            lines.append(f"- Note: {r['note']}")
-        lines.append(f"- Submitted: {r['created_at'][:10]}")
-        lines.append("")
+    title = f"Dictionary proposals — {today}"
 
-    issue = http_json(
-        f"https://api.github.com/repos/{REPO}/issues",
-        method="POST",
-        body={"title": f"Dictionary proposals — {today}", "body": "\n".join(lines),
-              "labels": ["dictionary-proposal"]},
-        headers={"Authorization": f"Bearer {gh_token}",
-                 "Accept": "application/vnd.github+json"},
+    # Idempotency: today's issue already open → mark exported, don't re-file
+    open_issues = http_json(
+        f"https://api.github.com/repos/{REPO}/issues?labels=dictionary-proposal&state=open&per_page=50",
+        headers=gh_headers,
     )
-    print(f"filed issue #{issue.get('number')}: {issue.get('html_url')}")
+    existing = next(
+        (i for i in open_issues if isinstance(i, dict) and i.get("title") == title),
+        None,
+    )
+    if existing:
+        print(f"issue already open: #{existing['number']} — marking exported only")
+    else:
+        lines = [
+            f"Dictionary proposals from the coffee app — {today}",
+            "",
+            "Submitted by app users via the glossary proposals feature.",
+            "Review each: if accepted, publish on coffee-dictionary.com using the",
+            "standard term workflow — the daily site sync picks it up automatically",
+            "and the term reaches app users. Then close this issue.",
+            "",
+        ]
+        for i, (term, context, note, created_at) in enumerate(rows, 1):
+            lines.append(f"## {i}. {term}")
+            if context:
+                lines.append(f"- Encountered in: {context}")
+            if note:
+                lines.append(f"- Note: {note}")
+            lines.append(f"- Submitted: {str(created_at)[:10]}")
+            lines.append("")
 
-    for r in fresh:
-        http_json(f"{sb_url}/rest/v1/rpc/mark_proposal_exported", method="POST",
-                  body={"p_term": r["term"]}, headers=sb_headers)
-    print(f"marked {len(fresh)} proposals exported; expired {len(stale)}")
+        issue = http_json(
+            f"https://api.github.com/repos/{REPO}/issues",
+            method="POST",
+            body={"title": title, "body": "\n".join(lines),
+                  "labels": ["dictionary-proposal"]},
+            headers=gh_headers,
+        )
+        print(f"filed issue #{issue.get('number')}: {issue.get('html_url')}")
+
+    terms = [r[0] for r in rows]
+    with psycopg.connect(db_url) as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """update public.glossary_proposals
+                   set status = 'exported', exported_at = now()
+                   where status = 'pending' and term = any(%s)""",
+                (terms,),
+            )
+            marked = cur.rowcount
+    print(f"marked {marked} proposals exported; expired {expired}")
     return 0
 
 

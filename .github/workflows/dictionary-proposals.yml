@@ -4,6 +4,10 @@ name: Dictionary proposals export
 # glossary_proposals table) to an issue in THIS repo. The dictionary reviewer
 # publishes accepted terms on coffee-dictionary.com; the daily site-sync
 # workflow then brings them into the app automatically.
+#
+# Uses a direct DB connection (SUPABASE_DB_URL) — there is intentionally no
+# anon-readable export path on the proposals table (see migration
+# 20260906_glossary_proposals_lockdown.sql).
 on:
   schedule:
     - cron: "23 5 * * 1" # Mondays 05:23 UTC
@@ -11,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   export:
@@ -24,7 +29,8 @@ jobs:
 
       - name: Export pending proposals to an issue
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           GH_ISSUE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/dictionary/export_proposals_to_issue.py
+        run: |
+          pip install --quiet "psycopg[binary]"
+          python3 scripts/dictionary/export_proposals_to_issue.py

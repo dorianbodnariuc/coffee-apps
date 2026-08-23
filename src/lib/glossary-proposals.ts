@@ -1,9 +1,10 @@
 /**
  * Glossary term proposals — the app's "propose a missing dictionary term"
  * feature. Rows go to Supabase `glossary_proposals` (RLS: users touch only
- * their own). A weekly CI job in coffee-apps exports pending proposals to a
- * seo-app-v2 issue where the dictionary team reviews them; accepted terms
- * flow back to the app via the dictionary-sync PR pipeline.
+ * their own). A weekly CI job in coffee-apps exports pending proposals to an
+ * issue in THIS repo where the dictionary reviewer reviews them; accepted
+ * terms are published on coffee-dictionary.com and flow back to the app via
+ * the daily dictionary-sync PR pipeline.
  */
 import { supabase } from "@/lib/supabase";
 
