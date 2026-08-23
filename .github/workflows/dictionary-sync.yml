@@ -1,8 +1,10 @@
 name: Dictionary sync
 
-# Pulls the dictionary export from seo-app-v2 (GitHub raw), generates an
-# idempotent upsert migration, and opens a PR when the dictionary changed.
-# Merging the PR triggers supabase-migrate.yml which applies migrations.
+# Syncs the app glossary DIRECTLY from coffee-dictionary.com (the site is the
+# storage; public HTML is the API). No seo-app dependency.
+#  1. scrape sitemap + term pages → glossary snapshot
+#  2. generate an idempotent upsert migration when the term set changed
+#  3. open a PR; merging applies it to Supabase (supabase-migrate.yml)
 on:
   schedule:
     - cron: "17 6 * * *" # daily 06:17 UTC
@@ -19,6 +21,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -26,10 +29,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch dictionary export and generate migration
+      - name: Sync from coffee-dictionary.com
         env:
-          SEO_APP_READ_TOKEN: ${{ secrets.SEO_APP_READ_TOKEN }}
-        run: python3 scripts/dictionary/fetch_and_generate.py
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: python3 scripts/dictionary/sync_from_site.py
 
       - name: Detect change
         id: change
@@ -47,10 +51,10 @@ jobs:
           git config user.email "actions@github.com"
           git checkout -b "$BRANCH"
           git add data/dictionary supabase/migrations
-          git commit -m "chore(dictionary): sync ${DATE} — new export from seo-app-v2"
+          git commit -m "chore(dictionary): site sync ${DATE} — from coffee-dictionary.com"
           git push origin "$BRANCH"
           PR_URL=$(gh pr create \
-            --title "Dictionary sync ${DATE}" \
-            --body "Automated sync from seo-app-v2. Review the migration diff, then merge to deploy to Supabase (merge triggers supabase-migrate.yml). Source: dictionary-import/data/glossary_normalized.json @ seo-app-v2." \
+            --title "Dictionary sync ${DATE} (site)" \
+            --body "Automated sync scraped from coffee-dictionary.com (sitemap + term pages). Review the migration diff, then merge to deploy to Supabase (merge triggers supabase-migrate.yml)." \
             --base main --head "$BRANCH")
           echo "PR opened: ${PR_URL}"

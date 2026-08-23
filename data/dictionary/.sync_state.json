@@ -1,6 +1,7 @@
 {
- "hash": "9603ec71eba76bded94a22d9aec0a34322914364cde221103b9289885e8f2184",
- "terms": 449,
- "migration": "20260903_glossary_sync.sql",
- "synced_at": "2026-08-22T03:33:37.415459+00:00"
+ "hash": "809543d474e7d3b1ef9ecce6d1977eac9ada0613c5f78e7fd883a4f74b33ac13",
+ "terms": 467,
+ "migration": "20260904_glossary_sync.sql",
+ "source": "coffee-dictionary.com",
+ "synced_at": "2026-08-23T00:37:49.645318+00:00"
 }

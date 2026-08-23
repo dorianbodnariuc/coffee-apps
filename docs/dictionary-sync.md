@@ -1,29 +1,38 @@
-# Dictionary sync — coffee-apps ⇄ seo-app-v2
+# Dictionary sync — coffee-apps ⇄ coffee-dictionary.com
 
-The two repos live on different computers. GitHub is the transport; Supabase is
-the app's runtime. No machine needs access to the other's filesystem.
+The WordPress site is the storage; its public HTML is the API. No seo-app
+dependency, no third-party service, no cost. Supabase remains the app's
+runtime (fast reads, offline caching).
 
 ```
-seo-app-v2 (dictionary work, other computer)
-  └── dictionary-import/data/glossary_normalized.json   (source of truth)
-        │  raw.githubusercontent.com (authenticated)
-        ▼
-coffee-apps (this repo, CI on GitHub Actions)
-  scripts/dictionary/fetch_and_generate.py   daily 06:17 UTC
-  → generates supabase/migrations/<ts>_glossary_sync.sql (idempotent upsert)
-  → opens a PR (review gate) ── merge ──▶ supabase-migrate.yml
-                                           supabase db push --db-url (live DB)
-                                           ▼
-                             glossary_terms in the app (449 → grows)
+coffee-dictionary.com (WordPress — source of truth, 440+ term pages)
+  │  wp-sitemap.xml → post/page sitemaps → term URLs (public GETs)
+  │  each page: postid, title, lead (= app definition), cat-links,
+  │             outgoing term links (= related_terms cross-link graph)
+  ▼
+coffee-apps CI · .github/workflows/dictionary-sync.yml (daily 06:17 UTC)
+  scripts/dictionary/sync_from_site.py
+  → data/dictionary/glossary_normalized.json (snapshot, hash-checked)
+  → supabase/migrations/<ts>_glossary_sync.sql (idempotent upsert; only when
+    the term set changed; stamp always sorts after existing migrations)
+  → opens a PR ── merge ──▶ supabase-migrate.yml: supabase db push --db-url
+                             ▼
+                glossary_terms in the live app
 ```
 
-## Pull: new dictionary data flows to the app automatically
+## Why site-HTML instead of the WP REST API
 
-- Workflow: `.github/workflows/dictionary-sync.yml` (daily + manual dispatch).
-- The script is a no-op until the export hash changes (`data/dictionary/.sync_state.json`).
-- A PR is opened only when something actually changed; merging it applies the
-  migration automatically via `supabase-migrate.yml`.
-- Rollback = revert the PR; the previous full-seed migration remains in history.
+The host's cache layer (Cloudflare + LiteSpeed) freezes REST LIST endpoints —
+pagination returns the same page forever, categories returns one entry, even
+when authenticated. Per-ID REST and public page HTML are reliable. The sitemap
+is the canonical enumeration of live (published) term URLs — drafts never
+appear. Everything the sync needs is in the public HTML.
+
+## Pull: publishing a term reaches the app automatically
+
+On coffee-dictionary.com (from any machine): publish the term post. Next daily
+sync opens a PR with the new term; merge it (usually a one-click review) and
+supabase-migrate applies it. Nothing else to run.
 
 ## Push: users propose new dictionary terms
 
@@ -31,33 +40,28 @@ coffee-apps (this repo, CI on GitHub Actions)
 app user → glossary_proposals table (RLS: own rows only)
   └── weekly CI (Mondays 05:23 UTC): dictionary-proposals.yml
         scripts/dictionary/export_proposals_to_issue.py
-        → GitHub issue on seo-app-v2, label `dictionary-proposal`
-        → dictionary team reviews/publishes on coffee-dictionary.com
-        → next daily sync PR brings the new term into the app
+        → issue in THIS repo, label `dictionary-proposal`
+        → reviewer publishes accepted terms on the site
+        → daily site sync brings them into the app
 ```
 
-The full loop (user proposes → term published → appears in their app) takes at
-most one review cycle + one day.
+Full loop: user proposes → reviewer publishes → term in app ≈ 1 day + review.
 
 ## Required secrets (Settings → Secrets → Actions)
 
-| Secret | Value / scope |
+| Secret | Value |
 |---|---|
-| `SEO_APP_READ_TOKEN` | PAT that can READ seo-app-v2 (it's private) |
-| `SEO_APP_ISSUE_TOKEN` | PAT that can open issues on seo-app-v2 |
-| `SUPABASE_DB_URL` | `postgresql://postgres:<url-encoded-password>@aws-0-us-east-1.pooler.supabase.com:5432/postgres` |
-| `SUPABASE_URL` | `https://kxrktrgoqpfhilijykmr.supabase.co` |
-| `SUPABASE_ANON_KEY` | the app's anon/publishable key |
+| `SUPABASE_DB_URL` | pooler URL with URL-encoded password (set) |
+| `SUPABASE_URL` / `SUPABASE_ANON_KEY` | app project values (set) |
 
-Note: the DB password must be URL-encoded in `SUPABASE_DB_URL` (it contains
-URL-special characters — supabase CLI fails to parse it raw).
+(`GITHUB_TOKEN` covers PR + issue creation inside this repo. The old
+SEO_APP_* secrets are no longer needed by any workflow.)
 
-## seo-app-v2 side (dictionary team conventions)
+## Notes
 
-- After publishing terms on coffee-dictionary.com, re-run the ETL
-  (`dictionary-import/scripts/fetch_full_glossary.py --merge-only` →
-  `normalize.py`) and COMMIT `glossary_normalized.json`. That commit is the
-  release signal — the next daily sync picks it up.
-- Proposals arrive as issues labeled `dictionary-proposal`; the review workflow
-  (drafts → validate → publish → ETL) is documented in
-  `dictionary-import/tasks/` and the `coffee-dictionary-content` skill.
+- Throttle: 1 req/s against the site; a full sync is ~460 pages ≈ 8–13 min,
+  inside the workflow's 30-min timeout.
+- Categories: WP category names with <10 terms fold into "General Terms"
+  (same rule as the previous ETL's normalize step).
+- Definitions = the site's first paragraph (the app convention, D-001/D-002).
+- Rollback = revert the sync PR; previous full-seed migration stays in history.

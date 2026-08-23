@@ -1,8 +1,9 @@
 name: Dictionary proposals export
 
 # Weekly: exports new glossary term proposals (submitted by app users via the
-# glossary_proposals table) to an issue on seo-app-v2, where dictionary work
-# happens. Proposals older than 90 days are closed as expired automatically.
+# glossary_proposals table) to an issue in THIS repo. The dictionary reviewer
+# publishes accepted terms on coffee-dictionary.com; the daily site-sync
+# workflow then brings them into the app automatically.
 on:
   schedule:
     - cron: "23 5 * * 1" # Mondays 05:23 UTC
@@ -21,9 +22,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Export pending proposals to seo-app-v2 issue
+      - name: Export pending proposals to an issue
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          SEO_APP_ISSUE_TOKEN: ${{ secrets.SEO_APP_ISSUE_TOKEN }}
+          GH_ISSUE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/dictionary/export_proposals_to_issue.py
