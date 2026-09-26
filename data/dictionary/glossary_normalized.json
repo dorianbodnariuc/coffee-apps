@@ -20,6 +20,18 @@
     "postid": 66950
   },
   {
+    "term": "Able Disk",
+    "slug": "able-disk",
+    "definition": "Able Disk is a reusable stainless-steel coffee filter manufactured by Able Brewing, specifically designed for use with the AeroPress coffee maker. [1] This perforated mesh disk replaces disposable paper filters, letting more of the coffee’s natural oils and fine particles reach the final brew. [2] The result is a fuller-bodied cup with enhanced texture and flavor complexity—a trade-off that sets the stage for the metal-filter category explored below. [3]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/able-disk/",
+    "postid": 73501
+  },
+  {
     "term": "Acrid Coffee Taste",
     "slug": "acrid-coffee-taste",
     "definition": "Acrid Coffee Taste refers to a specific and undesirable flavor defect in coffee. [1] It has a harsh, sharp, and irritating quality, which is characteristic of a burning or pungent bitterness. [2] This flaw is distinct from desirable acidity and indicates problems that can range from production and roasting to the brewing process itself. [3]",
@@ -39,6 +51,19 @@
     "postid": 66948
   },
   {
+    "term": "Adenosine",
+    "slug": "adenosine",
+    "definition": "Adenosine (uh-DEN-uh-seen) is a naturally occurring purine nucleoside found in every cell of the human body, where it acts as a signaling molecule that regulates sleep, arousal, and cardiovascular function. [1] Though it belongs to biology rather than the roaster’s vocabulary, this compound explains much of how caffeine affects the brain. In coffee science, adenosine matters because caffeine produces its well-known alerting effect primarily by blocking adenosine receptors rather than by adding energy to the body. [2]",
+    "category": "Coffee & Health",
+    "categories": [
+      "Coffee & Health",
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/adenosine/",
+    "postid": 73503
+  },
+  {
     "term": "Aerobie",
     "slug": "aerobie",
     "definition": "The Aerobie coffee maker is a manual brewing device that uses air pressure to extract coffee. It involves steeping ground coffee in hot water before using a plunger to force the liquid through a filter. The device consists of a cylindrical chamber, a plunger, and paper filters that remove sediment while allowing oils to pass through.",
@@ -54,8 +79,7 @@
       "Coffee Brewing",
       "Coffee extraction",
       "Coffee filter",
-      "Coffee production",
-      "Pressure"
+      "Coffee production"
     ],
     "source_url": "https://coffee-dictionary.com/aerobie/",
     "postid": 67038
@@ -95,6 +119,20 @@
     "postid": 66803
   },
   {
+    "term": "African Civet",
+    "slug": "african-civet",
+    "definition": "African Civet ( Civettictis civetta ) is a large nocturnal mammal native to sub-Saharan Africa and the species most often cited when coffee is described as “African civet coffee.” [1] It is the second-largest civet species after the binturong, and it is omnivorous, eating everything from coffee cherries and invertebrates to small mammals and millipedes. [1]",
+    "category": "Coffee Culture",
+    "categories": [
+      "Coffee Culture",
+      "Coffee Science",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/african-civet/",
+    "postid": 73504
+  },
+  {
     "term": "After Dinner Roast",
     "slug": "after-dinner-roast",
     "definition": "Definition and Common Usage After Dinner Roast refers to a dark roast coffee made for consumption after meals. This roast style undergoes extended heating at temperatures between 370°F–540°F during the Maillard reaction, resulting in beans with a bold, rich flavor profile [1] . The intense roasting process reduces caffeine content somewhat compared to lighter roasts—a typical dark roast contains approximately 51 mg of caffeine per serving versus 60 mg in light roasts [1] .",
@@ -106,6 +144,7 @@
       "Caffeine",
       "Caramelization",
       "Coffee production",
+      "Dark Roast",
       "Flavor",
       "Specialty coffee",
       "coffee beans",
@@ -180,9 +219,28 @@
     "categories": [
       "General Terms"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Aged Coffee",
+      "Monsooned Malabar",
+      "Past Crop",
+      "Rancid Flavor in Coffee",
+      "coffee roasting"
+    ],
     "source_url": "https://coffee-dictionary.com/ageing/",
     "postid": 66834
+  },
+  {
+    "term": "Agitation",
+    "slug": "agitation",
+    "definition": "Agitation is the deliberate movement or disturbance of coffee grounds and brewing water during extraction. [1] It is a controllable brewing variable rather than a brewing method, used to renew water contact with the coffee bed, speed up extraction, and improve evenness across the slurry. [2] In practice, it covers a range of actions — stirring, swirling, tapping, and pour-induced turbulence — each of which disturbs the coffee bed or brewing liquid in some way. [3]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/agitation/",
+    "postid": 73505
   },
   {
     "term": "Air Roaster",
@@ -206,6 +264,18 @@
     "postid": 66944
   },
   {
+    "term": "Airflow",
+    "slug": "airflow",
+    "definition": "Airflow is the movement of air through a coffee roaster’s chamber and exhaust system. It is a roasting-control variable, not a coffee variety, processing method, or origin name. Along with gas setting and drum speed, it governs convective heat transfer, clears smoke and chaff, and shapes how quickly a roast develops. [1]",
+    "category": "Coffee Roasting",
+    "categories": [
+      "Coffee Roasting"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/airflow/",
+    "postid": 73506
+  },
+  {
     "term": "Alan Adler",
     "slug": "alan-adler",
     "definition": "Alan Adler is an American inventor. His inventions include aerodynamic toys, such as footballs with fins and flying rings and discs. His Aerobie Pro flying ring set several world records for the farthest thrown object. In 2005 he invented a coffee brewing device and method called the AeroPress . He has approximately 40 patents in electronics, optics, and aerodynamics.",
@@ -221,6 +291,18 @@
     "postid": 67051
   },
   {
+    "term": "Alcohol",
+    "slug": "alcohol",
+    "definition": "Alcohol (from the Arabic al-kuhl , via Medieval Latin) is a class of organic chemical compounds—most commonly ethanol—that yeasts, bacteria, and other microorganisms produce by fermenting sugars and other compounds. [1] In coffee, it forms naturally during fermentation, as microbes break down the mucilage of the coffee cherry and generate alcohols alongside acids and other metabolites. [2] Beyond ethanol, this process yields higher alcohols such as isoamyl alcohol and 2-phenylethanol, which can add sweet and floral aromatic notes to the final cup. [3]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/alcohol/",
+    "postid": 73507
+  },
+  {
     "term": "Alkaline Taste in Coffee",
     "slug": "alkaline-taste-in-coffee",
     "definition": "Alkaline Taste in Coffee is a sensory term in coffee tasting describing a dry, chalky, or soapy sensation, distinct from true acidity or bitterness, primarily perceived at the back of the tongue. It is a key characteristic of many dark-roasted coffees and beans from specific regions like Indonesia. Despite the name, coffee is chemically acidic, with this taste arising from minerals and roasting byproducts.",
@@ -231,6 +313,20 @@
     "related_terms": [],
     "source_url": "https://coffee-dictionary.com/alkaline-taste-in-coffee/",
     "postid": 66943
+  },
+  {
+    "term": "Altitude",
+    "slug": "altitude",
+    "definition": "Altitude is the elevation above sea level at which coffee is grown, measured in meters (or feet) and used as a core terroir descriptor in coffee production. [1] It is a cultivation condition rather than a coffee variety, processing method, or drink style, and it helps explain why growing conditions influence bean density, maturation speed, and cup profile. [2]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins",
+      "Coffee Science",
+      "Flavors & Cupping"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/altitude/",
+    "postid": 73508
   },
   {
     "term": "Altura Coffee",
@@ -278,8 +374,12 @@
     "related_terms": [
       "Caramelization",
       "Coffee Acidity",
+      "Cold Brew Coffee",
+      "Drip Coffee",
+      "Espresso",
       "Flavor",
       "French press",
+      "Medium Roast",
       "National Coffee Association",
       "Specialty coffee",
       "United States",
@@ -291,8 +391,33 @@
     "postid": 66942
   },
   {
+    "term": "Amino acids",
+    "slug": "amino-acids",
+    "definition": "Amino acids are nitrogen-containing organic compounds naturally present in green coffee beans that serve as essential reactants in roasting chemistry. They are not a flavor note or roast style but measurable chemical components of the raw bean. During roasting, amino acids combine with reducing sugars to drive Maillard reactions that generate much of coffee’s color, aroma, and flavor complexity.",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/amino-acids/",
+    "postid": 73509
+  },
+  {
+    "term": "Angelo Moriondo",
+    "slug": "angelo-moriondo",
+    "definition": "Angelo Moriondo (pronounced ahn-JEH-loh moh-ree-OHN-doh; born in Turin, Italy, 1851) was an Italian inventor and entrepreneur, not a beverage. He is best known for patenting an early steam-powered coffee machine in 1884, which is often cited as the first known espresso machine. [1] His device, however, was a bulk-brewing prototype rather than the modern single-shot espresso machine we know today — a distinction that shapes how his legacy is understood. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/angelo-moriondo/",
+    "postid": 73510
+  },
+  {
     "term": "Antestia Bug Damage",
-    "slug": "antestia-bug-damage-on-coffee-beans",
+    "slug": "antestia-bug-damage",
     "definition": "Antestia bugs (Antestiopsis spp.), also known as variegated coffee bugs or shield bugs, are small insects belonging to the Pentatomidae family that feed on coffee plants. These pests pierce coffee cherries and beans with their mouthparts, causing physical damage and introducing harmful bacteria into the fruit [1] . The bacteria produce 2-isopropyl-3-methoxypyrazine (IMP) when beans are heated at high temperature , resulting in the distinctive potato taste defect (PTD) [2] .",
     "category": "Coffee Science",
     "categories": [
@@ -308,18 +433,46 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/antestia-bug-damage-on-coffee-beans/",
+    "source_url": "https://coffee-dictionary.com/antestia-bug-damage/",
     "postid": 66941
+  },
+  {
+    "term": "Antestiopsis spp",
+    "slug": "antestiopsis-spp",
+    "definition": "Antestiopsis spp (an-tes-tee-OP-sis; from the genus name Antestiopsis ) is a genus of shield bugs in the family Pentatomidae, commonly called antestia bugs or variegated coffee bugs. [1] These sap-feeding insects are not a coffee drink, bean variety, or flavor defect. [1] Several species within this genus are major pests of Arabica coffee in eastern Africa, where their feeding can contribute to the potato taste defect in roasted beans. [2]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/antestiopsis-spp/",
+    "postid": 73511
+  },
+  {
+    "term": "Antioxidants",
+    "slug": "antioxidants",
+    "definition": "Antioxidants are a broad class of naturally occurring chemical compounds that help neutralize reactive oxygen species (ROS)—unstable molecules that can damage cells, proteins, and DNA. They are not a brewing method, roast level, or flavor descriptor, but a chemical property class used to describe bioactive compounds found in foods and beverages. [1]",
+    "category": "Coffee & Health",
+    "categories": [
+      "Coffee & Health",
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/antioxidants/",
+    "postid": 73512
   },
   {
     "term": "Apaneca-Ilamatepec",
     "slug": "apaneca-ilamatepec",
-    "definition": "Apaneca-Ilamatepec is a coffee-producing mountain range in western El Salvador, part of the volcanic chain that runs through Central America and one of the coffee world’s storied names. Coffee grows on the slopes of the Santa Ana volcano between roughly 1,000 and 1,700 meters, where volcanic soil and Bourbon-led plantings produce a sweet, balanced cup with gentle acidity and notes of caramel, cocoa, and citrus.",
+    "definition": "Apaneca-Ilamatepec is a legally protected coffee-growing denomination of origin in western El Salvador, centered on a volcanic mountain range that includes the Santa Ana (Ilamatepec) volcano. Its high-altitude specialty coffees—shaped by volcanic soils and shade-grown farms—typically cup as sweet, balanced, and citrus- or chocolate-leaning. The region earned El Salvador’s first Denomination of Origin status in 2010, with European Union recognition following in 2012, and that legal framework anchors everything from farm practices to export labels. [1]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Single Origin",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/apaneca-ilamatepec/",
     "postid": 72937
   },
@@ -352,10 +505,35 @@
       "General Terms"
     ],
     "related_terms": [
-      "Cappuccino"
+      "Coffea Arabica",
+      "Espresso",
+      "Robusta coffee",
+      "Turkish coffee",
+      "coffee beans"
     ],
     "source_url": "https://coffee-dictionary.com/arabic-coffee/",
     "postid": 67005
+  },
+  {
+    "term": "Aroma profile",
+    "slug": "aroma-profile",
+    "definition": "An aroma profile is the complete set of volatile compounds released by coffee and perceived as smell, encompassing the aromatic impression from dry grounds, wet grounds, and the brewed cup. [1] Smell contributes most of what is commonly called taste, and the olfactory system distinguishes thousands of volatile compounds that the tongue alone cannot detect. [2]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science",
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Acrid Coffee Taste",
+      "Aftertaste in Coffee",
+      "Ashy Coffee",
+      "Astringency in Coffee",
+      "Baggy Coffee",
+      "Baked Coffee",
+      "Balance in Coffee"
+    ],
+    "source_url": "https://coffee-dictionary.com/aroma-profile/",
+    "postid": 73513
   },
   {
     "term": "Artisan Coffee",
@@ -471,12 +649,16 @@
   {
     "term": "Australia",
     "slug": "australia",
-    "definition": "Australia , officially the Commonwealth of Australia, is a country comprising the mainland of the Australian continent, the island of Tasmania and numerous smaller islands. It is the world’s sixth-largest country by total area. Neighbouring countries include Indonesia , East Timor and Papua New Guinea to the north; the Solomon Islands, Vanuatu and New Caledonia to the north-east; and New Zealand to the south-east.",
+    "definition": "Australia is a country and continent whose coffee identity is defined less by domestic production and more by a distinctive café culture built around espresso-based drinks. [1] In coffee terms, Australia matters as the primary cultural home of the flat white , a double-shot espresso with silky microfoam, and the long black , which is made by adding espresso to hot water rather than water to espresso. [1] The nation’s café scene, concentrated in urban centers like Melbourne and Sydney, is characterized by a strong preference for specialty roasts, skilled baristas, and a competitive café environment that has influenced coffee trends globally. [2] While Australia grows a small amount of coffee in Queensland and New South Wales, its global significance rests on consumption habits and café standards that have shaped how espresso drinks are prepared and ordered worldwide. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Flat white",
+      "Guatemala",
+      "Long black"
+    ],
     "source_url": "https://coffee-dictionary.com/australia/",
     "postid": 67022
   },
@@ -542,6 +724,22 @@
     "postid": 66783
   },
   {
+    "term": "Bamboo filters",
+    "slug": "bamboo-filters",
+    "definition": "Bamboo filters are coffee brew filters made from bamboo pulp or bamboo-based fiber blends rather than the wood-pulp paper used in standard filters. [1] They fit the same cone and basket shapes as conventional paper, most commonly #2 and #4 cones for pour-over and drip brewers, so you swap the filter medium without changing how you brew. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Barista",
+      "Paper Filters"
+    ],
+    "source_url": "https://coffee-dictionary.com/bamboo-filters/",
+    "postid": 73514
+  },
+  {
     "term": "Bar (unit)",
     "slug": "bar-unit",
     "definition": "Many coffee machines use pressure to enhance brewing parameters. Some of the devices that use pressure are single serve coffee machines , such as Keurig, or Tassimo, and espresso machines . Other devices are the Moka pot , or steam espresso makers. Pressure is measured in bar.",
@@ -571,6 +769,55 @@
     "postid": 67105
   },
   {
+    "term": "Baskets",
+    "slug": "baskets",
+    "definition": "Baskets are the removable, perforated metal inserts that sit inside a portafilter and hold the ground coffee during espresso extraction. Their diameter, depth, hole pattern, and wall shape directly shape dose capacity, water flow, resistance, and extraction consistency. [1] The basket is a reusable metal component — not the spent puck of grounds left behind after a shot. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment"
+    ],
+    "related_terms": [
+      "filter basket"
+    ],
+    "source_url": "https://coffee-dictionary.com/baskets/",
+    "postid": 73515
+  },
+  {
+    "term": "Batch",
+    "slug": "batch",
+    "definition": "Batch (often called “batch brew” in café settings) is coffee brewed in larger quantities at once, typically by an automatic drip or filter machine rather than by hand. [1] It names a production method and a serving format, not a bean, roast level, or origin — the word covers the volume brewed in a single cycle. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Equipment",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/batch/",
+    "postid": 73516
+  },
+  {
+    "term": "Batian",
+    "slug": "batian",
+    "definition": "Batian is a high-yielding, disease-resistant coffee variety developed by Kenya ’s Coffee Research Institute and released in 2010. This hybrid cultivar combines robust genetic resistance to both coffee leaf rust and coffee berry disease with a cup profile approaching the complexity of Kenya’s celebrated SL28 and SL34 varieties.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Arusha Coffee",
+      "Castillo",
+      "Catimor",
+      "Coffea Arabica",
+      "Kenya",
+      "Ruiru 11",
+      "SL28",
+      "SL34"
+    ],
+    "source_url": "https://coffee-dictionary.com/batian/",
+    "postid": 72874
+  },
+  {
     "term": "Beaker (glassware)",
     "slug": "beaker-glassware",
     "definition": "The main piece of a French press is a glass beaker. Because the beaker is exposed to high temperatures in a short time, they are subject to thermal shock , This is why beakers for French press coffee makers are made of borosilicate glass , or more recently, of stainless steel .",
@@ -583,6 +830,28 @@
     ],
     "source_url": "https://coffee-dictionary.com/beaker-glassware/",
     "postid": 66973
+  },
+  {
+    "term": "Bean freshness",
+    "slug": "bean-freshness",
+    "definition": "Bean freshness describes the quality condition of roasted coffee beans as a function of time since roasting, with the best flavor and aroma typically occurring shortly after roast once initial degassing has occurred. [1] It differs from general coffee staling by focusing on the bean’s post-roast aromatic and chemical state, not brewing variables or packaged ready-to-drink products. [2]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science",
+      "Flavors & Cupping",
+      "General Terms"
+    ],
+    "related_terms": [
+      "Aftertaste in Coffee",
+      "Aged Coffee",
+      "Ageing",
+      "Air Roaster",
+      "American Roast",
+      "Baggy Coffee",
+      "Baked Coffee"
+    ],
+    "source_url": "https://coffee-dictionary.com/bean-freshness/",
+    "postid": 73517
   },
   {
     "term": "Bean Hopper",
@@ -603,6 +872,109 @@
     "postid": 71484
   },
   {
+    "term": "Bean separation",
+    "slug": "bean-separation",
+    "definition": "Bean separation is the post-harvest sorting of green coffee beans into more uniform lots by size, density, and sometimes color, while removing defects and foreign material. [1] This quality-control step happens in the dry mill after hulling, not at the brewing stage or on the farm. [2] Its goal is to create clean, consistent, and gradeable lots that store, export, and roast predictably. [3]",
+    "category": "General Terms",
+    "categories": [
+      "General Terms",
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AA Coffee Grading",
+      "Aged Coffee",
+      "Ageing",
+      "Air Roaster",
+      "Altura Coffee",
+      "American Roast",
+      "Antestia Bug Damage"
+    ],
+    "source_url": "https://coffee-dictionary.com/bean-separation/",
+    "postid": 73518
+  },
+  {
+    "term": "Bean size profiles",
+    "slug": "bean-size-profiles",
+    "definition": "Bean size profiles describe the distribution of green coffee bean sizes within a lot, typically measured by passing beans through standardized screen sieves with round holes. [1] Screens are numbered by hole size in sixty-fourths of an inch, so a “16 screen” retains beans sixteen sixty-fourths of an inch wide. [1] The resulting distribution, expressed as percentages retained on each screen, reveals how uniform or mixed a lot is by geometry. [2]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AA Coffee Grading",
+      "Aged Coffee",
+      "Altura Coffee",
+      "American Roast",
+      "Artisan Coffee",
+      "Arusha Coffee",
+      "Coffea Arabica"
+    ],
+    "source_url": "https://coffee-dictionary.com/bean-size-profiles/",
+    "postid": 73519
+  },
+  {
+    "term": "Bean surface",
+    "slug": "bean-surface",
+    "definition": "Bean surface is the visible outer appearance of a roasted coffee bean, encompassing its texture, sheen, degree of wrinkling, and any oils that have migrated to the exterior. [1] It serves as a direct visual indicator of roast development, shifting from a dry, matte look in light roasts to a shiny, oily finish in darker ones. [1]",
+    "category": "Coffee Roasting",
+    "categories": [
+      "Coffee Roasting"
+    ],
+    "related_terms": [
+      "After Dinner Roast",
+      "American Roast",
+      "Ashy Coffee",
+      "Astringency in Coffee",
+      "Baggy Coffee",
+      "Baked Coffee",
+      "Balance in Coffee"
+    ],
+    "source_url": "https://coffee-dictionary.com/bean-surface/",
+    "postid": 73520
+  },
+  {
+    "term": "Bean type",
+    "slug": "bean-type",
+    "definition": "Bean type is an umbrella term used in coffee to describe how beans are classified at the bean level, most commonly by species, variety (cultivar), or processing method. [1] It is not a single formal botanical rank but a practical trade phrase covering categories such as Arabica versus Robusta or washed versus natural. [2]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science",
+      "General Terms"
+    ],
+    "related_terms": [
+      "AA Coffee Grading",
+      "Aged Coffee",
+      "Altura Coffee",
+      "American Roast",
+      "Arabian Mocha Coffee",
+      "Arusha Coffee",
+      "Coffea Arabica"
+    ],
+    "source_url": "https://coffee-dictionary.com/bean-type/",
+    "postid": 73521
+  },
+  {
+    "term": "Bed roaster",
+    "slug": "bed-roaster",
+    "definition": "A bed roaster is a coffee roasting machine that heats beans while they are suspended and agitated in a shallow, moving bed of hot air. [1] It is a fluid-bed or air roaster, meaning heat transfer is dominated by convection rather than by contact with a heated metal drum. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment",
+      "Coffee Roasting"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "After Dinner Roast",
+      "Air Roaster",
+      "American Roast",
+      "Artisan Coffee",
+      "Baked Coffee",
+      "Barista"
+    ],
+    "source_url": "https://coffee-dictionary.com/bed-roaster/",
+    "postid": 73522
+  },
+  {
     "term": "Beko",
     "slug": "beko",
     "definition": "Beko is a domestic appliance and consumer electronics brand of Arçelik A. Ş.. Beko Elektronik A. Ş. (later Grundig Elektronik A. Ş. ) was a Turkish consumer electronics manufacturer, owned by Arçelik. In 2004 Beko Elektronik purchased Grundig and by January 2005, Beko and its rival Turkish electronics and white goods brand Vestel accounted for more than half of all TV sets manufactured in Europe. In April 2008 Beko renamed itself Grundig Elektronik A. Ş.",
@@ -614,6 +986,19 @@
     "related_terms": [],
     "source_url": "https://coffee-dictionary.com/beko/",
     "postid": 66977
+  },
+  {
+    "term": "Beverage strength",
+    "slug": "beverage-strength",
+    "definition": "Beverage strength is the concentration of dissolved coffee solids in a finished drink, typically measured as total dissolved solids (TDS) and expressed as a percentage of the beverage’s total mass. [1] It describes how concentrated or watery a cup tastes, not how much caffeine it contains. [1]",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/beverage-strength/",
+    "postid": 73523
   },
   {
     "term": "Bialetti",
@@ -763,16 +1148,80 @@
     "postid": 66788
   },
   {
-    "term": "Blue Mountain Coffee",
-    "slug": "blue-mountain-coffee",
-    "definition": "Blue Mountain Coffee is a coffee-producing region and appellation in the Blue Mountains of Jamaica, above roughly 1,000 meters within a legally defined zone on the island’s eastern end. It is one of the world’s most protected names in coffee: certified under Jamaica’s coffee appellation system, shipped in the trademark wooden barrel, and made up almost entirely of a Typica selection known as the Blue Mountain cultivar.",
-    "category": "General Terms",
+    "term": "Blade grinders",
+    "slug": "blade-grinders",
+    "definition": "A blade grinder is a coffee grinding device that reduces roasted beans to particles using a rapidly spinning propeller-like blade mounted at the base of a small cup, rather than crushing them between two burr surfaces. [1] The distinction matters because grind uniformity governs extraction: blade grinders produce a wide spread of particle sizes, from fine dust to coarse chunks, so water extracts unevenly, yielding sour and bitter notes in the same cup. [2]",
+    "category": "Coffee Equipment",
     "categories": [
+      "Coffee Equipment"
+    ],
+    "related_terms": [
+      "Acrid Coffee Taste",
+      "AeroPress",
+      "Aftertaste in Coffee",
+      "Air Roaster",
+      "Ashy Coffee",
+      "Astringency in Coffee",
+      "Barista"
+    ],
+    "source_url": "https://coffee-dictionary.com/blade-grinders/",
+    "postid": 73524
+  },
+  {
+    "term": "Blend",
+    "slug": "blend",
+    "definition": "Blend is a planned mixture of two or more coffees, typically from different origins, varieties, processing methods, or roast levels, built to achieve a specific flavor profile and more consistent cup quality. It differs from a single-origin coffee, which comes from one place and is meant to showcase that origin’s character.",
+    "category": "Coffee Roasting",
+    "categories": [
+      "Coffee Roasting",
       "General Terms"
     ],
     "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/blend/",
+    "postid": 73525
+  },
+  {
+    "term": "Bloom phase",
+    "slug": "bloom-phase",
+    "definition": "Bloom phase is the initial wetting stage in coffee brewing, when a small amount of hot water first contacts freshly ground coffee and causes trapped carbon dioxide to escape rapidly, making the coffee bed swell, bubble, and settle before the main extraction begins. [1] This controlled pre-infusion step belongs to manual brewing methods such as pour-over and drip coffee, and it serves extraction rather than flavor development. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/bloom-phase/",
+    "postid": 73526
+  },
+  {
+    "term": "Blue Mountain Coffee",
+    "slug": "blue-mountain-coffee",
+    "definition": "Blue Mountain Coffee is a legally protected Jamaican coffee appellation, not a coffee variety or brewing method, designating beans grown in a defined geographic zone within the Blue Mountains of eastern Jamaica. [1] The designation is restricted to coffee grown at elevations between 3,000 and 5,500 feet, a range that produces a slower-maturing cherry with a characteristically dense bean. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Altura Coffee",
+      "Coffea Arabica",
+      "Coffee Brewing Temperature",
+      "Jamaica",
+      "United States"
+    ],
     "source_url": "https://coffee-dictionary.com/blue-mountain-coffee/",
     "postid": 72947
+  },
+  {
+    "term": "Blueberry notes",
+    "slug": "blueberry-notes",
+    "definition": "Blueberry notes is a coffee tasting descriptor used when a coffee’s aroma or flavor reminds tasters of blueberry. [1] This sweet, berry-like fruit character occurs naturally in the roasted beans rather than coming from added flavoring or ingredients. [2] The term appears most often in specialty coffee, where it is strongly associated with naturally processed coffees, especially certain Ethiopian lots — a connection rooted in how those coffees are produced and where they are grown. [3]",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/blueberry-notes/",
+    "postid": 73527
   },
   {
     "term": "Bodum",
@@ -805,29 +1254,56 @@
     "postid": 67034
   },
   {
+    "term": "Boiling chamber",
+    "slug": "boiling-chamber",
+    "definition": "Boiling chamber is the lower, water-holding vessel of a stovetop or vacuum coffee brewer in which water is heated, pressurized, and then driven upward through the coffee bed. [1] It names a functional component, not a distinct brewer or drink style — the part that generates heat and pressure, not the coffee that gets extracted. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Equipment"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/boiling-chamber/",
+    "postid": 73528
+  },
+  {
+    "term": "Boiling point",
+    "slug": "boiling-point",
+    "definition": "Boiling point (from Latin bullire , “to bubble”) is the temperature at which a liquid turns to vapor under the surrounding air pressure — for pure water at sea level, about 100°C (212°F). It is a physical temperature threshold rather than a flavor, device, or brewing method, which makes it a reference point for how hot your brewing water can actually get. In coffee, its importance comes from the fact that it drops as altitude rises, so “bring water to a boil” means something different in Denver than in Amsterdam.",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "Coffee Brewing Temperature"
+    ],
+    "source_url": "https://coffee-dictionary.com/boiling-point/",
+    "postid": 73529
+  },
+  {
     "term": "Bolaven Plateau",
     "slug": "bolaven-plateau",
-    "definition": "Bolaven Plateau is a coffee-producing region of southern Laos, a fertile volcanic plateau rising between roughly 800 and 1,300 meters above the Mekong lowlands. Planted largely to robusta with a growing arabica share, it produces nearly all of Laos’s commercial coffee. Cooler plateau air and basalt soil give its best arabicas a mild, balanced cup, while the robusta underpins regional blends and instant coffee.",
+    "definition": "Bolaven Plateau is a highland volcanic plateau in southern Laos, best known as the country’s primary coffee-growing region. [1] It is a distinct geographic origin rather than a coffee product or processing method, characterized by its cool, wet climate, basalt-rich soils, and elevations ranging from roughly 800 to 1,300 meters. [2] The plateau accounts for the vast majority of Laos’s commercial coffee production , with robusta dominating the output and arabica playing an increasingly important role in specialty markets. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [
-      "Apaneca-Ilamatepec",
-      "Mount Kilimanjaro"
-    ],
+    "related_terms": [],
     "source_url": "https://coffee-dictionary.com/bolaven-plateau/",
     "postid": 72938
   },
   {
     "term": "Bolivia",
     "slug": "bolivia",
-    "definition": "Bolivia is a coffee-producing country in west-central South America , a small but distinctive origin whose farms sit among the highest coffee-growing elevations on earth. Its coffee industry is modest by volume yet increasingly valued by specialty buyers for clean , sweet, floral lots that are hard to find elsewhere.",
+    "definition": "Bolivia is a coffee-origin term for arabica coffee grown in the South American country of Bolivia, where specialty production is concentrated in the high-elevation Yungas landscapes east of the Andes. [1] These are small-volume, high-altitude lots that often deliver a clean, sweet, and floral cup profile. Though a modest producer by global standards, Bolivia’s best coffees are increasingly valued by specialty buyers for their clarity and elegance — a reputation rooted in the country’s distinctive growing conditions. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Caturra",
+      "Typica"
+    ],
     "source_url": "https://coffee-dictionary.com/bolivia/",
     "postid": 72602
   },
@@ -864,15 +1340,33 @@
     "postid": 66976
   },
   {
+    "term": "Bourbon",
+    "slug": "bourbon",
+    "definition": "Bourbon refers to one of the two foundational varieties of Coffea arabica, alongside Typica, named for the island of Bourbon (now Réunion) where it was first widely cultivated. It is prized for a sweet, balanced, often fruit-forward cup and is the parent of many of today’s most important coffee varieties.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Caturra",
+      "Coffea Arabica",
+      "El Salvador",
+      "Pacas",
+      "Rwanda",
+      "Typica"
+    ],
+    "source_url": "https://coffee-dictionary.com/bourbon/",
+    "postid": 72852
+  },
+  {
     "term": "Brain damage",
     "slug": "brain-damage",
-    "definition": "“Brain damage” or “ Brain Injury ” (BI) refers to damage to or the loss of brain cells. These injuries can stem from a wide range of internal and external sources. In a coffee context, the term is used metaphorically to describe the catastrophic and irreversible overheating of coffee beans during roasting.",
+    "definition": "Brain damage , also called brain injury (BI), refers to damage to or the loss of brain cells. [1] These injuries can stem from a wide range of internal and external sources. In a coffee context, the term is used metaphorically to describe the catastrophic and irreversible overheating of coffee beans during roasting.",
     "category": "Coffee & Health",
     "categories": [
       "Coffee & Health"
     ],
     "related_terms": [
-      "Espresso Machine",
       "coffee beans"
     ],
     "source_url": "https://coffee-dictionary.com/brain-damage/",
@@ -881,22 +1375,38 @@
   {
     "term": "Brazil",
     "slug": "brazil",
-    "definition": "Brazil is the world’s largest coffee-producing country, supplying roughly a third of all coffee grown on earth, and a defining coffee origin in its own right. A South American giant whose output dwarfs every other origin, Brazil anchors the global market and provides the base of countless espresso blends thanks to its smooth, low-acid, chocolatey profile.",
+    "definition": "Brazil is the world’s largest coffee-producing country, supplying roughly a third of all coffee grown on earth. [1] Its output dwarfs every other origin, anchoring the global market and serving as the base of countless espresso blends thanks to its smooth, low-acid, chocolatey profile.",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Caramelly",
-      "Chocolate Coffee Notes",
-      "Nutty Flavor in Coffee"
+      "Coffea Arabica",
+      "Coffee production",
+      "Espresso",
+      "Espresso Blend"
     ],
     "source_url": "https://coffee-dictionary.com/brazil/",
     "postid": 72604
   },
   {
+    "term": "Brazilian",
+    "slug": "brazilian",
+    "definition": "Brazilian is a coffee descriptor for coffees grown in Brazil or coffees styled after common Brazilian cup characteristics. It is typically a smooth, low-acid profile with chocolate, nut, caramel, and mellow sweetness rather than a specific processing method or brewing technique. In practice, “Brazilian” functions as an origin and flavor shorthand, not a drink recipe — it tells you where the coffee came from and, loosely, what to expect in the cup.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins",
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Brazil"
+    ],
+    "source_url": "https://coffee-dictionary.com/brazilian/",
+    "postid": 73530
+  },
+  {
     "term": "Bready Coffee",
-    "slug": "bready-coffee-a-sign-of-underdevelopment",
+    "slug": "bready-coffee",
     "definition": "Bready coffee refers to under-roasted or underdeveloped coffee beans , characterized by flavors that suggest raw dough, bread, grains, or crackers. [1] This descriptor means a roast defect rather than an origin-specific characteristic; any coffee bean type can develop these qualities when subjected to improper roasting techniques. [2] The term emerged from modern specialty coffee roasting and quality control practices to diagnose and communicate roast profile flaws. [3]",
     "category": "Coffee Roasting",
     "categories": [
@@ -912,7 +1422,7 @@
       "coffee roasters",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/bready-coffee-a-sign-of-underdevelopment/",
+    "source_url": "https://coffee-dictionary.com/bready-coffee/",
     "postid": 66888
   },
   {
@@ -970,8 +1480,142 @@
     "postid": 67070
   },
   {
+    "term": "Brew ratio",
+    "slug": "brew-ratio",
+    "definition": "Brew ratio is the mass proportion of dry coffee to brewing water, typically expressed as a ratio such as 1:16, meaning one part coffee to sixteen parts water. [1] As a core recipe variable, it determines the strength and balance of the final cup: too little coffee produces a weak, watery brew, while too much yields an overpowering, bitter result. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Affogato",
+      "Aftertaste in Coffee",
+      "Balance in Coffee",
+      "Barista",
+      "Caffe Americano",
+      "Coffea Arabica"
+    ],
+    "source_url": "https://coffee-dictionary.com/brew-ratio/",
+    "postid": 73531
+  },
+  {
+    "term": "Brew strength",
+    "slug": "brew-strength",
+    "definition": "Brew strength is the concentration of dissolved coffee solids in a finished brewed beverage, typically expressed as total dissolved solids (TDS), the percentage of the drink’s mass made up of material extracted from the coffee grounds. [1]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Aftertaste in Coffee",
+      "Astringency in Coffee",
+      "Balance in Coffee",
+      "Barista",
+      "Caffe Americano",
+      "Coffea Arabica"
+    ],
+    "source_url": "https://coffee-dictionary.com/brew-strength/",
+    "postid": 73532
+  },
+  {
+    "term": "Brewing equipment",
+    "slug": "brewing-equipment",
+    "definition": "Brewing equipment is the collective term for the devices, vessels, and accessories that bring heated water into contact with ground coffee to dissolve soluble compounds and produce a beverage. [1] The category spans manual tools such as pour-over cones, French presses, and siphons, alongside automatic drip machines, espresso machines, and the kettles, grinders, scales, and filters that support them. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Air Roaster",
+      "Alan Adler",
+      "Arabic coffee",
+      "Artisan Coffee",
+      "Barista",
+      "Caffe Americano",
+      "Drip Coffee",
+      "Espresso Machine",
+      "French press",
+      "Moka pot"
+    ],
+    "source_url": "https://coffee-dictionary.com/brewing-equipment/",
+    "postid": 73533
+  },
+  {
+    "term": "Brewing parameters",
+    "slug": "brewing-parameters",
+    "definition": "Brewing parameters is the collective term for the controllable variables in a coffee brew — grind size, dose, water temperature, brew ratio, contact time, agitation, and water chemistry — that together determine how coffee extracts and what the final cup tastes like. [1] It is a technical umbrella term for recipe and process settings rather than a specific machine, brand, or brewing method. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Barista",
+      "Caffe Americano"
+    ],
+    "source_url": "https://coffee-dictionary.com/brewing-parameters/",
+    "postid": 73535
+  },
+  {
+    "term": "Brewing process",
+    "slug": "brewing-process",
+    "definition": "The brewing process is the sequence of steps in which roasted, ground coffee is contacted with water to dissolve soluble compounds and produce a brewed beverage. [1] More than a single recipe or device, it spans everything from grinding and wetting the grounds to separating the finished liquid from the spent coffee. [2]",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "AeroPress",
+      "Affogato",
+      "Aged Coffee",
+      "Artisan Coffee",
+      "Barista",
+      "Caffe Americano",
+      "Coffea Arabica",
+      "Cold Brew Coffee",
+      "Drip Coffee",
+      "Espresso",
+      "French press",
+      "Moka pot",
+      "Turkish coffee"
+    ],
+    "source_url": "https://coffee-dictionary.com/brewing-process/",
+    "postid": 73536
+  },
+  {
+    "term": "Brightness",
+    "slug": "brightness",
+    "definition": "Brightness in coffee refers to a pleasant, tangy acidity that creates a lively and vibrant flavor experience. [1] This characteristic manifests as citrusy, fruity , or wine-like notes that add complexity and energy to each sip. [2]",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping",
+      "General Terms"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Coffee extraction",
+      "Colombia",
+      "Ethiopia",
+      "Flavor",
+      "Kenya",
+      "Pour over coffee",
+      "Specialty coffee",
+      "Tanzania",
+      "coffee beans"
+    ],
+    "source_url": "https://coffee-dictionary.com/brightness/",
+    "postid": 66889
+  },
+  {
     "term": "Brightness in Coffee",
-    "slug": "brightness-in-coffee-a-tangy-flavor-profile",
+    "slug": "brightness",
     "definition": "Brightness in coffee refers to a pleasant, tangy acidity that creates a lively and vibrant flavor experience. [1] This characteristic manifests as citrusy, fruity , or wine-like notes that add complexity and energy to each sip. [2]",
     "category": "Flavors & Cupping",
     "categories": [
@@ -1016,7 +1660,7 @@
   },
   {
     "term": "Briny",
-    "slug": "briny-coffee-taste-and-flavor-descriptors",
+    "slug": "briny",
     "definition": "Briny describes a coffee taste that evokes the salty, savory character of seawater or brine, creating a brackish sensation on the palate. [1] This flavor descriptor is one of the most unwelcome characteristics a coffee can have, as it alters the expected taste profile in an unpleasant direction. [2]",
     "category": "Flavors & Cupping",
     "categories": [
@@ -1032,7 +1676,7 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/briny-coffee-taste-and-flavor-descriptors/",
+    "source_url": "https://coffee-dictionary.com/briny/",
     "postid": 66890
   },
   {
@@ -1084,24 +1728,30 @@
   {
     "term": "Burundi",
     "slug": "burundi",
-    "definition": "Burundi is a small, landlocked coffee-producing country in East Africa’s Great Lakes region and a rising specialty origin. Despite its size, it has earned a strong specialty reputation for bright, sweet, berry-driven coffees grown by hundreds of thousands of smallholder families at high elevations.",
+    "definition": "Burundi is a small, landlocked coffee-producing country in East Africa’s Great Lakes region and a rising specialty origin. Its high-grown, smallholder-produced Arabica coffees—almost exclusively Bourbon —are processed at centralized washing stations rather than on estates. [1] That model, combined with elevations that push toward 2,000 metres, has built a strong reputation for bright , sweet, berry-driven cups from hundreds of thousands of smallholder families. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/burundi/",
     "postid": 72606
   },
   {
     "term": "Cafecito",
     "slug": "cafecito",
-    "definition": "Cafecito refers to a small cup of strong, sweet coffee — the everyday coffee ritual of Cuba and the Cuban diaspora. It is brewed as a concentrated moka-pot or espresso-style shot and sweetened directly, often with demerara sugar, then served in a tacita, a tiny cup, at home, at ventanitas, and at any hour. Sharing cafecito is the gesture of hospitality itself: to be offered one is to be included.",
-    "category": "General Terms",
+    "definition": "Cafecito (Spanish for “little coffee,” pronounced kah-feh-SEE-toh) is a small, intensely strong, and sweet coffee beverage that serves as the everyday name for Cuban-style espresso, also known as café cubano. [1] This variation of espresso stands apart through its preparation method and its central role in Cuban and Cuban-American social life. [1]",
+    "category": "Coffee Drinks",
     "categories": [
-      "General Terms"
+      "Coffee Drinks"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Cuban espresso",
+      "Espresso Machine"
+    ],
     "source_url": "https://coffee-dictionary.com/cafecito/",
     "postid": 72943
   },
@@ -1312,16 +1962,13 @@
   {
     "term": "Cancer",
     "slug": "cancer",
-    "definition": "Cancer (medical): A broad group of diseases characterized by unregulated cell growth and the formation of malignant neoplasms (tumors) that can invade nearby tissues and spread (metastasize) through the lymphatic system and bloodstream.",
+    "definition": "Cancer (medical): a broad group of diseases characterized by unregulated cell growth and the formation of malignant neoplasms (tumors) that can invade nearby tissues and spread (metastasize) through the lymphatic system and bloodstream. On a coffee dictionary the entry covers what research says about coffee compounds and coffee drinking in relation to cancer risk.",
     "category": "Coffee & Health",
     "categories": [
       "Coffee & Health",
       "Coffee Roasting"
     ],
-    "related_terms": [
-      "Coffee extraction",
-      "Temperature control"
-    ],
+    "related_terms": [],
     "source_url": "https://coffee-dictionary.com/cancer/",
     "postid": 66991
   },
@@ -1333,7 +1980,13 @@
     "categories": [
       "Coffee Drinks"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Cappuccino Machine",
+      "Espresso",
+      "Flat white",
+      "Latte",
+      "Latte Art"
+    ],
     "source_url": "https://coffee-dictionary.com/cappuccino/",
     "postid": 67102
   },
@@ -1393,7 +2046,7 @@
   },
   {
     "term": "Caramelly",
-    "slug": "caramelly-a-sweet-note-in-coffee-tasting",
+    "slug": "caramelly",
     "definition": "Caramelly notes occupy the sweet segment of the coffee flavor wheel, positioned between chocolatey and vanilla subcategories. This descriptor refers to flavors reminiscent of caramelized sugar, butterscotch, and brown sugar in coffee. The perception of caramel sweetness is somewhat paradoxical, as research shows that roasting degrades 99 percent of sugars present in green coffee [1] . Despite this reduction, light-roasted coffees retain approximately 2.9 percent of the original sucrose content, while medium roasts preserve only 0.9 percent [2] .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -1410,12 +2063,12 @@
       "Specialty coffee",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/caramelly-a-sweet-note-in-coffee-tasting/",
+    "source_url": "https://coffee-dictionary.com/caramelly/",
     "postid": 66891
   },
   {
     "term": "Carbony",
-    "slug": "carbony-coffee-flavor-profiles",
+    "slug": "carbony",
     "definition": "Carbony is a flavor descriptor for coffee that evokes the aroma and taste of charcoal, burnt wood, or dark toast, typically associated with dark roasts [1] . This profile emerges as a foundational, bitter base note that defines many traditional espresso blends, French roasts, and Italian roasts [2] . The sensory experience centers on deep, smoky characteristics reminiscent of campfire embers or toasted bread crusts.",
     "category": "Coffee Roasting",
     "categories": [
@@ -1430,7 +2083,7 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/carbony-coffee-flavor-profiles/",
+    "source_url": "https://coffee-dictionary.com/carbony/",
     "postid": 66892
   },
   {
@@ -1453,14 +2106,95 @@
     "postid": 71536
   },
   {
-    "term": "Central Valley (Costa Rica)",
-    "slug": "central-valley-costa-rica",
-    "definition": "Central Valley is a coffee-producing region in the heart of Costa Rica, the basin around the capital San José that includes Heredia and Alajuela. It was the country’s first commercial coffee region and remains one of its most planted, with farms between roughly 900 and 1,500 meters on slopes with distinct wet and dry seasons. Volcanic soil and reliable dry-season harvest windows give a balanced cup with chocolate notes, gentle fruit, and bright acidity.",
+    "term": "Castillo",
+    "slug": "castillo",
+    "definition": "Castillo is a modern, high-yielding Arabica coffee variety developed by Cenicafé , the research institute of Colombia ‘s National Federation of Coffee Growers, and released for commercial production in 2005. Bred specifically to withstand coffee leaf rust while preserving acceptable cup quality, it emerged from a cross between Caturra and the Timor Hybrid , introducing robusta genetics for resistance while selecting for Arabica-like flavor.",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Catimor",
+      "Caturra",
+      "Coffea Arabica",
+      "Colombia",
+      "Typica"
+    ],
+    "source_url": "https://coffee-dictionary.com/castillo/",
+    "postid": 72866
+  },
+  {
+    "term": "Catimor",
+    "slug": "catimor",
+    "definition": "Catimor is not a single coffee cultivar but a family of related hybrid varieties derived from crossing Caturra with the Timor Hybrid , a natural arabica–robusta cross. [1] Breeders aimed to merge Caturra’s compact, productive plant form with strong genetic resistance to coffee leaf rust, one of the most devastating diseases affecting arabica coffee. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Castillo",
+      "Catuai",
+      "Caturra",
+      "Coffea Arabica",
+      "Colombia",
+      "Costa Rica"
+    ],
+    "source_url": "https://coffee-dictionary.com/catimor/",
+    "postid": 72858
+  },
+  {
+    "term": "Catuai",
+    "slug": "catuai",
+    "definition": "Catuai (also spelled Catuaí) is a compact, high-yielding Arabica coffee cultivar developed in Brazil by crossing the Mundo Novo and Caturra varieties. [1] The Instituto Agronômico (IAC) in Campinas, São Paulo, created this hybrid to merge Caturra’s short stature with Mundo Novo ’s robust production, yielding a plant that is easy to harvest and highly productive per hectare. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Brazil",
+      "Castillo",
+      "Catimor",
+      "Caturra",
+      "Coffea Arabica",
+      "Coffee production"
+    ],
+    "source_url": "https://coffee-dictionary.com/catuai/",
+    "postid": 72860
+  },
+  {
+    "term": "Caturra",
+    "slug": "caturra",
+    "definition": "Caturra is a natural dwarf mutation of the Bourbon variety of Coffea arabica , first identified in Minas Gerais, Brazil , between 1915 and 1918. [1] A single-gene alteration shortens the tree’s internodes, producing a compact plant roughly two meters tall—about half the height of standard Bourbon—which simplifies hand-picking at harvest. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Brazil",
+      "Castillo",
+      "Catimor",
+      "Catuai",
+      "Coffea Arabica",
+      "Colombia"
+    ],
+    "source_url": "https://coffee-dictionary.com/caturra/",
+    "postid": 72856
+  },
+  {
+    "term": "Central Valley (Costa Rica)",
+    "slug": "central-valley-costa-rica",
+    "definition": "Central Valley ( Costa Rica ) (Spanish: Valle Central) is a coffee-producing region in the heart of Costa Rica , specifically the highland basin surrounding the capital city of San José, including the provinces of Heredia and Alajuela. [1] This basin was the country’s original commercial coffee zone, where Arabica cultivation first took hold before spreading to other parts of the nation. [2]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Costa Rica",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/central-valley-costa-rica/",
     "postid": 72934
   },
@@ -1523,7 +2257,6 @@
       "Coffee grinding",
       "Coffee tamping",
       "Espresso",
-      "Pressure",
       "Specialty coffee",
       "Temperature control",
       "coffee grind size",
@@ -1566,12 +2299,21 @@
   {
     "term": "China",
     "slug": "china",
-    "definition": "China is a rising coffee-producing country, with nearly all of its Arabica grown in the southern province of Yunnan. A relatively new player on the global origin map, China has expanded planting rapidly and is increasingly exporting clean , mild, approachable coffees.",
-    "category": "General Terms",
+    "definition": "China is a modern coffee origin shaped by rapid agricultural expansion and a domestic market that drinks a significant share of its own harvest. [1] Production is overwhelmingly concentrated in Yunnan province, which supplies over 98% of the national output, with smaller plantings in Fujian and Hainan. [1]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffea Arabica",
+      "Coffee production",
+      "Doi Chang",
+      "Doi Tung",
+      "Espresso",
+      "Myanmar",
+      "Robusta coffee",
+      "Vietnam"
+    ],
     "source_url": "https://coffee-dictionary.com/china/",
     "postid": 72608
   },
@@ -1605,15 +2347,36 @@
     "categories": [
       "Coffee & Health"
     ],
-    "related_terms": [
-      "Coffee Body"
-    ],
+    "related_terms": [],
     "source_url": "https://coffee-dictionary.com/cholesterol/",
     "postid": 66836
   },
   {
+    "term": "Citrus",
+    "slug": "citrus",
+    "definition": "Citrus in coffee refers to flavor notes that evoke fruits such as lemon, orange, grapefruit, or lime, characterized by bright acidity and a refreshing tang [1] . These flavors come from specific aromatic compounds present in coffee beans , which become detectable during tasting [2] . Citrus notes appear mostly in light to medium roast coffees, with African origins—particularly Ethiopia, Kenya, and Tanzania—often showing these characteristics [3] .",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Colombia",
+      "Ethiopia",
+      "Flavor",
+      "Guatemala",
+      "Kenya",
+      "Specialty coffee",
+      "Tanzania",
+      "Temperature control",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/citrus/",
+    "postid": 66894
+  },
+  {
     "term": "Citrus in Coffee",
-    "slug": "citrus-in-coffee-a-flavor-profile",
+    "slug": "citrus",
     "definition": "Citrus in coffee refers to flavor notes that evoke fruits such as lemon, orange, grapefruit, or lime, characterized by bright acidity and a refreshing tang [1] . These flavors come from specific aromatic compounds present in coffee beans , which become detectable during tasting [2] . Citrus notes appear mostly in light to medium roast coffees, with African origins—particularly Ethiopia, Kenya, and Tanzania—often showing these characteristics [3] .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -1636,7 +2399,7 @@
   },
   {
     "term": "Clean Coffee",
-    "slug": "clean-coffee-dictionary-term",
+    "slug": "clean-coffee",
     "definition": "Clean coffee represents a category of high-quality, specialty coffee that prioritizes flavor clarity and artisanal production methods over mass-market approaches. This term refers to coffee produced through small-batch roasting, typically ranging from 5-25 kg per batch, which allows for precise control over the roasting process and enhanced flavor complexity.",
     "category": "Coffee Roasting",
     "categories": [
@@ -1656,7 +2419,7 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/clean-coffee-dictionary-term/",
+    "source_url": "https://coffee-dictionary.com/clean-coffee/",
     "postid": 66895
   },
   {
@@ -1757,7 +2520,6 @@
       "Arabic coffee",
       "Coffea Arabica",
       "Coffea liberica",
-      "Coffee Body",
       "Coffee production",
       "Coffeehouse",
       "Concentration",
@@ -1843,8 +2605,8 @@
   },
   {
     "term": "Coffee Body",
-    "slug": "coffee-body-the-texture-and-mouthfeel-of-coffee",
-    "definition": "Coffee body, also called mouthfeel, refers to the perceived weight, thickness, and texture of coffee on the palate, ranging from thin and watery to full and syrupy. [1] This tactile sensation occurs independently from flavor, creating the physical impression of how coffee feels in the mouth rather than how it tastes. Body is primarily influenced by the concentration of soluble solids, oils, and fine particles suspended in the brewed coffee. [2]",
+    "slug": "coffee-body",
+    "definition": "Coffee body, a component of mouthfeel, refers to the perceived weight, thickness, and texture of coffee on the palate, ranging from thin and watery to full and syrupy. [1] This tactile sensation occurs independently from flavor, creating the physical impression of how coffee feels in the mouth rather than how it tastes. Body is primarily influenced by the concentration of soluble solids, oils, and fine particles suspended in the brewed coffee. [2]",
     "category": "General Terms",
     "categories": [
       "General Terms"
@@ -1865,12 +2627,12 @@
       "coffee grind size",
       "crema"
     ],
-    "source_url": "https://coffee-dictionary.com/coffee-body-the-texture-and-mouthfeel-of-coffee/",
+    "source_url": "https://coffee-dictionary.com/coffee-body/",
     "postid": 66886
   },
   {
     "term": "Coffee Bouquet",
-    "slug": "coffee-bouquet-the-aroma-of-freshly-ground-coffee",
+    "slug": "coffee-bouquet",
     "definition": "Coffee Bouquet: The Aroma of Freshly Ground Coffee is the complete, complex scent released when whole coffee beans are ground [1] . It is a key sensory characteristic in professional coffee evaluation, consisting of hundreds of volatile aromatic compounds formed during roasting [4] . This fragrant preview is distinct from the aroma of the brewed coffee itself and plays a major role in shaping our overall perception of flavor [3] .",
     "category": "General Terms",
     "categories": [
@@ -1881,7 +2643,7 @@
       "Specialty coffee",
       "coffee beans"
     ],
-    "source_url": "https://coffee-dictionary.com/coffee-bouquet-the-aroma-of-freshly-ground-coffee/",
+    "source_url": "https://coffee-dictionary.com/coffee-bouquet/",
     "postid": 66887
   },
   {
@@ -1908,9 +2670,13 @@
       "Brewing Methods"
     ],
     "related_terms": [
+      "AeroPress",
+      "Cold Brew Coffee",
       "Drip Coffee",
       "Espresso",
-      "French press"
+      "French press",
+      "Moka pot",
+      "Turkish coffee"
     ],
     "source_url": "https://coffee-dictionary.com/coffee-brewing-methods/",
     "postid": 67010
@@ -1924,7 +2690,16 @@
       "Brewing Methods",
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee extraction",
+      "Coffee percolator",
+      "Cold Brew Coffee",
+      "Espresso",
+      "Extraction Yield",
+      "French press",
+      "Temperature Surfing",
+      "Temperature control"
+    ],
     "source_url": "https://coffee-dictionary.com/water-temperature/",
     "postid": 67087
   },
@@ -1975,6 +2750,19 @@
     "postid": 71478
   },
   {
+    "term": "Coffee culture",
+    "slug": "coffee-culture-term",
+    "definition": "Coffee culture describes a social atmosphere or series of associated social behaviors that depends heavily upon coffee , particularly as a social lubricant. The term also refers to the diffusion and adoption of coffee as a widely consumed stimulant by a culture. In the late 20th century, particularly in the Western world and urbanized centers around the globe, espresso has been an increasingly dominant form.",
+    "category": "Coffee Culture",
+    "categories": [
+      "Coffee Culture",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/coffee-culture-term/",
+    "postid": 67016
+  },
+  {
     "term": "Coffee Culture Dictionary",
     "slug": "coffee-culture-glossary",
     "definition": "Explore the rich cultural traditions surrounding coffee. From cafe culture to coffee ceremonies, discover the social and cultural aspects of coffee around the world.",
@@ -1983,12 +2771,14 @@
       "General Terms"
     ],
     "related_terms": [
+      "African Civet",
       "Arabic coffee",
       "Bica",
       "Bicerin",
       "Bucharest",
       "Camp Coffee",
       "Coffee Cabinet",
+      "Coffee culture",
       "Coffeehouse",
       "Dallah (coffee pot)",
       "Drink",
@@ -2005,9 +2795,7 @@
       "Oliang",
       "Peaberry Coffee",
       "Specialty coffee",
-      "United States",
-      "Vietnamese iced coffee",
-      "coffee"
+      "United States"
     ],
     "source_url": "https://coffee-dictionary.com/coffee-culture-glossary/",
     "postid": 70591
@@ -2121,7 +2909,13 @@
       "Brewing Methods",
       "Coffee Equipment"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee Brewing",
+      "Coffee extraction",
+      "Coffee filter",
+      "French press",
+      "Moka pot"
+    ],
     "source_url": "https://coffee-dictionary.com/coffee-percolator/",
     "postid": 66829
   },
@@ -2168,7 +2962,6 @@
       "General Terms"
     ],
     "related_terms": [
-      "Coffee Body",
       "Specialty coffee",
       "coffee grind size",
       "coffee substitute"
@@ -2261,12 +3054,17 @@
   {
     "term": "Coffee Triangle",
     "slug": "coffee-triangle",
-    "definition": "Coffee Triangle is a coffee-producing region in Colombia — the axis of Caldas, Risaralda, and Quindío, with Tolima and Antioquia often included — where the Andes split into three cordilleras. It is the heart of Colombian coffee culture: rolling hills at 1,300 to 1,900 meters, small family farms on steep slopes, and the UNESCO-listed Coffee Cultural Landscape. Colombia’s washed arabicas, fermented clean and sun-dried, made the region’s name on clarity, sweetness, and consistency.",
+    "definition": "The Coffee Triangle, also known as the Eje Cafetero, is the principal coffee-producing region in Colombia, encompassing the departments of Caldas, Quindío, and Risaralda. [1] This is the geographic and cultural heart of Colombian coffee, where the Andes split into three ranges, creating steep slopes and fertile volcanic soils at altitudes between 1,300 and 1,900 meters. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Barista",
+      "Coffea Arabica",
+      "Coffee production",
+      "Colombia"
+    ],
     "source_url": "https://coffee-dictionary.com/coffee-triangle/",
     "postid": 72940
   },
@@ -2362,22 +3160,37 @@
   {
     "term": "Colombia",
     "slug": "colombia",
-    "definition": "Colombia is one of the world’s leading coffee-producing countries and the most famous Arabica origin in the Americas. Its washed, high-grown coffees are the benchmark for balance, prized worldwide for a smooth , caramel-sweet cup with a bright , clean finish.",
+    "definition": "Colombia is one of the world’s leading coffee-producing countries and the most famous Arabica origin in the Americas. [1] Its washed, high-grown coffees set the global benchmark for balance, valued for a smooth, caramel-sweet cup with a bright, clean finish. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Caramelly",
-      "Chocolate Coffee Notes",
-      "Coffee Acidity"
+      "Castillo",
+      "Espresso"
     ],
     "source_url": "https://coffee-dictionary.com/colombia/",
     "postid": 72610
   },
   {
+    "term": "Complexity",
+    "slug": "complexity",
+    "definition": "Complexity in Coffee: A Symphony of Flavors is a metaphorical term describing the multi-layered, evolving flavor profile in coffee tasting [1] . Diverse sensory notes harmonize across aroma, taste, mouthfeel , and aftertaste like a musical symphony [1] . It is a characteristic of high-quality specialty coffee , focusing on the variety and transformation of distinct flavors [2] .",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Flavor",
+      "Specialty coffee",
+      "coffee beans"
+    ],
+    "source_url": "https://coffee-dictionary.com/complexity/",
+    "postid": 66896
+  },
+  {
     "term": "Complexity in Coffee",
-    "slug": "complexity-in-coffee-a-symphony-of-flavors",
+    "slug": "complexity",
     "definition": "Complexity in Coffee: A Symphony of Flavors is a metaphorical term describing the multi-layered, evolving flavor profile in coffee tasting [1] . Diverse sensory notes harmonize across aroma, taste, mouthfeel , and aftertaste like a musical symphony [1] . It is a characteristic of high-quality specialty coffee , focusing on the variety and transformation of distinct flavors [2] .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -2401,8 +3214,12 @@
       "Coffee Science"
     ],
     "related_terms": [
-      "Turkish coffee",
-      "filter basket"
+      "Brew ratio",
+      "Coffee Brewing Methods",
+      "Espresso",
+      "Extraction Yield",
+      "French press",
+      "Total dissolved solids"
     ],
     "source_url": "https://coffee-dictionary.com/concentration/",
     "postid": 66986
@@ -2450,15 +3267,23 @@
   {
     "term": "Costa Rica",
     "slug": "costa-rica",
-    "definition": "Costa Rica is a Central American coffee-producing country with an outsized reputation for quality and one of the defining origins of the specialty era. Though small in volume, it was the first country to ban Robusta by law and pioneered the honey process, producing clean, bright, sweet coffees that helped define specialty coffee.",
-    "category": "General Terms",
+    "definition": "Costa Rica is a Central American coffee-producing country, and a country-level origin rather than a single farm, region, or processing method. Its export volume is modest, but its reputation for quality looms large, built on clean, bright, sweet arabica coffees. [1] That standing comes from a mix of legal protections and geographic advantages explored below, starting with the eight distinct growing regions that shape the national profile. [2]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
     "related_terms": [
-      "Caramelly",
-      "Fruity Notes in Coffee",
-      "Smoothness in Coffee"
+      "Altura Coffee",
+      "Brightness",
+      "Catuai",
+      "Caturra",
+      "Central Valley (Costa Rica)",
+      "Clean Coffee",
+      "Coffea Arabica",
+      "Coffee Acidity",
+      "Coffee production",
+      "Honey Process",
+      "Specialty coffee"
     ],
     "source_url": "https://coffee-dictionary.com/costa-rica/",
     "postid": 72612
@@ -2512,8 +3337,28 @@
     "postid": 67851
   },
   {
+    "term": "Crust",
+    "slug": "crust",
+    "definition": "The crust in coffee cupping refers to the layer of coffee grounds that forms on the surface when hot water is poured over freshly ground coffee. This physical barrier develops as the grounds float and create a cohesive layer across the water’s surface.",
+    "category": "Coffee Science",
+    "categories": [
+      "Coffee Science"
+    ],
+    "related_terms": [
+      "Coffee Bloom",
+      "Coffee Brewing",
+      "Coffee Brewing Temperature",
+      "Coffee extraction",
+      "Coffee grinding",
+      "French press",
+      "coffee grind size"
+    ],
+    "source_url": "https://coffee-dictionary.com/crust/",
+    "postid": 66897
+  },
+  {
     "term": "Crust in Coffee Cupping",
-    "slug": "crust-in-coffee-cupping-an-essential-element",
+    "slug": "crust",
     "definition": "The crust in coffee cupping refers to the layer of coffee grounds that forms on the surface when hot water is poured over freshly ground coffee. This physical barrier develops as the grounds float and create a cohesive layer across the water’s surface.",
     "category": "Coffee Science",
     "categories": [
@@ -2534,12 +3379,20 @@
   {
     "term": "Cuba",
     "slug": "cuba",
-    "definition": "Cuba is a Caribbean coffee-producing country and coffee origin with a long growing tradition centred on the Sierra Maestra mountains. Its small Arabica harvest is known for a smooth , mild, low-acid cup, and its coffee culture produced the intensely sweet cafecito served across the island.",
+    "definition": "Cuba is a Caribbean coffee origin defined by its small-scale production of Arabica beans grown in the island’s mountainous regions, particularly the Sierra Maestra and Escambray ranges. [1] In coffee terms, the name refers to the green coffee itself, not the sweetened espresso drinks that share the country’s name. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Altura Coffee",
+      "Brazil",
+      "Cafecito",
+      "Coffea Arabica",
+      "Coffee production",
+      "Cuban espresso",
+      "Espresso"
+    ],
     "source_url": "https://coffee-dictionary.com/cuba/",
     "postid": 72614
   },
@@ -2618,8 +3471,12 @@
       "Bitterness in Coffee",
       "Carbony",
       "Coffee Body",
+      "Cold Brew Coffee",
       "Espresso",
       "French press",
+      "Medium-dark Roast",
+      "Moka pot",
+      "Turkish coffee",
       "coffee roasting"
     ],
     "source_url": "https://coffee-dictionary.com/dark-roast/",
@@ -2734,6 +3591,19 @@
     "postid": 71489
   },
   {
+    "term": "Desiderio Pavoni",
+    "slug": "desiderio-pavoni",
+    "definition": "Desiderio Pavoni (Italian, pronounced deh-zee-DEH-ryo pah-VOH-nee) was an Italian entrepreneur and inventor, best known as the founder of La Pavoni, the espresso-machine company he established in Milan in 1905. [1] He was not a beverage, brewing method, or coffee drink — the name belongs to a person, specifically the figure credited with turning early espresso-machine innovation into industrial production. [2]",
+    "category": "Coffee Equipment",
+    "categories": [
+      "Coffee Equipment",
+      "General Terms"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/desiderio-pavoni/",
+    "postid": 73582
+  },
+  {
     "term": "De’Longhi",
     "slug": "delonghi",
     "definition": "De’Longhi Group, or De’Longhi S.p. A, is a major Italian small appliance manufacturer based in Treviso, Italy. They manufacture coffee making equipment, including drip coffee makers and espresso machines.",
@@ -2749,12 +3619,17 @@
   {
     "term": "Diabetes mellitus",
     "slug": "diabetes-mellitus",
-    "definition": "Diabetes mellitus, commonly called diabetes, is a long-term metabolic disorder marked by consistently high blood sugar levels. The condition stems from an issue with insulin, the hormone that manages blood glucose. This problem happens either because the pancreas does not produce sufficient insulin or because the body’s cells stop responding to it properly, a state known as insulin resistance. As a result, glucose builds up in the bloodstream. This leads to the three classic signs: polyuria (frequent urination), polydipsia (increased thirst), and polyphagia (heightened hunger). Without careful management, prolonged high blood sugar can cause severe damage to the heart, blood vessels, eyes, kidneys, and nerves. The disease is primarily divided into three types: Type 1 diabetes, where the immune system attacks insulin-producing cells; Type 2 diabetes, defined by insulin resistance and often a gradual loss of insulin production; and gestational diabetes, which emerges during pregnancy. While their origins differ, all forms share the core difficulty of controlling blood sugar through a combination of medication, dietary choices, and lifestyle changes.",
+    "definition": "Diabetes mellitus, commonly called diabetes, is a chronic metabolic disorder marked by persistently elevated blood glucose levels from defects in insulin secretion, insulin action, or both. [1] The two principal forms are type 1, an autoimmune destruction of insulin-producing pancreatic beta cells, and type 2, a progressive insulin resistance paired with relative insulin deficiency. [1]",
     "category": "Coffee & Health",
     "categories": [
       "Coffee & Health"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Alzheimer’s disease",
+      "Cafestol",
+      "Caffeine",
+      "Cholesterol"
+    ],
     "source_url": "https://coffee-dictionary.com/diabetes-mellitus/",
     "postid": 66994
   },
@@ -2797,24 +3672,34 @@
   {
     "term": "Doi Chang",
     "slug": "doi-chang",
-    "definition": "Doi Chang is a coffee-producing mountain village in Chiang Rai province, northern Thailand, home to an Akha community whose village-run coffee company exports its own single-origin arabica. Coffee grows at roughly 1,200 to 1,600 meters under shade, mostly Catimor with Bourbon and Typica plantings, and the village’s success made it one of Thailand’s best-known specialty names.",
-    "category": "General Terms",
+    "definition": "Doi Chang (ดอยช้าง, also transliterated as Doi Chaang) is a mountain and coffee-producing village area in Mae Suai District, Chiang Rai Province, northern Thailand, best known for producing single-origin Arabica coffee under the Doi Chaang/Doi Chang name. [1] It is a specific geographic origin and village-based producer identity, not a generic Thai coffee term or a national brand.",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Chocolate Coffee Notes",
+      "Espresso Machine",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/doi-chang/",
     "postid": 72942
   },
   {
     "term": "Doi Tung",
     "slug": "doi-tung",
-    "definition": "Doi Tung is a coffee-producing mountain in Chiang Rai province, northern Thailand, near the borders with Myanmar and Laos. It is the site of the royal development project that replaced opium poppy with arabica coffee in the late 1980s, part of the Doi Tung Development Programme. Plantings at roughly 1,000 to 1,600 meters under shade are mostly Catimor, with expanding Bourbon and Typica shares as quality ambitions rise.",
+    "definition": "Doi Tung is a single-origin Arabica coffee and a Geographical Indication (GI)-protected product from the Doi Tung Development Project area in Chiang Rai province, northern Thailand, near the borders with Myanmar and Laos. [1] Grown under forest shade on highland slopes, its identity comes from mountain origin and a royal development program. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Chocolate Coffee Notes",
+      "Coffea Arabica",
+      "Coffee Triangle",
+      "Doi Chang",
+      "Single Origin"
+    ],
     "source_url": "https://coffee-dictionary.com/doi-tung/",
     "postid": 72941
   },
@@ -2834,12 +3719,14 @@
   {
     "term": "Dominican Republic",
     "slug": "dominican-republic",
-    "definition": "The Dominican Republic is a Caribbean coffee-producing country and coffee origin on the island of Hispaniola, with most of its Arabica grown in the highlands of the Barahona region. Its coffees are mild, sweet, and balanced, with a smooth body typical of well-made island coffee.",
+    "definition": "Dominican Republic is a Caribbean coffee-producing country and coffee origin located on the island of Hispaniola, which it shares with Haiti. [1] It is known primarily for its Arabica coffees grown in mountainous regions, with most production centered in the highlands of Barahona, Cibao, Juncalito, and Ocoa. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso"
+    ],
     "source_url": "https://coffee-dictionary.com/dominican-republic/",
     "postid": 72616
   },
@@ -2898,24 +3785,38 @@
   {
     "term": "Double Fermentation",
     "slug": "double-fermentation",
-    "definition": "Double fermentation refers to a coffee processing variation in which the mucilage is removed in two separate ferment stages rather than one. The classic Kenyan method ferments the depulped coffee until the mucilage loosens, washes it, then soaks the clean parchment in fresh water for a second, longer period. The second soak polishes the bean and deepens the clarity, sparkle, and complexity for which Kenyan washed coffee is known.",
+    "definition": "Double Fermentation (also called double washed or double soaking in Kenya) is a coffee processing variation in which the mucilage—the sticky fruit layer surrounding the coffee bean—is broken down in two separate fermentation stages rather than one. [1] It modifies the standard washed process by adding a post-wash fermentation or soak in clean water. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Clean Coffee",
+      "Coffee Acidity",
+      "Coffee Aroma",
+      "Coffee Body",
+      "Coffee extraction",
+      "Coffee production",
+      "Temperature control"
+    ],
     "source_url": "https://coffee-dictionary.com/double-fermentation/",
     "postid": 72931
   },
   {
     "term": "DR Congo",
     "slug": "dr-congo",
-    "definition": "The Democratic Republic of the Congo is a large coffee-producing country in Central Africa and a resurgent coffee origin, with its best Arabica grown on the shores of Lake Kivu. Its high-grown coffees are full-bodied and deeply fruity , and its speciality sector has rebuilt after decades of conflict.",
+    "definition": "DR Congo (also known as the Democratic Republic of the Congo) is a large coffee-producing origin in Central Africa, distinct from its smaller neighbor, the Republic of the Congo. [1] It is best known for high-grown, washed Arabica coffee, particularly Bourbon-related varieties cultivated in the eastern highlands. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Bourbon",
+      "Burundi",
+      "Espresso",
+      "Ethiopia",
+      "Kenya"
+    ],
     "source_url": "https://coffee-dictionary.com/dr-congo/",
     "postid": 72618
   },
@@ -3015,7 +3916,7 @@
   },
   {
     "term": "Earthy Coffee",
-    "slug": "earthy-coffee-a-flavor-profile",
+    "slug": "earthy-coffee",
     "definition": "Earthy coffee presents a distinctive sensory experience characterized by rich, natural flavors that evoke soil, wood, and herbs . This flavor profile creates a connection to the earth through its deep, grounding taste sensations that coffee enthusiasts describe as reminiscent of forest floors or freshly turned garden soil. The aroma of earthy coffee typically carries notes of damp earth, mushrooms, and sometimes cedar or other woody elements .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3038,31 +3939,55 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/earthy-coffee-a-flavor-profile/",
+    "source_url": "https://coffee-dictionary.com/earthy-coffee/",
     "postid": 66898
   },
   {
-    "term": "Ecuador",
-    "slug": "ecuador",
-    "definition": "Ecuador is a coffee-producing country on South America’s Pacific coast and a small but fast-rising coffee origin, stretching from Andean highlands down to the Galápagos. Its high-grown Arabica from the southern province of Loja is increasingly celebrated for a sweet, floral, complex cup.",
+    "term": "East Timor",
+    "slug": "east-timor",
+    "definition": "East Timor (now officially Timor-Leste) is a Southeast Asian coffee-origin term referring to the coffee produced by the island nation of Timor-Leste, where arabica dominates highland production and robusta is grown in smaller amounts at lower elevations. It is closely associated with the Timor hybrid (Hibrido de Timor, or HdT), a naturally occurring arabica-robusta cross discovered there that became important in global coffee breeding. Coffee was introduced during Portuguese colonial rule, and today the crop remains a key export for the country.",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/east-timor/",
+    "postid": 73600
+  },
+  {
+    "term": "Ecuador",
+    "slug": "ecuador",
+    "definition": "Ecuador is a coffee-producing country on South America’s Pacific coast, known for its remarkable geographic diversity that yields both commercial-grade lowland coffee and high-grown specialty Arabica. Cultivation spans four distinct zones—coastal lowlands, Andean highlands, the Amazon, and the Galápagos Islands—making it one of the most ecologically varied origins in the world. The southern Andean provinces deliver its most celebrated coffees, where high elevations and cool climates produce sweet, floral, and complex cups that have earned increasing attention from specialty roasters. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Brazil",
+      "Colombia",
+      "Espresso"
+    ],
     "source_url": "https://coffee-dictionary.com/ecuador/",
     "postid": 72620
   },
   {
     "term": "El Salvador",
     "slug": "el-salvador",
-    "definition": "El Salvador is a small Central American coffee-producing country and a respected coffee origin with a long and proud growing heritage. Its highland farms produce sweet, honeyed, chocolate-toned coffees, and the country is famous for the Pacamara variety it helped bring to the world stage.",
+    "definition": "El Salvador is a coffee origin from the small Central American nation of the same name, known for highland, volcanic-grown Arabica coffees with a clean, sweet cup profile. [1] Its growing heritage dates to 1740, when coffee first arrived from the Caribbean islands, and the crop soon became the backbone of the national economy—at one point ranking the country among the world’s top five producers. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Caramelly"
+      "Altura Coffee",
+      "Apaneca-Ilamatepec",
+      "Bourbon",
+      "Catimor",
+      "Central Valley (Costa Rica)",
+      "Coffea Arabica",
+      "Coffee production",
+      "Espresso"
     ],
     "source_url": "https://coffee-dictionary.com/el-salvador/",
     "postid": 72622
@@ -3224,12 +4149,15 @@
   {
     "term": "Espuma",
     "slug": "espuma",
-    "definition": "Espuma refers to the creamy, tan froth that crowns sweetened coffee made in the Cuban style. Sugar is whipped with the first draw of strong coffee into a pale paste, then folded back through the pot so that aerated foam floats on the finished cup, adding texture and sweetness while carrying aroma. A visible crown of espuma is the mark of a well-made colada or cafecito.",
-    "category": "General Terms",
+    "definition": "Espuma (also known as espumita in some Cuban-American communities) is the sweet, whipped foam that crowns Cuban-style espresso drinks such as the cafecito and colada. This pale, caramel-colored emulsion forms when the first concentrated drops of freshly brewed espresso are beaten with sugar into a thick, aerated paste. [1]",
+    "category": "Coffee Drinks",
     "categories": [
-      "General Terms"
+      "Coffee Drinks"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso Machine",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/espuma/",
     "postid": 72944
   },
@@ -3237,9 +4165,9 @@
     "term": "Ethiopia",
     "slug": "ethiopia",
     "definition": "Ethiopia, officially the Federal Democratic Republic of Ethiopia, is a country in the Horn of Africa. It shares borders with Eritrea to the north, Djibouti and Somalia to the east, Sudan and South Sudan to the west, and Kenya to the south. With a population of over 91 million, it is the most populous landlocked country in the world and the second-most populous nation on the African continent.",
-    "category": "General Terms",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
     "related_terms": [],
     "source_url": "https://coffee-dictionary.com/ethiopia/",
@@ -3366,7 +4294,7 @@
   },
   {
     "term": "Flat Coffee",
-    "slug": "flat-coffee-what-does-it-mean",
+    "slug": "flat-coffee",
     "definition": "The Flat White is a distinct coffee preparation that emerged from Australia and New Zealand before gaining international popularity. Traditionally served in a 180 ml ceramic cup in Australia, the Flat White contains less milk than the Australian latte, which typically comes in a 200 ml glass [1] . This smaller milk-to-coffee ratio creates a more concentrated flavor profile. Size specifications vary globally, with the authentic Flat White measuring approximately 162 ml (5.5 oz) [2] .",
     "category": "Coffee Drinks",
     "categories": [
@@ -3380,7 +4308,7 @@
       "Temperature control",
       "coffee beans"
     ],
-    "source_url": "https://coffee-dictionary.com/flat-coffee-what-does-it-mean/",
+    "source_url": "https://coffee-dictionary.com/flat-coffee/",
     "postid": 66900
   },
   {
@@ -3434,8 +4362,38 @@
     "postid": 71515
   },
   {
+    "term": "Floral Notes",
+    "slug": "floral-notes",
+    "definition": "Floral notes in coffee represent aromatic and flavor characteristics that evoke flowers, ranging from delicate jasmine and rose to bright lavender and orange blossom. These sensory qualities emerge from complex interactions between coffee origin, post-harvest processing methods, roasting techniques, and brewing parameters. Processing methods influence floral expression.",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Coffee Brewing",
+      "Coffee extraction",
+      "Cold Brew Coffee",
+      "Ethiopia",
+      "Flavor",
+      "French press",
+      "Guatemala",
+      "Kenya",
+      "Panama",
+      "Single-origin coffee",
+      "Specialty coffee",
+      "Taste",
+      "Temperature control",
+      "Total dissolved solids",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/floral-notes/",
+    "postid": 66924
+  },
+  {
     "term": "Floral Notes in Coffee",
-    "slug": "floral-notes-in-coffee-an-overview",
+    "slug": "floral-notes",
     "definition": "Floral notes in coffee represent aromatic and flavor characteristics that evoke flowers, ranging from delicate jasmine and rose to bright lavender and orange blossom. These sensory qualities emerge from complex interactions between coffee origin, post-harvest processing methods, roasting techniques, and brewing parameters. Processing methods influence floral expression.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3503,13 +4461,23 @@
   {
     "term": "Food",
     "slug": "food",
-    "definition": "Food is any substance consumed to provide nutritional support for the body . It is usually of plant or animal origin, and contains essential nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals. The substance is ingested by an organism and assimilated by the organism’s cells in an effort to produce energy, maintain life, or stimulate growth. Historically, people secured food through two methods: hunting and gathering, and agriculture.",
+    "definition": "Food is any substance consumed to provide nutritional support for the body. It is usually of plant or animal origin, and contains essential nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals. The substance is ingested by an organism and assimilated by the organism’s cells in an effort to produce energy, maintain life, or stimulate growth. Historically, people secured food through two methods: hunting and gathering, and agriculture.",
     "category": "General Terms",
     "categories": [
       "General Terms"
     ],
     "related_terms": [
-      "Coffee Body"
+      "Affogato",
+      "Caffe Americano",
+      "Caffè Latte",
+      "Cappuccino",
+      "Chicory",
+      "Cold Brew Coffee",
+      "Espresso",
+      "Flat white",
+      "Iced coffee",
+      "Steamed Milk",
+      "coffee substitute"
     ],
     "source_url": "https://coffee-dictionary.com/food/",
     "postid": 67110
@@ -3593,8 +4561,31 @@
     "postid": 67111
   },
   {
+    "term": "Fruity Notes",
+    "slug": "fruity-notes",
+    "definition": "Fruity notes in coffee refer to the aromatic and flavor characteristics reminiscent of various fruits detected during a coffee cupping or brew evaluation [1] . These notes are categorized into distinct sensory groups central to coffee flavor profiling. Berry notes include raspberry and blueberry characteristics prized in some African coffees, while citrus covers lemon and orange impressions. Stone fruit notes show peach and plum qualities, and tropical fruit notes include pineapple and passion fruit [2] .",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Costa Rica",
+      "Ethiopia",
+      "Flavor",
+      "Kenya",
+      "Rwanda",
+      "Single-origin coffee",
+      "Specialty coffee",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/fruity-notes/",
+    "postid": 66923
+  },
+  {
     "term": "Fruity Notes in Coffee",
-    "slug": "fruity-notes-in-coffee-an-overview",
+    "slug": "fruity-notes",
     "definition": "Fruity notes in coffee refer to the aromatic and flavor characteristics reminiscent of various fruits detected during a coffee cupping or brew evaluation [1] . These notes are categorized into distinct sensory groups central to coffee flavor profiling. Berry notes include raspberry and blueberry characteristics prized in some African coffees, while citrus covers lemon and orange impressions. Stone fruit notes show peach and plum qualities, and tropical fruit notes include pineapple and passion fruit [2] .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3689,6 +4680,27 @@
     "postid": 66955
   },
   {
+    "term": "Geisha",
+    "slug": "geisha",
+    "definition": "Geisha (also spelled Gesha) is a distinct variety of Arabica coffee originally collected from Ethiopia’s rainforests and later popularized through Panama , where it produces some of the world’s most celebrated and expensive cups. Its intensely floral, tea-like character sets it apart from nearly all other coffee varieties.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Arusha Coffee",
+      "Blue Mountain Coffee",
+      "Coffea Arabica",
+      "Costa Rica",
+      "Ethiopia",
+      "Floral Notes",
+      "Panama",
+      "Tanzania"
+    ],
+    "source_url": "https://coffee-dictionary.com/geisha/",
+    "postid": 72862
+  },
+  {
     "term": "God Shot",
     "slug": "god-shot",
     "definition": "A God shot can be described as a perfect shot achieved from an espresso machine , where the recipe and all of the parameters that go into espresso brewing such as bean type, roast, grind size , dose, water volume and temperature , as well as properly maintained and clean machinery all align to produce a coffee shot that is considered to be perfect by the taster, barista or customer.",
@@ -3705,8 +4717,30 @@
     "postid": 67080
   },
   {
+    "term": "Grassy Notes",
+    "slug": "grassy-notes",
+    "definition": "Grassy notes in coffee represent a distinct flavor characteristic that manifests as fresh-cut grass, hay, or herbaceous qualities in the cup. [1] These flavors typically indicate underdeveloped coffee beans or processing issues that prevent proper flavor maturation during roasting. [2] The identification and classification of such defects is known for increasing sophistication through research initiatives.",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Coffee production",
+      "Concentration",
+      "Ethiopia",
+      "Flavor",
+      "South America",
+      "Specialty coffee",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/grassy-notes/",
+    "postid": 66922
+  },
+  {
     "term": "Grassy Notes in Coffee",
-    "slug": "grassy-notes-in-coffee-a-detailed-examination",
+    "slug": "grassy-notes",
     "definition": "Grassy notes in coffee represent a distinct flavor characteristic that manifests as fresh-cut grass, hay, or herbaceous qualities in the cup. [1] These flavors typically indicate underdeveloped coffee beans or processing issues that prevent proper flavor maturation during roasting. [2] The identification and classification of such defects is known for increasing sophistication through research initiatives.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3748,14 +4782,15 @@
   {
     "term": "Guatemala",
     "slug": "guatemala",
-    "definition": "Guatemala is a Central American coffee-producing country renowned for some of the region’s most distinctive, full-bodied coffees, and one of its premier coffee origins. Its volcanic highlands — above all the Antigua valley — yield cups with rich chocolate, gentle smoke, and a bright, complex finish.",
+    "definition": "Guatemala is a coffee origin, not a coffee variety or brewing method: it refers to coffees grown in Guatemala, typically high-grown Arabica known for a chocolatey, often spicy cup with bright acidity and strong regional character. [1] It is distinct because Guatemalan coffee is marketed by named producing regions whose climates and volcanic soils shape flavor differences. [2] The country is one of Central America’s most celebrated coffee producers, with a crop that is almost entirely washed and grown at elevations from 1,300 to 2,000 metres. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
       "Chocolate Coffee Notes",
-      "Floral Notes in Coffee"
+      "Espresso",
+      "Floral Notes"
     ],
     "source_url": "https://coffee-dictionary.com/guatemala/",
     "postid": 72624
@@ -3833,7 +4868,7 @@
   },
   {
     "term": "Harsh Coffee",
-    "slug": "harsh-coffee-a-flavor-profile",
+    "slug": "harsh-coffee",
     "definition": "Harsh coffee represents an undesirable flavor profile characterized by sharp, aggressive, and unpleasant sensory experiences. This negative descriptor includes off-putting characteristics that make coffee difficult to enjoy, typically featuring bitter compounds that create an astringent, mouth-puckering sensation. These flavors often present as metallic, acrid, or burning notes that linger.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3852,7 +4887,7 @@
       "coffee grind size",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/harsh-coffee-a-flavor-profile/",
+    "source_url": "https://coffee-dictionary.com/harsh-coffee/",
     "postid": 66901
   },
   {
@@ -3885,7 +4920,7 @@
   },
   {
     "term": "Herbal",
-    "slug": "herbal-a-descriptor-in-coffee-tasting",
+    "slug": "herbal",
     "definition": "Definition and Lexicon Placement “Herbal” serves as a primary descriptor in coffee tasting vocabulary, identifying flavor notes that resemble fresh or dried herbs such as sage, thyme, basil, or oregano. This term occupies a distinct position within established coffee flavor lexicons, including the Specialty Coffee Association’s Flavor Wheel, where it falls under the broader category of plant-like qualities [1] .",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3900,7 +4935,7 @@
       "SCAA",
       "Specialty coffee"
     ],
-    "source_url": "https://coffee-dictionary.com/herbal-a-descriptor-in-coffee-tasting/",
+    "source_url": "https://coffee-dictionary.com/herbal/",
     "postid": 66902
   },
   {
@@ -3918,7 +4953,7 @@
   },
   {
     "term": "Hidey",
-    "slug": "hidey-a-coffee-tasting-term",
+    "slug": "hidey",
     "definition": "Hidey is a coffee tasting term describing a specific, often undesirable, flavor note in a brew, reminiscent of animal hides or leather [1] . This descriptor emerged in professional cupping to identify a pungent savory note that differs from standard earthy defects in a roast [2] . It captures an animalistic quality that separates it from other off-flavors in the coffee lexicon.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -3933,7 +4968,7 @@
       "coffee beans",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/hidey-a-coffee-tasting-term/",
+    "source_url": "https://coffee-dictionary.com/hidey/",
     "postid": 66903
   },
   {
@@ -3963,14 +4998,23 @@
   {
     "term": "Honduras",
     "slug": "honduras",
-    "definition": "Honduras is the largest coffee-producing country in Central America by volume and a rising force in specialty coffee . Its highland farms turn out sweet, balanced, nutty -and- caramel coffees that have quietly become a mainstay of blends and single origins alike.",
-    "category": "General Terms",
+    "definition": "Honduras is a coffee origin, not a specific variety or brewing method, referring to green coffee produced in the Central American nation of Honduras, the largest coffee-producing country in the region by volume. [1] High-grown Arabica coffees from six distinct growing regions define it, each contributing a unique cup profile. [2]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
     "related_terms": [
-      "Chocolate Coffee Notes",
-      "Nutty Flavor in Coffee"
+      "Altura Coffee",
+      "Arusha Coffee",
+      "Blue Mountain Coffee",
+      "Bourbon",
+      "Catimor",
+      "Catuai",
+      "Central Valley (Costa Rica)",
+      "Coffea Arabica",
+      "Coffee production",
+      "Ethiopia",
+      "Typica"
     ],
     "source_url": "https://coffee-dictionary.com/honduras/",
     "postid": 72626
@@ -3978,14 +5022,18 @@
   {
     "term": "Honey Process",
     "slug": "honey-process",
-    "definition": "Honey process refers to removing the skin of the coffee cherry and drying the bean with a measured portion of its sticky mucilage still on the parchment. The retained layer — the “honey” — caramelises in drying, adding sweetness, syrupy body, and fruit-toned acidity to the cup without the full ferment of a natural. Black, red, and yellow honeys indicate how much mucilage is left and how long it dries.",
-    "category": "General Terms",
+    "definition": "Honey Process (also known as miel in Spanish-speaking regions) is a post-harvest coffee processing method in which the outer skin of the coffee cherry is mechanically removed, but some or all of the sticky mucilage is left on the parchment layer during drying. [1]",
+    "category": "Coffee Science",
     "categories": [
-      "General Terms"
+      "Coffee Science"
     ],
     "related_terms": [
-      "Pulped Natural Process",
-      "Wet-Hulling (Giling Basah)"
+      "Coffee production",
+      "Costa Rica",
+      "Double Fermentation",
+      "El Salvador",
+      "Natural Process",
+      "Washed Process"
     ],
     "source_url": "https://coffee-dictionary.com/honey-process/",
     "postid": 72926
@@ -4045,8 +5093,13 @@
       "Coffee Drinks"
     ],
     "related_terms": [
+      "Coffee Brewing",
+      "Cold Brew Coffee",
+      "Dunkin’ Donuts",
+      "Frappuccino",
       "Iced Latte",
-      "filter basket"
+      "Iced mocha",
+      "Starbucks"
     ],
     "source_url": "https://coffee-dictionary.com/iced-coffee/",
     "postid": 67028
@@ -4136,16 +5189,17 @@
   {
     "term": "India",
     "slug": "india",
-    "definition": "India is a major coffee-producing country in South Asia and the origin of the famous Monsooned Malabar process. Its southern plantations grow both Arabica and Robusta , yielding smooth , low-acid coffees that underpin the country’s beloved filter-coffee tradition.",
+    "definition": "India is a major coffee-producing country in South Asia, with its traditional coffee belt concentrated in the southern states of Karnataka, Kerala, and Tamil Nadu. [1] As a coffee term, it refers to the geographic origin and production context of Indian coffee rather than a specific processing style or cultivar.",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Earthy Coffee",
-      "Herbal",
-      "Malty (Coffee Term)",
-      "Spicy Notes in Coffee"
+      "Coffea Arabica",
+      "Coffee production",
+      "Espresso",
+      "Ethiopia",
+      "Robusta coffee"
     ],
     "source_url": "https://coffee-dictionary.com/india/",
     "postid": 72628
@@ -4179,16 +5233,13 @@
   {
     "term": "Indonesia",
     "slug": "indonesia",
-    "definition": "Indonesia is one of the world’s largest coffee-producing countries and the source of some of its most distinctive beans , a coffee origin defined by its island terroir . Its coffees — from Sumatra, Java, and Sulawesi — are famous for a heavy, earthy , low-acid cup shaped by the unique wet-hulled process.",
+    "definition": "Indonesia is a major coffee-producing origin made up of an island archipelago, best known for coffees from Sumatra, Java, Sulawesi, Bali, and Papua. [1] In coffee usage, the term refers to the country’s origin profile: often low-acid, full-bodied coffees, especially those processed with Indonesia’s characteristic wet-hulling method. [2] Indonesia is one of the world’s largest coffee-producing countries, with annual production commonly reported in the roughly 10–12 million 60-kilogram bag range in recent USDA/FAS reporting. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Coffee Body",
-      "Earthy Coffee",
-      "Herbal",
-      "Spicy Notes in Coffee"
+      "Espresso"
     ],
     "source_url": "https://coffee-dictionary.com/indonesia/",
     "postid": 72630
@@ -4267,12 +5318,17 @@
   {
     "term": "Jamaica",
     "slug": "jamaica",
-    "definition": "Jamaica is a Caribbean coffee-producing country best known for its Blue Mountain coffee, one of the most famous and expensive coffees in the world, and a coffee origin synonymous with luxury. Grown in a strictly defined highland zone, it is prized for a mild, sweet, impeccably balanced cup.",
+    "definition": "Jamaica is a Caribbean island nation and coffee origin, referring broadly to all coffee grown and certified on the island. It is distinct from the protected Jamaica Blue Mountain designation, a specific appellation within the country. That distinction matters because the island’s name is backed by a strictly regulated industry and small production across all grades — a reputation that plays out differently across its three official tiers, each covered below. [1]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Blue Mountain Coffee",
+      "Coffea Arabica",
+      "Coffee production",
+      "Typica"
+    ],
     "source_url": "https://coffee-dictionary.com/jamaica/",
     "postid": 72632
   },
@@ -4372,18 +5428,41 @@
     "postid": 66958
   },
   {
-    "term": "Kenya",
-    "slug": "kenya",
-    "definition": "Kenya is an East African coffee-producing country whose coffees are among the most distinctive and sought-after in the world, and one of the great benchmark origins. Known for intense blackcurrant and berry notes and a wine-like acidity, Kenyan coffee sets the standard for bright, complex African flavour.",
-    "category": "General Terms",
+    "term": "Kent",
+    "slug": "kent",
+    "definition": "Kent is a historic Arabica coffee cultivar selected in Mysore, India , in the early 20th century from a Typica-type planting. It stands as one of the first commercially distributed coffee varieties with meaningful resistance to coffee leaf rust, a fungal disease that devastated Arabica crops across Asia and Africa in the late 1800s.",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
     "related_terms": [
-      "Citrus in Coffee",
-      "Coffee Acidity",
-      "Floral Notes in Coffee",
-      "Fruity Notes in Coffee"
+      "Arusha Coffee",
+      "Batian",
+      "Bourbon",
+      "Castillo",
+      "Catimor",
+      "Caturra",
+      "Coffea Arabica",
+      "India",
+      "Kenya",
+      "Tanzania",
+      "Typica"
+    ],
+    "source_url": "https://coffee-dictionary.com/kent/",
+    "postid": 72880
+  },
+  {
+    "term": "Kenya",
+    "slug": "kenya",
+    "definition": "Kenya, in coffee terminology, is an origin term for Arabica coffees grown in the East African nation, particularly on the high plateaus surrounding Mount Kenya and the Aberdare Range. [1] It is not a processing method, variety, or brewing style, but rather a benchmark origin celebrated for producing some of the world’s most distinctive, complex, and sought-after coffee profiles. [2]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Ruiru 11",
+      "SL28",
+      "SL34"
     ],
     "source_url": "https://coffee-dictionary.com/kenya/",
     "postid": 72634
@@ -4426,7 +5505,19 @@
       "Coffee Culture",
       "General Terms"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee percolator",
+      "Coffeemaker",
+      "Decanter",
+      "Espresso Machine",
+      "French press",
+      "Kettle",
+      "Moka pot",
+      "Pod Coffee Machine",
+      "Pour over coffee",
+      "Water tank",
+      "coffee grinder"
+    ],
     "source_url": "https://coffee-dictionary.com/kitchen/",
     "postid": 67014
   },
@@ -4443,6 +5534,18 @@
     ],
     "source_url": "https://coffee-dictionary.com/kitchenaid/",
     "postid": 67041
+  },
+  {
+    "term": "Kona",
+    "slug": "kona",
+    "definition": "Kona is a coffee origin from the Kona District on the west side of Hawaiʻi Island, where Coffea arabica is grown on the slopes of Mauna Loa and Hualālai. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [],
+    "source_url": "https://coffee-dictionary.com/kona/",
+    "postid": 73672
   },
   {
     "term": "Kopi Tubruk",
@@ -4479,12 +5582,18 @@
   {
     "term": "Laos",
     "slug": "laos",
-    "definition": "Laos is a landlocked coffee-producing country in Southeast Asia and an emerging coffee origin, with most of its crop grown on the volcanic Bolaven Plateau in the south. Its Arabica is sweet and mild, and its coffee sector has grown steadily as a source of rural income.",
+    "definition": "Laos is a landlocked Southeast Asian coffee origin, with most of its crop grown on the volcanic Bolaven Plateau in the south. [1] The country runs a dual Arabica and Robusta system, with the latter grown at higher elevations than is typical elsewhere. [2] Laos is gaining recognition for clean, affordable single-origin coffee. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Bolaven Plateau",
+      "Doi Chang",
+      "Doi Tung",
+      "Espresso",
+      "Robusta coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/laos/",
     "postid": 72636
   },
@@ -4569,18 +5678,23 @@
   {
     "term": "Light Roast",
     "slug": "light-roast",
-    "definition": "Light Roast refers to a coffee roast level achieved by heating beans to an internal temperature of 356°F–401°F, halting before the first crack completes. [1] This approach preserves the bean’s inherent qualities, amplifying origin-specific flavors—floral, fruity, and acidic notes—while maintaining a lighter color, higher acidity, and absence of surface oils. [2]",
+    "definition": "Light Roast refers to a coffee roast level achieved by heating beans to an internal temperature of 356°F–401°F, halting before the first crack completes. This approach preserves the bean’s inherent qualities, amplifying origin-specific flavors—floral, fruity, and acidic notes—while maintaining a lighter color, higher acidity, and absence of surface oils. [1]",
     "category": "General Terms",
     "categories": [
       "General Terms"
     ],
     "related_terms": [
+      "AeroPress",
       "Coffee Acidity",
       "Coffee Body",
       "Coffee Brewing Temperature",
+      "Cold Brew Coffee",
       "Dark Roast",
-      "Floral Notes in Coffee",
-      "Fruity Notes in Coffee",
+      "Espresso",
+      "Floral Notes",
+      "French press",
+      "Fruity Notes",
+      "Medium Roast",
       "coffee roasting"
     ],
     "source_url": "https://coffee-dictionary.com/light-roast/",
@@ -4649,12 +5763,18 @@
   {
     "term": "Malawi",
     "slug": "malawi",
-    "definition": "Malawi is a small East African coffee-producing country and an emerging coffee origin whose highland Arabica is a rising specialty name. Grown mainly in the northern Mzuzu region, Malawian coffee is sweet, floral, and bright, with a clean finish that belies the country’s small output.",
-    "category": "General Terms",
+    "definition": "Malawi is a coffee origin from the East African country of Malawi, known mainly for washed Arabica grown by smallholders in northern highland regions. [1] In specialty coffee , it is recognized for clean, bright cups with floral, citrus, and stone-fruit character, especially from the Mzuzu/Misuku areas. [2]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Catimor",
+      "Ethiopia",
+      "Geisha",
+      "Kenya",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/malawi/",
     "postid": 72638
   },
@@ -4768,7 +5888,6 @@
       "Cafestol",
       "Caffeine",
       "Cholesterol",
-      "Coffee Body",
       "Coffee Brewing",
       "Coffee oil",
       "Concentration",
@@ -4791,14 +5910,21 @@
       "General Terms"
     ],
     "related_terms": [
+      "AeroPress",
       "American Roast",
       "Balance in Coffee",
-      "Brightness in Coffee",
+      "Brightness",
       "Caramelization",
       "Coffee Acidity",
       "Coffee Body",
+      "Cold Brew Coffee",
       "Dark Roast",
-      "Temperature control",
+      "Drip Coffee",
+      "Espresso",
+      "French press",
+      "Light Roast",
+      "Medium-dark Roast",
+      "Moka pot",
       "coffee roasting"
     ],
     "source_url": "https://coffee-dictionary.com/medium-roast/",
@@ -4818,8 +5944,15 @@
       "Coffee Acidity",
       "Coffee Body",
       "Coffee oil",
+      "Cold Brew Coffee",
       "Dark Roast",
+      "Drip Coffee",
+      "Espresso",
       "Espresso Blend",
+      "French press",
+      "Medium Roast",
+      "Moka pot",
+      "Vienna Roast",
       "coffee roasting"
     ],
     "source_url": "https://coffee-dictionary.com/medium-dark-roast/",
@@ -4879,13 +6012,15 @@
   {
     "term": "Mexico",
     "slug": "mexico",
-    "definition": "Mexico is one of the world’s larger coffee-producing countries, with a long growing tradition across its southern states, and a longstanding coffee origin. Its highland Arabica is mild and smooth, with nutty, chocolate notes, and much of it is shade-grown and organic.",
+    "definition": "Mexico is a coffee origin term for coffee grown in the country of Mexico, especially the shade-grown Arabica produced in its southern highland states. It is known for a mild, clean cup profile with sweet, nutty, and chocolate-like notes, and it is often associated with organic or low-input production systems. [1] As one of the world’s larger coffee-producing countries, Mexico has a long growing tradition that makes it a significant and reliable origin in the global coffee trade. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Nutty Flavor in Coffee"
+      "Espresso",
+      "Nutty Flavor",
+      "Specialty coffee"
     ],
     "source_url": "https://coffee-dictionary.com/mexico/",
     "postid": 72640
@@ -4994,7 +6129,8 @@
       "Coffee Equipment"
     ],
     "related_terms": [
-      "Coffee Body"
+      "Coffee Body",
+      "Espresso"
     ],
     "source_url": "https://coffee-dictionary.com/moka-pot/",
     "postid": 67057
@@ -5002,14 +6138,15 @@
   {
     "term": "Monsooned Malabar",
     "slug": "monsooned-malabar",
-    "definition": "Monsooned Malabar refers to coffee from the Malabar Coast of India that is deliberately exposed to monsoon winds after processing, a curing method that transforms the bean. Green coffee is stored in open-sided warehouses where moist monsoon air swells the beans over weeks, mellowing acidity to almost nothing, turning the beans pale gold, and producing a cup with heavy body and notes of must, spice, and wood.",
-    "category": "General Terms",
+    "definition": "Monsooned Malabar (pronounced MON-soond MAH-luh-bar) is a distinctive Indian coffee processing style, not a separate coffee species or farm brand, produced on the Malabar Coast of India. [1] Its green beans are deliberately exposed to humid monsoon winds in open, ventilated warehouses until they swell, pale in color, and lose much of their acidity. [1]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
     "related_terms": [
-      "Blue Mountain Coffee",
-      "Phin"
+      "Espresso Blend",
+      "French press",
+      "Single Origin"
     ],
     "source_url": "https://coffee-dictionary.com/monsooned-malabar/",
     "postid": 72946
@@ -5017,12 +6154,18 @@
   {
     "term": "Mount Kilimanjaro",
     "slug": "mount-kilimanjaro",
-    "definition": "Mount Kilimanjaro is a coffee-producing region on the slopes of Africa’s highest mountain in northeastern Tanzania, between roughly 900 and 1,800 meters on the southern and eastern faces. Smallholder gardens shaded by banana groves dominate, intercropped in the Chagga tradition of the mountain’s foothills. Volcanic soils, abundant springs, and altitude combine for a clean, balanced cup with gentle acidity and fruity sweetness.",
+    "definition": "Mount Kilimanjaro, in the context of coffee, is a regional origin name for Tanzanian Arabica grown on the slopes and surrounding highlands of Africa’s highest mountain in northeastern Tanzania. [1] It marks a specific geographic designation, not a distinct botanical variety or separate product category. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Arusha Coffee",
+      "Coffea Arabica",
+      "Single Origin",
+      "Specialty coffee",
+      "Tanzania"
+    ],
     "source_url": "https://coffee-dictionary.com/mount-kilimanjaro/",
     "postid": 72939
   },
@@ -5044,7 +6187,7 @@
   {
     "term": "Mucilage",
     "slug": "mucilage",
-    "definition": "Mucilage refers to the sticky layer of sugars and pectin between the coffee cherry’s pulp and the parchment skin that wraps the bean. It is the substance every processing method must deal with: washed coffees ferment or scrub it away before drying, honey and pulped-natural coffees dry the bean with some of it attached, and naturals dry it in place around the intact fruit.",
+    "definition": "Mucilage (pronounced MYOO-sih-lij), also known as mucílago in Spanish or mucilagem in Portuguese, is the sticky, pectin-rich inner mesocarp layer of a coffee cherry. [1] It sits between the outer pulp and the parchment surrounding the seed, built largely from pectic substances and soluble sugars. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
@@ -5069,7 +6212,7 @@
   {
     "term": "Muscle contraction",
     "slug": "muscle-contraction",
-    "definition": "A coffee percolator is a type of pot used to brew coffee . The name stems from the word “percolate” which means to cause (a solvent ) to pass through a permeable substance especially for extracting a soluble constituent. In the case of coffee-brewing the solvent is water, the permeable substance is the coffee grounds , and the soluble constituents are the chemical compounds that give coffee its color, taste , aroma, and stimulating properties.",
+    "definition": "A muscle contraction is the activation of tension-generating sites inside a muscle fiber, which makes the muscle shorten or hold its length against force. Contractions are started by signals from motor nerves and drive everything from the rhythmic beating of the heart to the controlled movements of a barista’s hands.",
     "category": "Coffee & Health",
     "categories": [
       "Coffee & Health",
@@ -5077,7 +6220,8 @@
       "General Terms"
     ],
     "related_terms": [
-      "Coffee extraction"
+      "Caffeine",
+      "Heart"
     ],
     "source_url": "https://coffee-dictionary.com/muscle-contraction/",
     "postid": 66827
@@ -5085,36 +6229,51 @@
   {
     "term": "Myanmar",
     "slug": "myanmar",
-    "definition": "Myanmar is an emerging coffee-producing country in Southeast Asia and a young coffee origin, with its best Arabica grown in the cool highlands of Shan State. Its coffees are sweet and fruity , and its specialty sector has grown rapidly as a source of rural development.",
+    "definition": "Myanmar is a coffee origin in Southeast Asia, known primarily for Arabica grown in the cool highlands of Shan State and, to a lesser extent, in Mandalay and other upland regions. [1] Though a relatively young specialty origin, it has drawn international attention for smallholder-produced coffees marked by clean sweetness and fruity character. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "China",
+      "Thailand"
+    ],
     "source_url": "https://coffee-dictionary.com/myanmar/",
     "postid": 72642
   },
   {
     "term": "Myocardial infarction",
     "slug": "myocardial-infarction",
-    "definition": "Myocardial infarction (MI) or acute myocardial infarction (AMI), commonly known as a heart attack, results from the partial interruption of blood supply to a part of the heart , causing heart cells to die. This is most commonly due to occlusion (blockage) of a coronary artery following the rupture of a vulnerable atherosclerotic plaque, which is an unstable collection of lipids ( cholesterol and fatty acids) and white blood cells in the wall of an artery.",
+    "definition": "Myocardial infarction (MI), commonly known as a heart attack, is the irreversible death of heart muscle tissue caused by a prolonged blockage of blood flow to a coronary artery. This blockage typically results from a ruptured atherosclerotic plaque and the subsequent formation of a blood clot. Ischemia first affects the subendocardial region, and tissue begins to die within 15–30 minutes of loss of blood supply. In the context of coffee, the relationship is twofold.",
     "category": "Coffee & Health",
     "categories": [
       "Coffee & Health"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Alzheimer’s disease",
+      "Brain damage",
+      "Caffeine",
+      "Cancer",
+      "Cholesterol",
+      "Dementia",
+      "Diabetes mellitus"
+    ],
     "source_url": "https://coffee-dictionary.com/myocardial-infarction/",
     "postid": 66990
   },
   {
     "term": "Naranjo",
     "slug": "naranjo",
-    "definition": "Naranjo is a coffee-producing canton in Costa Rica’s West Valley, one of the country’s most decorated coffee sub-regions. Farms on its Pacific-facing slopes between roughly 1,100 and 1,700 meters have taken repeated Cup of Excellence honors, on lots dominated by Villa Sarchí and Caturra alongside Catuai. The cup profile is balanced and sweet with citric acidity and stone-fruit and caramel notes.",
+    "definition": "Naranjo (pronounced nah-RAHN-ho) is a canton and coffee-producing region in Costa Rica ‘s Alajuela province, situated within the country’s West Valley coffee zone. [1] In specialty coffee, the name functions as a geographic origin designation for green coffee or origin-labeled lots grown on farms within this administrative district. [2] The area has built its reputation on high-altitude farms, award-winning microlots, and a steady record of international competition wins. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Costa Rica",
+      "Single Origin",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/naranjo/",
     "postid": 72936
   },
@@ -5135,25 +6294,39 @@
   {
     "term": "Natural Process",
     "slug": "natural-process",
-    "definition": "Natural process refers to drying coffee cherries whole, with the fruit still wrapped around the bean, and removing it only once drying is complete. The seeds dry inside the intact fruit over two to four weeks, absorbing sugars and compounds from the pulp as they shrivel, which deepens body and adds fruity, wine-like flavor. The method is the oldest form of coffee processing and needs no water.",
+    "definition": "Natural Process (also known as dry process or dry-processed coffee) is a coffee processing method in which whole coffee cherries are dried intact, with the fruit left wrapped around the seed until the drying cycle is complete. [1] Unlike washed and honey-style methods, no fruit is removed before drying; instead, the entire cherry is sun-dried over two to four weeks, and the dried husk is removed mechanically once the bean reaches its target moisture content. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee production",
+      "Double Fermentation",
+      "Pulped Natural Process",
+      "Single Origin",
+      "Temperature control"
+    ],
     "source_url": "https://coffee-dictionary.com/natural-process/",
     "postid": 72924
   },
   {
     "term": "Natural rubber",
     "slug": "natural-rubber",
-    "definition": "Natural rubber , also called India rubber or caoutchouc, as initially produced, consists of suitable polymers of the organic compound isoprene with minor impurities of other organic compounds plus water. Forms of polyisoprene that are useful as natural rubbers are classified as elastomers. Currently the rubber is harvested mainly in the form of the latex from certain trees. The latex is a sticky, milky colloid drawn off by making incisions into the bark and collecting the fluid in vessels.",
+    "definition": "Natural rubber, also called India rubber or caoutchouc, is an elastic polymer derived from the latex of the Hevea brasiliensis tree, valued for its resilience and waterproof nature. [1] In coffee, the term carries two distinct meanings. First, it identifies the historical material used for group-head gaskets and seals in espresso machines, particularly the E61 lever design, where its compressibility created a watertight seal under high pressure. [1]",
     "category": "Coffee Equipment",
     "categories": [
       "Coffee Equipment",
       "General Terms"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Acrid Coffee Taste",
+      "Ashy Coffee",
+      "Bitterness in Coffee",
+      "E-61",
+      "Earthy Coffee",
+      "Espresso Machine",
+      "Winey Coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/natural-rubber/",
     "postid": 66982
   },
@@ -5198,7 +6371,7 @@
   },
   {
     "term": "Neutral Flavor",
-    "slug": "neutral-flavor-in-coffee",
+    "slug": "neutral-flavor",
     "definition": "Neutral flavor serves as the reference point against which coffee professionals evaluate all other taste characteristics. This baseline represents a clean, balanced cup with no dominant flavor notes – neither overly acidic nor bitter, without pronounced sweetness or astringency . Professional tasters use neutral coffee as their calibration standard before evaluating samples with distinct regional or processing characteristics. The neutral cup has subtle grain-like or nutty undertones without sharp edges or overwhelming intensity.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -5211,31 +6384,43 @@
       "Temperature control",
       "coffee grind size"
     ],
-    "source_url": "https://coffee-dictionary.com/neutral-flavor-in-coffee/",
+    "source_url": "https://coffee-dictionary.com/neutral-flavor/",
     "postid": 66921
   },
   {
     "term": "New Orleans",
     "slug": "new-orleans",
-    "definition": "New Orleans is a major United States port and the largest city and metropolitan area in the state of Louisiana . The population of the city was 343,829 as of the 2010 U.S. Census . The New Orleans metropolitan area (New Orleans– Metairie –Kenner Metropolitan Statistical Area) had a population of 1,167,764 in 2010 and was the 46th largest in the United States. The New Orleans–Metairie–Bogalusa Combined Statistical Area, a larger trading area, had a 2010 population of 1,214,932.",
+    "definition": "New Orleans refers to a distinct regional coffee culture centered on blending roasted coffee with chicory root and serving it as café au lait with hot milk. [1] The tradition emerged in the nineteenth century when Civil War blockades cut off coffee imports, prompting roasters to stretch scarce beans with the locally abundant root—a practice that stuck as a matter of taste. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins",
       "General Terms"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Bitterness in Coffee",
+      "Café au lait",
+      "Chicory",
+      "Cold Brew Coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/new-orleans/",
     "postid": 67015
   },
   {
     "term": "Nicaragua",
     "slug": "nicaragua",
-    "definition": "Nicaragua is a Central American coffee-producing country and a dependable coffee origin, whose highland coffees are sweet, balanced, and chocolatey. Grown across the northern highlands around Jinotega and Matagalpa, Nicaraguan coffee is a crowd-pleasing favourite.",
-    "category": "General Terms",
+    "definition": "Nicaragua is a Central American coffee origin defined by high-grown, washed-processed Arabica production concentrated in its northern highlands. [1] Its coffee matters because it delivers a reliable, easy-drinking profile of sweet chocolate, caramel, and nut flavors, making it a staple for espresso blends and medium-roast single origins. [2]",
+    "category": "Coffee Origins",
     "categories": [
-      "General Terms"
+      "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Altura Coffee",
+      "Central Valley (Costa Rica)",
+      "Chocolate Coffee Notes",
+      "Coffea Arabica",
+      "Espresso",
+      "Espresso Blend"
+    ],
     "source_url": "https://coffee-dictionary.com/nicaragua/",
     "postid": 72644
   },
@@ -5293,8 +6478,34 @@
     "postid": 66908
   },
   {
+    "term": "Nutty Flavor",
+    "slug": "nutty-flavor",
+    "definition": "Nutty flavor in coffee represents one of the most recognizable and beloved taste profiles, characterized by distinct notes reminiscent of almonds, hazelnuts, walnuts, or pecans. This sensory experience typically shows as a warm, rich undertone that adds depth and complexity to the cup without overwhelming other flavor components.",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Brazil",
+      "Caramelization",
+      "Coffea Arabica",
+      "Coffee extraction",
+      "Colombia",
+      "Flavor",
+      "French press",
+      "Honduras",
+      "Mexico",
+      "Specialty coffee",
+      "Taste",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/nutty-flavor/",
+    "postid": 66920
+  },
+  {
     "term": "Nutty Flavor in Coffee",
-    "slug": "nutty-flavor-in-coffee-an-in-depth-look",
+    "slug": "nutty-flavor",
     "definition": "Nutty flavor in coffee represents one of the most recognizable and beloved taste profiles, characterized by distinct notes reminiscent of almonds, hazelnuts, walnuts, or pecans. This sensory experience typically shows as a warm, rich undertone that adds depth and complexity to the cup without overwhelming other flavor components.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -5378,6 +6589,7 @@
     "related_terms": [
       "Degassing",
       "Espresso Machine",
+      "Valve",
       "coffee beans",
       "coffee roasting",
       "crema",
@@ -5424,15 +6636,61 @@
     "postid": 71527
   },
   {
-    "term": "Panama",
-    "slug": "panama",
-    "definition": "Panama is a small coffee-producing country that has become legendary in specialty coffee as the home of the Geisha variety, and one of the world’s most coveted coffee origins. Grown on the volcanic slopes of Boquete and Volcán, Panamanian Geisha commands record prices for its astonishing floral, tea-like cup.",
+    "term": "Pacamara",
+    "slug": "pacamara",
+    "definition": "Pacamara is a hybrid coffee variety developed in El Salvador in 1958 by crossing the Bourbon-derived Pacas variety with the Typica-derived Maragogype. [1] The resulting plant inherits Maragogype’s famously large beans while retaining Pacas’s compact tree structure and higher yield potential. [2] This combination makes Pacamara one of the few varieties where bean size directly correlates with cup quality, as the oversized seeds often produce a dense, sugar-rich center cut. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Floral Notes in Coffee"
+      "Bourbon",
+      "Caturra",
+      "Coffea Arabica",
+      "Coffee production",
+      "El Salvador",
+      "Pacas",
+      "Typica"
+    ],
+    "source_url": "https://coffee-dictionary.com/pacamara/",
+    "postid": 72876
+  },
+  {
+    "term": "Pacas",
+    "slug": "pacas",
+    "definition": "Pacas is a natural, dwarf-mutation variety of the Bourbon coffee cultivar, first identified in El Salvador in the 1950s. [1] This genetic anomaly, found on the Pacas family farm, shortens the plant’s internodes, giving it a compact stature that permits denser planting and easier harvesting. [1] That structural trait makes it a high-yielding, economically vital crop for Salvadoran producers, especially on small farms where space is tight. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Catuai",
+      "Caturra",
+      "El Salvador",
+      "Pacamara"
+    ],
+    "source_url": "https://coffee-dictionary.com/pacas/",
+    "postid": 72878
+  },
+  {
+    "term": "Panama",
+    "slug": "panama",
+    "definition": "Panama is a Central American coffee origin, not a variety or processing method, celebrated for high-grown Arabica from the western highlands of Chiriquí province. [1] Its farms cluster around Boquete, Volcán, and Renacimiento, with Boquete on the slopes of Volcán Barú as the best-known district.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Altura Coffee",
+      "Bourbon",
+      "Caturra",
+      "Central Valley (Costa Rica)",
+      "Coffea Arabica",
+      "Ethiopia",
+      "Geisha",
+      "Specialty coffee",
+      "Typica"
     ],
     "source_url": "https://coffee-dictionary.com/panama/",
     "postid": 72646
@@ -5479,8 +6737,29 @@
     "postid": 71501
   },
   {
+    "term": "Papery Flavor",
+    "slug": "papery-flavor",
+    "definition": "Papery flavor represents a negative taste descriptor for coffee, characterized by a dry, thin, and flat taste reminiscent of wet paper or cardboard [1] . This unwanted sensory profile creates an unpleasant drinking experience that masks the coffee’s intended flavor characteristics. Coffee professionals categorize papery flavor as a type of ‘ taint ‘ or ‘off-flavor’ related to staleness and oxidation , rather than a roast defect or inherent bean characteristic [1] .",
+    "category": "Brewing Methods",
+    "categories": [
+      "Brewing Methods",
+      "Flavors & Cupping",
+      "General Terms"
+    ],
+    "related_terms": [
+      "Coffee extraction",
+      "Coffee filter",
+      "Degassing",
+      "Flavor",
+      "Specialty coffee",
+      "Taste"
+    ],
+    "source_url": "https://coffee-dictionary.com/papery-flavor/",
+    "postid": 66910
+  },
+  {
     "term": "Papery Flavor in Coffee",
-    "slug": "papery-flavor-in-coffee-an-unwanted-taste-profile",
+    "slug": "papery-flavor",
     "definition": "Papery flavor represents a negative taste descriptor for coffee, characterized by a dry, thin, and flat taste reminiscent of wet paper or cardboard [1] . This unwanted sensory profile creates an unpleasant drinking experience that masks the coffee’s intended flavor characteristics. Coffee professionals categorize papery flavor as a type of ‘ taint ‘ or ‘off-flavor’ related to staleness and oxidation , rather than a roast defect or inherent bean characteristic [1] .",
     "category": "Brewing Methods",
     "categories": [
@@ -5502,21 +6781,22 @@
   {
     "term": "Papua New Guinea",
     "slug": "papua-new-guinea",
-    "definition": "Papua New Guinea is a coffee-producing country in the western Pacific and a distinctive coffee origin whose highland Arabica grows in remote, rugged terrain. Its coffees are sweet and full-bodied, with a syrupy texture and a fruity, gently earthy character.",
+    "definition": "Papua New Guinea is a coffee-producing country in the western Pacific and a distinctive coffee origin whose highland Arabica grows in remote, rugged terrain. [1] Its highland terroir shapes the origin more than any single roast profile, and around 95% of its coffee is Arabica. [2] The cups come out clean and sweet, with a medium-to-full body and flavors that can range from citrus and tropical fruit to cocoa and mild earthiness. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Earthy Coffee",
-      "Woody Coffee"
+      "Bourbon",
+      "Espresso",
+      "Typica"
     ],
     "source_url": "https://coffee-dictionary.com/papua-new-guinea/",
     "postid": 72648
   },
   {
     "term": "Past Crop",
-    "slug": "past-crop-the-impact-of-aging-on-coffee",
+    "slug": "past-crop",
     "definition": "Past crop refers to coffee beans from a harvest that is more than 12 months past its harvest date, having undergone significant physical and chemical changes due to prolonged storage. [1]",
     "category": "Coffee Science",
     "categories": [
@@ -5532,7 +6812,7 @@
       "Temperature control",
       "coffee beans"
     ],
-    "source_url": "https://coffee-dictionary.com/past-crop-the-impact-of-aging-on-coffee/",
+    "source_url": "https://coffee-dictionary.com/past-crop/",
     "postid": 66911
   },
   {
@@ -5554,20 +6834,20 @@
   },
   {
     "term": "Peasy",
-    "slug": "peasy-an-unpleasant-taste-in-coffee",
+    "slug": "peasy",
     "definition": "Peasy refers to a specific off-flavor in coffee characterized by distinct vegetal notes reminiscent of raw green peas or bell peppers [1] . This undesirable taste attribute typically manifests when coffee has been under-roasted or when beans have not fully developed during the roasting process before reaching pyrolysis at approximately 465°F (240°C) [2] . In sensory evaluation, peasy notes present a sharp, somewhat astringent mouthfeel accompanied by a lingering aftertaste that lacks sweetness.",
     "category": "Flavors & Cupping",
     "categories": [
       "Flavors & Cupping"
     ],
     "related_terms": [],
-    "source_url": "https://coffee-dictionary.com/peasy-an-unpleasant-taste-in-coffee/",
+    "source_url": "https://coffee-dictionary.com/peasy/",
     "postid": 66912
   },
   {
     "term": "Pero",
     "slug": "caro-beverage",
-    "definition": "Pero is a brand of caffeine-free roasted grain beverages. It is historically sold under names such as Pero. Some consider it a coffee substitute . It is manufactured by Nestlé and was first introduced in West Germany in 1954.",
+    "definition": "Caro, sold as Pero in the United States, is a caffeine-free roasted grain beverage made by Nestlé from roasted barley, malted barley, rye and chicory. [1] The drink was first introduced in West Germany in 1954 as a coffee substitute .",
     "category": "Coffee Brands",
     "categories": [
       "Coffee Brands",
@@ -5580,13 +6860,18 @@
   {
     "term": "Peru",
     "slug": "peru",
-    "definition": "Peru is a leading coffee-producing country on the eastern slopes of the Andes and a major coffee origin known for high-grown, organic Arabica. Its coffees are mild and sweet, with nutty, chocolate notes and a clean finish, grown largely by smallholder farmers.",
+    "definition": "Peru sits on the eastern slopes of the Andes in South America, producing washed Arabica beans at high altitudes on smallholder farms. [1] That geography and processing method deliver cups that are clean, mild, and sweet, with a gentle acidity that makes them exceptionally approachable. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Chocolate Coffee Notes"
+      "Altura Coffee",
+      "Central Valley (Costa Rica)",
+      "Clean Coffee",
+      "Coffea Arabica",
+      "Espresso",
+      "Ethiopia"
     ],
     "source_url": "https://coffee-dictionary.com/peru/",
     "postid": 72650
@@ -5609,12 +6894,15 @@
   {
     "term": "Phin",
     "slug": "phin",
-    "definition": "Phin refers to a small metal coffee filter used throughout Vietnam and the tool behind cà phê sữa đá. A perforated plate sits over the cup, ground coffee goes inside, a weighted press screws down on the grounds, and hot water drips through the chamber straight into the cup below, one bead at a time. The slow drip over dark-roast robusta, poured onto ice and condensed milk, defines Vietnamese coffee.",
-    "category": "General Terms",
+    "definition": "The phin (phin cà phê, pronounced “feen”) is a small, stamped-metal coffee brewer that sits directly on a cup or glass, brewing by gravity alone. [1] It is a distinct brewing device and method, not a finished beverage. As the traditional tool behind Vietnamese iced coffee (cà phê sữa đá), it extracts dark-roast robusta one slow bead at a time. [1]",
+    "category": "Coffee Equipment",
     "categories": [
-      "General Terms"
+      "Coffee Equipment"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee Brewing Temperature",
+      "Vietnamese iced coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/phin/",
     "postid": 72945
   },
@@ -5874,8 +7162,22 @@
     "postid": 71532
   },
   {
+    "term": "Primary Tastes",
+    "slug": "primary-tastes",
+    "definition": "Coffee perception centers around five primary taste sensations detected by taste buds on the tongue and palate. Bitterness , the most prominent taste in coffee, results from compounds like caffeine and chlorogenic acids, with intensity varying based on roast level [1] . Sweetness manifests as pleasant, sugar-like notes often found in properly extracted coffees. Sourness ( acidity ) contributes brightness and vibrancy, ranging from crisp citrus to softer malic acid notes.",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffee Acidity"
+    ],
+    "source_url": "https://coffee-dictionary.com/primary-tastes/",
+    "postid": 66915
+  },
+  {
     "term": "Primary Tastes in Coffee",
-    "slug": "primary-tastes-in-coffee-a-sensory-exploration",
+    "slug": "primary-tastes",
     "definition": "Coffee perception centers around five primary taste sensations detected by taste buds on the tongue and palate. Bitterness , the most prominent taste in coffee, results from compounds like caffeine and chlorogenic acids, with intensity varying based on roast level [1] . Sweetness manifests as pleasant, sugar-like notes often found in properly extracted coffees. Sourness ( acidity ) contributes brightness and vibrancy, ranging from crisp citrus to softer malic acid notes.",
     "category": "Flavors & Cupping",
     "categories": [
@@ -5912,30 +7214,61 @@
   {
     "term": "Puerto Rico",
     "slug": "puerto-rico",
-    "definition": "Puerto Rico is a Caribbean coffee-producing island and coffee origin with a heritage dating back centuries. Its highland Arabica is smooth, sweet, and balanced, and the island’s coffee tradition is celebrated in its daily café culture.",
+    "definition": "Puerto Rico is a Caribbean coffee origin from the island’s mountainous interior, known for high-grown Arabica beans, especially in the Cordillera Central. [1] It stands out for small-scale production, a famous past, and washed, mountain-grown coffees with a smooth, balanced profile. [2] That tradition once made the island a major global exporter, but today it endures primarily through its own vibrant café culture. [3]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Bourbon",
+      "Espresso",
+      "Typica"
+    ],
     "source_url": "https://coffee-dictionary.com/puerto-rico/",
     "postid": 72652
   },
   {
     "term": "Pulped Natural Process",
     "slug": "pulped-natural-process",
-    "definition": "Pulped natural process refers to removing the skin of the coffee cherry mechanically but leaving some or all of the mucilage on the parchment during drying. The sticky layer’s sugars caramelise on the drying beds, adding sweetness and body to what otherwise remains a clean, parchment-dried coffee. It sits between the washed and natural methods in both flavor impact and water use.",
+    "definition": "Pulped Natural Process (also known as semi-washed, or cereja descascada in Brazil) is a coffee processing method in which the outer skin of the coffee cherry is mechanically removed soon after harvest, while some or most of the sticky mucilage layer remains attached to the parchment-covered seed during drying. [1] It sits between washed and natural processing, combining the cleaner, more acidic cup profile of a washed coffee with the heavier body and sweetness of a natural, making it a favorite for espresso blends seeking balance. [2] Because the fruit is removed before drying, the coffee is less prone to the over-fermentation and moldy flavors that can plague naturals, yet it still absorbs sugars from the remaining mucilage, enhancing perceived sweetness and roundness. [3] This method is particularly valued in regions with limited water access or unpredictable rainfall, as it requires significantly less water than fully washed processing while producing a more consistent and marketable result than traditional sun-dried naturals. [1] The technique is a cornerstone of Brazilian coffee production , where it was pioneered to balance efficiency with extraction quality. [3]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Brazil",
+      "Coffee Brewing Temperature",
+      "Coffee production",
+      "Double Fermentation",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/pulped-natural-process/",
     "postid": 72925
   },
   {
+    "term": "Quakery",
+    "slug": "quakery",
+    "definition": "Quakers are defective coffee beans that create distinct negative sensory characteristics when present in sufficient quantities within a coffee blend. [1] These underdeveloped beans appear lighter in color compared to properly developed coffee beans , often displaying a pale, whitish, or lighter brown appearance that makes them identifiable during visual inspection. [1] The flavor impact of quakers has harsh , astringent, and unpleasantly bitter notes that can overpower the desired flavor characteristics of quality coffee. [2]",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Coffea Arabica",
+      "Flavor",
+      "Robusta coffee",
+      "Specialty coffee",
+      "Taste",
+      "Temperature control",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/quakery/",
+    "postid": 66916
+  },
+  {
     "term": "Quakery in Coffee",
-    "slug": "quakery-in-coffee-a-flavor-profile",
+    "slug": "quakery",
     "definition": "Quakers are defective coffee beans that create distinct negative sensory characteristics when present in sufficient quantities within a coffee blend. [1] These underdeveloped beans appear lighter in color compared to properly developed coffee beans , often displaying a pale, whitish, or lighter brown appearance that makes them identifiable during visual inspection. [1] The flavor impact of quakers has harsh , astringent, and unpleasantly bitter notes that can overpower the desired flavor characteristics of quality coffee. [2]",
     "category": "Flavors & Cupping",
     "categories": [
@@ -6106,16 +7439,40 @@
     "postid": 66918
   },
   {
-    "term": "Rwanda",
-    "slug": "rwanda",
-    "definition": "Rwanda, the “land of a thousand hills,” is a small East African coffee-producing country and a model specialty origin, whose Bourbon coffees are bright, floral, and sweet. Its sector has become a benchmark of quality-driven, smallholder-led production.",
+    "term": "Ruiru 11",
+    "slug": "ruiru-11",
+    "definition": "Ruiru 11 is a compact, high-yielding Arabica coffee variety developed in Kenya and released in 1985 by the Coffee Research Station in Ruiru, which gives the variety its name. Its strong resistance to coffee berry disease (CBD) and tolerance to coffee leaf rust make it a practical choice for farmers facing disease pressure.",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Fruity Notes in Coffee",
-      "Winey Coffee"
+      "Arusha Coffee",
+      "Batian",
+      "Castillo",
+      "Catimor",
+      "Coffea Arabica",
+      "Kenya",
+      "SL28",
+      "SL34"
+    ],
+    "source_url": "https://coffee-dictionary.com/ruiru-11/",
+    "postid": 72872
+  },
+  {
+    "term": "Rwanda",
+    "slug": "rwanda",
+    "definition": "Rwanda is an East African coffee origin known for producing high-grown Arabica coffees, particularly the Red Bourbon variety, which are typically fully washed at centralized washing stations. [1] In coffee terminology, “Rwanda” refers to beans from this country rather than a processing method or flavor note. Its coffee sector has become a global benchmark for quality-driven, smallholder-led production. [2]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Burundi",
+      "Espresso",
+      "Ethiopia",
+      "Specialty coffee"
     ],
     "source_url": "https://coffee-dictionary.com/rwanda/",
     "postid": 72654
@@ -6138,7 +7495,7 @@
   {
     "term": "SCAA",
     "slug": "scaa",
-    "definition": "The Specialty Coffee Association of America (SCAA), founded in 1982, is a non-profit trade organization for the specialty coffee industry. With members located in more than 40 countries, SCAA represents every segment of the specialty coffee industry, including producers, coffee roasters , importers/exporters, retailers, coffee brewing equipment manufacturers, baristas and other industry professionals.",
+    "definition": "The Specialty Coffee Association (SCA) is the non-profit trade organization for the specialty coffee industry. SCA stands for the Specialty Coffee Association, the global body created in 2017 when the Specialty Coffee Association of America (SCAA) and the Specialty Coffee Association of Europe (SCAE) merged. The SCA represents every segment of the industry, including producers, coffee roasters , importers and exporters, retailers, coffee brewing equipment manufacturers, baristas and other industry professionals.",
     "category": "General Terms",
     "categories": [
       "General Terms"
@@ -6151,7 +7508,7 @@
   },
   {
     "term": "Scorched Coffee",
-    "slug": "scorched-coffee-an-exploration-of-over-roasting",
+    "slug": "scorched-coffee",
     "definition": "Scorched coffee represents one of the most recognizable roasting defects, occurring when excessive heat application damages coffee beans during the roasting process. This defect shows when roasters apply too much heat quickly, particularly during the early stages, causing the bean’s exterior to burn while the interior remains underdeveloped [1] . The resulting coffee has characteristic burnt, acrid flavors that overpower the bean’s natural characteristics. The phenomenon differs from intentionally dark roasts through its uneven development pattern.",
     "category": "Coffee Roasting",
     "categories": [
@@ -6174,7 +7531,7 @@
       "coffee roasters",
       "coffee roasting"
     ],
-    "source_url": "https://coffee-dictionary.com/scorched-coffee-an-exploration-of-over-roasting/",
+    "source_url": "https://coffee-dictionary.com/scorched-coffee/",
     "postid": 66919
   },
   {
@@ -6214,6 +7571,27 @@
     ],
     "source_url": "https://coffee-dictionary.com/senseo/",
     "postid": 67042
+  },
+  {
+    "term": "Sidra",
+    "slug": "sidra",
+    "definition": "Sidra is a rare, naturally occurring hybrid coffee variety of the Arabica species, most famously cultivated in Ecuador ’s Pichincha and Loja provinces. [1] Its genetic lineage, likely a cross between Typica and Bourbon, yields an exceptionally complex flavor profile with intense floral notes, bright citrus acidity, and pronounced tropical-fruit sweetness. [2]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Citrus",
+      "Coffea Arabica",
+      "Coffee Acidity",
+      "Colombia",
+      "Ecuador",
+      "Floral Notes",
+      "Typica"
+    ],
+    "source_url": "https://coffee-dictionary.com/sidra/",
+    "postid": 72864
   },
   {
     "term": "Single Espresso Shot",
@@ -6301,6 +7679,44 @@
     "postid": 71493
   },
   {
+    "term": "SL28",
+    "slug": "sl28",
+    "definition": "SL28 is an heirloom Arabica coffee variety selected in Kenya by Scott Agricultural Laboratories in the 1930s, derived from a single-tree selection of the Tanganyika (now Tanzania) variety. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "AA Coffee Grading",
+      "Arusha Coffee",
+      "Batian",
+      "Coffea Arabica",
+      "Ethiopia",
+      "Kenya",
+      "Tanzania"
+    ],
+    "source_url": "https://coffee-dictionary.com/sl28/",
+    "postid": 72868
+  },
+  {
+    "term": "SL34",
+    "slug": "sl34",
+    "definition": "SL34 is a coffee variety developed by Scott Laboratories in Kenya during the 1930s, a Bourbon-lineage selection chosen for its adaptability to high-rainfall conditions. [1] It is the lesser-known sibling of SL28 , yet it carries equal weight in Kenyan coffee production.",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Arusha Coffee",
+      "Bourbon",
+      "Kenya",
+      "SL28",
+      "Tanzania"
+    ],
+    "source_url": "https://coffee-dictionary.com/sl34/",
+    "postid": 72870
+  },
+  {
     "term": "Small appliance",
     "slug": "small-appliance",
     "definition": "Small appliances, also called brown goods (because the color of the wooden and bakelite cases once used) are portable or semi-portable machines, generally used on table-tops, counter-tops, or other platforms, to accomplish a household task. Examples of brown goods are: television and wireless sets; microwave ovens; coffee makers; and personal computers.",
@@ -6313,8 +7729,33 @@
     "postid": 66822
   },
   {
+    "term": "Smoothness",
+    "slug": "smoothness",
+    "definition": "Smoothness in coffee represents a harmonious sensory experience characterized by a low-acidity, mellow flavor profile that lacks harshness or bitterness . [1] This quality shows a pleasant mouthfeel—neither thin nor watery—that glides across the palate without astringency . [2] The perception of smoothness emerges when all flavor components integrate seamlessly, with no single element creating jarring sensations. Achieving this balance requires proper brewing conditions, particularly water quality and temperature. Filtered water heated to 195–205°F (90–96°C) helps produce consistently smooth results. [3]",
+    "category": "Flavors & Cupping",
+    "categories": [
+      "Flavors & Cupping"
+    ],
+    "related_terms": [
+      "Brazil",
+      "Coffee Acidity",
+      "Coffee Body",
+      "Coffee Brewing Temperature",
+      "Coffee extraction",
+      "Coffee production",
+      "Colombia",
+      "Costa Rica",
+      "Flavor",
+      "Specialty coffee",
+      "Temperature control",
+      "coffee grind size"
+    ],
+    "source_url": "https://coffee-dictionary.com/smoothness/",
+    "postid": 66913
+  },
+  {
     "term": "Smoothness in Coffee",
-    "slug": "smoothness-in-coffee-a-desirable-quality",
+    "slug": "smoothness",
     "definition": "Smoothness in coffee represents a harmonious sensory experience characterized by a low-acidity, mellow flavor profile that lacks harshness or bitterness . [1] This quality shows a pleasant mouthfeel—neither thin nor watery—that glides across the palate without astringency . [2] The perception of smoothness emerges when all flavor components integrate seamlessly, with no single element creating jarring sensations. Achieving this balance requires proper brewing conditions, particularly water quality and temperature. Filtered water heated to 195–205°F (90–96°C) helps produce consistently smooth results. [3]",
     "category": "Flavors & Cupping",
     "categories": [
@@ -6353,7 +7794,6 @@
       "Decaffeination",
       "Dissolution (chemistry)",
       "Flavor",
-      "Pressure",
       "Specialty coffee",
       "Total dissolved solids",
       "coffee beans"
@@ -6414,8 +7854,28 @@
     "postid": 67090
   },
   {
+    "term": "Spicy Notes",
+    "slug": "spicy-notes",
+    "definition": "Spicy notes in coffee represent a diverse category of aromatic and flavor characteristics that add complexity to the cup. On the Specialty Coffee Association ( Specialty Coffee Association (SCA)) Flavor Wheel, spice descriptors appear in multiple sections, including the brown spice family (cinnamon, clove, nutmeg) and pungent spices (black pepper, anise) [1] .",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Flavor",
+      "Guatemala",
+      "India",
+      "Indonesia",
+      "Specialty coffee",
+      "Temperature control",
+      "Yemen"
+    ],
+    "source_url": "https://coffee-dictionary.com/spicy-notes/",
+    "postid": 66925
+  },
+  {
     "term": "Spicy Notes in Coffee",
-    "slug": "spicy-notes-in-coffee-an-overview",
+    "slug": "spicy-notes",
     "definition": "Spicy notes in coffee represent a diverse category of aromatic and flavor characteristics that add complexity to the cup. On the Specialty Coffee Association ( Specialty Coffee Association (SCA)) Flavor Wheel, spice descriptors appear in multiple sections, including the brown spice family (cinnamon, clove, nutmeg) and pungent spices (black pepper, anise) [1] .",
     "category": "Coffee Origins",
     "categories": [
@@ -6663,13 +8123,22 @@
   {
     "term": "Tanzania",
     "slug": "tanzania",
-    "definition": "Tanzania is an East African coffee-producing country whose coffees grow on the slopes of Mount Kilimanjaro and the southern highlands. Known for bright , fruity , sweet cups — and for its prized peaberry lots — Tanzania is a respected origin in its own right.",
+    "definition": "Tanzania stands out among East African origins for its dual-crop structure, producing both washed Arabica and unwashed Robusta , with the former dominating export value. [1] The country’s coffee identity hinges on the stark contrast between its northern and southern highlands, each yielding distinct cup profiles. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Citrus in Coffee"
+      "AA Coffee Grading",
+      "Arusha Coffee",
+      "Bourbon",
+      "Brightness",
+      "Catimor",
+      "Coffee Acidity",
+      "Ethiopia",
+      "Kent",
+      "Robusta coffee",
+      "Typica"
     ],
     "source_url": "https://coffee-dictionary.com/tanzania/",
     "postid": 72656
@@ -6677,12 +8146,15 @@
   {
     "term": "Tarrazú",
     "slug": "tarrazu",
-    "definition": "Tarrazú is a coffee-producing region in the highlands south of San José, Costa Rica, centered on the town of San Marcos. It is one of the world’s most recognizable coffee appellations, with farms between roughly 1,200 and 1,900 meters on slopes that face the Pacific. High altitude, distinct wet and dry seasons, and rich volcanic soil produce a bright, aromatic cup with crisp citric acidity and a clean finish.",
+    "definition": "Tarrazú (also spelled Tarrazu without the accent in international trade) is a coffee origin and legally protected denomination of origin from the highlands of southern Costa Rica, centered on the cantons of Tarrazú, Dota, and León Cortés. [1] High-grown Arabica cultivated between roughly 1,200 and 1,900 meters on Pacific-facing slopes yields a bright, aromatic cup with crisp citric acidity and a clean finish. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso Blend",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/tarrazu/",
     "postid": 72933
   },
@@ -6732,13 +8204,23 @@
   {
     "term": "Temperature control",
     "slug": "temperature-control",
-    "definition": "Temperature control is a process in which change of temperature of a space (and objects collectively there within) is measured or otherwise detected, and the passage of heat energy into or out of the space is adjusted to achieve a desired average temperature.",
+    "definition": "Temperature control in coffee equipment is the regulation of brew water and brewing surfaces so that extraction takes place inside a chosen temperature band. The work sits with the machine rather than the recipe: a sensor reads the temperature of a boiler, thermoblock, or group, a controller compares that reading with a target, and the heater is switched to close the gap.",
     "category": "Brewing Methods",
     "categories": [
       "Brewing Methods",
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffee Brewing Temperature",
+      "Coffee extraction",
+      "Cold Brew Coffee",
+      "Espresso",
+      "Espresso Machine",
+      "Kettle",
+      "Moka pot",
+      "PID controller",
+      "Temperature Surfing"
+    ],
     "source_url": "https://coffee-dictionary.com/temperature-control/",
     "postid": 67018
   },
@@ -6783,12 +8265,16 @@
   {
     "term": "Thailand",
     "slug": "thailand",
-    "definition": "Thailand is a coffee-producing country in Southeast Asia and a growing coffee origin, with most of its Arabica grown in the northern highlands around Chiang Mai and Chiang Rai. Its coffees are mild, sweet, and increasingly refined, alongside a strong domestic coffee-drinking culture.",
+    "definition": "Thailand is a coffee-producing country in Southeast Asia and a growing coffee origin, with most of its Arabica grown in the northern highlands around Chiang Mai and Chiang Rai. [1] The country splits neatly in two: cool mountainous Arabica in the north, warm lowland Robusta in the south. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso",
+      "Robusta coffee",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/thailand/",
     "postid": 72658
   },
@@ -6939,7 +8425,10 @@
       "General Terms"
     ],
     "related_terms": [
+      "Coffee Brewing Methods",
       "Concentration",
+      "Espresso",
+      "French press",
       "Turkish coffee"
     ],
     "source_url": "https://coffee-dictionary.com/total-dissolved-solids/",
@@ -6975,27 +8464,62 @@
     "postid": 67106
   },
   {
-    "term": "Uganda",
-    "slug": "uganda",
-    "definition": "Uganda is a major coffee-producing country in East Africa and one of the world’s leading Robusta growers, and a substantial coffee origin. Its highland Arabica from Mount Elgon and the Rwenzori range is full-bodied and winey, while its Robusta anchors blends worldwide.",
+    "term": "Typica",
+    "slug": "typica",
+    "definition": "Typica is a botanical variety of * Coffea arabica * and, alongside Bourbon , one of the two foundational varieties from which most classic coffee cultivars descend. [1] It originated in the highlands of southwestern Ethiopia and spread through colonial trade routes, becoming the first widely cultivated arabica type in the Americas and Asia. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Arusha Coffee",
+      "Blue Mountain Coffee",
+      "Bourbon",
+      "Castillo",
+      "Caturra",
+      "Coffea Arabica",
+      "Ethiopia"
+    ],
+    "source_url": "https://coffee-dictionary.com/typica/",
+    "postid": 72854
+  },
+  {
+    "term": "Uganda",
+    "slug": "uganda",
+    "definition": "Uganda is one of the few origins where both Robusta and Arabica thrive as native crops. Robusta, indigenous to the Lake Victoria basin’s lowlands, anchors national output with heavy-bodied, earthy, often bittersweet cups that stabilize commercial blends. [1]",
+    "category": "Coffee Origins",
+    "categories": [
+      "Coffee Origins"
+    ],
+    "related_terms": [
+      "Bourbon",
+      "Coffea Arabica",
+      "Coffee production",
+      "Espresso",
+      "Ethiopia",
+      "Kenya",
+      "Robusta coffee",
+      "Typica"
+    ],
     "source_url": "https://coffee-dictionary.com/uganda/",
     "postid": 72660
   },
   {
     "term": "United States",
     "slug": "united-states",
-    "definition": "United States of America Flag of the United States Great Seal of the United States Motto: “ In God we trust ” (official)” E pluribus unum ” (traditional)”Out of many, one” Anthem: “The Star-Spangled Banner”File:Star Spangled Banner instrumental. ogg Location of the United States CapitalWashington, D.C.",
+    "definition": "The United States is a major coffee-consuming nation whose domestic market and culture have disproportionately shaped global coffee trends, despite producing negligible volumes of its own coffee. [1] Its significance stems from its role as the world’s largest economy for coffee retail, where successive waves of consumption—from diner-style drip coffee to the second-wave espresso boom and third-wave specialty focus—have defined international drink standards. [1]",
     "category": "Coffee Culture",
     "categories": [
       "Coffee Culture",
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "American Roast",
+      "Breve",
+      "Caffè Latte",
+      "Coffeehouse",
+      "Dunkin’ Donuts"
+    ],
     "source_url": "https://coffee-dictionary.com/united-states/",
     "postid": 66852
   },
@@ -7031,7 +8555,7 @@
   },
   {
     "term": "Vienna",
-    "slug": "vienna",
+    "slug": "vienna-roast",
     "definition": "A Vienna roast is a medium-dark roast level, darker than an American roast but lighter than Full City or French roast.",
     "category": "Coffee Drinks",
     "categories": [
@@ -7039,9 +8563,12 @@
       "Coffee Roasting"
     ],
     "related_terms": [
+      "American Roast",
       "Coffeehouse",
       "Espresso",
+      "Medium-dark Roast",
       "Temperature control",
+      "Wiener Melange",
       "coffee beans",
       "coffee roasting"
     ],
@@ -7049,14 +8576,43 @@
     "postid": 66787
   },
   {
+    "term": "Vienna Roast",
+    "slug": "vienna-roast",
+    "definition": "A Vienna roast is a medium-dark roast level, darker than an American roast but lighter than Full City or French roast.",
+    "category": "Coffee Drinks",
+    "categories": [
+      "Coffee Drinks",
+      "Coffee Roasting"
+    ],
+    "related_terms": [
+      "American Roast",
+      "Coffeehouse",
+      "Espresso",
+      "Medium-dark Roast",
+      "Temperature control",
+      "Wiener Melange",
+      "coffee beans",
+      "coffee roasting"
+    ],
+    "source_url": "https://coffee-dictionary.com/vienna-roast/",
+    "postid": 66787
+  },
+  {
     "term": "Vietnam",
     "slug": "vietnam",
-    "definition": "Vietnam is the world’s second-largest coffee-producing country and its leading Robusta grower, and a powerhouse coffee origin. Its coffee, centred on the Central Highlands, is bold, earthy, and heavy-bodied, powering espresso blends, instant coffee, and the country’s famous sweetened iced coffee.",
+    "definition": "Vietnam is the world’s second-largest coffee producer and the dominant source of Robusta , a species thriving in its lowland tropical climate. [1] The sector is defined by the Central Highlands, a plateau region where over 90 percent of national output originates, with provinces like Dak Lak and Lam Dong leading cultivation. [1]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Bonavita",
+      "Catimor",
+      "Coffee production",
+      "Espresso",
+      "Robusta coffee",
+      "Vienna Roast"
+    ],
     "source_url": "https://coffee-dictionary.com/vietnam/",
     "postid": 72662
   },
@@ -7099,24 +8655,43 @@
   {
     "term": "Washed Process",
     "slug": "washed-process",
-    "definition": "Washed process refers to removing the fruit from the coffee cherry before drying, so the bean dries in its parchment skin with little or no pulp attached. Fruit is depulped, fermented in water to break down the sticky mucilage, then washed clean and dried on patios or raised beds. The method emphasizes clarity and the intrinsic character of the bean itself rather than sugars absorbed from the fruit.",
+    "definition": "Washed Process, also known as the wet process or fully washed method, is a coffee processing technique in which the cherry skin and most or all of the fruit layers are removed from the seed before drying begins. [1] A fermentation step breaks down the sticky mucilage layer, followed by washing and drying the bean in its protective parchment. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Brightness",
+      "Clean Coffee",
+      "Coffee Acidity",
+      "Coffee Body",
+      "Coffee extraction",
+      "Coffee production",
+      "Double Fermentation",
+      "Espresso Beans",
+      "Single Origin",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/washed-process/",
     "postid": 72923
   },
   {
     "term": "Washing Station",
     "slug": "washing-station",
-    "definition": "Washing station refers to a facility where smallholder farmers deliver freshly picked coffee cherries for processing into parchment coffee. The station depulps, ferments, washes, and dries the coffee, paying for cherry by weight or by the day’s delivery. In East Africa — Kenya, Ethiopia, Rwanda, Burundi — the washing station is the organizational heart of coffee production, because most growers own too little land to process coffee themselves.",
+    "definition": "A Washing Station, also known as a wet mill, factory, or beneficio, is a centralized facility where freshly harvested coffee cherries are received and processed into dried parchment coffee. [1] Here, the initial stages of processing—sorting, pulping, fermentation, washing, and drying—physically happen. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Coffea",
+      "Coffee Brewing",
+      "Coffee production",
+      "Double Fermentation",
+      "Ethiopia",
+      "Specialty coffee",
+      "Washed Process"
+    ],
     "source_url": "https://coffee-dictionary.com/washing-station/",
     "postid": 72929
   },
@@ -7138,31 +8713,36 @@
   {
     "term": "West Valley (Costa Rica)",
     "slug": "west-valley-costa-rica",
-    "definition": "West Valley is a coffee-producing region in Costa Rica, the Pacific-facing hills west of San José around Naranjo, Palmares, Sarchí, and Grecia. It is known for late harvests — the dry season arrives later than elsewhere in the country — and for a long record of Cup of Excellence wins. Farms between roughly 900 and 1,600 meters produce a sweet, balanced cup with citric acidity and caramel and stone-fruit notes.",
+    "definition": "West Valley (Costa Rica), also known as Valle Occidental in Spanish, is a recognized coffee-growing region on the western side of Costa Rica’s Central Valley plateau, northwest of San José. [1] It is one of the eight official coffee regions designated by ICAFE, the country’s coffee institute. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Espresso Blend",
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/west-valley-costa-rica/",
     "postid": 72935
   },
   {
     "term": "Wet Milling",
     "slug": "wet-milling",
-    "definition": "Wet milling refers to the mechanized station where freshly picked coffee cherries are turned into parchment coffee: depulping, fermentation or mechanical demucilaging, washing, and pre-drying all happen in one place. It is the industrial counterpart of the washing station, common in Brazil and Central America where farms deliver cherry directly to a facility. The same words are also used for the milling step that removes parchment from dry coffee, a stage more often called dry milling.",
+    "definition": "Wet Milling is the coffee post-harvest process—and the physical facility—in which freshly picked coffee cherries are transformed into dried parchment coffee. [1] This stage strips away the cherry’s outer skin and sticky mucilage before the beans are dried for storage. [2]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Specialty coffee"
+    ],
     "source_url": "https://coffee-dictionary.com/wet-milling/",
     "postid": 72928
   },
   {
     "term": "Wet-Hulling (Giling Basah)",
     "slug": "wet-hulling-giling-basah",
-    "definition": "Wet-hulling refers to stripping the parchment off coffee while it is still moist, then drying the naked green bean in the sun. Removing parchment early — the step that gives the method its Indonesian name, giling basah, “wet grinding” — exposes the bean to the open air at a stage when other methods keep it protected. The result is a cup with low acidity, heavy body, and the earth, spice, and must notes characteristic of Indonesian coffee.",
+    "definition": "Wet-Hulling (Giling Basah), pronounced GEE-ling BAH-sah, is a coffee processing method originating in Indonesia. [1] It strips the parchment layer from the coffee bean while still moist, typically at 30–40% moisture content, rather than the 10–12% typical of fully dried parchment coffee. [2] This early removal exposes the green bean to open air and direct sun during final drying. [3]",
     "category": "Coffee Science",
     "categories": [
       "Coffee Science"
@@ -7248,15 +8828,15 @@
   {
     "term": "Yemen",
     "slug": "yemen",
-    "definition": "Yemen is a historic coffee-producing country and the birthplace of the world coffee trade, the source of the legendary Mocha and one of the oldest coffee origins on earth. Its highland Arabica , dried naturally on sun-baked terraces, is prized for a wild, winey, spiced cup unlike any other origin.",
+    "definition": "Yemen is a historic coffee origin in the Arabian Peninsula, known for producing small-lot Arabica from highland terraces under dry conditions. [1] In coffee, the term refers to the country’s distinctive origin profile, especially naturally processed, heirloom coffees associated with Mocha and the highlands around Sana’a, Haraz, and Bani Matar. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
     "related_terms": [
-      "Malty (Coffee Term)",
-      "Spicy Notes in Coffee",
-      "Winey Coffee"
+      "Espresso",
+      "Specialty coffee",
+      "Typica"
     ],
     "source_url": "https://coffee-dictionary.com/yemen/",
     "postid": 72664
@@ -7264,12 +8844,15 @@
   {
     "term": "Yungas",
     "slug": "yungas",
-    "definition": "Yungas is a coffee-producing region of steep cloud-forest valleys on the eastern slope of the Andes in Bolivia, running from the Altiplano down toward the Amazon basin. It is the country’s historic and principal coffee region, with plantings between roughly 1,000 and 2,000 meters along the famous “Camino de la Muerte” road from La Paz. Altitude, mild temperatures, and cloud cover give Yungas coffee its balanced acidity, caramel sweetness, and smooth body.",
+    "definition": "Yungas (from Aymara for “Warm Lands”) is a coffee-producing region of steep cloud-forest valleys on the eastern slope of the Andes in Bolivia, running from the Altiplano down toward the Amazon basin. [1] It is the country’s historic and principal coffee origin, with plantings between roughly 1,000 and 2,000 meters. [2]",
     "category": "Coffee Origins",
     "categories": [
       "Coffee Origins"
     ],
-    "related_terms": [],
+    "related_terms": [
+      "Colombia",
+      "Espresso"
+    ],
     "source_url": "https://coffee-dictionary.com/yungas/",
     "postid": 72932
   }
